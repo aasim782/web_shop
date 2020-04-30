@@ -245,7 +245,7 @@
 		
 	 	
     </div>
-		<div class="outgoing_msg mb-4 ">
+		<div class="outgoing_msg mb-4 justify-content-center ">
 		  <div class="outgoing_msg_img "> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
 		  <div class="sent_msg">
 			<div class="sent_withd_msg text-center">

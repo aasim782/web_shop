@@ -1,0 +1,113 @@
+
+			$sql = "SELECT * FROM customer_ord_prds " ;
+			$check_query = mysqli_query($con,$sql);
+			$count = mysqli_num_rows($check_query);
+				if($count==0)
+				{
+					$order_id=1; //no orders in the table - project star 1st recode order id
+				}
+				else
+				{		//conforming the existing custormer or not
+						$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' " ;
+						$check_query = mysqli_query($con,$sql);
+						$row1 = mysqli_num_rows($check_query);
+						
+					if($row1>0)	
+					{		//customer have any paid orders
+						$sql = "SELECT order_id FROM customer_ord_prds WHERE customer_id = '$customer_id' and ( status=1 or status=2 or status=3 ) " ;
+						$check_query = mysqli_query($con,$sql);
+						$row2 = mysqli_num_rows($check_query);
+				
+							if($row2>0)
+							{		//customer have any un paid orders
+								$sql = "SELECT order_id FROM customer_ord_prds WHERE customer_id = '$customer_id' and status=0" ;
+								$check_query = mysqli_query($con,$sql);
+								$row4 = mysqli_num_rows($check_query);			
+								
+								if($row4>0)
+								{ 	 //if he have same order id will appear
+									while( $row4 = mysqli_fetch_array($check_query))
+										{
+												$order_id = $row4["order_id"];
+										}
+									
+								}
+								
+								else
+								{	//if he haven't order id  increse by 1
+									$sql = "SELECT max(order_id) as max_order_id  FROM customer_ord_prds " ;
+									$check_query = mysqli_query($con,$sql);
+									$row = mysqli_num_rows($check_query);
+										
+									while($row = mysqli_fetch_array($check_query))
+										{
+												$order_id = $row["max_order_id"]+1;
+										}
+									
+								}
+
+							}
+							else
+							{	//he have not paid item but have unpaid item same order id will appear
+								$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' " ;
+								$check_query = mysqli_query($con,$sql);
+								$row1 = mysqli_num_rows($check_query);
+											while($row1 = mysqli_fetch_array($check_query))
+										{
+												$order_id = $row1["order_id"];
+										}
+								
+							}				
+
+				
+				
+					}
+					else
+					{			//if he totally new existing id will increase
+								$sql = "SELECT max(order_id) as max_order_id FROM  customer_ord_prds " ;
+								$check_query = mysqli_query($con,$sql);
+								$row3 = mysqli_num_rows($check_query);
+											while($row3 = mysqli_fetch_array($check_query))
+										{
+												
+												$order_id = $row3["max_order_id"]+1;
+										}
+				
+					}
+					
+			
+				
+				}
+				
+
+					
+					
+				$sql ="SELECT * FROM product_tbl WHERE product_id = '$product_id'" ;
+					$check_query = mysqli_query($con,$sql);
+					$row = mysqli_fetch_array($check_query);
+					$product_id = $row["product_id"];
+					$product_price = $row["product_price"];
+					
+					$today = date("Y-m-d"); // get the date
+					
+					
+				$sql = "INSERT INTO `customer_ord_prds` 
+				(`customer_ord_id`,`order_date`, `customer_id`, `product_id`, `order_qtry`, 
+				`current_price_per_prd`,`order_id`) 
+				VALUES (NULL, '$today', $customer_id , $product_id, 
+				$product_qty , $product_price,$order_id)";
+							if (mysqli_query($con,$sql))
+							{
+								
+									echo "<div class='alert alert-success alert-dismissible fade show col-lg-12' role='alert'>
+									  <strong>Product Successfully added to</strong> the Cart..!
+									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+										<span aria-hidden='true'>&times;</span>
+									  </button>
+									</div> ";
+								
+							}
+				
+				
+				
+		

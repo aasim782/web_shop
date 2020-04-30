@@ -201,7 +201,7 @@
 				
 						include "db_conn/config.php"; 
 						$customer_id =$_SESSION['cusid'];
-						$sql = "update customer_ord_prds set payment_status=1 where customer_id= '$customer_id' ";
+						$sql = "update customer_ord_prds set status=1 where customer_id= '$customer_id' ";
 						mysqli_query($con,$sql);
 						
 						$order_id =$_GET['order_id'];

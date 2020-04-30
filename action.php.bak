@@ -819,39 +819,23 @@ if(isset($_POST["chnagepassowrd"])){
 	
 
 if(isset($_POST["complain_items"])){
+
 $customer_id = $_SESSION['cusid'] ;
-//get the customer_ord_id from customer_ord_prds table *
-$sql = "SELECT  customer_ord_prds.customer_ord_id,customer_ord_prds.product_id 
-		FROM customer_tbl,customer_ord_prds 
-		WHERE customer_tbl.customer_id = customer_ord_prds.customer_id 
-		AND (customer_ord_prds.customer_id = '$customer_id' and (customer_ord_prds.payment_status=1 or  customer_ord_prds.payment_status=2 or customer_ord_prds.payment_status=3))" ;
+$sql = "SELECT * FROM customer_tbl,customer_ord_prds WHERE 
+customer_tbl.customer_id = customer_ord_prds.customer_id AND (customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3))" ;
 $check_query = mysqli_query($con,$sql);
 
-	echo " <option >Please Select Order .. </option>";
+	echo " <option >Please Select Order ID.. </option>";
 			while($row = mysqli_fetch_array($check_query))
-						{	$product_id = $row["product_id"];
+						{	
+							 
 							$customer_ord_id = $row["customer_ord_id"];
-						 		
-							//get the product name from product table *		
-							$sql1 = "SELECT  product_tbl.product_name 
-									 FROM product_tbl,customer_ord_prds 
-									 WHERE (customer_ord_prds.product_id = '$product_id')  
-									 AND product_tbl.product_id = customer_ord_prds.product_id " ;
-							
-									$check_query1 = mysqli_query($con,$sql1);	
-									while($row1 = mysqli_fetch_array($check_query1))
-									{
-										$product_name = $row1["product_name"];
-									}
-									
-								//option list output	
-								echo " <option value='$customer_ord_id'><b>$product_name - (Order ID : $customer_ord_id)</b></option>";
-								
-							
+							echo " <option value='$customer_ord_id'><b>$customer_ord_id - </b></option>";
+	 
 						}
 }
 
-
+/*
 
 //complain msg insert in to table
 if(isset($_POST["complain_msg"])){
@@ -867,6 +851,6 @@ echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 
 
 }
-
+*/
 
 ?>

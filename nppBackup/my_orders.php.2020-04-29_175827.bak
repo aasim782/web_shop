@@ -125,7 +125,7 @@
 		  <li class="list-group-item"><a  href="my_orders.php" >All orders</a></li>
 		  <li class="list-group-item">Tracking</li>
 		  <li class="list-group-item" > <a  href="#" data-toggle="modal" data-target="#customer_complain_Model" >Complain</a></li>
-		  <li class="list-group-item"> <a  href="message.php"  > Message</a> </li>
+		  <li class="list-group-item">Vestibulum at eros</li>
 		</ul>
     </div>
     <div class="col-sm mr-2">

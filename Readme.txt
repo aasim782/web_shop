@@ -1,1 +1,4 @@
-repositery created to start project (31st edit)
+-i started to develop foreign key
+	- complian part is done under the foreign key concept
+-i small desgin chat interface
+-
