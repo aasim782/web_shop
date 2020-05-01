@@ -412,6 +412,8 @@ $('.modal').on('hidden.bs.modal', function(){
 					success	:	function(data){
 						$('#cart_msg').html(data);
 						card_page_list(); //no need to refresh  it will be load all the orderd products
+						cart_prd_count();  // if i remive card qty decrease function call
+						card_container_btn();// if i remive card list update
 					}
 					})
 		
@@ -436,6 +438,8 @@ $('.modal').on('hidden.bs.modal', function(){
 					success	:	function(data){
 						$('#cart_msg').html(data);
 						card_page_list();
+						
+						
 					}
 					})
 		

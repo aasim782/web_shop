@@ -434,7 +434,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 									if(isset($_POST["get_added_products_into_card"]))
 								{
 									
-								echo "<tr>
+														echo "<tr>
 															<th class='col-2'>$no</th>
 																<td><img height='50px' width='50px' src='prg_img/$product_img' alt='Third slide'></td>
 																<td style='width: 30%'><label>$product_name</label></td>
@@ -456,7 +456,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 														<div class='col-md-3'><img height='55px' class='mr-3' width='55px' src='prg_img/$product_img' >$product_name
 														
 														 
-																<textarea class='form-control mt-2 note' id='note-$product_id'   pid='$product_id' name='customer_note' rows='2' size='4'  placeholder='Note'>$customer_note</textarea>
+																<textarea class='form-control mt-2 note' id='note-$product_id'   pid='$product_id'     name='customer_note' rows='2' size='4'  placeholder='Note...'>$customer_note</textarea>
 														 
 														
 														
@@ -646,7 +646,7 @@ if(isset($_POST["removefromcart"])){
 $customer_id = $_SESSION['cusid'] ;
 $remove_product_id = $_POST['remove_product_id'];
 
- $sql = "Delete FROM customer_ord_prds WHERE customer_id = '$customer_id' AND product_id='$remove_product_id'" ;
+ $sql = "Delete FROM customer_ord_prds WHERE customer_id = '$customer_id' AND product_id='$remove_product_id' AND payment_status = 0" ;
 	$check_query = mysqli_query($con,$sql);
 	if($check_query){
 		

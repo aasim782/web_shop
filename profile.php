@@ -17,20 +17,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery.js?i=26"></script>
-    <script src="js/popper.min.js?i=26"></script>
-    <script src="js/bootstrap.min.js?i=26"></script>
+	<script src="js/jquery.js?i=27"></script>
+    <script src="js/popper.min.js?i=27"></script>
+    <script src="js/bootstrap.min.js?i=27"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css?i=26">
-	<script src="js/all.js?i=26" data-auto-replace-svg="nest"></script>
-	<script src="prg_main.js?i=26" ></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css?i=27">
+	<script src="js/all.js?i=27" data-auto-replace-svg="nest"></script>
+	<script src="prg_main.js?i=27" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=26">
+	<link rel="stylesheet" href="css/all.css?i=27">
     <title>Dress Line</title>
   </head>
   <body>
@@ -85,11 +85,11 @@
 				  
 				  <div class="dropdown-menu dropdown-menu-right ">
 								<div class="container">
-									<div class="row">
+									<div class="row  overflow-auto" style='height:350px;'>
 								
 									
 											<div class="col-sm-12 col-md-10 col-md-offset-1">
-												<table class="table table-hover">
+												<table class="table table-hover " >
 													<thead  style='background-color:#ff4747;padding:10px;color:white;'>
 														<tr>
 															<th style='padding:10px;'>No</th>
@@ -103,7 +103,7 @@
 													</thead>	
 													
 												
-													<tbody id="all_product_list">			
+													<tbody id="all_product_list" class=""  >			
 											
 													<!--					
 														<tr>
@@ -124,12 +124,20 @@
 														
 													
 													</tbody>
+										
 												</table>
+										 
+
 											</div>
-											
 											
 									</div>
 									
+																<div class="container mb-2   mt-3 justify-content-center ">
+																<a href="cart.php" class="btn btn-primary mr-2" role="button"><i class="fas fa-shopping-cart"></i> Cart List</a>
+																<a href="cart.php" class="btn btn-danger mr-2" role="button"><i class="fas fa-shopping-cart"></i> Checkout</a>
+										
+														
+																</div>
 								</div>
 				</div>
 	</div>
