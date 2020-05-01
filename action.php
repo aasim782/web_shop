@@ -668,7 +668,7 @@ $new_qty = $_POST['new_qty'];
 $current_product_total = $_POST['current_product_total'];
 $customer_note = $_POST['customer_note'];
 
- $sql = "update customer_ord_prds set order_qtry='$new_qty', customer_note='$customer_note' WHERE customer_id = '$customer_id' AND product_id='$update_product_id'" ;
+ $sql = "update customer_ord_prds set order_qtry='$new_qty', customer_note='$customer_note' WHERE customer_id = '$customer_id' AND product_id='$update_product_id' AND payment_status = 0" ;
 	$check_query = mysqli_query($con,$sql);
 	if($check_query){
 		
