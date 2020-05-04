@@ -305,7 +305,11 @@ $(document).ready(function(){
 	
 
 
-		cart_prd_count();	
+
+
+
+		cart_prd_count();
+		cart_nav_list_total();		
 		//product add to card
 		$("body").delegate("#particular_product_btn","click",function(){
 		event.preventDefault();
@@ -326,6 +330,12 @@ $(document).ready(function(){
 	})	
 	
 	
+	
+	
+	
+	
+	
+	
 	card_container_btn();
 	//added product list container
 	function card_container_btn(){
@@ -338,6 +348,7 @@ $(document).ready(function(){
 					}
 					})
 	cart_prd_count(); 	
+	cart_nav_list_total();
 		
 	}
 	
@@ -349,12 +360,43 @@ $(document).ready(function(){
 					data	:	{cart_count:1}, // get the added product into cart
 					success	:	function(data){
 						$('#badge').html(data);
+						$('#badge_in_nave_manue').html(data);
 					}
 					}) 
 		
 	}
 	
-
+	
+	
+	cart_nav_list_total();
+	function cart_nav_list_total(){
+			$.ajax({
+					url		:	"action.php",
+					method	:	"POST",
+					data	:	{nav_list_total:1}, // get the order's total val
+					success	:	function(data){
+						$('#nav_list_total_val').html(data);
+					}
+					}) 
+	
+	
+	}
+	
+	 orderd_prd_count();
+		function orderd_prd_count(){
+			$.ajax({
+					url		:	"action.php",
+					method	:	"POST",
+					data	:	{orderd_prd_count:1}, // get the added product into cart
+					success	:	function(data){
+						$('#orders_badge_in_nave_manue').html(data);
+					}
+					}) 
+		
+	}
+	
+	
+	
 	
 	
 	
@@ -367,6 +409,7 @@ $(document).ready(function(){
 					data	:	{card_page_list:1}, // get the added product into cart
 					success	:	function(data){
 						$('#card_page_list').html(data);
+							cart_nav_list_total();
 					}
 					})
 		
@@ -414,6 +457,7 @@ $('.modal').on('hidden.bs.modal', function(){
 						card_page_list(); //no need to refresh  it will be load all the orderd products
 						cart_prd_count();  // if i remive card qty decrease function call
 						card_container_btn();// if i remive card list update
+						cart_nav_list_total();
 					}
 					})
 		
@@ -438,7 +482,6 @@ $('.modal').on('hidden.bs.modal', function(){
 					success	:	function(data){
 						$('#cart_msg').html(data);
 						card_page_list();
-						
 						
 					}
 					})

@@ -1,6 +1,7 @@
--Note ... dot added
--when i update the cart to cart list and budget automatically update
--top card list design was chanegd
-	- added cart list btn
-	- add checkout btn
-Ver 0.3.5
+-customes order page designed
+-cart order total prd value show on nav
+-product view page desgined
+-add/delete/update/ prd nav value decrease
+-add the orders counted value in nav name button list with code  
+-add the paided counted value in nav name button list with code  
+Ver 0.3.6

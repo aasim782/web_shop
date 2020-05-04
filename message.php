@@ -112,20 +112,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery.js?i=30"></script>
-    <script src="js/popper.min.js?i=30"></script>
-    <script src="js/bootstrap.min.js?i=30"></script>
+	<script src="js/jquery.js?i=40"></script>
+    <script src="js/popper.min.js?i=40"></script>
+    <script src="js/bootstrap.min.js?i=40"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css?i=30">
-	<script src="js/all.js?i=30" data-auto-replace-svg="nest"></script>
-	<script src="prg_main.js?i=30" ></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css?i=40">
+	<script src="js/all.js?i=40" data-auto-replace-svg="nest"></script>
+	<script src="prg_main.js?i=40" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=30">
+	<link rel="stylesheet" href="css/all.css?i=40">
     <title>Dress Line</title>
   </head>
   <body>
@@ -148,7 +148,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav justify-content-center ">
      <li class="nav-item active">
-        <a class="nav-link" href="profile.php"><i class="fas fa-home"></i>Home </a>
+        <a class="nav-link" href="index.php"><i class="fas fa-home"></i>Home </a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="#"><i class="fas fa-th-list"></i> Product</a>
@@ -164,12 +164,79 @@
 		
 	   <ul class="navbar-nav">
 	 <li class="nav-item active">
-        <a class="nav-link" href="#" ><i class="fas fa-search"></i> Tracking</a>
+        <a class="nav-link" href="#" ><i class="fas fa-search"></i>Tracking</a>
       </li>
 	   <li class="nav-item active" >
-        <a class="nav-link" href="#" data-toggle="modal" data-target="#customer_complain_Model"><i class="fas fa-star"></i> Complain</a>
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#customer_complain_Model"   ><i class="fas fa-star"></i>Complain</a>
       </li>
  			
+			
+			<!-- Sign Up Form -->
+	<div class="btn-group" >
+	  <button type="button" id="card_container_btn" class="btn btn-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-expanded="false">
+		<span class="badge badge-light"  id='badge'>0</span> <i class="fas fa-shopping-cart"></i> Rs.<a id='nav_list_total_val'>0</a>.00
+	  </button>
+
+				  
+				  <div class="dropdown-menu dropdown-menu-right ">
+								<div class="container">
+									<div class="row  overflow-auto  shadow-sm" style='height:350px;' >
+								
+									
+											<div class="col-sm-12 col-md-10 col-md-offset-1">
+												<table class="table table-hover" >
+													<thead  style='background-color:#ff4747;padding:10px;color:white;'>
+														<tr>
+															<th style='padding:10px;'>No</th>
+															<th  colspan="2"  style='padding:10px;'>Product</th>
+															<th style='padding:10px;' class="text-center">Qty</th>
+															<th style='padding:10px;' class="text-center">Price</th>
+												
+
+														</tr>
+														
+													</thead>	
+													
+												
+													<tbody id="all_product_list" class=""  >			
+											
+													<!--					
+														<tr>
+															<td class="col-md-2"><h5 class="media-heading">01.</h5></td>
+																<td class="col-md-6">
+															<div class="media">
+																<div class="media-body">
+																	<h5 class="media-heading">Shoes</h5>
+																</div>
+															</div></td>
+															<td class="col-sm-1 col-md-1" style="text-align: center">
+															  <img class="d-block w-100" height="50px" width="10px" src="prg_img/man_Shirt.jpg" alt="Third slide">
+															</td>
+															<td class="col-sm-1 col-md-1 text-center"><strong>Rs.400.87</strong></td>
+														</tr>
+
+													-->
+														
+													
+													</tbody>
+										
+												</table>
+										 
+
+											</div>
+											
+									</div>
+									
+																<div class="container mb-2   mt-3 justify-content-center">
+																<a href="cart.php" class="btn btn-primary mr-2" role="button"><i class="fas fa-shopping-cart"></i> Cart List</a>
+																<a href="cart.php" class="btn btn-danger mr-2" role="button"><i class="fas fa-shopping-cart"></i> Checkout</a>
+										
+														
+																</div>
+								</div>
+				</div>
+	</div>
+<!-- /signIn -->
 
 
 
@@ -177,16 +244,17 @@
 <!-- dropdown -->
 <div class="btn-group">
   <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	Hi, <?php echo $_SESSION['cus_fname'];?> <!--nav bar name / login user fname-->
+<i class="fas fa-user"></i> <?php echo $_SESSION['cus_fname'];?> <!--nav bar name / login user fname-->
   </button>
   <div class="dropdown-menu dropdown-menu-right">
-     <button class="dropdown-item   btn btn-light " onclick="window.location='cart.php'" type="button">Cart List</button>
-    <button class="dropdown-item   btn btn-light " onclick="window.location='my_orders.php'" type="button">My orders</button>
-    <button class="dropdown-item   btn btn-light" type="button">Change Password</button>
+     <button class="dropdown-item   btn btn-light " onclick="window.location='cart.php'" type="button">Cart List <span class="badge badge-primary"  id='badge_in_nave_manue'>0</span> </button>
+    <button class="dropdown-item   btn btn-light " onclick="window.location='my_orders.php'" type="button">My orders  <span class="badge badge-primary"  id='orders_badge_in_nave_manue'>0</span> </button>
+    <button class="dropdown-item   btn btn-light" type="button"  data-toggle="modal" data-target="#chanepasswordModel" >Change Password</button>
 	<button class="dropdown-item btn btn-light" onclick="window.location='logout.php'"  type="button">Logout</button> <!-- login session reset-->
   </div>
 </div>
 <!-- /dropdown -->
+
 
 
 
@@ -203,6 +271,8 @@
 	  
 	</nav>
 <!-- /navbar -->
+		
+
 	
 	<div class="container col-10 mt-4">
 	<div id="ord_msg"></div>

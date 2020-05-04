@@ -1,40 +1,49 @@
 <!doctype html>
+
 <?php session_start();
-	if(!isset($_SESSION['cusid'])) //user loged or not check through the session
+	if(isset($_SESSION['cusid']))
 	{
-		header("location:index.php");	 //access page
+		header("location:profile.php");	
 	}
-		
-	
-	include "bank_deposit.php";
+
  ?>
+ 
 <html lang="en">
   <head>
   <?php include "customer_reg.php"; ?>
+  <?php include "customer_forget_password.php"; ?>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery.js?i=39"></script>
-    <script src="js/popper.min.js?i=39"></script>
-    <script src="js/bootstrap.min.js?i=39"></script>
+	<script src="js/jquery.js?i=20"></script>
+    <script src="js/popper.min.js?i=20"></script>
+    <script src="js/bootstrap.min.js?i=20"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css?i=39">
-	<script src="js/all.js?i=39" data-auto-replace-svg="nest"></script>
-	<script src="prg_main.js?i=39" ></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css?i=20">
+	<script src="js/all.js?i=20" data-auto-replace-svg="nest"></script>
+	<script src="prg_main.js?i=20" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=39">
+	<link rel="stylesheet" href="css/all.css?i=20">
     <title>Dress Line</title>
   </head>
   <body>
   
 
+  	    <!-- alert -->
+				<div class="alert p-0 alert-danger alert-dismissible m-0 fade show rounded-0" role="alert">
+				  <center>Ramzan Sale Offer <strong>50%</strong> the Cart..!</center>
+				  <button type="button" class="close p-0 m-0" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div> 
+	    <!-- /alert -->
 
   
   
@@ -178,130 +187,109 @@
 <!-- /navbar -->
 		
 
-	
-	<div class="container col-10 mt-4">
-	<div id="ord_msg"></div>
+			<!-- Slider -->
+		 
+
 
   <!-- Page Content -->
-				<div class="card ">
-				  <div class="card-header " style="background-color:#ff4747;"><i class="fa fa-shopping-cart"></i> My orders</div>
-				  <div class="card-body">
+  <div class="container">
+    <div class="row mt-3 ">
+	</div>
+	<div class="row">
+	 <div class="col-lg-3">
+	
+    <!-- Category -->
+
 				
+						<div id="get_category"> </div>
+				
+		
+	<!-- Brands -->		
 
-<div class="container">
-  <div class="row">
-    <div class="col-3">
-   	<ul class="list-group">
-		  <li class="list-group-item active">Orders</li>
-		  <li class="list-group-item"><a  href="my_orders.php" >All orders</a></li>
-		  <li class="list-group-item">Tracking</li>
-		  <li class="list-group-item" > <a  href="#" data-toggle="modal" data-target="#customer_complain_Model" >Complain</a></li>
-		  <li class="list-group-item"> <a  href="message.php"  > Message</a> </li>
-		</ul>
-    </div>
-    <div class="col-sm mr-2">
-    	<div class="container ">
-			  <div  id="my_order_list"></div>
-
-		<!-- 
-							<div class="row ">		
-					  <div class="shadow-sm col-sm row border rounded ml-1 mb-2">
-				  <div class="col-sm mt-3">Order ID :<b>  10101</b>
-						<img src="prg_img/3Acharger.jpg" class="m-4 "  height="100px" width="100px"></div> 
-						  <div class="card-body ">
-						  <div class="container">
-					 
-						  <div class="row">
-							<div class="col-sm">
-							<b>Man's Shirt</b> 
-							</div>
-							
-							<div class="col-sm text-right">
-							Ordered Date :<b>  2012/10/10</b> 
-							</div>
-						  </div>
-						  
-						  
-						  <div class="row mt-3">
-								<div class="col-sm">
-							<p class="card-text text-right">Price : <b>Rs.10101.00</b> </p>
-								</div>	<div class="col-sm">
-										<p class="card-text text-center">QTY : <b>10</b> </p>
-								</div>
-								
-								<div class="col-sm">
-								<p class="card-text text-right">Total : <b>Rs.120000</b> </p>
-								</div>	
-								</div>	
-							<p class="card-text mt-3">Note : <b>I want extra 1 ic ple send me </b> </p>
-							  </div>
-								
-
-								<div class="btn-group mt-4">
-										<a href="" class="btn btn-warning mr-2 rounded "><i class="fa fa-check"></i> Conform goods Received </a>
-										<a href="" class="btn btn-danger mr-2 rounded"><i class="fa fa-search"></i> Track Order </a>
-										<a href="" class="btn btn-dark mr-2  rounded"><i class="fa fa-sms"></i> message</a>
-					
-										</div>
-						  </div>
-						  </div>
-						</div>
-						-->
-
-				  </div>
-    </div>
-
-  </div>
-</div>
-				  
-				  
-				  
-				  
-				  
-				  
-				  <!-- <div class="row">
+	
+						<div id="get_brand"> </div>
 						
-							<div class="col-md-1">01.</div>
-							<div class="col-md-2">T Schirt</div>
-							<div class="col-md-2">dasd</div>
-							<div class="col-md-2">Rs.100.00</div>
-							<div class="col-md-1">	
-							<div class="col-md-0">
-							<input type="text"  class="form-control"  id="pricemax" size="1" maxlength="8"  name="max">
-							</div>
-							</div>
-							
-							
-						<div class="col-md-2">1000000</div>
-						<div class="col-md-2">
-										<div class="btn-group">
-										<a href="" class="btn btn-info"><i class="fa fa-check-circle"></i></a>
-										<a href="" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a>
-										</div>
-							</div>
-					</div>
-				  -->
-				  
-				
-				 
+						
 
-				  </div>
-				  <div class="card-footer text-right"><img src="https://www.payhere.lk/downloads/images/payhere_long_banner.png" alt="PayHere" width="400"/></div>
-				</div>
-				</div>
-	  
-
+      </div>
 	  
       <!-- /.col-lg-3 -->
 	
+	  
+      <div class="col-lg-9">
+				 
 	
+		  	    <!--alert-->
+				<div id="show_msg"></div>
+		  
+	    <!-- All Product-->
+	<div class="card">
+  <div class="card-header" style="background-color:rgba(255, 193, 7, 0.48);"><h6>&nbspAll Products</h6></div>
+  <div class="card-body ">
+	
+		<!-- All Product-->
+					<div class="row" id="get_product"> </div>
+						
+			<!-- 
+		     <div class="col-4 mb-3" >
+            <div class="card"> 
+			<div class="card-header" style="font-size:15px;background-color:rgba(255, 193, 7, 0.48);"> <b>Samsung Galaxy A30</b>
+					<button type="button"  style='float:right;' class="btn btn-warning"><i class="fas fa-search" ></i></button>
+			</div>
+				<div class="text-center">
+				
+				<img  class="card-img-top" src='prg_img/man_Shirt.jpg' align="center" style='width:160px;height:250px'/><br>		
+					<div class="text-center"  style="padding-top:15px;">
+					<i class="fas fa-star " style="color:orange"></i> 
+                	<i class="fas fa-star " style="color:orange"></i>
+                	<i class="fas fa-star " style="color:orange"></i>
+                	<i class="fas fa-star " style="color:orange"></i>
+					<i class="fas fa-star"></i>
+					</div>
+				</div>
+              <div class="card-footer">
+				<b><strike>Rs.50</strike>/Rs.50</b>
+			<button class="btn btn-danger btn-sm"  style='float:right;font-size:13px'><i class="fa fa-shopping-cart"></i> Add to Cart</button>        
+				</div>
+            </div>
+          </div>
+		  
+		  -->
+	
+		  
+		  
+		  
+		  	
+		  
+		  
+		  
+		  
+		  		  
+		     </div>
+		  <!-- /.row -->
+	</div>
+	<!-- /card-body -->
+				 		
+				  <div class="card-footer" style="background-color:white;">
+			  		 <!-- next button/pagination-->
+						<nav aria-label="asdasd" class="nav justify-content-center">
+					  <ul class="pagination" id="pagenumber">
+					
+						
+					  </ul>
+					</nav>
+				</div>
+				   <!-- footer end --
+				   
+				   <!-- footer end -->
+				
+				
+				</div>
 	
 			</div>
-			
-			
 			    <!-- card end -->
 			
-
+ 
       </div>
       <!-- /.col-lg-9 -->
 

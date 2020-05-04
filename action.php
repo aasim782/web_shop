@@ -20,7 +20,7 @@ if(isset($_POST["category"])){
 			<a href='#' id='category' class='list-group-item list-group-item-action' cid='$cid'>$cat_name</a>		
 			";
 		}
-			echo " <a href='#' class='list-group-item list-group-item-action'>Customs Order</a>";
+			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customes_order'  >Customs Order</a>";
 	}
 }
 
@@ -112,8 +112,8 @@ if(isset($_POST["product"])){
 			$product_img = $row["product_img"];
 			$product_total_qty = $row["product_total_qty"];
 			echo "
-			     <div class=' col-4 mb-3' >
-            <div class='  card'> 
+			     <div class='col-4 mb-3' >
+            <div class='card'> 
 			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b>$product_name</b>
 			
 		<button type='button'  style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
@@ -387,13 +387,50 @@ if(isset($_POST["cart_count"]))
 	$customer_id = $_SESSION['cusid'] ;
 			$sql ="SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status=0" ;
 					$check_query = mysqli_query($con,$sql);
-					echo mysqli_num_rows($check_query);	
+					echo mysqli_num_rows($check_query);	//total row for that customer ordered without payment
 	
 }
 
 
 
+//count the orderes for to nav badget
+if(isset($_POST["orderd_prd_count"]))
+{
+	$customer_id = $_SESSION['cusid'] ;
+			$sql ="SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or payment_status=2 or payment_status=3)" ;
+					$check_query = mysqli_query($con,$sql);
+					echo mysqli_num_rows($check_query);	//total customer orded product (with different payment)
+	
+}
 
+
+if(isset($_POST["nav_list_total"]))
+{
+$customer_id = $_SESSION['cusid'] ;
+$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status='0'" ; //payment_status - 0 unpaid,1-online tra,2-bank,3-cahone delivery
+$check_query = mysqli_query($con,$sql);
+$count = mysqli_num_rows($check_query);
+	 
+	$total=0;
+	
+			if($count>0)
+				{	//used to get the customer orderd details
+					while($row = mysqli_fetch_array($check_query))
+						{
+				 
+						$current_price_per_prd = $row["current_price_per_prd"];
+						$order_qtry = $row["order_qtry"];
+						
+						$current_total_price =  	$current_price_per_prd* $order_qtry;
+						$total=$total+$current_total_price ;
+						}
+							echo $total;
+				}
+				else{
+					
+						echo 0;
+				}
+}
 
 
 
@@ -440,7 +477,6 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 																<td style='width: 30%'><label>$product_name</label></td>
 															<td class='col-sm-1 col-md-1 text-center'><strong>$order_qtry</strong></td>
 															<td class='col-sm-1 col-md-1 text-center'><strong>$current_total_price</strong></td>
-																
 															</tr>
 								
 								

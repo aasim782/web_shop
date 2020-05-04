@@ -10,8 +10,12 @@
  
 <html lang="en">
   <head>
-  <?php include "customer_reg.php"; ?>
-  <?php include "customer_forget_password.php"; ?>
+  <?php 
+  include "customer_forget_password.php"; 
+  include "customer_reg.php";
+  include "customes_order.php";
+  ?>
+  
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -86,34 +90,34 @@
 			
 			<!-- Sign Up Form -->
 	<div class="btn-group">
-	  <button type="button" class="btn btn-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-expanded="false">
-		<i class="fas fa-shopping-cart"></i>Cart<span class="badge">0</span>
+	  <button type="button" id="card_container_btn" class="btn btn-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-expanded="false">
+		<span class="badge badge-light"  >0</span> <i class="fas fa-shopping-cart"></i> Rs.<a >0</a>.00
 	  </button>
 
 
- <div class="dropdown-menu dropdown-menu-right ">
+  
+				  <div class="dropdown-menu dropdown-menu-right ">
 								<div class="container">
-									<div class="row">
+									<div class="row  overflow-auto" style='height:350px;'>
 								
 									
 											<div class="col-sm-12 col-md-10 col-md-offset-1">
-												<table class="table table-hover">
+												<table class="table table-hover " >
 													<thead  style='background-color:#ff4747;padding:10px;color:white;'>
 														<tr>
 															<th style='padding:10px;'>No</th>
-															<th style='padding:10px;'>Product Name</th>
-															<th style='padding:10px;'>Product Image</th>
+															<th colspan="2"  style='padding:5px;'>Product</th>
 															<th style='padding:10px;' class="text-center">Quantity</th>
-															<th style='padding:10px;' class="text-center">Total price RS.</th>
+															<th style='padding:10px;' class="text-center">Price</th>
 												
 
 														</tr>
+														
 													</thead>	
 													
 												
-													<tbody >			
-											
-																	
+													<tbody   class=""  > 
+ 					
 														<tr>
 													</tr>
 
@@ -298,11 +302,7 @@
 			</div>
 			    <!-- card end -->
 			
-	  <script>
-function myFunction() {
-  alert("I am an alert box!");
-}
-</script>
+ 
       </div>
       <!-- /.col-lg-9 -->
 

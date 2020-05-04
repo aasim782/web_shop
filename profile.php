@@ -11,26 +11,29 @@
  ?>
 <html lang="en">
   <head>
-  <?php include "customer_reg.php"; ?>
+  <?php 
+  include "customer_reg.php";
+  include "customes_order.php";
+  ?>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery.js?i=27"></script>
-    <script src="js/popper.min.js?i=27"></script>
-    <script src="js/bootstrap.min.js?i=27"></script>
+	<script src="js/jquery.js?i=42"></script>
+    <script src="js/popper.min.js?i=42"></script>
+    <script src="js/bootstrap.min.js?i=42"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css?i=27">
-	<script src="js/all.js?i=27" data-auto-replace-svg="nest"></script>
-	<script src="prg_main.js?i=27" ></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css?i=42">
+	<script src="js/all.js?i=42" data-auto-replace-svg="nest"></script>
+	<script src="prg_main.js?i=42" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=27">
+	<link rel="stylesheet" href="css/all.css?i=42">
     <title>Dress Line</title>
   </head>
   <body>
@@ -79,22 +82,22 @@
 			<!-- Sign Up Form -->
 	<div class="btn-group" >
 	  <button type="button" id="card_container_btn" class="btn btn-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-expanded="false">
-		<i class="fas fa-shopping-cart"></i>Cart<span class="badge" id='badge'>0</span>
+		<span class="badge badge-light"  id='badge'>0</span> <i class="fas fa-shopping-cart"></i> Rs.<a id='nav_list_total_val'>0</a>.00
 	  </button>
 
 				  
 				  <div class="dropdown-menu dropdown-menu-right ">
 								<div class="container">
-									<div class="row  overflow-auto" style='height:350px;'>
+									<div class="row  overflow-auto  shadow-sm" style='height:350px;' >
 								
 									
 											<div class="col-sm-12 col-md-10 col-md-offset-1">
-												<table class="table table-hover " >
+												<table class="table table-hover" >
 													<thead  style='background-color:#ff4747;padding:10px;color:white;'>
 														<tr>
 															<th style='padding:10px;'>No</th>
-															<th colspan="2"  style='padding:5px;'>Product</th>
-															<th style='padding:10px;' class="text-center">Quantity</th>
+															<th  colspan="2"  style='padding:10px;'>Product</th>
+															<th style='padding:10px;' class="text-center">Qty</th>
 															<th style='padding:10px;' class="text-center">Price</th>
 												
 
@@ -132,7 +135,7 @@
 											
 									</div>
 									
-																<div class="container mb-2   mt-3 justify-content-center ">
+																<div class="container mb-2   mt-3 justify-content-center">
 																<a href="cart.php" class="btn btn-primary mr-2" role="button"><i class="fas fa-shopping-cart"></i> Cart List</a>
 																<a href="cart.php" class="btn btn-danger mr-2" role="button"><i class="fas fa-shopping-cart"></i> Checkout</a>
 										
@@ -149,11 +152,11 @@
 <!-- dropdown -->
 <div class="btn-group">
   <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	Hi, <?php echo $_SESSION['cus_fname'];?> <!--nav bar name / login user fname-->
+<i class="fas fa-user"></i> <?php echo $_SESSION['cus_fname'];?> <!--nav bar name / login user fname-->
   </button>
   <div class="dropdown-menu dropdown-menu-right">
-     <button class="dropdown-item   btn btn-light " onclick="window.location='cart.php'" type="button">Cart List</button>
-    <button class="dropdown-item   btn btn-light " onclick="window.location='my_orders.php'" type="button">My orders</button>
+     <button class="dropdown-item   btn btn-light " onclick="window.location='cart.php'" type="button">Cart List <span class="badge badge-primary"  id='badge_in_nave_manue'>0</span> </button>
+    <button class="dropdown-item   btn btn-light " onclick="window.location='my_orders.php'" type="button">My orders  <span class="badge badge-primary"  id='orders_badge_in_nave_manue'>0</span> </button>
     <button class="dropdown-item   btn btn-light" type="button"  data-toggle="modal" data-target="#chanepasswordModel" >Change Password</button>
 	<button class="dropdown-item btn btn-light" onclick="window.location='logout.php'"  type="button">Logout</button> <!-- login session reset-->
   </div>
@@ -190,13 +193,14 @@
 	
 
 				<!--Filter-->
-				 <li class="list-group-item list-group-item-action bg-info " style="color:white;background-color:#FF4747;">
+				 <li class="list-group-item list-group-item-action bg-info" style="color:white;background-color:#FF4747;">
 					<h5><i class="fas fa-th-list" ></i>&nbspFilter</h5>
-					</li>
-					<li class="list-group-item" style="background-color:#d6d8d9;">Cras justo odioasdsadasdas
+					
+					<li class="list-group-item mb-2 rounded" style="background-color:#d6d8d9;">Cras justo odioasdsadasdas
 						das
 						d-blocksad
 						asdasdd
+					</li>
 					</li>
 
 	<!-- Category -->		
@@ -259,7 +263,7 @@
 				<div id="show_msg"></div>
 	    <!-- /alert -->
 	    <!-- All Product-->
-	<div class="card">				<!-- filter option -->
+	<div class="card" >				<!-- filter option -->
 	<div class="card-header" style="background-color:rgba(255, 193, 7, 0.48);">
 	    <div class="form-row">
 		<label for="validationCustom05 "  class="p-1">Price :</label>
@@ -294,7 +298,7 @@
   <div class="card-body ">
 	
 		<!-- All Product-->
-					<div class="row " id="get_product"> </div>
+					<div class="row" id="get_product"> </div>
 						
 			<!-- 
 		     <div class="col-4 mb-3" >
