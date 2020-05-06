@@ -340,11 +340,75 @@ $order_id=0;
 			
 		}
 		else
-		{	
+		{						
+				$sql ="SELECT * FROM product_tbl WHERE product_id = '$product_id'" ;
+					$check_query = mysqli_query($con,$sql);
+					$row = mysqli_fetch_array($check_query);
+					$product_id = $row["product_id"];
+					$product_price = $row["product_price"];
+					$today = date("Y-m-d"); // get the date
+					
+			$sql = "SELECT * FROM customer_ord_prds " ;
+			$check_query = mysqli_query($con,$sql);
+			$count = mysqli_num_rows($check_query);
+				if($count==0)
+				{
+					
+					$order_id=1; //no orders in the table - project star 1st recode order id
+				}
+				else
+				{		//conforming the existing custormer or not
+						$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' " ;
+						$check_query = mysqli_query($con,$sql);
+						$row1 = mysqli_num_rows($check_query);
+						
+					if($row1>0)	
+					{		//customer have any paid orders
+						$sql = "SELECT order_id FROM customer_ord_prds WHERE customer_id = '$customer_id' and ( payment_status=0) " ;
+						$check_query = mysqli_query($con,$sql);
+						$row2 = mysqli_num_rows($check_query);
 				
+							if($row2>0)
+							{		 
+							 		 //if he have same order id will appear
+									while( $row2 = mysqli_fetch_array($check_query))
+										{
+												$order_id = $row2["order_id"];
+										}
+									
+							}
+								
+							else
+								{	//if he haven't order id  increse by 1
+									$sql = "SELECT max(order_id) as max_order_id  FROM customer_ord_prds " ;
+									$check_query = mysqli_query($con,$sql);
+									$row = mysqli_num_rows($check_query);
+										
+									while($row = mysqli_fetch_array($check_query))
+										{
+												$order_id = $row["max_order_id"]+1;
+										}
+									
+								}
 
+					}
+					else
+					{			//if he totally new existing id will increase
+								$sql = "SELECT max(order_id) as max_order_id FROM  customer_ord_prds " ;
+								$check_query = mysqli_query($con,$sql);
+								$row3 = mysqli_num_rows($check_query);
+											while($row3 = mysqli_fetch_array($check_query))
+										{
+												
+												$order_id = $row3["max_order_id"]+1;
+										}
+				
+					}
 					
-					
+			
+				
+				}
+	
 				$sql ="SELECT * FROM product_tbl WHERE product_id = '$product_id'" ;
 					$check_query = mysqli_query($con,$sql);
 					$row = mysqli_fetch_array($check_query);
@@ -354,14 +418,24 @@ $order_id=0;
 					$today = date("Y-m-d"); // get the date
 					
 					
-				$sql = "INSERT INTO `customer_ord_prds` 
-				(`customer_ord_id`,`order_date`, `customer_id`, `product_id`, `order_qtry`, 
-				`current_price_per_prd`) 
-				VALUES (NULL, '$today', $customer_id , $product_id, 
-				$product_qty , $product_price)";
-							if (mysqli_query($con,$sql))
-							{
+						$sql = "SELECT * FROM  order_tbl where order_id= $order_id" ;
+						$check_query1 = mysqli_query($con,$sql);
+						$rows = mysqli_num_rows($check_query1);
+						
+						if($rows == 0)
+						{
+						$sql = "INSERT INTO `order_tbl` (`order_id`,`customer_id`) VALUES ($order_id,$customer_id)";
+						$check_query = mysqli_query($con,$sql);
+					 
+						}
 								
+								$sql = "INSERT INTO `customer_ord_prds` 
+								(`customer_ord_id`,`order_date`, `customer_id`, `product_id`, `order_qtry`, 
+								`current_price_per_prd`,`order_id`) 
+								VALUES (NULL, '$today', $customer_id , $product_id, 
+								$product_qty , $product_price,$order_id)";
+								
+								mysqli_query($con,$sql);
 									echo "<div class='alert alert-success alert-dismissible fade show col-lg-12' role='alert'>
 									  <strong>Product Successfully added to</strong> the Cart..!
 									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -369,8 +443,9 @@ $order_id=0;
 									  </button>
 									</div> ";
 								
-							}
-				
+							
+								
+			
 				
 				
 		
@@ -622,7 +697,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					  <div class='card card-body'>
 						Cash on delivery only posible under 50,000 on ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
 						that have term and conditions
-						<div class='text-center m-2'><button class='btn btn-warning ' type='button'  data-toggle='modal' data-target='#bankdepModel'  >Agree to conform</button></div>
+						<div class='text-center m-2'><input type='button' class='btn btn-warning' value='Agree to conform' id='cash_on_delivery_btn'></div>
 					  </div>
 					</div>
 					
@@ -636,9 +711,9 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 				  </div>
 	
 		<input type='hidden' name='merchant_id' value='1214039'>    <!-- Replace your Merchant ID -->
-		<input type='hidden' name='return_url' value='http://localhost/project31/payment_success.php'>
-		<input type='hidden' name='cancel_url' value='http://localhost/project31/payment_cancel.php'>
-		<input type='hidden' name='notify_url' value='http://localhost/project31/cart.php'>  
+		<input type='hidden' name='return_url' value='http://localhost/project34/payment_success.php'>
+		<input type='hidden' name='cancel_url' value='http://localhost/project34/payment_cancel.php'>
+		<input type='hidden' name='notify_url' value='http://localhost/project34/cart.php'>  
 	
 	
 
@@ -766,11 +841,22 @@ $check_query = mysqli_query($con,$sql);
 						
 															
 	echo "
-								<div class='row '>		
-					  <div class='shadow-sm col-sm row border rounded ml-1 mb-2'>
-				  <div class='col-sm mt-3'>Order ID :<b>  $customer_ord_id</b>
-						<img src='prg_img/$product_img' class='m-4 '  height='100px' width='100px'></div> 
-						  <div class='card-body '>
+				 <div class='row '>		
+				<div class='row col-12 shadow-sm col-sm   border rounded ml-1 mb-3'>
+				  <div class='col-12 mt-3'>
+				   <div class='row '>
+							<div class='col-sm'>
+							  Order ID : <b>$customer_ord_id</b> 
+							</div>
+							
+							<div class='col-sm text-right'>
+							Ordered Date :<b> $payment_date  </b> 
+							</div>
+						  </div>
+				  </div>
+				  <div>
+						<img src='prg_img/$product_img' class='ml-2 mt-2 '  height='100px' width='100px'></div> 
+						  <div class='card-body'>
 						  <div class='container'>
 					 
 						  <div class='row'>
@@ -778,13 +864,15 @@ $check_query = mysqli_query($con,$sql);
 							<b> $product_name</b> 
 							</div>
 							
-							<div class='col-sm text-right'>
-							Ordered Date :<b> $payment_date  </b> 
+							<div class='col-sm'>
+							Payment Status :<b class='text-success'> Payment veriifed  </b> 
 							</div>
 						  </div>
 						  
 						  
-						  <div class='row mt-3'>
+						  
+						  
+						  <div class='row mt-2'>
 								<div class='col-sm'>
 							<p class='card-text text-left'>Price : <b>Rs.$current_price_per_prd.00</b> </p>
 								</div>	<div class='col-sm'>
@@ -795,11 +883,11 @@ $check_query = mysqli_query($con,$sql);
 								<p class='card-text text-right'>Total : <b>Rs.$current_total_price</b> </p>
 								</div>	
 								</div>	
-							<p class='card-text mt-3'>Note : <b>$customer_note</b> </p>
+							<p class='card-text mt-2 '>Note : <small><b>$customer_note</b></small></p>
 							  </div>
 								
 
-								<div class='btn-group mt-4'>
+								<div class='btn-group mt-2 '>
 										<a href='' class='btn btn-warning mr-2 rounded '><i class='fa fa-check'></i> Conform goods Received </a>
 										<a href='' class='btn btn-danger mr-2 rounded'><i class='fa fa-search'></i> Track Order </a>
 										<a href='message.php' class='btn btn-dark mr-2  rounded'><i class='fa fa-sms'></i> message</a>
@@ -904,5 +992,44 @@ echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 
 }
 
+// 
+if(isset($_POST["bank_dep"])){
+$customer_id = $_SESSION['cusid'] ;
+		$dep_date = $_POST["dep_date"];
+		$dep_time = $_POST["dep_time"];
+		$branch_name = $_POST["branch_name"];	
+		$upolod_slip_img = $_POST["upolod_slip"];	
+ 
+
+$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=0)" ;
+$check_query = mysqli_query($con,$sql);
+$row = mysqli_fetch_array($check_query);
+$order_id = $row["order_id"];
+						
+				 
+						$today= date('Y-m-d'); //get system dates
+						
+						 
+							$sql = "update customer_ord_prds set payment_status=1 where customer_id= '$customer_id' && order_id = '$order_id' ";
+							mysqli_query($con,$sql);
+							
+							$sql = "INSERT INTO `payment_tbl`(`order_id`, `payment_date`, `paymen_catg`) VALUES ('$order_id','$today','2')";
+						 	if(	mysqli_query($con,$sql))
+								{
+									
+										$sql = "SELECT payment_id FROM payment_tbl WHERE order_id = '$order_id'" ;
+										$check_query = mysqli_query($con,$sql);
+										$row = mysqli_fetch_array($check_query);
+											$payment_id = $row["payment_id"];
+	
+								$sql = "INSERT INTO `bank_dep_tbl`(`payment_id`,`dep_date`,`dep_time`,`branch_name`,`upolod_slip_img`) VALUES ($payment_id,'$dep_date','$dep_time','$branch_name','$upolod_slip_img')";
+									mysqli_query($con,$sql);
+									
+								echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong> Your order completed !</strong>Please wait until seller verify your payment<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+ 
+										
+								}
+ 
+}
 
 ?>

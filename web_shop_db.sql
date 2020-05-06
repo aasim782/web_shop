@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2020 at 04:47 AM
+-- Generation Time: May 06, 2020 at 02:22 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `web_shop_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bank_dep_tbl`
+--
+
+CREATE TABLE `bank_dep_tbl` (
+  `id` int(11) NOT NULL,
+  `payment_id` int(11) NOT NULL,
+  `dep_date` varchar(200) NOT NULL,
+  `dep_time` time NOT NULL,
+  `branch_name` varchar(200) NOT NULL,
+  `upolod_slip_img` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bank_dep_tbl`
+--
+
+INSERT INTO `bank_dep_tbl` (`id`, `payment_id`, `dep_date`, `dep_time`, `branch_name`, `upolod_slip_img`) VALUES
+(1, 1, '2020-02-21', '02:00:00', 'asm', 'C:fakepathProject Progress Journal.pdf');
 
 -- --------------------------------------------------------
 
@@ -120,13 +142,11 @@ CREATE TABLE `customer_ord_prds` (
 --
 
 INSERT INTO `customer_ord_prds` (`customer_ord_id`, `order_date`, `customer_id`, `product_id`, `order_qtry`, `current_price_per_prd`, `order_id`, `customer_note`, `payment_status`) VALUES
-(1, '2020-04-30', 1, 3, 1, 5000, 1, '', 1),
-(2, '2020-04-30', 1, 2, 1, 1750, 1, '', 1),
-(3, '2020-04-30', 1, 4, 4, 65000, 1, 'needed', 1),
-(4, '2020-04-30', 1, 8, 1, 3500, 1, '', 1),
-(5, '2020-04-30', 1, 4, 4, 65000, 1, 'needed', 1),
-(6, '2020-04-30', 1, 5, 1, 1200, 1, 'yestreday wacy', 1),
-(7, '2020-04-30', 1, 5, 1, 1200, 1, 'yestreday wacy', 1);
+(1, '2020-05-06', 1, 4, 1, 65000, 1, '', 1),
+(2, '2020-05-06', 1, 6, 1, 3000, 1, '', 1),
+(3, '2020-05-06', 1, 1, 1, 20000, 2, '', 1),
+(4, '2020-05-06', 1, 3, 1, 5000, 2, '', 1),
+(5, '2020-05-06', 1, 4, 1, 65000, 3, '', 0);
 
 -- --------------------------------------------------------
 
@@ -157,7 +177,7 @@ INSERT INTO `customer_tbl` (`customer_id`, `first_name`, `last_name`, `email`, `
 (4, 'fsdf', 'sfsdf', 'sfsdfs@asda.lk', '2151eb06480373dff243e9fa2c285d2c', 756333321, 'dfsd', 'df', '12345'),
 (5, 'fsdf', 'sfsdf', 'sfsdfsasd@asda.lk', 'bfc371a27be40557bfe96f518d64a09c', 756333321, 'dfsd', 'df', '12345'),
 (6, 'ad', 'asda', 'sdasd@sadsa.lkl', '2552316d1ea55a4afc32e70954661834', 756333321, 'sadasd', 'dasdsa', '12321'),
-(7, 'sddfcsdf', 'sdfdsf', 'asdas@asdadd.lk', 'a156f048e92b05bbe7f64973019c49c8', 756333321, 'Srilanak\nasdas', 'dasdsa', '23123'),
+(7, 'sddfcsdf', 'sdfdsf', 'aasim2@gmail.com', 'a156f048e92b05bbe7f64973019c49c8', 756333321, 'Srilanak\nasdas', 'dasdsa', '23123'),
 (8, 'sdfsfdsf', 'sdfdsfdsf', 'aasim3@gmail.com', 'a156f048e92b05bbe7f64973019c49c8', 1231321312, '1231231', '1231', '12312'),
 (10, 'asd', 'asdasdsa', 'dasd@sadasda.ks', '2151eb06480373dff243e9fa2c285d2c', 721756516, 'asdad', 'asd', '12345'),
 (11, 'sad', 'dasd', 'aasdasd@sadsada.kl', '2151eb06480373dff243e9fa2c285d2c', 756333321, 'sdasdasd', 'dasdasda', '04544'),
@@ -180,22 +200,41 @@ CREATE TABLE `offer_tbl` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `online_tran_tbl`
+--
+
+CREATE TABLE `online_tran_tbl` (
+  `id` int(11) NOT NULL,
+  `payment_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `online_tran_tbl`
+--
+
+INSERT INTO `online_tran_tbl` (`id`, `payment_id`) VALUES
+(1, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `order_tbl`
 --
 
 CREATE TABLE `order_tbl` (
   `order_id` int(11) NOT NULL,
-  `delivery_id` int(11) NOT NULL,
-  `date` date NOT NULL
+  `customer_id` int(11) NOT NULL,
+  `delivery_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `order_tbl`
 --
 
-INSERT INTO `order_tbl` (`order_id`, `delivery_id`, `date`) VALUES
-(1, 1, '2020-04-27'),
-(2, 2, '2020-04-27');
+INSERT INTO `order_tbl` (`order_id`, `customer_id`, `delivery_id`) VALUES
+(1, 1, 0),
+(2, 1, 0),
+(3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -204,23 +243,20 @@ INSERT INTO `order_tbl` (`order_id`, `delivery_id`, `date`) VALUES
 --
 
 CREATE TABLE `payment_tbl` (
-  `payment_id` varchar(200) DEFAULT NULL,
+  `payment_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `payment_date` date NOT NULL,
-  `paymen_catg` varchar(200) NOT NULL
+  `paymen_catg` varchar(200) NOT NULL,
+  `order_verification` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payment_tbl`
 --
 
-INSERT INTO `payment_tbl` (`payment_id`, `order_id`, `payment_date`, `paymen_catg`) VALUES
-(NULL, 1, '2020-04-27', 'online'),
-(NULL, 2, '2020-04-27', 'online'),
-(NULL, 1, '2020-04-30', 'online'),
-(NULL, 1, '2020-04-30', 'online'),
-(NULL, 1, '2020-04-30', 'online'),
-(NULL, 1, '2020-04-30', 'online');
+INSERT INTO `payment_tbl` (`payment_id`, `order_id`, `payment_date`, `paymen_catg`, `order_verification`) VALUES
+(1, 1, '2020-05-06', '2', 0),
+(2, 2, '2020-05-06', '1', 0);
 
 -- --------------------------------------------------------
 
@@ -272,6 +308,13 @@ CREATE TABLE `tracking_tbl` (
 --
 
 --
+-- Indexes for table `bank_dep_tbl`
+--
+ALTER TABLE `bank_dep_tbl`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `payment_id` (`payment_id`);
+
+--
 -- Indexes for table `brand_tbl`
 --
 ALTER TABLE `brand_tbl`
@@ -307,10 +350,25 @@ ALTER TABLE `customer_tbl`
   ADD PRIMARY KEY (`customer_id`);
 
 --
+-- Indexes for table `online_tran_tbl`
+--
+ALTER TABLE `online_tran_tbl`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `payment_id` (`payment_id`);
+
+--
 -- Indexes for table `order_tbl`
 --
 ALTER TABLE `order_tbl`
-  ADD PRIMARY KEY (`order_id`);
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `payment_tbl`
+--
+ALTER TABLE `payment_tbl`
+  ADD PRIMARY KEY (`payment_id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Indexes for table `product_tbl`
@@ -327,6 +385,12 @@ ALTER TABLE `tracking_tbl`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `bank_dep_tbl`
+--
+ALTER TABLE `bank_dep_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `brand_tbl`
@@ -350,7 +414,7 @@ ALTER TABLE `comments_tbl`
 -- AUTO_INCREMENT for table `customer_ord_prds`
 --
 ALTER TABLE `customer_ord_prds`
-  MODIFY `customer_ord_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `customer_ord_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `customer_tbl`
@@ -359,10 +423,16 @@ ALTER TABLE `customer_tbl`
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `order_tbl`
+-- AUTO_INCREMENT for table `online_tran_tbl`
 --
-ALTER TABLE `order_tbl`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `online_tran_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `payment_tbl`
+--
+ALTER TABLE `payment_tbl`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product_tbl`
@@ -381,6 +451,12 @@ ALTER TABLE `tracking_tbl`
 --
 
 --
+-- Constraints for table `bank_dep_tbl`
+--
+ALTER TABLE `bank_dep_tbl`
+  ADD CONSTRAINT `bank_dep_tbl_ibfk_1` FOREIGN KEY (`payment_id`) REFERENCES `payment_tbl` (`payment_id`);
+
+--
 -- Constraints for table `comments_tbl`
 --
 ALTER TABLE `comments_tbl`
@@ -393,7 +469,25 @@ ALTER TABLE `comments_tbl`
 ALTER TABLE `customer_ord_prds`
   ADD CONSTRAINT `customer_ord_prds_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product_tbl` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `customer_ord_prds_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer_tbl` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `customer_ord_prds_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order_tbl` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `customer_ord_prds_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order_tbl` (`order_id`);
+
+--
+-- Constraints for table `online_tran_tbl`
+--
+ALTER TABLE `online_tran_tbl`
+  ADD CONSTRAINT `online_tran_tbl_ibfk_1` FOREIGN KEY (`payment_id`) REFERENCES `payment_tbl` (`payment_id`);
+
+--
+-- Constraints for table `order_tbl`
+--
+ALTER TABLE `order_tbl`
+  ADD CONSTRAINT `order_tbl_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer_tbl` (`customer_id`);
+
+--
+-- Constraints for table `payment_tbl`
+--
+ALTER TABLE `payment_tbl`
+  ADD CONSTRAINT `payment_tbl_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order_tbl` (`order_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

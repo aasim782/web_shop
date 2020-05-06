@@ -201,21 +201,30 @@
 				
 						include "db_conn/config.php"; 
 						$customer_id =$_SESSION['cusid'];
-						$sql = "update customer_ord_prds set payment_status=1 where customer_id= '$customer_id' ";
-						mysqli_query($con,$sql);
 						
 						$order_id =$_GET['order_id'];
 						$today= date('Y-m-d'); //get system dates
 						
+						 
+							$sql = "update customer_ord_prds set payment_status=1 where customer_id= '$customer_id' && order_id = '$order_id' ";
+							mysqli_query($con,$sql);
+							
+							$sql = "INSERT INTO `payment_tbl`(`order_id`, `payment_date`, `paymen_catg`) VALUES ('$order_id','$today','1')";
 						
-						$sql = "insert order_tbl (order_id,delivery_id,date) values ($order_id,$order_id,'$today')";
-						mysqli_query($con,$sql);
-						
-					
-					
-						$sql = "INSERT INTO `payment_tbl`(`order_id`, `payment_date`, `paymen_catg`) VALUES ('$order_id','$today','online')";
-						mysqli_query($con,$sql);
-						
+								
+								if(	mysqli_query($con,$sql))
+								{
+									
+										$sql = "SELECT payment_id FROM payment_tbl WHERE order_id = '$order_id'" ;
+										$check_query = mysqli_query($con,$sql);
+										$row = mysqli_fetch_array($check_query);
+											$payment_id = $row["payment_id"];
+	
+									$sql = "INSERT INTO `online_tran_tbl`(`payment_id`) VALUES ($payment_id)";
+									mysqli_query($con,$sql);
+										
+								}
+							
 						
 				?>
 

@@ -1,7 +1,12 @@
--customes order page designed
--cart order total prd value show on nav
--product view page desgined
--add/delete/update/ prd nav value decrease
--add the orders counted value in nav name button list with code  
--add the paided counted value in nav name button list with code  
-Ver 0.3.6
+-Visa payment complted
+	-order table
+	-onine transaction table
+	-payment table
+	-product order table
+-Bank payment
+	-order table
+	-bank taransaction table
+	-payment table
+	-product order tavle
+
+" Ver 0.3.7 "
