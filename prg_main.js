@@ -312,6 +312,7 @@ $(document).ready(function(){
 		cart_nav_list_total();		
 		//product add to card
 		$("body").delegate("#particular_product_btn","click",function(){
+ 
 		event.preventDefault();
 		var pid= $(this).attr('pid'); //get the value from our self pid attribute pid 
 		var product_qty_txt = $("#qty-"+pid).val(); 
@@ -329,8 +330,14 @@ $(document).ready(function(){
 		
 	})	
 	
-	
-	
+
+		$("body").delegate("#particular_product_search_btn","click",function(){
+ 
+		var pid= $(this).attr('pid'); //get the value from our self pid attribute pid 
+		alert(pid);
+
+		
+	})	
 	
 	
 	
@@ -634,6 +641,7 @@ complain_item_list();
 
 })
 
+
   
  $("#bank_dep_btn").click(function(){	
 	event.preventDefault(); //prevent from the submision
@@ -671,7 +679,24 @@ complain_item_list();
 })
 
 
- 
+	$('body').delegate('#cash_on_agree_btn','click',function() {
+	event.preventDefault(); //prevent from the submision
+		 		$.ajax({
+					url		:	"action.php",
+					method	:	"POST",
+					data	:	{cash_on_delivery:1},
+					success	:	function(data){
+							$('#cart_msg').html(data);
+						card_container_btn();
+						card_page_list(); //no need to refresh  it will be load all the orderd products
+						cart_prd_count();  // if i remive card qty decrease function call
+						cart_nav_list_total(); //order bedget count in navebutto list
+						orderd_prd_count();
+						
+						}
+					})
+  })
+
 
 //end
 });

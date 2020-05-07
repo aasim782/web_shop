@@ -116,7 +116,7 @@ if(isset($_POST["product"])){
             <div class='card'> 
 			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b>$product_name</b>
 			
-		<button type='button'  style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
+		<button type='button' id='particular_product_search_btn'  pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
 					<div style='padding-top:1px;' >
 					<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
@@ -190,7 +190,7 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
             <div class='  card'> 
 			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b>$product_name</b>
 			
-		<button type='button'  style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
+		<button type='button' id='particular_product_search_btn' pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
 					<div style='padding-top:1px;' >
 					<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
@@ -315,9 +315,12 @@ if(isset($_POST["userLogin"])){
 }
 
 
+if(isset($_POST["product_view"])){
+	$customer_id = $_SESSION['cusid'] ;
+	$product_id = $_POST['action']; 
+	echo "$product_id";
 
-
-
+}
 
 
 if(isset($_POST["add_to_card"])){
@@ -697,7 +700,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					  <div class='card card-body'>
 						Cash on delivery only posible under 50,000 on ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
 						that have term and conditions
-						<div class='text-center m-2'><input type='button' class='btn btn-warning' value='Agree to conform' id='cash_on_delivery_btn'></div>
+						<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Agree to conform' id='cash_on_delivery_btn'></div>
 					  </div>
 					</div>
 					
@@ -816,6 +819,7 @@ $check_query = mysqli_query($con,$sql);
 						while($row = mysqli_fetch_array($check_query2))
 						{
 							$payment_date = $row["payment_date"];
+							$paymen_catg = $row["paymen_catg"];
 					
 						
 						$sql = "SELECT * FROM product_tbl where product_id='$product_id'" ;
@@ -833,7 +837,9 @@ $check_query = mysqli_query($con,$sql);
 								$product_img = $row["product_img"];
 								
 							}	
-			
+							
+							
+							
 							
 							
 						}
@@ -855,7 +861,11 @@ $check_query = mysqli_query($con,$sql);
 						  </div>
 				  </div>
 				  <div>
-						<img src='prg_img/$product_img' class='ml-2 mt-2 '  height='100px' width='100px'></div> 
+						<img src='prg_img/$product_img' class='ml-2 mt-2 '  height='100px' width='100px'>
+						
+				</div>  
+						
+						
 						  <div class='card-body'>
 						  <div class='container'>
 					 
@@ -863,9 +873,13 @@ $check_query = mysqli_query($con,$sql);
 							<div class='col-sm'>
 							<b> $product_name</b> 
 							</div>
-							
 							<div class='col-sm'>
-							Payment Status :<b class='text-success'> Payment veriifed  </b> 
+								Payment :<b class='text-danger'> Panding  </b> 
+							</div>
+							
+							<div class='col text-right'>		
+							<img src='prg_img/$paymen_catg.jpg' class='text-right'  height='40px' width='60px'>
+ 
 							</div>
 						  </div>
 						  
@@ -994,7 +1008,7 @@ echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 
 // 
 if(isset($_POST["bank_dep"])){
-$customer_id = $_SESSION['cusid'] ;
+$customer_id = $_SESSION['cusid'];
 		$dep_date = $_POST["dep_date"];
 		$dep_time = $_POST["dep_time"];
 		$branch_name = $_POST["branch_name"];	
@@ -1030,6 +1044,41 @@ $order_id = $row["order_id"];
 										
 								}
  
+}
+
+
+
+if(isset($_POST['cash_on_delivery']))
+{
+	$customer_id = $_SESSION['cusid'] ;
+
+$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=0)" ;
+$check_query = mysqli_query($con,$sql);
+$row = mysqli_fetch_array($check_query);
+$order_id = $row["order_id"];
+
+	 			$today= date('Y-m-d'); //get system dates
+						
+						 
+							$sql = "update customer_ord_prds set payment_status=1 where customer_id= '$customer_id' && order_id = '$order_id' ";
+							mysqli_query($con,$sql);
+							
+							$sql = "INSERT INTO `payment_tbl`(`order_id`, `payment_date`, `paymen_catg`) VALUES ('$order_id','$today','3')";
+						 	if(	mysqli_query($con,$sql))
+								{
+									
+										$sql = "SELECT payment_id FROM payment_tbl WHERE order_id = '$order_id'" ;
+										$check_query = mysqli_query($con,$sql);
+										$row = mysqli_fetch_array($check_query);
+											$payment_id = $row["payment_id"];
+	
+								$sql = "INSERT INTO `cash_on_delivery`(`payment_id`) VALUES ($payment_id)";
+								mysqli_query($con,$sql);
+									
+								echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong> Your order completed !</strong>Please wait until seller verify your payment<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+ 
+										
+								} 
 }
 
 ?>

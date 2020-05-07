@@ -1,12 +1,7 @@
--Visa payment complted
-	-order table
-	-onine transaction table
-	-payment table
-	-product order table
--Bank payment
-	-order table
-	-bank taransaction table
-	-payment table
-	-product order tavle
+-cash on delivery coded
+-payment category image included
+-indivitual product view page connected not completed
 
-" Ver 0.3.7 "
+used for professionanal development colours
+https://flatuicolors.com/palette/tr
+" Ver 0.3.8 "

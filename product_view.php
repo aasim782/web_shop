@@ -1,9 +1,9 @@
 <!doctype html>
 
 <?php session_start();
-	if(isset($_SESSION['cusid']))
+	if(!isset($_SESSION['cusid']))
 	{
-		header("location:profile.php");	
+		header("location:index.php");	
 	}
 
  ?>
@@ -17,20 +17,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery.js?i=20"></script>
-    <script src="js/popper.min.js?i=20"></script>
-    <script src="js/bootstrap.min.js?i=20"></script>
+	<script src="js/jquery.js?i=54"></script>
+    <script src="js/popper.min.js?i=54"></script>
+    <script src="js/bootstrap.min.js?i=54"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css?i=20">
-	<script src="js/all.js?i=20" data-auto-replace-svg="nest"></script>
-	<script src="prg_main.js?i=20" ></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css?i=54">
+	<script src="js/all.js?i=54" data-auto-replace-svg="nest"></script>
+	<script src="prg_main.js?i=54" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=20">
+	<link rel="stylesheet" href="css/all.css?i=54">
     <title>Dress Line</title>
   </head>
   <body>
@@ -201,13 +201,13 @@
     <!-- Category -->
 
 				
-						<div id="get_category"> </div>
+			 
 				
 		
 	<!-- Brands -->		
 
 	
-						<div id="get_brand"> </div>
+						 
 						
 						
 
@@ -220,15 +220,19 @@
 				 
 	
 		  	    <!--alert-->
-				<div id="show_msg"></div>
+				<div id="prd_view_msg"></div>
 		  
 	    <!-- All Product-->
 	<div class="card">
   <div class="card-header" style="background-color:rgba(255, 193, 7, 0.48);"><h6>&nbspAll Products</h6></div>
   <div class="card-body ">
+	  <div id='particular_prd_view'></div>
+	
+	
+	
 	
 		<!-- All Product-->
-					<div class="row" id="get_product"> </div>
+					 
 						
 			<!-- 
 		     <div class="col-4 mb-3" >
