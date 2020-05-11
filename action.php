@@ -314,14 +314,11 @@ if(isset($_POST["userLogin"])){
 		}
 }
 
-
-if(isset($_POST["product_view"])){
-	$customer_id = $_SESSION['cusid'] ;
-	$product_id = $_POST['action']; 
-	echo "$product_id";
-
-}
-
+if(isset($_GET["prd_view_page"]))
+	{
+		$val= $_GET["pid"];
+		echo "$val";
+	}
 
 if(isset($_POST["add_to_card"])){
 $order_id=0;
@@ -554,7 +551,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 																<td><img height='50px' width='50px' src='prg_img/$product_img' alt='Third slide'></td>
 																<td style='width: 30%'><label>$product_name</label></td>
 															<td class='col-sm-1 col-md-1 text-center'><strong>$order_qtry</strong></td>
-															<td class='col-sm-1 col-md-1 text-center'><strong>$current_total_price</strong></td>
+															<td class='col-sm-1 col-md-1 text-center'><strong>Rs.$current_total_price.00</strong></td>
 															</tr>
 								
 								
@@ -680,7 +677,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					<div class='col-sm-3'> </div>
 					<div class='col-sm-5 justify-content-center'>	
 					<p>
-					<input type='submit' class='btn btn-info' value='Visa/Master/Other'>
+				<input type='submit' class='btn btn-info' value='Visa/Master/Other'>
 				  <a class='btn btn-danger' data-toggle='collapse' href='#bank_btn_clk' role='button' aria-expanded='false' aria-controls='bank_btn_clk'> Bank</a>
 				  <a class='btn btn-dark' data-toggle='collapse' href='#cash_on_delivery_btn_click' role='button' aria-expanded='false' aria-controls='cash_on_delivery_btn_click'>Cash On Delivery</a>
 			
@@ -894,7 +891,7 @@ $check_query = mysqli_query($con,$sql);
 								</div>
 								
 								<div class='col-sm'>
-								<p class='card-text text-right'>Total : <b>Rs.$current_total_price</b> </p>
+								<p class='card-text text-right'>Total : <b>Rs.$current_total_price.00</b> </p>
 								</div>	
 								</div>	
 							<p class='card-text mt-2 '>Note : <small><b>$customer_note</b></small></p>
@@ -921,6 +918,7 @@ $check_query = mysqli_query($con,$sql);
 	
 } 
 
+//customer change password
 if(isset($_POST["chnagepassowrd"])){
 
 	$customer_id = $_SESSION['cusid'] ;
@@ -956,6 +954,8 @@ if(isset($_POST["chnagepassowrd"])){
 	}
 	
 
+
+//customer can complain about ordered item 
 if(isset($_POST["complain_items"])){
 $customer_id = $_SESSION['cusid'] ;
 //get the customer_ord_id from customer_ord_prds table *
@@ -1006,7 +1006,7 @@ echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 
 }
 
-// 
+//bank deposit upoload process and place order
 if(isset($_POST["bank_dep"])){
 $customer_id = $_SESSION['cusid'];
 		$dep_date = $_POST["dep_date"];
@@ -1048,6 +1048,8 @@ $order_id = $row["order_id"];
 
 
 
+
+//cash on delvery process
 if(isset($_POST['cash_on_delivery']))
 {
 	$customer_id = $_SESSION['cusid'] ;
@@ -1081,4 +1083,169 @@ $order_id = $row["order_id"];
 								} 
 }
 
+
+
+
+
+
+
+//used for admin panel product adding model
+if(isset($_POST['get_product_id']))
+{
+$sql = "SELECT max(product_id) as max_pid FROM product_tbl" ;
+$check_query = mysqli_query($con,$sql);
+$row = mysqli_fetch_array($check_query);
+$pid = $row["max_pid"]+1;
+echo "$pid";
+}
+
+
+ 
+ 
+ 
+//get the date
+if(isset($_POST['get_date']))
+{
+	
+$today= date('Y-m-d');
+ echo "$today";
+	
+}
+
+
+
+//add the product to product table
+if(isset($_POST['add_to_prd_tbl']))
+{
+	$Product_id= $_POST['Product_id'];
+	$prd_add_date= $_POST['prd_add_date'];
+	$get_category= $_POST['get_category'];
+	$get_brand= $_POST['get_brand'];
+	$product_name= $_POST['product_name'];
+	$product_price= $_POST['product_price'];
+	$prd_img= $_POST['prd_img'];
+	$product_desc= $_POST['product_desc'];
+	$product_keywords= $_POST['product_keywords'];
+	
+	$sql = "INSERT INTO `product_tbl`(`product_id`, `product_category`, `product_brand`, `product_name`, `product_desc`, `product_img`, `product_price`, `product_keywords`) VALUES ($Product_id,'	$get_category','$get_brand','$product_name','$product_desc','$prd_img',$product_price,'$product_keywords')";
+	
+	 
+	if(mysqli_query($con,$sql))
+	{
+	
+			echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+
+	}
+}
+
+
+
+
+//get the category for product add model
+if(isset($_POST["get_category_admin"])){
+
+$sql = "SELECT  * from category_tbl";
+$check_query = mysqli_query($con,$sql);
+		echo "<option value='0' selected>Choose Category...</option>";
+			while($row = mysqli_fetch_array($check_query))
+						{	$category_id = $row["category_id"];
+							$category_name = $row["category_name"];
+						 
+								//option list output	
+								echo "<option value='$category_id'>$category_name</option> ";
+								
+							
+						}
+						
+
+}
+
+
+
+//get the brand for product add model
+if(isset($_POST["get_brand_admin"])){
+$sql = "SELECT  * from brand_tbl";
+$check_query = mysqli_query($con,$sql);
+
+		echo "<option value='0' selected>Choose Brand...</option>";
+		
+			while($row = mysqli_fetch_array($check_query))
+						{	$brand_id = $row["brand_id"];
+							$brand_name = $row["brand_name"];
+						 
+								//option list output	
+								echo "<option value='$brand_id'>$brand_name</option> ";
+								
+							
+						}
+						
+
+}
+
+
+
+
+
+//add the category to table
+if(isset($_POST["add_category_admin"])){
+	
+	$category_name= $_POST['category_name'];
+	
+	
+	
+	
+	$sql = "INSERT INTO `category_tbl`(`category_name`) VALUES ('$category_name')";
+	 
+	if(mysqli_query($con,$sql))
+	{
+	
+			echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+
+	}
+}
+
+
+//add the brand to table
+if(isset($_POST["add_brand_admin"])){
+	$brand_name= $_POST['brand_name'];
+	$sql = "INSERT INTO `brand_tbl`(`brand_name`) VALUES ('$brand_name')";
+	 
+	if(mysqli_query($con,$sql))
+	{
+	
+			echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+
+	}
+	
+	
+}
+
+
+if(isset($_POST["admin_userLogin"])){
+		$admin_email = $_POST["admin_email"]; // mysql_real_escape_string used prevent from @ - sysmbol enter values
+		$admin_password= md5($_POST["admin_password"]);// get password encryption
+	
+		$sql = "SELECT * FROM admin_tbl WHERE email = '$admin_email' and password='$admin_password' " ;
+		$check_query = mysqli_query($con,$sql);
+		$count_email = mysqli_num_rows($check_query);
+		if($count_email==1)
+		{
+				$row = mysqli_fetch_array($check_query);
+				$_SESSION['adminid'] = $row['email'];
+				$_SESSION['password'] = $row['password'];
+				echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
+				data-auto-dismiss><strong>Successfully login</strong> <button type='button' 
+				class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+				echo "<script> window.location.assign('dashboard.php'); </script>";	
+		}
+		else
+		{
+	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' 
+		data-auto-dismiss>Please check your<strong> email or password</strong> <button type='button' 
+		class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+			
+		}
+
+}
+ 
 ?>

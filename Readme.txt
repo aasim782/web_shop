@@ -1,7 +1,6 @@
--cash on delivery coded
--payment category image included
--indivitual product view page connected not completed
+-admin panel created
+-created product add option
+-created category form
+-created brand form 
 
-used for professionanal development colours
-https://flatuicolors.com/palette/tr
-" Ver 0.3.8 "
+" Ver 0.3.9 "

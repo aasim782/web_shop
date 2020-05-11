@@ -20,20 +20,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery.js?i=54"></script>
-    <script src="js/popper.min.js?i=54"></script>
-    <script src="js/bootstrap.min.js?i=54"></script>
+	<script src="js/jquery.js?i=58"></script>
+    <script src="js/popper.min.js?i=58"></script>
+    <script src="js/bootstrap.min.js?i=58"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css?i=54">
-	<script src="js/all.js?i=54" data-auto-replace-svg="nest"></script>
-	<script src="prg_main.js?i=54" ></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css?i=58">
+	<script src="js/all.js?i=58" data-auto-replace-svg="nest"></script>
+	<script src="prg_main.js?i=58" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=54">
+	<link rel="stylesheet" href="css/all.css?i=58">
     <title>Dress Line</title>
   </head>
   <body>
@@ -88,10 +88,8 @@
 				  
 				  <div class="dropdown-menu dropdown-menu-right ">
 								<div class="container">
-									<div class="row  overflow-auto  shadow-sm" style='height:350px;' >
-								
-									
-											<div class="col-sm-12 col-md-10 col-md-offset-1">
+									<div class="row overflow-auto  shadow-sm" style='height:350px; ' >
+											<div class="col-12 col-md-offset-1">
 												<table class="table table-hover" >
 													<thead  style='background-color:#ff4747;padding:10px;color:white;'>
 														<tr>
