@@ -1,23 +1,4 @@
- <html> <head>
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css?i=77">
-	<script src="../js/all.js?i=77" data-auto-replace-svg="nest"></script>
-	<script src="../prg_main.js?i=77" ></script>
-	
-	
-	 <!-- All icons -->
-	<link rel="stylesheet" href="../css/all.css?i=77">
-    <title>Dress Line</title>
-  </head>
-  
-  <body>
-  
-  
+ 
 <!-- product_reg_model -->
 <div class="modal fade" id="product_reg_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -125,7 +106,7 @@
 
 <!--brand add -->
 <div class="modal fade" id="Category_reg_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-centered" role="document">
+  <div class="modal-dialog " role="document">
     <div class="modal-content">
       <div class="modal-header " style="background-color:#34495e">
         <h5 class="modal-title" id="exampleModalLabel"  style="color:white"><i class="fas fa-user"></i>&nbspCategory Add</h5>
@@ -165,7 +146,7 @@
 
 <!--brand add -->
 <div class="modal fade" id="brand_reg_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-centered" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header " style="background-color:#34495e">
         <h5 class="modal-title" id="exampleModalLabel"  style="color:white"><i class="fas fa-user"></i>&nbspBrand Add</h5>
@@ -198,12 +179,4 @@
     </div>
   </div>
 </div> <!-- /product_reg_model   -->
-
-
-
-
-
-
-
-</body>
-</html>
+ 

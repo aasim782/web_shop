@@ -1,6 +1,8 @@
--admin panel created
--created product add option
--created category form
--created brand form 
+-admin lte panel added
+-product table coded
+-brand table coded
+-category table coded
+-Sperate js and action page created for Admin module 
+-login recoded
 
-" Ver 0.3.9 "
+" Ver 0.4.0 "

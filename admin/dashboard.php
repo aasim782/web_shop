@@ -1,4 +1,5 @@
- <!doctype html>
+<!DOCTYPE html>
+ 
   <?php 
  session_start();
 	if(!isset($_SESSION['adminid']))
@@ -8,116 +9,93 @@
  ?>
  
 <html lang="en">
-  <head>
- <?php  include "product_reg.php" ?>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/jquery.js?i=77"></script>
-    <script src="../js/popper.min.js?i=77"></script>
-    <script src="../js/bootstrap.min.js?i=77"></script>
-
-
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css?i=77">
-	<script src="../js/all.js?i=77" data-auto-replace-svg="nest"></script>
-	<script src="../prg_main.js?i=77" ></script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
 	
-	
-	 <!-- All icons -->
-	<link rel="stylesheet" href="../css/all.css?i=77">
-    <title>Dress Line</title>
-	
-  </head>
-  <body>
+  <title>Dressline | Shop</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+ 
   
-
-
   
-<!-- Navigation Bar -->
-<nav class="navbar shadow-sm navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="dashboard.php">Home <span class="sr-only">(current)</span></a>
-      </li>
  
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Product
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown"  id="product_btn">
- 
-		<button class="dropdown-item btn btn-light" data-toggle="modal"    data-target="#product_reg_model" type="button">Add Product</button> 
-			<div class="dropdown-divider"></div>		  
- 
-		  		  <button class="dropdown-item btn btn-light" data-toggle="modal"    data-target="#Category_reg_model" type="button">Add Category</button> 
-		    <div class="dropdown-divider"></div>
-		  <button class="dropdown-item btn btn-light" data-toggle="modal"   data-target="#brand_reg_model" type="button">Add Brand</button> 
- 
+
+
+<!--navbar-->
+<?php include "navbar.php" ?>
+
+  <!-- Main Sidebar Container -->
+<?php  include "side_bar.php" ?>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Starter Page</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+       
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+           
         </div>
-		
-      </li>
-  
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Product
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown"  >
-  
-	 
-		<button class="dropdown-item btn btn-light" onclick="window.location='../admin/logout.php'"  type="button">Logout</button> 
-        </div>
-		
-      </li>
- 
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
   </div>
-</nav>
-<!--nave close-->
-<div class='container'>
-<div class="row mt-5">
-<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Primary card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-<div class="col-lg-3  "> <!--lg 3 used for cloumn width-->
-	<!--Filter-->
-	 <li class="list-group-item list-group-item-action bg-info" style="color:white;background-color:#FF4747;">
-		<h5><i class="fas fa-th-list " ></i>&nbspTOTAL SALE</h5>
-		
-		<li class="list-group-item mb-2 rounded" style="background-color:#d6d8d9;">Cras justo odioasdsadasdas
-			das
-			d-blocksad
-			asdasdd
-		</li>
-	
-		</li>
-</div>
-</div><!-- row close-->
-</div> 	<!--container close-->
+  <!-- /.content-wrapper -->
 
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
  
+  <?php include "footer.php" ?>
+  
+  
+</div>
+<!-- ./wrapper -->
 
+<!-- REQUIRED SCRIPTS -->
 
-
-
-
-
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
 </body>
 </html>

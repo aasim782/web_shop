@@ -24,7 +24,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css?i=15">
 	<script src="../js/all.js?i=15" data-auto-replace-svg="nest"></script>
-	<script src="../prg_main.js?i=15" ></script>
+	<script src="admin_main.js?i=15" ></script>
 	
 	
 	 <!-- All icons -->
