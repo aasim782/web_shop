@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | DataTables</title>
+  <title>Brand</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -12,20 +12,20 @@
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/jquery.js?i=77"></script>
-    <script src="../js/popper.min.js?i=77"></script>
-    <script src="../js/bootstrap.min.js?i=77"></script>
+	<script src="../js/jquery.js?i=95"></script>
+    <script src="../js/popper.min.js?i=95"></script>
+    <script src="../js/bootstrap.min.js?i=95"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css?i=77">
-	<script src="../js/all.js?i=77" data-auto-replace-svg="nest"></script>
-	<script src="admin_main.js?i=77" ></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css?i=95">
+	<script src="../js/all.js?i=95" data-auto-replace-svg="nest"></script>
+	<script src="admin_main.js?i=95" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="../css/all.css?i=77">
+	<link rel="stylesheet" href="../css/all.css?i=95">
 
 
 

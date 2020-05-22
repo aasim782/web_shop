@@ -5,7 +5,7 @@ include "db_conn/config.php";
 
 //left side category list 
 if(isset($_POST["category"])){
-	$category_query = "SELECT * FROM category_tbl";
+	$category_query = "SELECT * FROM category_tbl where active=1";
 	$run_query = mysqli_query($con,$category_query);
 	
 	echo "<a href='#' class='list-group-item list-group-item-action ' style='color:white;background-color:#FF4747;' >
@@ -48,7 +48,7 @@ if(isset($_POST["filter_category_list_item"])){
 
 //left side brand list 
 if(isset($_POST["brand"])){
-	$brand_query = "SELECT * FROM brand_tbl";
+	$brand_query = "SELECT * FROM brand_tbl where active=1 ";
 	$run_query = mysqli_query($con,$brand_query);
 	
 	echo "<a href='#' class='list-group-item list-group-item-action ' style='color:white;background-color:#FF4747;'>
@@ -96,7 +96,7 @@ if(isset($_POST["product"])){
 	}
 	
 	
-	$product_query = "SELECT * FROM product_tbl LIMIT $start,$page_number_limit";
+	$product_query = "SELECT * FROM product_tbl where active=1 LIMIT $start,$page_number_limit ";
 	$run_query = mysqli_query($con,$product_query);
 
 

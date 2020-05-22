@@ -11,21 +11,21 @@
   
   
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/jquery.js?i=77"></script>
-    <script src="../js/popper.min.js?i=77"></script>
-    <script src="../js/bootstrap.min.js?i=77"></script>
+	<script src="../js/jquery.js?i=90"></script>
+    <script src="../js/popper.min.js?i=90"></script>
+    <script src="../js/bootstrap.min.js?i=90"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css?i=77">
-	<script src="../js/all.js?i=77" data-auto-replace-svg="nest"></script>
-	<script src="../prg_main.js?i=77" ></script>
-	<script src="admin_main.js?i=77" ></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css?i=90">
+	<script src="../js/all.js?i=90" data-auto-replace-svg="nest"></script>
+	<script src="../prg_main.js?i=90" ></script>
+	<script src="admin_main.js?i=90" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="../css/all.css?i=77">
+	<link rel="stylesheet" href="../css/all.css?i=90">
 
 
 

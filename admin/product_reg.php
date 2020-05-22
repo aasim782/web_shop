@@ -104,7 +104,7 @@
 
 
 
-<!--brand add -->
+<!--Category add -->
 <div class="modal fade" id="Category_reg_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog " role="document">
     <div class="modal-content">
@@ -141,6 +141,54 @@
 </div> <!-- /product_reg_model   -->
 
 
+ 
+ 
+ 
+ 
+ <!--Category add -->
+<div class="modal fade" id="Category_edit_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header " style="background-color:#34495e">
+        <h5 class="modal-title" id="exampleModalLabel"  style="color:white"><i class="fas fa-user"></i>&nbspCategory Add</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+		
+	   <!-- product_reg_model Form -->
+	 <form id="Category_edit_form" >
+	 	<div id="Category_edit_msg" > </div>
+		  <div class="form-row">
+			<div class="col-md-12">
+			  <label for="validationCustom01">Category Name</label>
+			  <input type="text" class="form-control" id="Category_txt_val" name="" placeholder="Category Name">
+		
+			</div>
+	 
+			</div>
+	
+ 
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger">Update</button>
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+	  </form> <!-- /product_reg_model form -->
+    </div>
+  </div>
+</div> <!-- /product_reg_model   -->
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 
 
