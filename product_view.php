@@ -17,20 +17,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery.js?i=60"></script>
-    <script src="js/popper.min.js?i=60"></script>
-    <script src="js/bootstrap.min.js?i=60"></script>
+	<script src="js/jquery.js?i=91"></script>
+    <script src="js/popper.min.js?i=91"></script>
+    <script src="js/bootstrap.min.js?i=91"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css?i=60">
-	<script src="js/all.js?i=60" data-auto-replace-svg="nest"></script>
-	<script src="prg_main.js?i=60" ></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css?i=91">
+	<script src="js/all.js?i=91" data-auto-replace-svg="nest"></script>
+	<script src="prg_main.js?i=91" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=60">
+	<link rel="stylesheet" href="css/all.css?i=91">
     <title>Dress Line</title>
   </head>
   <body>
@@ -186,124 +186,222 @@
 	</nav>
 <!-- /navbar -->
 		
-
-			<!-- Slider -->
-		 
-
-
-  <!-- Page Content -->
-  <div class="container">
-    <div class="row mt-3 ">
-	</div>
-	<div class="row">
-	 <div class="col-lg-3">
-	
-    <!-- Category -->
-
-				
-			 
-				
 		
-	<!-- Brands -->		
-
-	
-						 
-						
-						
-
-      </div>
-	  
-      <!-- /.col-lg-3 -->
-	
-	  
-      <div class="col-lg-9">
-				 
-	
-		  	    <!--alert-->
-				<div id="prd_view_msg"></div>
-		  
-	    <!-- All Product-->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-10 mr-2">
+    	<div class="container m-3 bor ">
+  
 	<div class="card">
-  <div class="card-header" style="background-color:rgba(255, 193, 7, 0.48);"><h6>&nbspAll Products</h6></div>
-  <div class="card-body ">
-	  <div id='particular_prd_view'></div>
-	
-	
-	
-	
-		<!-- All Product-->
-					 
-						
-			<!-- 
-		     <div class="col-4 mb-3" >
-            <div class="card"> 
-			<div class="card-header" style="font-size:15px;background-color:rgba(255, 193, 7, 0.48);"> <b>Samsung Galaxy A30</b>
-					<button type="button"  style='float:right;' class="btn btn-warning"><i class="fas fa-search" ></i></button>
-			</div>
-				<div class="text-center">
-				
-				<img  class="card-img-top" src='prg_img/man_Shirt.jpg' align="center" style='width:160px;height:250px'/><br>		
-					<div class="text-center"  style="padding-top:15px;">
-					<i class="fas fa-star " style="color:orange"></i> 
-                	<i class="fas fa-star " style="color:orange"></i>
-                	<i class="fas fa-star " style="color:orange"></i>
-                	<i class="fas fa-star " style="color:orange"></i>
-					<i class="fas fa-star"></i>
-					</div>
-				</div>
-              <div class="card-footer">
-				<b><strike>Rs.50</strike>/Rs.50</b>
-			<button class="btn btn-danger btn-sm"  style='float:right;font-size:13px'><i class="fa fa-shopping-cart"></i> Add to Cart</button>        
-				</div>
-            </div>
-          </div>
-		  
-		  -->
-	
-		  
-		  
-		  
-		  	
-		  
-		  
-		  
-		  
-		  		  
-		     </div>
-		  <!-- /.row -->
-	</div>
-	<!-- /card-body -->
-				 		
-				  <div class="card-footer" style="background-color:white;">
-			  		 <!-- next button/pagination-->
-						<nav aria-label="asdasd" class="nav justify-content-center">
-					  <ul class="pagination" id="pagenumber">
-					
-						
-					  </ul>
-					</nav>
-				</div>
-				   <!-- footer end --
-				   
-				   <!-- footer end -->
-				
-				
-				</div>
-	
-			</div>
-			    <!-- card end -->
-			
+  <div class="card-body shadow-sm ">
+  
+  
+  <div class="container">
+  <div class="row">
+    <div class="col-4">
+       <img  class='card-img-bottom text-center  ' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:250px;height:350px'/><br>		
  
-      </div>
-      <!-- /.col-lg-9 -->
-
+ 		
     </div>
-    <!-- /.row -->
-
-  </div>
-  </div>
-  <!-- /.container -->
+    <div class="col-sm">
+   	  <div class=" col-sm row  rounded ml-1 mb-2">
+			  		  <div class="col-sm mt-3 mb-2">	
+					  <b>Man's Shirt</b> 	<div class="justify-content-center">
+					<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+					<i class='fas fa-star'></i> (120)
+					</div><hr>
+				   <p> Category : sdasdsadasdada</p> 
+				   <p> Brand : asdsadassdav </p> 
+				   <p class="text-success">In Stock</p>  
+				   <p  >Price : Rs.20000.00</p>
+		<div class="col-4">
+	 	  <input type='number'  class='form-control text-center qty '  maxlength="4" size="4"  >
+		</div>
+				   <p><b>Delivery within 24 hours</b></p> 
+				   
+		 <button class='btn btn-danger btn-sm mt-2 mb-2'  style='padding-bottom:10px;padding-top:10px' pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
+			 
+	 
  
+				</div>
+	
+			</div>
+    </div>
+ 
+  </div>
+</div>
 
+
+     
+  
+		</div>
+ 
+				  </div>
+				 </div>
+				</div>	
+  <div class="col justify-content-center text-center ">
+ <b align="center" >Recomended</b>
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
+ 
+    </div>
+    </div>
+	<div class="row mt-3">
+	
+	  <div class="col ">
+ 
+		 
+    <div class="col justify-content-center text-center ">
+ <b align="center" >Recomended</b>
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
+ 
+    </div>
+		 
+		</div>
+	
+	
+	    <div class="col-10 border">	 
+   <nav class="mt-3">
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">OverView</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Customer Reviews</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+   
+  </div>
+  
+  <div class="tab-pane fade  mt-4  " id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <a  class="list-group-item list-group-item-action flex-column align-items-start ">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">  DIYAMANTHI ATHAUDAHETTI
+	  
+					<div class="justify-content-center">
+					<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+					<i class='fas fa-star'></i>
+					</div></h5>
+
+      <small>3 days ago</small>
+    </div>
+    <p class="mb-1">
+		The product is good and compatible, tested with my Mix 2S and Huawei P20 successfully. The materials with which it is built are similar to the original brand product. It only has one defect, it works 100% for hands-free only in a sense of the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
+    <small>Donec id elit non mi porta.</small>
+  </a>
+ 
+ 
+    <a  class="list-group-item list-group-item-action flex-column align-items-start ">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">  DIYAMANTHI ATHAUDAHETTI
+	  
+					<div class="justify-content-center">
+					<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+					<i class='fas fa-star'></i>
+					</div></h5>
+
+      <small>3 days ago</small>
+    </div>
+    <p class="mb-1">
+		The product is good and compatible, tested with my Mix 2S and Huawei P20 successfully. The materials with which it is built are similar to the original brand product. It only has one defect, it works 100% for hands-free only in a sense of the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
+    <small>Donec id elit non mi porta.</small>
+  </a>
+  
+  
+     <a  class="list-group-item list-group-item-action flex-column align-items-start  ">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">  DIYAMANTHI ATHAUDAHETTI
+	  
+					<div class="justify-content-center">
+					<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+					<i class='fas fa-star'></i>
+					</div></h5>
+
+      <small>3 days ago</small>
+    </div>
+    <p class="mb-1">
+		The product is hands-free only in a sense of the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
+    <small>Donec id elit non mi porta.</small>
+  </a>
+  
+ 
+  
+     <a  class="list-group-item list-group-item-action flex-column align-items-start  ">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">  DIYAMANTHI ATHAUDAHETTI
+	  
+					<div class="justify-content-center">
+					<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+					<i class='fas fa-star'></i>
+					</div></h5>
+
+      <small>3 days ago</small>
+    </div>
+    <p class="mb-1">
+		The product is good and   the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
+    <small>Donec id elit non mi porta.</small>
+  </a> 
+  
+     <a  class="list-group-item list-group-item-action flex-column align-items-start  ">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">  DIYAMANTHI ATHAUDAHETTI
+	  
+					<div class="justify-content-center">
+					<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+					<i class='fas fa-star'></i>
+					</div></h5>
+
+      <small>3 days ago</small>
+    </div>
+    <p class="mb-1">
+		The product is good and compatible, tested with my Mix 2S and Huawei P20 successfully. The materials with which it is built are similar to the original brand product. It only has one defect, it works 100% for hands-free only in a sense of the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
+    <small>Donec id elit non mi porta.</small>
+  </a>
+  
+  </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+</div>
+		 
+		 
+		</div>
+		  
+    </div>
+				
+				
+ 
+ 
 </body>
 </html>

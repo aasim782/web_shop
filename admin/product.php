@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=95">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=100">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=95">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=100">
   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=95">
-  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=95">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=100">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=100">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=95">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=100">
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700/i=95" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700/i=100" rel="stylesheet">
    <!-- summernote -->
-  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css/i=95">
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css/i=100">
  
   
   
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/jquery.js?i=95"></script>
+	<script src="../js/jquery.js?i=100"></script>
  
-	<script src="../prg_main.js?i=95" ></script>
-	<script src="admin_main.js?i=95" ></script>
+	<script src="../prg_main.js?i=100" ></script>
+	<script src="admin_main.js?i=100" ></script>
 	
  
 
@@ -55,7 +55,7 @@
 		  
 		  
   	  <div class="text-right mt-4 mb-3">	
-		<a href="" update_id="$product_id" class="btn btn-success update " data-toggle="modal"     id="prd_btn" data-target="#product_reg_model" ><i class="fa fa-plus-circle"></i> Add Product</a>
+		<a href="" update_id="$product_id" class="btn btn-success" data-toggle="modal"     id="prd_btns" data-target="#product_reg_model" ><i class="fa fa-plus-circle"></i> Add Product</a>
 	
 	  </div>
 	  
@@ -149,8 +149,7 @@
 				
 				<!-- get all product to the admin product table  -->
                   <tbody id="get_all_product" class="text-center">
-                  <tbody id="get_all_product" class="text-center">
-                  <tbody id="get_all_product" class="text-center">
+              
                   </tbody>
                   <tfoot>
             

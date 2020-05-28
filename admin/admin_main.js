@@ -57,8 +57,7 @@ $(document).ready(function () {
   }
 
   //call the funtions - without call prd details not full fill bcz form close rest
-  $("body").delegate("#prd_btn", "click", function () {
-    alert(0);
+  $("body").delegate("#prd_btns", "click", function () {
     get_product_id();
     date();
     get_category_admin();

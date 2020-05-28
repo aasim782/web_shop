@@ -32,7 +32,8 @@ $(document).ready(function(){
 		})
 	}
 	
-	
+ 
+	 
 	
 	//brand list request 
 	function brand(){
@@ -334,26 +335,34 @@ $(document).ready(function(){
 		event.preventDefault();
 		var pid_val= $(this).attr('pid'); //get the value from our self pid attribute pid 
  
-	 window.open("product_view.php?product="+pid_val+"","_self");
+	 window.open("product_view.php?pid="+pid_val+"","_self");
 	 
 	})	
 	
-	atv();
-	 	function atv(){
-		 
-				const urlParams = new URLSearchParams();
-				const product = urlParams.get('product');
-		
-		
-		$.ajax({
+	
+		atv();
+		function atv()
+			{
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var product_id = search_params.get('pid');
+ 
+				$.ajax({
 					url		:	"action.php",
 					method	:	"GET",
-					data	:	{prd_view_page:1,pid:product}, // get the added product into cart
+					data	:	{prd_view_page:1,pid:product_id}, // get the added product into cart
 					success	:	function(data){
 						$('#particular_prd_view').html(data);
 					}
 					})
-		}
+					
+
+			 }
+	
+	
+	
+	
+	
 	
 	
 	card_container_btn();

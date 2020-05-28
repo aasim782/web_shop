@@ -113,7 +113,7 @@ if(isset($_POST["product"])){
 			$product_total_qty = $row["product_total_qty"];
 			echo "
 			     <div class='col-4 mb-3' >
-            <div class='card'> 
+            <div class='card shadow-sm'> 
 			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b>$product_name</b>
 			
 		<button type='button' id='particular_product_search_btn'  pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
@@ -160,18 +160,18 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 	if(isset($_POST["get_selected_category"])) //when we search through the category
 	{
 		$selected_cid = $_POST["selected_cid"];
-		$query = "SELECT * FROM product_tbl where product_category='$selected_cid'";
+		$query = "SELECT * FROM product_tbl where active=1 and  product_category='$selected_cid'";
 	}
 	else if(isset($_POST["get_selected_brand"]))    //when we search through the brand
 	{ 
 		$selected_bid = $_POST["selected_bid"];
-		$query = "SELECT * FROM product_tbl where product_brand='$selected_bid'";
+		$query = "SELECT * FROM product_tbl where active=1 and  product_brand='$selected_bid'";
 	}
 	
 	else    //when we search through the brand
 	{ 
 		$selected_keywords = $_POST["keywords"];
-		$query = "SELECT * FROM product_tbl where product_keywords LIKE '%$selected_keywords%'";
+		$query = "SELECT * FROM product_tbl where active=1 and product_keywords LIKE '%$selected_keywords%' ";
 	}
 
 	$run_query = mysqli_query($con,$query);
@@ -187,7 +187,7 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 			$product_total_qty = $row["product_total_qty"];
 			echo "
 			        <div class=' col-4 mb-3' >
-            <div class='  card'> 
+            <div class='  card shadow-sm'> 
 			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b>$product_name</b>
 			
 		<button type='button' id='particular_product_search_btn' pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
@@ -316,8 +316,57 @@ if(isset($_POST["userLogin"])){
 
 if(isset($_GET["prd_view_page"]))
 	{
-		$val= $_GET["pid"];
-		echo "$val";
+		 
+		$product_id= $_GET["pid"];
+		
+ $query = "SELECT * FROM product_tbl where active=1 and product_id = $product_id ";
+	$run_query = mysqli_query($con,$query);
+	while($row = mysqli_fetch_array($run_query))
+		{
+			$product_id = $row["product_id"];
+			$product_category = $row["product_category"];
+			$product_brand = $row["product_brand"];
+			$product_name = $row["product_name"];
+			$product_price = $row["product_price"];
+			$product_desc = $row["product_desc"];
+			$product_img = $row["product_img"];
+			$product_total_qty = $row["product_total_qty"];
+			echo "
+			        <div class=' col-4 mb-3' >
+            <div class='  card'> 
+			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b>$product_name</b>
+			
+		<button type='button' id='particular_product_search_btn' pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
+					<div style='padding-top:1px;' >
+					<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+					<i class='fas fa-star'></i>
+					</div>
+			</div>
+			
+		   <div class='text-center' >
+			<img  class='card-img-bottom text-center ' src='prg_img/$product_img' align='center' style='padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
+			</div>
+         
+    <div class='form-group row justify-content-center'>
+
+        <label for='inputPassword' class='p-1'>QTY :</label>
+        <div class='col-sm-4'>
+            <input type='number' class='form-control' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
+		</div>
+		</div>
+	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
+	<div class='text-center pt-1' style='background-color:#fffff;'><label for='class_type' ><h4><span class=' label label-primary' align='center'>&nbsp Rs.$product_price.00 &nbsp </span></h4></label>	</div>
+			</div>
+            </div>
+          </div>
+			";
+		}
+		
+		
+		
 	}
 
 if(isset($_POST["add_to_card"])){
