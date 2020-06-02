@@ -47,7 +47,7 @@ if(isset($_POST['add_to_prd_tbl']))
 	if(mysqli_query($con,$sql))
 	{
 	
-			echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+			echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Successfully</strong> product added <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 
 	}
 }

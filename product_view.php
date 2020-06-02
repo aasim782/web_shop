@@ -1,12 +1,5 @@
 <!doctype html>
 
-<?php session_start();
-	if(!isset($_SESSION['cusid']))
-	{
-		header("location:index.php");	
-	}
-
- ?>
  
 <html lang="en">
   <head>
@@ -17,20 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery.js?i=91"></script>
-    <script src="js/popper.min.js?i=91"></script>
-    <script src="js/bootstrap.min.js?i=91"></script>
+	<script src="js/jquery.js?i=95"></script>
+    <script src="js/popper.min.js?i=95"></script>
+    <script src="js/bootstrap.min.js?i=95"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css?i=91">
-	<script src="js/all.js?i=91" data-auto-replace-svg="nest"></script>
-	<script src="prg_main.js?i=91" ></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css?i=95">
+	<script src="js/all.js?i=95" data-auto-replace-svg="nest"></script>
+	<script src="prg_main.js?i=95" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=91">
+	<link rel="stylesheet" href="css/all.css?i=95">
     <title>Dress Line</title>
   </head>
   <body>
@@ -222,11 +215,12 @@
                 	<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
 					<i class='fas fa-star'></i> (120)
-					</div><hr>
+					</div>	   <p align="right"> Brand : asdsadassdav </p> <hr>
 				   <p> Category : sdasdsadasdada</p> 
-				   <p> Brand : asdsadassdav </p> 
+			
 				   <p class="text-success">In Stock</p>  
 				   <p  >Price : Rs.20000.00</p>
+				 
 		<div class="col-4">
 	 	  <input type='number'  class='form-control text-center qty '  maxlength="4" size="4"  >
 		</div>
@@ -254,10 +248,10 @@
 				</div>	
   <div class="col justify-content-center text-center ">
  <b align="center" >Recomended</b>
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b></labe><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b></labe><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b></labe><br>		
+ 		
  
     </div>
     </div>
@@ -268,10 +262,10 @@
 		 
     <div class="col justify-content-center text-center ">
  <b align="center" >Recomended</b>
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b><br>		
  
     </div>
 		 
@@ -348,7 +342,10 @@
     </div>
     <p class="mb-1">
 		The product is hands-free only in a sense of the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
-    <small>Donec id elit non mi porta.</small>
+    <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+ <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+ <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+ 
   </a>
   
  

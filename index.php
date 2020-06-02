@@ -38,7 +38,6 @@
     <title>Dress Line</title>
   </head>
   <body>
-  
 
   	    <!-- alert -->
 				<div class="alert p-0 alert-danger alert-dismissible m-0 fade show rounded-0" role="alert">

@@ -64,10 +64,18 @@ $(document).ready(function () {
     get_brand_admin();
   });
 
+
+
+  $("#prd_btns").on("click", function (event) {
+  $("#get_add_prd_page").html("<div class='card' style='width: 18rem;'><img class='card-img-top' src='...' alt='Card image cap'><div class='card-body'><h5 class='card-title'>Card title</h5><p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href='#' class='btn btn-primary'>Go somewhere</a></div></div>");
+	  
+  })
+  
   // admin part
   $("#product_reg_form").on("submit", function (event) {
     event.preventDefault(); //prevent from the submision
 
+ 
     //get the value from form using post method
     var Product_id_txt = $("#Product_id_txt").val();
     var prd_add_date_txt = $("#prd_add_date_txt").val();
@@ -77,8 +85,14 @@ $(document).ready(function () {
     var product_price_txt = $("#product_price_txt").val();
     var prd_img_txt = $("#prd_img").val();
     var product_desc_txt = $("#product_desc_txt").val();
-    var product_keywords_txt = $("#product_keywords_txt").val();
+    var product_keywords_txt =   $("#product_name_txt").val()+ " " +$("#product_keywords_txt").val() ;
 
+
+   
+	  
+	  
+	  
+	  
     if (
       Product_id_txt == "" ||
       prd_add_date_txt == "" ||

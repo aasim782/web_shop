@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=100">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=201">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=100">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=201">
   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=100">
-  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=100">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=201">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=201">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=100">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=201">
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700/i=100" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700/i=201" rel="stylesheet">
    <!-- summernote -->
-  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css/i=100">
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css/i=201">
  
   
   
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/jquery.js?i=100"></script>
+	<script src="../js/jquery.js?i=201"></script>
  
-	<script src="../prg_main.js?i=100" ></script>
-	<script src="admin_main.js?i=100" ></script>
+	<script src="../prg_main.js?i=201" ></script>
+	<script src="admin_main.js?i=201" ></script>
 	
  
 
@@ -61,7 +61,7 @@
 	  
 	  
 	  
-	  
+	  <div id="get_add_prd_page"> </div>
 	  
 	  
 	      <!-- Main content -->
@@ -87,20 +87,8 @@
                       <th>Action</th>
                   </tr>
                   </thead>
-                  <tbody>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
-                    <td>X</td>
-                    <td>X</td>
-                    <td>X</td>
-                  </tr>
-                  
+                   
+                  <tbody id="get_all_product" class="text-center">
                   </tbody>
           
                 </table>
@@ -139,7 +127,7 @@
                   <tr  class="text-center">
                   <th>No</th>
                       <th colspan="2" class="text-center">Product </th>
-					  <th>Category</th>
+				          	  <th>Category</th>
                       <th>Brand</th>
                       <th>Price</th>
                       <th>Quantity</th>
