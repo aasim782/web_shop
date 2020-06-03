@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=201">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=104">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=201">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=104">
   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=201">
-  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=201">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=104">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=104">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=201">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=104">
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700/i=201" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700/i=104" rel="stylesheet">
    <!-- summernote -->
-  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css/i=201">
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css/i=104">
  
   
   
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/jquery.js?i=201"></script>
+	<script src="../js/jquery.js?i=104"></script>
  
-	<script src="../prg_main.js?i=201" ></script>
-	<script src="admin_main.js?i=201" ></script>
+	<script src="../prg_main.js?i=104" ></script>
+	<script src="admin_main.js?i=104" ></script>
 	
  
 
@@ -52,82 +52,48 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-		  
+		
 		  
   	  <div class="text-right mt-4 mb-3">	
-		<a href="" update_id="$product_id" class="btn btn-success" data-toggle="modal"     id="prd_btns" data-target="#product_reg_model" ><i class="fa fa-plus-circle"></i> Add Product</a>
-	
+	 
 	  </div>
 	  
 	  
 	  
-	  <div id="get_add_prd_page"> </div>
 	  
-	  
-	      <!-- Main content -->
-    <section class="content">
+	 
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+ 
+    <!-- Main content -->
+    <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
-		  <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                  <th>No</th>
-                      <th colspan="2" class="text-center">Product </th>
-					  <th>Category</th>
-                      <th>Brand</th>
-                      <th>Price</th>
-                      <th>Quantity</th>
-                      <th>Action</th>
-                  </tr>
-                  </thead>
-                   
-                  <tbody id="get_all_product" class="text-center">
-                  </tbody>
-          
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </section>
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-            <div class="card">			  
+          <div class="col-lg-9">
+		   	  <div class="text-right   mb-3">	
+		<a href="" update_id="$product_id" class="btn btn-success"     id="prd_btns"  ><i class="fa fa-plus-circle"></i> Add Product</a>
+	  </div>
+		      <div id="product_reg_msg">
+	  </div>		  
+ 
+	 
+	  <div id="get_add_form">
+	  </div>
+       
+
+          <div class="card card-warning card-outline">			  
               <div class="card-header text-center"  >
-            <h2>Product</h2>
+				<h2>Product</h2>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr  class="text-center">
-                  <th>No</th>
+					 <th>No</th>
                       <th colspan="2" class="text-center">Product </th>
-				          	  <th>Category</th>
+				        <th>Category</th>
                       <th>Brand</th>
                       <th>Price</th>
                       <th>Quantity</th>
@@ -139,16 +105,58 @@
                   <tbody id="get_all_product" class="text-center">
               
                   </tbody>
-                  <tfoot>
-            
-                  </tfoot>
+              
                 </table>
               </div>
            
             </div>
+          </div>
+          <!-- /.col-md-6 -->
+          <div class="col-lg-3 mt-5">
+          <div class="card card-primary shadow-sm card-outline">
+              <div class="card-header">
+                <h5 class="m-0 text-primary">TOTAL PRODUCTS</h5>
+              </div>
+         <div class="card-body  bg-primary justfy-content-center  ">
+                 <label class="card-title " style="font-size:52pt;">2000</label> 
+              </div>
+            </div>
 
-            <!-- /.card -->
+            <div class="card card-danger card-outline">
+              <div class="card-header">
+                <h5 class="m-0 text-danger">TOTAL CATEGORY</h5>
+              </div>
+              <div class="card-body text-center bg-danger">
+                <label class="card-title " style="font-size:52pt">555</label>
+  
+              </div>
+            </div>
 			
+			         <div class="card card-success card-outline">
+              <div class="card-header">
+                <h5 class="m-0 text-success">TOTAL BRAND</h5>
+              </div>
+           <div class="card-body bg-success">
+                <label class="card-title text-center " style="font-size:52pt">15000</label>
+  
+              </div>
+            </div>
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+          <!-- /.col-md-6 -->
+		 
+  
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+ 
+
 			
 			
 			

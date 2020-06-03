@@ -90,7 +90,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-danger">Add</button>
+        <button type="submit" id="form_prd_add_btn" class="btn btn-danger">Add</button>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
 	  </form> <!-- /product_reg_model form -->

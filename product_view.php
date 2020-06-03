@@ -1,5 +1,12 @@
 <!doctype html>
 
+<?php session_start();
+	if(!isset($_SESSION['cusid']))
+	{
+		header("location:index.php");	
+	}
+
+ ?>
  
 <html lang="en">
   <head>
@@ -18,6 +25,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css?i=95">
+	 <link rel="stylesheet" href="css/customes_css.css?i=95">
 	<script src="js/all.js?i=95" data-auto-replace-svg="nest"></script>
 	<script src="prg_main.js?i=95" ></script>
 	
@@ -179,18 +187,10 @@
 	</nav>
 <!-- /navbar -->
 		
+ 
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-<div class="container mt-5">
+<div class="container mt-4">
   <div class="row">
     <div class="col-10 mr-2">
     	<div class="container m-3 bor ">
@@ -202,7 +202,7 @@
   <div class="container">
   <div class="row">
     <div class="col-4">
-       <img  class='card-img-bottom text-center  ' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:250px;height:350px'/><br>		
+       <img  class='thumbnail zoom card-img-bottom text-center  ' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:190px;height:250px'/><br>		
  
  		
     </div>
@@ -215,14 +215,58 @@
                 	<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
 					<i class='fas fa-star'></i> (120)
-					</div>	   <p align="right"> Brand : asdsadassdav </p> <hr>
-				   <p> Category : sdasdsadasdada</p> 
+					</div>	   <hr>
+ 
+  <div class="row">
+    <div class="col-sm">
+     <p  ><b> Category </b> : sdasdsadasdada </p> 
+    </div>
+    <div class="col-sm">
+	<p ><b> Brand  </b>: asdsadassdav</p> 
+    </div>
+  </div>
+ 
+					
+	 <div class="row">
+    <div class="col-sm">
+		<p >  <b>Price </b> : Rs.20000.00</p>
+
+    </div>
+  </div>		
+  
+  					
+	 <div class="row ">	 
+   <div class=" ml-3 pt-1 ">
+		 <b> Qty :</b> 
+ 
+    </div>
+
+  <div class="col-3 text-left"> 
+	 	 <input type='number'  class='form-control text-center qty '  maxlength="4" size="4"  > 
+    </div>
+  </div>
+  
+  
+  	 <div class="row mt-3">	 
+ 
+	 <div class="col-sm"> 
+	  <p class="text-success">In Stock</p>   
+    </div>
+ 
+  </div>
+					
+			  <div class="col-sm">
+
+
+    </div>		
+					
+				  
 			
-				   <p class="text-success">In Stock</p>  
-				   <p  >Price : Rs.20000.00</p>
+				  
+				   
 				 
 		<div class="col-4">
-	 	  <input type='number'  class='form-control text-center qty '  maxlength="4" size="4"  >
+
 		</div>
 				   <p><b>Delivery within 24 hours</b></p> 
 				   
@@ -248,9 +292,9 @@
 				</div>	
   <div class="col justify-content-center text-center ">
  <b align="center" >Recomended</b>
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b></labe><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b></labe><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b></labe><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b></label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
  		
  
     </div>
@@ -262,10 +306,10 @@
 		 
     <div class="col justify-content-center text-center ">
  <b align="center" >Recomended</b>
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label><b>Rs.1500.00</b><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
  
     </div>
 		 
