@@ -17,24 +17,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery.js?i=95"></script>
-    <script src="js/popper.min.js?i=95"></script>
-    <script src="js/bootstrap.min.js?i=95"></script>
+	<script src="js/jquery.js?i=96"></script>
+    <script src="js/popper.min.js?i=96"></script>
+    <script src="js/bootstrap.min.js?i=96"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css?i=95">
-	 <link rel="stylesheet" href="css/customes_css.css?i=95">
-	<script src="js/all.js?i=95" data-auto-replace-svg="nest"></script>
-	<script src="prg_main.js?i=95" ></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css?i=96">
+	 <link rel="stylesheet" href="css/customes_css.css?i=96">
+	<script src="js/all.js?i=96" data-auto-replace-svg="nest"></script>
+	<script src="prg_main.js?i=96" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=95">
+	<link rel="stylesheet" href="css/all.css?i=96">
     <title>Dress Line</title>
   </head>
   <body>
+  
+  
+  
+  
   
 
   	    <!-- alert -->

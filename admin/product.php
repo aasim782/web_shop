@@ -71,6 +71,15 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-9">
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+
 		   	  <div class="text-right   mb-3">	
 		<a href="" update_id="$product_id" class="btn btn-success"     id="prd_btns"  ><i class="fa fa-plus-circle"></i> Add Product</a>
 	  </div>
@@ -241,6 +250,10 @@
   
   
  
+
+</script>
+
+<script>
 
 </script>
 </body>

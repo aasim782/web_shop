@@ -74,6 +74,7 @@ $(document).ready(function () {
   })
   
 
+
   // admin part
  
 	    $("body").delegate("#form_prd_add_btn", "click", function () {
