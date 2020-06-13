@@ -66,11 +66,12 @@ $(document).ready(function () {
 
 
 
+
+//product Add form
   $("#prd_btns").on("click", function (event) {
 	  
 	     event.preventDefault(); //prevent from the submision
-  $("#get_add_form").html("<div class='card card-warning card-outline'>   <div class='card-header text-center'  >				<h2>Add Product</h2>              </div>			            <div class='card-body'>            <form id='product_reg_form' >	 		<div id='product_reg_msg' > </div>		  <div class='form-row'>			<div class='col-md-6'>			  <label for='validationCustom01'>Product ID</label>			  <input type='text' class='form-control text-center' id='Product_id_txt' name=''    disabled>					</div>						<div class='col-md-6'>			  <label for='validationCustom02'>Date</label>			  <input type='date' class='form-control text-center' id='prd_add_date_txt'  name=''  >					</div>			</div>							<div class='form-row mt-2'>     <div class='form-group col-6'>           <label for='validationCustom02'>Category</label>     <select id='get_category' class='form-control'></select>    </div>   <div class='form-group col-6'>          <label for='validationCustom02'>Brand</label>      <select id='get_brand' class='form-control'></select>    </div>   </div>			  <div class='form-row '>		<div class='col-6'>		  <label for='validationCustom03'>Product Name</label>	  		  <input type='text' class='form-control' id='product_name_txt'  maxlength='18' name='product_name' placeholder='Product Name'>		</div>	   		<div class='col-md-6'>		  <label for='validationCustom05'>Product Price</label>		  <input type='number' class='form-control' id='product_price_txt' placeholder='Product Price'>	</div>	  </div>  	       <div class='form-row mt-2  '>    <div class='col-6 form-group'>  <label for='exampleFormControlFile1'>Select Product Image</label>    <input type='file' class='form-control-file' id='prd_img'>  </div>    <div class='col-6 form-group '>   <label for='exampleFormControlFile1'>Example file input</label>    <img class=' d-block w-48 ' height='70px' src='../prg_img/mouse.jpg' alt='Third slide'>  </div>  </div>      <div class='form-row mt-2'> <div class='col-12'>  <label for='validationCustom05'>Product Decription</label><textarea class='form-control' id='product_desc_txt'  name='product_dec' rows='10'></textarea> </div></div> <div class='form-row mt-2'><div class='col-12'><label for='validationCustom03'>Product Keywords</label>	   <textarea class='form-control' id='product_keywords_txt'  name='ProductKeyword' rows='3'></textarea></div> </div> <div class='modal-footer'> <button type='button' id='form_prd_add_btn' class='btn btn-danger'>Add</button><button type='button' class='btn btn-secondary'    data-card-widget='remove' '>Close</button></div></form> </div></div>");
-	  
+   $("#get_add_form").html("<div class='card card-warning card-outline'>   <div class='card-header text-center'  >				<h2>Add Product</h2>              </div>			            <div class='card-body'>            <form id='product_reg_form' >	 		<div id='product_reg_msg' > </div>		  <div class='form-row'>			<div class='col-md-6'>			  <label for='validationCustom01'>Product ID</label>			  <input type='text' class='form-control text-center' id='Product_id_txt' name=''    disabled>					</div>						<div class='col-md-6'>			  <label for='validationCustom02'>Date</label>			  <input type='date' class='form-control text-center' id='prd_add_date_txt'  name=''  >					</div>			</div>							<div class='form-row mt-2'>     <div class='form-group col-6'>           <label for='validationCustom02'>Category</label>     <select id='get_category' class='form-control'></select>    </div>   <div class='form-group col-6'>          <label for='validationCustom02'>Brand</label>      <select id='get_brand' class='form-control'></select>    </div>   </div>			  <div class='form-row '>		<div class='col-6'>		  <label for='validationCustom03'>Product Name</label>	  		  <input type='text' class='form-control' id='product_name_txt'  maxlength='18' name='product_name' placeholder='Product Name'>		</div>	   		<div class='col-md-6'>		  <label for='validationCustom05'>Product Price</label>		  <input type='number' class='form-control' id='product_price_txt' placeholder='Product Price'>	</div>	  </div>  	       <div class='form-row mt-2  '>    <div class='col-6 form-group'>  <label for='exampleFormControlFile1'>Select Product Image</label>    <input  class='form-control-file'  type='file' name='file' id='file' >  </div>    <div class='col-6 form-group '> <label for='exampleFormControlFile1' id='uploaded_image' width='50%'>Example file input</label></div>  </div>      <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom05'>Product Decription</label> <div class='col-md-12'>   <textarea class='textarea' id='product_desc_txt'  name='product_dec' placeholder='Place some text here'style='width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 30px;'></textarea>                            </div>           </div>        </div> <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom03'>Product Keywords</label>	<div class='col-md-12'>    <textarea class='form-control' id='product_keywords_txt'  name='ProductKeyword' rows='3'></textarea>   </div> <div class='modal-footer'> <button type='button' id='form_prd_add_btn' class='btn btn-danger'>Add</button><button type='button' class='btn btn-secondary'    data-card-widget='remove' >Close</button></div></form> </div></div><script>$(function () { $('.textarea').summernote() })</script></div></div> ");
   })
   
 
@@ -86,12 +87,12 @@ $(document).ready(function () {
     var get_category_txt = $("#get_category").val();
     var get_brand_txt = $("#get_brand").val();
     var product_name_txt = $("#product_name_txt").val();
+    var image_name = $("#file").val();
     var product_price_txt = $("#product_price_txt").val();
     var prd_img_txt = $("#prd_img").val();
     var product_desc_txt = $("#product_desc_txt").val();
     var product_keywords_txt =   $("#product_name_txt").val()+ " " +$("#product_keywords_txt").val() ;
-	
-	  
+	 
     if (
       Product_id_txt == "" ||
       prd_add_date_txt == "" ||
@@ -101,7 +102,7 @@ $(document).ready(function () {
       product_price_txt == "" ||
       prd_img == "" ||
       product_desc_txt == "" ||
-      product_keywords_txt == ""
+      product_keywords_txt == "" || image_name==""
     ) {
       $("#product_reg_msg").html(
         "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Admin !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
@@ -292,4 +293,53 @@ $(document).ready(function () {
       },
     });
   });
+  
+  
+  
+  
+   $(document).on('change', '#file', function(){
+	 
+  var name = document.getElementById("file").files[0].name;
+  var form_data = new FormData();
+  var ext = name.split('.').pop().toLowerCase();
+  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) 
+  {
+   $("#file").val("");
+
+ $("#product_reg_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Invalid <strong>file format !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+  
+	  
+  }
+  var oFReader = new FileReader();
+  oFReader.readAsDataURL(document.getElementById("file").files[0]);
+  var f = document.getElementById("file").files[0];
+  var fsize = f.size||f.fileSize;
+  if(fsize > 2000000)
+  {
+$("#product_reg_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Image File Size <strong>is very big !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+  }
+  else
+  {
+   form_data.append("file", document.getElementById('file').files[0]);
+   $.ajax({
+    url:"upload.php",
+    method:"POST",
+    data: form_data,
+    contentType: false,
+    cache: false,
+    processData: false,
+    beforeSend:function(){
+     $('#uploaded_image').html("<label class='text-success'>Image Uploading...</label>");
+    },   
+    success:function(data)
+    {
+     $('#uploaded_image').html(data);
+    }
+   });
+  }
+ });
+ 
+ 
+ 
+ 
 });
