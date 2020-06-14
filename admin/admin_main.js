@@ -69,9 +69,9 @@ $(document).ready(function () {
 
 //product Add form
   $("#prd_btns").on("click", function (event) {
-	  
-	     event.preventDefault(); //prevent from the submision
-   $("#get_add_form").html("<div class='card card-warning card-outline'>   <div class='card-header text-center'  >				<h2>Add Product</h2>              </div>			            <div class='card-body'>            <form id='product_reg_form' >	 		<div id='product_reg_msg' > </div>		  <div class='form-row'>			<div class='col-md-6'>			  <label for='validationCustom01'>Product ID</label>			  <input type='text' class='form-control text-center' id='Product_id_txt' name=''    disabled>					</div>						<div class='col-md-6'>			  <label for='validationCustom02'>Date</label>			  <input type='date' class='form-control text-center' id='prd_add_date_txt'  name=''  >					</div>			</div>							<div class='form-row mt-2'>     <div class='form-group col-6'>           <label for='validationCustom02'>Category</label>     <select id='get_category' class='form-control'></select>    </div>   <div class='form-group col-6'>          <label for='validationCustom02'>Brand</label>      <select id='get_brand' class='form-control'></select>    </div>   </div>			  <div class='form-row '>		<div class='col-6'>		  <label for='validationCustom03'>Product Name</label>	  		  <input type='text' class='form-control' id='product_name_txt'  maxlength='18' name='product_name' placeholder='Product Name'>		</div>	   		<div class='col-md-6'>		  <label for='validationCustom05'>Product Price</label>		  <input type='number' class='form-control' id='product_price_txt' placeholder='Product Price'>	</div>	  </div>  	       <div class='form-row mt-2  '>    <div class='col-6 form-group'>  <label for='exampleFormControlFile1'>Select Product Image</label>    <input  class='form-control-file'  type='file' name='file' id='file' >  </div>    <div class='col-6 form-group '> <label for='exampleFormControlFile1' id='uploaded_image' width='50%'>Example file input</label></div>  </div>      <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom05'>Product Decription</label> <div class='col-md-12'>   <textarea class='textarea' id='product_desc_txt'  name='product_dec' placeholder='Place some text here'style='width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 30px;'></textarea>                            </div>           </div>        </div> <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom03'>Product Keywords</label>	<div class='col-md-12'>    <textarea class='form-control' id='product_keywords_txt'  name='ProductKeyword' rows='3'></textarea>   </div> <div class='modal-footer'> <button type='button' id='form_prd_add_btn' class='btn btn-danger'>Add</button><button type='button' class='btn btn-secondary'    data-card-widget='remove' >Close</button></div></form> </div></div><script>$(function () { $('.textarea').summernote() })</script></div></div> ");
+	event.preventDefault(); //prevent from the submision
+
+   $("#get_add_form").html("<div class='card card-warning card-outline'>   <div class='card-header text-center'  ><div class='card-tools'><button type='button' class='btn btn-tool' data-card-widget='collapse'><i class='fas fa-minus'></i></button><button type='button' class='btn btn-tool' data-card-widget='remove'><i class='fas fa-times'></i></button></div>				<h2>Add Product</h2>              </div>			            <div class='card-body'>            <form id='product_reg_form' >	 		<div id='product_reg_msg' > </div>		  <div class='form-row'>			<div class='col-md-6'>			  <label for='validationCustom01'>Product ID</label>			  <input type='text' class='form-control text-center' id='Product_id_txt' name=''    disabled>					</div>						<div class='col-md-6'>			  <label for='validationCustom02'>Date</label>			  <input type='date' class='form-control text-center' id='prd_add_date_txt'  name=''  >					</div>			</div>							<div class='form-row mt-2'>     <div class='form-group col-6'>           <label for='validationCustom02'>Category</label>     <select id='get_category' class='form-control'></select>    </div>   <div class='form-group col-6'>          <label for='validationCustom02'>Brand</label>      <select id='get_brand' class='form-control'></select>    </div>   </div>			  <div class='form-row '>		<div class='col-6'>		  <label for='validationCustom03'>Product Name</label>	  		  <input type='text' class='form-control' id='product_name_txt'  maxlength='18' name='product_name' placeholder='Product Name'>		</div>	   		<div class='col-md-6'>		  <label for='validationCustom05'>Product Price</label>		  <input type='number' class='form-control' id='product_price_txt' placeholder='Product Price'>	</div>	  </div>  	       <div class='form-row mt-2  '>    <div class='col-6 form-group'>  <label for='exampleFormControlFile1'>Select Product Image</label>    <input  class='form-control-file'  type='file' name='file' id='file' >  </div>    <div class='col-6 form-group '> <label for='exampleFormControlFile1' id='uploaded_image' width='50%'>Example file input</label></div>  </div>      <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom05'>Product Decription</label> <div class='col-md-12'>   <textarea class='textarea' id='product_desc_txt'  name='product_dec' placeholder='Place some text here'style='width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 30px;'></textarea>                            </div>           </div>        </div> <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom03'>Product Keywords</label>	<div class='col-md-12'>    <textarea class='form-control' id='product_keywords_txt'  name='ProductKeyword' rows='3'></textarea>   </div> <div class='modal-footer'> <button type='button' id='form_prd_add_btn' class='btn btn-danger'>Add</button><button type='button' class='btn btn-secondary'    data-card-widget='remove' >Close</button></div></form> </div></div><script>$(function () { $('.textarea').summernote() })</script></div></div> ");
   })
   
 
@@ -91,8 +91,9 @@ $(document).ready(function () {
     var product_price_txt = $("#product_price_txt").val();
     var prd_img_txt = $("#prd_img").val();
     var product_desc_txt = $("#product_desc_txt").val();
-    var product_keywords_txt =   $("#product_name_txt").val()+ " " +$("#product_keywords_txt").val() ;
-	 
+    var product_keywords_txt =   $("#product_keywords_txt").val() ;
+    var product_keywords_name_plus_keywords =   $("#product_name_txt").val()+ " " +product_keywords_txt ;
+ 
     if (
       Product_id_txt == "" ||
       prd_add_date_txt == "" ||
@@ -104,10 +105,8 @@ $(document).ready(function () {
       product_desc_txt == "" ||
       product_keywords_txt == "" || image_name==""
     ) {
-      $("#product_reg_msg").html(
-        "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Admin !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
-      );
-    } else {
+      $("#product_reg_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Admin !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+	} else {
       $.ajax({
         url: "admin_action.php",
         method: "POST",
@@ -125,33 +124,60 @@ $(document).ready(function () {
         },
         success: function (data) {
           $("#product_reg_msg").html(data);
+          $("#get_add_form").html("");
+		
         },
       });
     }
   });
-
-  $("#Category_reg_form").on("submit", function (event) {
+  
+  
+  //add the category
+  $("body").delegate("#category_add_btn_admin", "click", function () {
     event.preventDefault(); //prevent from the submision
 
     var Category_txt = $("#Category_txt").val();
 
     if (Category_txt == "") {
-      $("#Category_reg_msg").html(
-        "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Admin !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
-      );
-    } else {
+          toastr.error('Please fill all the field')
+} else {
       $.ajax({
         url: "admin_action.php",
         method: "POST",
         data: { add_category_admin: 1, category_name: Category_txt },
         success: function (data) {
-          $("#Category_reg_msg").html(data);
-          category_tbl_get_category();
+		toastr.success(data)
+		category_count();
+         category_tbl_get_category();
+		  $("#Category_txt").val("");
+		   
         },
       });
     }
   });
 
+category_count();
+//category count for admin category option
+	function category_count(){
+	
+	  $.ajax({
+        url: "admin_action.php",
+        method: "POST",
+        data: { category_count:1},
+        success: function (data) {
+   			$("#count_catg").html(data);
+			
+        },
+      });
+
+	}
+	
+
+
+
+
+
+//add the bran
   $("#brand_reg_form").on("submit", function (event) {
     event.preventDefault(); //prevent from the submision
 
@@ -254,15 +280,50 @@ $(document).ready(function () {
     });
   });
 
-  //edit the category from card
+  //edit the category from card (add/update button autochange) 
   $("body").delegate(".category_edit", "click", function () {
     event.preventDefault();
-
+	
+	
     var edit_pid = $(this).attr("category_edit_id"); //get the value from our selected product id
-
-    $("#Category_txt_val").val(data);
+	         $("#category_add_footer").html("<button type='submit' class='btn btn-success'  btn_val='"+edit_pid+"' id='category_update_btn_admin'>Update</button>");
+	    $.ajax({
+      url: "admin_action.php",
+      method: "POST",
+      data: { edit_category: 1,pid: edit_pid}, // pass the arguments
+      success: function (data) {
+          $("#Category_txt").val(data);
+      },
+    });
+	
+ 
   });
-
+  
+  
+    //remove the category from card
+  $("body").delegate("#category_update_btn_admin", "click", function () {
+     event.preventDefault();
+	 
+    var edit_pid = $(this).attr("category_edit_id"); //get the value from our selected product id
+    var btn_val = $(this).attr("btn_val"); //get the value from our selected product id
+     var Category_txt = $("#Category_txt").val();
+    $.ajax({
+      url: "admin_action.php",
+      method: "POST",
+      data: { update_admin_category: 1, Update_catg_id: btn_val,Update_Category_Val:Category_txt }, // pass the arguments
+      success: function (data) {
+		toastr.success('Successfully updated')
+		  
+			   	  $('#Category_txt').val("");
+			    $("#category_add_footer").html("<button type='submit' class='btn btn-danger'  id='category_add_btn_admin'>Add</button>");
+			     category_tbl_get_category();
+				  
+      },
+    });
+  
+	  });
+  
+ 
   //remove the category from card
   $("body").delegate(".category_delete", "click", function () {
     event.preventDefault();
@@ -274,7 +335,10 @@ $(document).ready(function () {
       method: "POST",
       data: { remove_admin_category: 1, delete_id: delete_pid }, // pass the arguments
       success: function (data) {
+		  		toastr.success('Successfully deleted')
+				category_count();
         category_tbl_get_category();
+		
       },
     });
   });
@@ -297,6 +361,19 @@ $(document).ready(function () {
   
   
   
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
    $(document).on('change', '#file', function(){
 	 
   var name = document.getElementById("file").files[0].name;
@@ -304,10 +381,11 @@ $(document).ready(function () {
   var ext = name.split('.').pop().toLowerCase();
   if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) 
   {
-   $("#file").val("");
+
 
  $("#product_reg_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Invalid <strong>file format !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
-  
+ $("#file").val("");
+ $("#uploaded_image").html("");
 	  
   }
   var oFReader = new FileReader();
@@ -316,13 +394,18 @@ $(document).ready(function () {
   var fsize = f.size||f.fileSize;
   if(fsize > 2000000)
   {
-$("#product_reg_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Image File Size <strong>is very big !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+	$("#product_reg_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Image File Size <strong>is very big !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+ $("#file").val("");
+ $("#uploaded_image").html("");
+  
+  
   }
   else
   {
    form_data.append("file", document.getElementById('file').files[0]);
+  
    $.ajax({
-    url:"upload.php",
+    url:"admin_action.php",
     method:"POST",
     data: form_data,
     contentType: false,
@@ -339,7 +422,9 @@ $("#product_reg_msg").html("<div class='alert alert-danger alert-dismissible fad
   }
  });
  
- 
+  $("#clearsss").click(function(){	
+  	  $('#product_reg_form')[0].reset();
+   });
  
  
 });

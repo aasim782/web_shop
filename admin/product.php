@@ -8,28 +8,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=109">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=112">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=109">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=112">
   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=109">
-  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=109">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=112">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=112">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=109">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=112">
   	
   <!-- note -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
 	
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700/i=109" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700/i=112" rel="stylesheet">
    <!-- summernote -->
 
   
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/jquery.js?i=109"></script>
+	<script src="../js/jquery.js?i=112"></script>
  
-	<script src="../prg_main.js?i=109" ></script>
-	<script src="admin_main.js?i=109" ></script>
+	<script src="../prg_main.js?i=112" ></script>
+	<script src="admin_main.js?i=112" ></script>
 	
  
 
@@ -138,7 +138,7 @@
                 <h5 class="m-0 text-danger">TOTAL CATEGORY</h5>
               </div>
               <div class="card-body text-center bg-danger">
-                <label class="card-title " style="font-size:52pt">555</label>
+                <label class="card-title " id="count_catg" style="font-size:52pt"></label>
   
               </div>
             </div>
@@ -167,7 +167,8 @@
     </div>
     <!-- /.content -->
  
-
+		   
+	 
 		
 			
 					

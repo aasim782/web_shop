@@ -1134,7 +1134,18 @@ $order_id = $row["order_id"];
 
 
  
- 
+ if(isset($_POST['prd_dec_details_get']))
+{
+$product_id = $_POST["pid"];
+$sql = "SELECT product_desc FROM product_tbl WHERE product_id = $product_id" ;
+$check_query = mysqli_query($con,$sql);
+$row = mysqli_fetch_array($check_query);
+$product_desc = $row["product_desc"];
+
+	
+	echo "$product_desc";
+	
+}
  
  
 ?>

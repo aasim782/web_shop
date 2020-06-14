@@ -8,41 +8,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   
-  
-  
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/jquery.js?i=90"></script>
-    <script src="../js/popper.min.js?i=90"></script>
-    <script src="../js/bootstrap.min.js?i=90"></script>
-
-
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css?i=90">
-	<script src="../js/all.js?i=90" data-auto-replace-svg="nest"></script>
-	<script src="../prg_main.js?i=90" ></script>
-	<script src="admin_main.js?i=90" ></script>
-	
-	
-	 <!-- All icons -->
-	<link rel="stylesheet" href="../css/all.css?i=90">
-
-
-
-
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=121">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=121">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css?i=121">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.min.css?i=121">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=121">
+
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="../js/jquery.js?i=121"></script>
+	<script src="../prg_main.js?i=121" ></script>
+	<script src="admin_main.js?i=121" ></script>
+ 
+ 
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=121">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=121">
+ 
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700?i=121" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
+
+
+
+
+
+
 <div class="wrapper">
 
 
@@ -56,25 +55,79 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-   
-
-    <!-- Main content -->
+       <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
-		  
-		  
-  	  <div class="text-right mt-4 mb-3">	
-		<a href="" update_id="$product_id" class="btn btn-success update " data-toggle="modal"    data-target="#Category_reg_model" ><i class="fa fa-plus-circle"></i> Add Category</a>
-	  </div>
+          <div class="col-12 mt-3">
+	
+ 
+ 
+        <div class="row">
+          <div class="col-lg-9 mt-4 ">
+		    
+	 <div id="Category_reg_msg">
+	 	  </div>			  
+		<form id="category_form">
+         	<div class="card card-info  mb-3">		  
+                <div class="card-header">
+                <h3 class="card-title text-center">Add Category</h3>
+		 
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+			  
+			  
+               <div class="col-md-12 pb-2">
+			  <label for="validationCustom01">Category Name</label>
+			  <input type="text" class="form-control" id="Category_txt" name="" placeholder="Category Name">
+		
+			</div>
+
+         </div>
+                  <!-- /.card-body -->
+       <div class="modal-footer "" id="category_add_footer">
+        <button   class="btn btn-danger"  id="category_add_btn_admin">Add</button>
+ 
+      </div>
+            </div>
+				</form>
+          </div>
+   
+          <div class="col-lg-3 mt-4  " >
+             <div class="card card-danger card-outline ">
+              <div class="card-header  ">
+                <h5 class="m-0 text-danger justify-content-center text-center">TOTAL CATEGORY</h5>
+              </div>
+              <div class="card-body bg-danger  ">
+           
+				   <div class="card-body text-center" id="count_catg" style="font-size:54pt"></div>
+				 
+				 
+              </div>
+            </div>
+			
+ 
+          </div>
+          <!-- /.col-md-6 -->
+     
+    </div>
+    <!-- /.content -->
+          <!-- /.col-md-6 -->
+		 
+  
+        <!-- /.row -->
+ 
+
+		 
+	  
             <div class="card">			  
-              <div class="card-header text-center"  >
+              <div class="card-header text-center card-danger card-outline "  >
             <h2>Category</h2>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table- table-striped">
                   <thead>
                   <tr  class="text-center">
 						<th>No</th>
@@ -131,6 +184,13 @@
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<!-- SweetAlert2 -->
+<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="plugins/toastr/toastr.min.js"></script>
+
+
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->

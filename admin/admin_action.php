@@ -100,24 +100,6 @@ $check_query = mysqli_query($con,$sql);
 
 
 
-//add the category to table
-if(isset($_POST["add_category_admin"])){
-	
-	$category_name= $_POST['category_name'];
-	
-	
-	
-	
-	$sql = "INSERT INTO `category_tbl`(`category_name`) VALUES ('$category_name')";
-	 
-	if(mysqli_query($con,$sql))
-	{
-	
-			echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
-
-	}
-}
-
 
 //add the brand to table
 if(isset($_POST["add_brand_admin"])){
@@ -231,12 +213,52 @@ if(isset($_POST["get_admin_product"]) || isset($_POST["edit_admin_product"])  ||
 }
 
 
-if(isset($_POST["get_admin_category"]) || isset($_POST["edit_admin_category"]) || isset($_POST["remove_admin_category"])){
+if(isset($_POST["category_count"]))
+{
+ 
+	$category_query = "SELECT COUNT(category_id) as total_cat from category_tbl";
+	$run_query = mysqli_query($con,$category_query);
+	$row = mysqli_fetch_array($run_query);
+	$total_cat_counted = $row["total_cat"];
+ 
+	
+	
+	$category_query1 = "SELECT COUNT(category_id) as total_cat_active from category_tbl where active=1";
+	$run_query1 = mysqli_query($con,$category_query1);
+	$row1 = mysqli_fetch_array($run_query1);
+	$total_cat_active_counted = $row1["total_cat_active"];
+	echo "$total_cat_active_counted";
+	
+ 
+		
+}
+
+
+
+
+if(isset($_POST["get_admin_category"]) || isset($_POST["edit_category"]) || isset($_POST["remove_admin_category"]) ||  isset($_POST["update_admin_category"]) || isset($_POST["add_category_admin"])){
 
 $category_query = "SELECT * FROM category_tbl where active= 1 ";
 $run_query = mysqli_query($con,$category_query);
  
-	if(isset($_POST["get_admin_category"]))
+ 
+ 
+ 
+	//add the category to table
+if(isset($_POST["add_category_admin"])){
+	
+	$category_name= $_POST['category_name'];	
+	$sql = "INSERT INTO `category_tbl`(`category_name`) VALUES ('$category_name')";
+	 
+	if(mysqli_query($con,$sql))
+	{
+	
+			echo "Successfully added the category";
+
+	}
+}
+
+	else if(isset($_POST["get_admin_category"]))
 	{	$i=1;
 		if(mysqli_num_rows($run_query) > 0){
 			while($row = mysqli_fetch_array($run_query))
@@ -251,7 +273,7 @@ $run_query = mysqli_query($con,$category_query);
 							<td>
 	
 							<div class='btn-group '>
-							<a href='' category_edit_id='$category_id'  data-toggle='modal' data-target='#Category_edit_model' class='btn btn-info category_edit'><i class='fa fa-edit'></i></a>
+							<a href='' category_edit_id='$category_id' class='btn btn-info category_edit'><i class='fa fa-edit'></i></a>
 							<a href='' category_delete_id='$category_id' class='btn btn-danger category_delete'><i class='fa fa-trash-alt'></i></a>
 							</div> 
 							</td>
@@ -262,15 +284,15 @@ $run_query = mysqli_query($con,$category_query);
 			}	
 	}
 	
- else if(isset($_POST["edit_admin_category"]))
+ else if(isset($_POST["edit_category"]))
 	{
 		
-	$edit_id = $_POST["edit_id"];
-	$category_query = "SELECT * FROM category_tbl where category_id = '$edit_id' ";
+	$edit_id = $_POST["pid"];
+	$category_query = "SELECT * FROM category_tbl where category_id =  $edit_id ";
 	$run_query = mysqli_query($con,$category_query);
 	$row = mysqli_fetch_array($run_query);
  	$category_name = $row["category_name"];
-	echo "10";
+	echo "$category_name";
 		
 	}
 	else if(isset($_POST["remove_admin_category"]))
@@ -284,6 +306,16 @@ $run_query = mysqli_query($con,$category_query);
 	data-auto-dismiss>Category <strong> successfully deleted</strong> <button type='button' 
 	class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 
+	}
+	else if(isset($_POST["update_admin_category"]))
+	{
+		
+			$Update_catg_id = $_POST["Update_catg_id"];
+			$Update_Category_Val = $_POST["Update_Category_Val"];
+		$sql = "update category_tbl set category_name='$Update_Category_Val' WHERE category_id = '$Update_catg_id'" ;
+	$check_query = mysqli_query($con,$sql);
+	
+	
 	}
 	
 
@@ -349,6 +381,19 @@ $run_query = mysqli_query($con,$category_query);
 
 
 
+if(isset($_FILES["file"]["name"] ))
+{
+ $test = explode('.', $_FILES["file"]["name"]);
+ $ext = end($test);
+ $name = rand(100, 999) . '.' . $ext;
+ $location = './upload/' . $name;  
+ move_uploaded_file($_FILES["file"]["tmp_name"], $location);
+ echo '<img src="'.$location.'" height="150" width="225" class="img-thumbnail" />';
+}
 
+
+
+
+ 
 
 ?>

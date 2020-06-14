@@ -17,26 +17,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery.js?i=96"></script>
-    <script src="js/popper.min.js?i=96"></script>
-    <script src="js/bootstrap.min.js?i=96"></script>
+	<script src="js/jquery.js?i=110"></script>
+    <script src="js/popper.min.js?i=110"></script>
+    <script src="js/bootstrap.min.js?i=110"></script>
 
 
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css?i=96">
-	 <link rel="stylesheet" href="css/customes_css.css?i=96">
-	<script src="js/all.js?i=96" data-auto-replace-svg="nest"></script>
-	<script src="prg_main.js?i=96" ></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css?i=110">
+	 <link rel="stylesheet" href="css/customes_css.css?i=110">
+	<script src="js/all.js?i=110" data-auto-replace-svg="nest"></script>
+	<script src="prg_main.js?i=110" ></script>
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=96">
+	<link rel="stylesheet" href="css/all.css?i=110">
     <title>Dress Line</title>
   </head>
   <body>
-  
-  
+      
   
   
   
@@ -330,7 +329,7 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-   
+    <div id="prd_dec_details" class="m-3"> </div> 
   </div>
   
   <div class="tab-pane fade  mt-4  " id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">

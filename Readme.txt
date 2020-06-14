@@ -1,8 +1,6 @@
--admin lte panel added
--product table coded
--brand table coded
--category table coded
--Sperate js and action page created for Admin module 
--login recoded
+-last some work defined anyways i continoue other
 
-" Ver 0.4.0 "
+-catg edit part competed
+-Total Category count
+-category update
+" Ver 0.4.6 "

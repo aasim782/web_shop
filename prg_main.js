@@ -337,6 +337,7 @@ $(document).ready(function(){
  
 	 window.open("product_view.php?pid="+pid_val+"","_self");
 	 
+	 
 	})	
 	
 	
@@ -346,6 +347,7 @@ $(document).ready(function(){
 		var url = new URL(document.URL);
 		var search_params = url.searchParams;
 		var product_id = search_params.get('pid');
+		
  
 				$.ajax({
 					url		:	"action.php",
@@ -719,10 +721,41 @@ complain_item_list();
 						}
 					})
   })
-
-
   
-			
+  
+  //product view page product button
+   $("#particular_product_btn").click(function(){	
+ 	
+   });
+   
+ 
+   
+   
+  prd_dec_detail();
+  //prd_dec_details tab details;
+ function prd_dec_detail(){
+	 
+	 	var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var product_id = search_params.get('pid');
+		
+		
+	 
+	 	 		$.ajax({
+					url		:	"action.php",
+					method	:	"POST",
+					data	:	{prd_dec_details_get:1,pid:product_id},
+					success	:	function(data){
+						 
+							 $('#prd_dec_details').html(data);
+				 
+						}
+					})
+ }
+	
+ 
+
+	
 						
 //end
 });
