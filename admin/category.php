@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | DataTables</title>
+  <title>Dressline | Category</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -11,29 +11,29 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=121">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=122">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=121">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=122">
   <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css?i=121">
+  <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css?i=122">
   <!-- Toastr -->
-  <link rel="stylesheet" href="plugins/toastr/toastr.min.css?i=121">
+  <link rel="stylesheet" href="plugins/toastr/toastr.min.css?i=122">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=121">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=122">
 
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/jquery.js?i=121"></script>
-	<script src="../prg_main.js?i=121" ></script>
-	<script src="admin_main.js?i=121" ></script>
+	<script src="../js/jquery.js?i=122"></script>
+	<script src="../prg_main.js?i=122" ></script>
+	<script src="admin_main.js?i=122" ></script>
  
  
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=121">
-  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=121">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=122">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=122">
  
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700?i=121" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700?i=122" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
 
@@ -126,8 +126,26 @@
             <h2>Category</h2>
               </div>
               <!-- /.card-header -->
+			  
+
+			  
               <div class="card-body">
-                <table id="example1" class="table table- table-striped">
+			  	
+						  <div class="row">
+			 
+						  <div class="mb-3 col-sm-16 col-md-10 text-right p-1">
+						  Search:
+						</div>
+							<div class="col-sm-16 col-md-2 text-right ">
+							<div class="col-sm-12"><input type="search" id="category_filter" class="form-control form-control-sm" placeholder="" aria-controls="example1" autocomplete="off"></div>
+						 
+							</div>
+						  </div>
+			  
+			   <div class="row"><div class="col-sm-12 ">
+			   
+			  
+                <table  class="table table- table-striped">
                   <thead>
                   <tr  class="text-center">
 						<th>No</th>
@@ -145,6 +163,11 @@
             
                   </tfoot>
                 </table>
+				
+				
+				
+              </div>
+              </div>
               </div>
               <!-- /.card-body -->
             </div>

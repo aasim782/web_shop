@@ -8,28 +8,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=112">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=135">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css?i=135">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=112">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css?i=135">
   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=112">
-  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=112">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=112">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css?i=135">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css?i=135">
+ 
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css?i=135">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.min.css?i=135">
+
+ <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css?i=135">
   	
   <!-- note -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
 	
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700/i=112" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700/i=135" rel="stylesheet">
    <!-- summernote -->
 
+ 
   
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/jquery.js?i=112"></script>
+	<script src="../js/jquery.js?i=135"></script>
  
-	<script src="../prg_main.js?i=112" ></script>
-	<script src="admin_main.js?i=112" ></script>
+	<script src="../prg_main.js?i=135" ></script>
+	<script src="admin_main.js?i=135" ></script>
 	
  
 
@@ -129,7 +138,7 @@
                 <h5 class="m-0 text-primary">TOTAL PRODUCTS</h5>
               </div>
          <div class="card-body  bg-primary justfy-content-center  ">
-                 <label class="card-title " style="font-size:52pt;">2000</label> 
+                 <label class="card-title " id="count_product" style="font-size:52pt;"></label> 
               </div>
             </div>
 
@@ -148,7 +157,7 @@
                 <h5 class="m-0 text-success">TOTAL BRAND</h5>
               </div>
            <div class="card-body bg-success">
-                <label class="card-title text-center " style="font-size:52pt">15000</label>
+                <label class="card-title text-center"  id="count_brand" style="font-size:52pt"></label>
   
               </div>
             </div>
@@ -211,6 +220,21 @@
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<!-- SweetAlert2 -->
+<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="plugins/toastr/toastr.min.js"></script>
+
+
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+
+ 
+ 
+
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->

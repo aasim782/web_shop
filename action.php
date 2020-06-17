@@ -29,7 +29,7 @@ if(isset($_POST["category"])){
 
 
 if(isset($_POST["filter_category_list_item"])){
-		$category_query = "SELECT * FROM category_tbl";
+		$category_query = "SELECT * FROM category_tbl where active=1";
 	$run_query = mysqli_query($con,$category_query);
 		if(mysqli_num_rows($run_query) > 0){
 		while($row = mysqli_fetch_array($run_query))
@@ -69,7 +69,7 @@ if(isset($_POST["brand"])){
 
 //define a footer number
 if(isset($_POST["page_footer_num"])){
-	$sql = "SELECT * FROM product_tbl";
+	$sql = "SELECT * FROM product_tbl where active=1";
 	$run_query = mysqli_query($con,$sql);
 	$count = mysqli_num_rows($run_query);
 	$pageno=ceil($count/9); //rouded 
@@ -114,7 +114,7 @@ if(isset($_POST["product"])){
 			echo "
 			     <div class='col-4 mb-3' >
             <div class='card shadow-sm'> 
-			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b>$product_name</b>
+			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b style='cursor: pointer;' id='particular_product_search_btn'  pid='$product_id'>$product_name</b>
 			
 		<button type='button' id='particular_product_search_btn'  pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
 					<div style='padding-top:1px;' >
@@ -127,14 +127,14 @@ if(isset($_POST["product"])){
 			</div>
 			
 		   <div class='text-center' >
-			<img  class='card-img-bottom text-center ' src='prg_img/$product_img' align='center' style='padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
+			<img  class='card-img-bottom text-center '  id='particular_product_search_btn'  pid='$product_id' src='prg_img/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
 			</div>
          
     <div class='form-group row justify-content-center'>
 
         <label for='inputPassword' class='p-1'>QTY :</label>
         <div class='col-sm-4'>
-            <input type='number' class='form-control' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
+            <input type='number' class='form-control' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
 		</div>
 		</div>
 	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
@@ -188,7 +188,7 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 			echo "
 			        <div class=' col-4 mb-3' >
             <div class='  card shadow-sm'> 
-			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b>$product_name</b>
+			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b style='cursor: pointer;' id='particular_product_search_btn' pid='$product_id'>$product_name</b>
 			
 		<button type='button' id='particular_product_search_btn' pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
 					<div style='padding-top:1px;' >
@@ -201,14 +201,14 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 			</div>
 			
 		   <div class='text-center' >
-			<img  class='card-img-bottom text-center ' src='prg_img/$product_img' align='center' style='padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
+			<img  class='card-img-bottom text-center ' pid='$product_id' id='particular_product_search_btn' src='prg_img/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
 			</div>
          
     <div class='form-group row justify-content-center'>
 
         <label for='inputPassword' class='p-1'>QTY :</label>
         <div class='col-sm-4'>
-            <input type='number' class='form-control' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
+            <input type='number' class='form-control' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
 		</div>
 		</div>
 	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
@@ -227,7 +227,7 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 			  <h4 class='alert-heading'>We haven't such a product right now.!</h4>
 			  <p>We have sorry to say, we haven't such a product.!</p>
 			  <p  >You can make a customes order </p>
-			  <button class='btn btn-danger mt-2' ><i class='fa fa-shopping-cart'></i> CLICK HERE</button>  </p>
+			  <button class='btn btn-danger mt-2'  data-toggle='modal' data-target='#customes_order' ><i class='fa fa-shopping-cart'></i> CLICK HERE</button>  </p>
 			</div> 
 			</div> 
 			";
@@ -314,6 +314,7 @@ if(isset($_POST["userLogin"])){
 		}
 }
 
+/*dont kow why we used
 if(isset($_GET["prd_view_page"]))
 	{
 		 
@@ -334,10 +335,10 @@ if(isset($_GET["prd_view_page"]))
 			echo "
 			        <div class=' col-4 mb-3' >
             <div class='  card'> 
-			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b>$product_name</b>
+			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b>$product_name</b>sssssssssssssssssssssssss
 			
 		<button type='button' id='particular_product_search_btn' pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
-					<div style='padding-top:1px;' >
+					<div style='padding-top:1px;' >sssssssssssssssssssssssssssss
 					<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
@@ -368,6 +369,7 @@ if(isset($_GET["prd_view_page"]))
 		
 		
 	}
+	*/
 
 if(isset($_POST["add_to_card"])){
 $order_id=0;
@@ -457,26 +459,54 @@ $order_id=0;
 			
 				
 				}
-	
+				
+				 
 				$sql ="SELECT * FROM product_tbl WHERE product_id = '$product_id'" ;
 					$check_query = mysqli_query($con,$sql);
 					$row = mysqli_fetch_array($check_query);
 					$product_id = $row["product_id"];
 					$product_price = $row["product_price"];
+					$product_total_qty = $row["product_total_qty"];
 					
-					$today = date("Y-m-d"); // get the date
-					
-					
-						$sql = "SELECT * FROM  order_tbl where order_id= $order_id" ;
-						$check_query1 = mysqli_query($con,$sql);
-						$rows = mysqli_num_rows($check_query1);
 						
-						if($rows == 0)
-						{
-						$sql = "INSERT INTO `order_tbl` (`order_id`,`customer_id`) VALUES ($order_id,$customer_id)";
-						$check_query = mysqli_query($con,$sql);
-					 
+						
+						 
+						
+						
+						if($product_total_qty==0){
+							echo "<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
+									  Dear, Cusomer ! <strong>this product is out of stocks.</strong>
+									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+										<span aria-hidden='true'>&times;</span>
+									  </button>
+									</div> ";
 						}
+						else if(($product_qty>$product_total_qty) &&  ($product_total_qty!=0))
+						{
+								echo "<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
+									  Dear, Customer ! <strong>We have in stock $product_total_qty item only.</strong>
+									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+										<span aria-hidden='true'>&times;</span>
+									  </button>
+									</div> ";
+							
+						}
+						else
+						{
+								
+							$today = date("Y-m-d"); // get the date
+					
+					
+							$sql = "SELECT * FROM  order_tbl where order_id= $order_id" ;
+							$check_query1 = mysqli_query($con,$sql);
+							$rows = mysqli_num_rows($check_query1);
+						
+							if($rows == 0)
+							{
+								$sql = "INSERT INTO `order_tbl` (`order_id`,`customer_id`) VALUES ($order_id,$customer_id)";
+								$check_query = mysqli_query($con,$sql);
+							}
+ 
 								
 								$sql = "INSERT INTO `customer_ord_prds` 
 								(`customer_ord_id`,`order_date`, `customer_id`, `product_id`, `order_qtry`, 
@@ -484,6 +514,13 @@ $order_id=0;
 								VALUES (NULL, '$today', $customer_id , $product_id, 
 								$product_qty , $product_price,$order_id)";
 								
+								
+								
+								
+								$Current_qty= ($product_total_qty-$product_qty);
+								
+								$sql1 = "UPDATE product_tbl SET product_total_qty=$Current_qty  where  product_id=$product_id && active=1";
+								 
 								mysqli_query($con,$sql);
 									echo "<div class='alert alert-success alert-dismissible fade show col-lg-12' role='alert'>
 									  <strong>Product Successfully added to</strong> the Cart..!
@@ -491,7 +528,13 @@ $order_id=0;
 										<span aria-hidden='true'>&times;</span>
 									  </button>
 									</div> ";
+									mysqli_query($con,$sql1);
 								
+							
+							
+							
+						}
+				
 							
 								
 			
@@ -595,10 +638,10 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 									if(isset($_POST["get_added_products_into_card"]))
 								{
 									
-														echo "<tr>
+														echo "<tr style='cursor: pointer;' id='card_page_view_url'>
 															<th class='col-2'>$no</th>
 																<td><img height='50px' width='50px' src='prg_img/$product_img' alt='Third slide'></td>
-																<td style='width: 30%'><label>$product_name</label></td>
+																<td style='width: 30%'><label style='cursor: pointer;'  >$product_name</label></td>
 															<td class='col-sm-1 col-md-1 text-center'><strong>$order_qtry</strong></td>
 															<td class='col-sm-1 col-md-1 text-center'><strong>Rs.$current_total_price.00</strong></td>
 															</tr>
@@ -625,7 +668,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 															
 														<div class='col-md-1  '>	
 												
-														<input type='number'  class='form-control text-center qty ' id='qty-$product_id' pid='$product_id'  value='$order_qtry'>
+														<input type='number'   min='1' class='form-control text-center qty ' id='qty-$product_id' pid='$product_id'  value='$order_qtry'>
 														
 														</div>	
 														<div class='col-md-2 text-center'><b> Rs&nbsp<label pid='$product_id' id='price-$product_id' class='price'>$current_price_per_prd</label>.00</b></div>
@@ -801,14 +844,26 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 
 
 
-
+//delete the item from customer order before payment
 if(isset($_POST["removefromcart"])){
 $customer_id = $_SESSION['cusid'] ;
+$new_qty = $_POST['new_qty']; //that is used for increase the qty bcz when delete the ord qty .prd qty should increse  
 $remove_product_id = $_POST['remove_product_id'];
 
+$sql1 ="SELECT * FROM product_tbl WHERE product_id = '$remove_product_id'" ;
+					$check_query1 = mysqli_query($con,$sql1);
+					$row1 = mysqli_fetch_array($check_query1);
+					$product_total_qty = $row1["product_total_qty"];
+
+					
+ $sql = "update product_tbl set product_total_qty= ($product_total_qty+$new_qty) WHERE product_id='$remove_product_id' AND active = 1" ;
+ $check_query = mysqli_query($con,$sql);
+	
  $sql = "Delete FROM customer_ord_prds WHERE customer_id = '$customer_id' AND product_id='$remove_product_id' AND payment_status = 0" ;
 	$check_query = mysqli_query($con,$sql);
-	if($check_query){
+ 
+
+	if($check_query1 && $check_query){
 		
 		echo "	<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
 							  <strong>Product Successfully deleted</strong> from Cart..!
@@ -820,7 +875,7 @@ $remove_product_id = $_POST['remove_product_id'];
 }
 
 
-
+//update the item from customer order before payment
 if(isset($_POST["updatefromcart"])){
 $customer_id = $_SESSION['cusid'] ;
 $update_product_id = $_POST['update_product_id'];
@@ -828,17 +883,104 @@ $new_qty = $_POST['new_qty'];
 $current_product_total = $_POST['current_product_total'];
 $customer_note = $_POST['customer_note'];
 
- $sql = "update customer_ord_prds set order_qtry='$new_qty', customer_note='$customer_note' WHERE customer_id = '$customer_id' AND product_id='$update_product_id' AND payment_status = 0" ;
-	$check_query = mysqli_query($con,$sql);
-	if($check_query){
+
+
+	$sql ="SELECT * FROM product_tbl WHERE product_id = '$update_product_id'" ;
+					$check_query = mysqli_query($con,$sql);
+					$row = mysqli_fetch_array($check_query);
+					$product_id = $row["product_id"];
+					$product_price = $row["product_price"];
+					$product_total_qty = $row["product_total_qty"];
+					
+
+
+	$sql ="SELECT * FROM customer_ord_prds WHERE product_id = '$update_product_id' && payment_status=0 && customer_id=$customer_id" ;
+					$check_query = mysqli_query($con,$sql);
+					$row = mysqli_fetch_array($check_query);
+					$order_qtry = $row["order_qtry"];
+					
+					
+					
+						$aditinal_added=$new_qty-$order_qtry;
+						$final_qty_in_prd= $product_total_qty-$aditinal_added;
+						
+						
+						
+						
+							//Existing Qty check
+						
+						if($product_total_qty==0 && $order_qtry<$new_qty){
+							
+								echo "<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
+									  Dear, Cusomer ! <strong>this product is out of stocks.</strong>
+									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+										<span aria-hidden='true'>&times;</span>
+									  </button>
+									</div> ";
+							
+						}	
+						else if($new_qty==$order_qtry)
+						{
+							
+								echo "<div class='alert alert-success alert-dismissible fade show col-lg-12' role='alert'>
+									  Dear Customer! <strong>new order updated </strong>
+									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+										<span aria-hidden='true'>&times;</span>
+									  </button>
+									</div> ";
+							
+						}
+						else if(($aditinal_added > $product_total_qty)   )
+						{
+								echo "<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
+									  Dear, Cusomer ! <strong>you can order moreovers $product_total_qty item only.</strong>
+									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+										<span aria-hidden='true'>&times;</span>
+									  </button>
+									</div> ";
+							
+						}
+						else
+						{
+							
+							$sql = "update customer_ord_prds set order_qtry='$new_qty', customer_note='$customer_note' WHERE customer_id = '$customer_id' AND product_id='$update_product_id' AND payment_status = 0" ;
+							$check_query = mysqli_query($con,$sql);
+							if($check_query){
 		
-		echo "	<div class='alert alert-success alert-dismissible fade show col-lg-12' role='alert'>
+									echo "	<div class='alert alert-success alert-dismissible fade show col-lg-12' role='alert'>
 							  <strong>Product Successfully updated</strong> to the Cart..!
 							  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 								<span aria-hidden='true'>&times;</span>
 							  </button>
 							</div> ";
-	}
+							
+						
+							 
+							 
+							 $sql = "update product_tbl set product_total_qty='$final_qty_in_prd' WHERE product_id='$update_product_id' AND active = 1" ;
+							$check_query = mysqli_query($con,$sql);
+							
+							
+ 
+							
+									}
+							
+						}
+						
+				
+						
+						
+					
+					 
+					
+						
+						
+						
+
+
+
+
+
 }
 
 
@@ -1148,4 +1290,235 @@ $product_desc = $row["product_desc"];
 }
  
  
+ 
+ 
+ 
+ 
+ 
+  if(isset($_POST['particular_prd_view']))
+
+{
+	
+	
+	$product_id = $_POST["pid"];
+	$product_query = "SELECT product_tbl.product_id,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_img,product_tbl.product_total_qty,category_tbl.category_name,brand_tbl.brand_name FROM product_tbl,category_tbl,brand_tbl where((product_tbl.product_category = category_tbl.category_id) && (product_tbl.product_brand = brand_tbl.brand_id) && (product_tbl.product_id=$product_id && product_tbl.active=1))";
+	$run_query = mysqli_query($con,$product_query);
+	
+
+	if(mysqli_num_rows($run_query) > 0){
+		while($row = mysqli_fetch_array($run_query))
+		{
+			$product_id = $row["product_id"];
+			$category_name = $row["category_name"];
+			$brand_name = $row["brand_name"];
+			$product_name = $row["product_name"];
+			$product_price = $row["product_price"];
+			$product_desc = $row["product_desc"];
+			$product_img = $row["product_img"];
+			$product_total_qty = $row["product_total_qty"];
+		 
+ 
+	
+	
+	echo"
+	 <div id='show_msg'></div>
+	<div class='card'>
+  <div class='card-body shadow-sm   '>
+  
+  
+  <div class='container'>
+  <div class='row'>
+    <div class='col-4 text-center'>
+       <img class='thumbnail zoom card-img-bottom text-center  ' src='prg_img/$product_img' style='padding-top:10px;padding-bottom:10px;width:190px;height:250px'><br>		
+ 
+ 		
+    </div>
+    <div class='col-sm'>
+   	  <div class=' col-sm row  rounded ml-1 mb-2'>
+			  		  <div class='col-sm mt-3 mb-2'>	
+					  <b>$product_name</b><div class='justify-content-center'>
+					<i class='' style='color:orange' data-fa-i2svg=''><svg class='svg-inline--fa fa-star fa-w-18' aria-hidden='true' focusable='false' data-prefix='fas' data-icon='star' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z'></path></svg></i>
+                	<i class='' style='color:orange' data-fa-i2svg=''><svg class='svg-inline--fa fa-star fa-w-18' aria-hidden='true' focusable='false' data-prefix='fas' data-icon='star' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z'></path></svg></i>
+                	<i class='' style='color:orange' data-fa-i2svg=''><svg class='svg-inline--fa fa-star fa-w-18' aria-hidden='true' focusable='false' data-prefix='fas' data-icon='star' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z'></path></svg></i>
+                	<i class='' style='color:orange' data-fa-i2svg=''><svg class='svg-inline--fa fa-star fa-w-18' aria-hidden='true' focusable='false' data-prefix='fas' data-icon='star' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z'></path></svg></i>
+					<i class='' data-fa-i2svg=''><svg class='svg-inline--fa fa-star fa-w-18' aria-hidden='true' focusable='false' data-prefix='fas' data-icon='star' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z'></path></svg></i> (120)
+					</div>	   <hr>
+ 
+  <div class='row'>
+    <div class='col-sm'>
+     <p><b> Category </b> : $category_name </p> 
+    </div>
+    <div class='col-sm'>
+	<p><b> Brand  </b>: $brand_name</p> 
+    </div>
+  </div>
+ 
+					
+	 <div class='row'>
+    <div class='col-sm'>
+		<p>  <b>Price </b> : Rs.$product_price.00</p>
+
+    </div>
+  </div>		
+  
+  					
+	 <div class='row '>	 
+   <div class=' ml-3 pt-1 '>
+		 <b> Qty :</b> 
+ 
+    </div>
+
+  <div class='col-3 text-left'> 
+		   <input type='number' class='form-control' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
+    </div>
+  </div>
+  
+  
+  	 <div class='row mt-3'>	 
+ 
+	 <div class='col-sm'> 
+	  <p class='text-success'>In Stock</p>   
+    </div>
+ 
+  </div>
+					
+			  <div class='col-sm'>
+
+
+    </div>		
+					
+				  
+			
+				  
+				   
+				 
+		<div class='col-4'>
+
+		</div>
+				   <p><b>Delivery within 24 hours</b></p> 
+				   
+		 <button class='btn btn-danger btn-sm mt-2 mb-2' style='padding-bottom:10px;padding-top:10px' pid='$product_id' id='particular_product_btn'><i class='' data-fa-i2svg=''><svg class='svg-inline--fa fa-shopping-cart fa-w-18' aria-hidden='true' focusable='false' data-prefix='fa' data-icon='shopping-cart' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z'></path></svg></i> Add to cart </button>        
+			 
+	 
+ 
+				</div>
+	
+			</div>
+    </div>
+ 
+  </div>
+</div>
+
+
+     
+  
+		</div>
+ 
+				  </div>";
+	
+	
+	
+	
+	
+		}
+	}
+	
+
+	
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+//Recomended product show right
+ 
+  if(isset($_POST['recomended_prd_list_right'])){
+	  
+	$product_id = $_POST["pid"];
+	$product_query = "SELECT * from  product_tbl where product_id=$product_id && active=1";
+	$run_query = mysqli_query($con,$product_query);
+	echo " <b align='center' >Recomended</b>";
+	if(mysqli_num_rows($run_query) > 0){
+		while($row = mysqli_fetch_array($run_query))
+		{
+ 	 
+	 //category id
+	$product_category_id = $row["product_category"];	
+	
+ 	$product = "SELECT  product_id,product_img , product_price ,RAND() as IDX FROM product_tbl where product_category = $product_category_id ORDER BY IDX  limit 3";
+	$run_query = mysqli_query($con,$product);
+
+	if(mysqli_num_rows($run_query) > 0){
+		while($row = mysqli_fetch_array($run_query))
+		{
+					$Click_product_id = $row["product_id"];
+			$product_price = $row["product_price"];
+			$product_img = $row["product_img"];
+			
+			echo "  
+ 
+			 
+
+   <div  class='col-sm-12 '><img  id='particular_product_search_btn'  class='card-img-bottom text-center border border-warning shadow-sm p-2 mt-2' src='prg_img/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label> 	</div>	
+    ";	
+		}	
+	}}
+	  
+	  
+  }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ //Recomended product show left
+ 
+  if(isset($_POST['recomended_prd_list_left'])){
+	  
+	$product_id = $_POST["pid"];
+	$product_query = "SELECT * from  product_tbl where product_id=$product_id && active=1";
+	$run_query = mysqli_query($con,$product_query);
+	echo " <b align='center' >Recomended</b>";
+	if(mysqli_num_rows($run_query) > 0){
+		while($row = mysqli_fetch_array($run_query))
+		{
+ 	 
+	 //category id
+	$product_category_id = $row["product_category"];	
+	
+ 	$product = "SELECT product_id,product_img , product_price ,RAND() as prd FROM product_tbl ORDER BY prd  limit 4";
+	$run_query = mysqli_query($con,$product);
+
+	if(mysqli_num_rows($run_query) > 0){
+		while($row = mysqli_fetch_array($run_query))
+		{
+			$Click_product_id = $row["product_id"];
+			$product_price = $row["product_price"];
+			$product_img = $row["product_img"];
+			
+			echo "  
+    <div  class='col-sm-12 mb-2'><img  id='particular_product_search_btn' class='card-img-bottom text-center border mt-2' src='prg_img/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label></div>		
+    ";	
+		
+		}	
+	}}
+	  
+	  
+  }
+  }
+  
+  
+  
 ?>

@@ -5,6 +5,7 @@
 	{
 		header("location:profile.php");	
 	}
+	 
 
  ?>
  

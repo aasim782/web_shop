@@ -42,7 +42,7 @@
               <p>
                 Product
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">1500</span>
+                 
               </p>
             </a>
             <ul class="nav nav-treeview">

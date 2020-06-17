@@ -7,6 +7,7 @@ $(document).ready(function(){
 	brand();
 	product();
 	filter_category_list();
+	particular_prd_view();
 	
 	//category list request 
 	function category(){
@@ -60,6 +61,20 @@ $(document).ready(function(){
 			}
 		})
 	}
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
 
 
 	//filter by category
@@ -323,6 +338,7 @@ $(document).ready(function(){
 					success	:	function(data){
 						$('#show_msg').html(data);
 						card_container_btn();
+						$("#qty-"+pid).val("1"); 
 					}
 					
 					})
@@ -340,7 +356,9 @@ $(document).ready(function(){
 	 
 	})	
 	
+
 	
+		/* dont kow why we used
 		atv();
 		function atv()
 			{
@@ -359,12 +377,9 @@ $(document).ready(function(){
 					})
 					
 
-			 }
+			 }*/
 	
-	
-	
-	
-	
+
 	
 	
 	card_container_btn();
@@ -478,12 +493,12 @@ $('.modal').on('hidden.bs.modal', function(){
 	$("body").delegate(".remove","click",function(){
 		event.preventDefault();
 		var pid= $(this).attr('remove_id'); //get the value from our selected product id 
-			
-
+		var new_product_qty = $("#qty-"+pid).val(); 
+ 
 			$.ajax({
 					url		:	"action.php",
 					method	:	"POST",
-					data	:	{removefromcart:1,remove_product_id:pid}, // pass the arguments
+					data	:	{removefromcart:1,remove_product_id:pid,new_qty:new_product_qty}, // pass the arguments
 					success	:	function(data){
 						$('#cart_msg').html(data);
 						card_page_list(); //no need to refresh  it will be load all the orderd products
@@ -723,11 +738,6 @@ complain_item_list();
   })
   
   
-  //product view page product button
-   $("#particular_product_btn").click(function(){	
- 	
-   });
-   
  
    
    
@@ -754,8 +764,110 @@ complain_item_list();
  }
 	
  
-
+ 
+ //Single product view in productViewPage 
+ function particular_prd_view()
+		{
+			
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var product_id = search_params.get('pid');
+		
+			$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{particular_prd_view:1,pid:product_id},
+			success	:	function(data){
+			 $('#indivitual_prd_view').html(data);
+			 	$('#Indivitual_product_view').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+		
+			}
+		})
+			
+		}
+		
+		
+		 recomended_prd_list_right();
+	 	// recomended_prd_list show 
+	function recomended_prd_list_right(){
+		
+		//used for identify the category
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var product_id = search_params.get('pid');
+		
+		
+		$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{recomended_prd_list_right:1,pid:product_id},
+			success	:	function(data){
+			$("#recomended_prd_list_right").html(data);			
+			}
+		})
+	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+			 recomended_prd_list_left();
+	 	// recomended_prd_list show 
+	function recomended_prd_list_left(){
+		
+		//used for identify the category
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var product_id = search_params.get('pid');
+		
+		
+		$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{recomended_prd_list_left:1,pid:product_id},
+			success	:	function(data){
+			$("#recomended_prd_list_left").html(data);			
+			}
+		})
+	}
+	
+		/*already added particulaer search button so no need but for chk we comment
+		$('body').delegate('#image_click','click',function() {
+		 var pid_val= $(this).attr('pid'); //get the value from our self pid attribute pid 
+		window.open("product_view.php?pid="+pid_val+"","_self");
+			
+		});
+	*/
+	
+	
+		$('body').delegate('#card_page_view_url','click',function() {
+		window.open("cart.php","_self");
+			
+		});
+	
+ 
+		
+	
+	/*nagative_value_disable
+	nagative_value_disable();
+function nagative_value_disable(){
+var number = document.getElementById('price-"+pid');
+
+number.onkeydown = function(e) {
+    if(!((e.keyCode > 95 && e.keyCode < 106)
+      || (e.keyCode > 47 && e.keyCode < 58) 
+      || e.keyCode == 8)) {
+        return false;
+    }
+}
+
+
+
+}*/
 						
 //end
 });

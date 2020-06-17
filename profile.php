@@ -104,7 +104,7 @@
 													</thead>	
 													
 												
-													<tbody id="all_product_list" class=""  >			
+													<tbody id="all_product_list" >			
 											
 													<!--					
 														<tr>
