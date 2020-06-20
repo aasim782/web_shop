@@ -110,7 +110,7 @@ if(isset($_POST["admin_userLogin"])){
 
 
 //Prduct Related Codes
-if(isset($_POST['add_to_prd_tbl']) || isset($_POST["get_admin_product"]) || isset($_POST["edit_admin_product"])  || isset($_POST["delete_admin_product"]) || isset($_POST["product_count"])){
+if(isset($_POST['add_to_prd_tbl']) || isset($_POST["get_admin_product"]) || isset($_POST["edit_admin_product"])  || isset($_POST["delete_admin_product"]) || isset($_POST["product_count"]) || isset($_POST["get_admin_product_filter"])){
 	
 	$product_query = "SELECT  product_tbl.product_id,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
 					 from product_tbl,category_tbl,brand_tbl
@@ -204,6 +204,65 @@ if(isset($_POST['add_to_prd_tbl']) || isset($_POST["get_admin_product"]) || isse
 		
 		}
 	}
+	else if(isset($_POST["get_admin_product_filter"]))
+	{
+		
+		$search_val = $_POST["Search_product_filter_table"];
+	 
+	  
+	 	$prd_filter_sql = "SELECT  product_tbl.product_id,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
+					 from product_tbl,category_tbl,brand_tbl
+					where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1) and (product_tbl.product_name like '%".$search_val."%' OR brand_tbl.brand_name like '%".$search_val."%'  OR category_tbl.category_name like '%".$search_val."%' OR product_tbl.product_total_qty like '%".$search_val."%' ) ";
+					$prd_filter_qry = mysqli_query($con,$prd_filter_sql);
+					$get_filter_output = mysqli_num_rows($prd_filter_qry);
+
+		$i=1;
+		if(mysqli_num_rows($prd_filter_qry) > 0){
+			while($row = mysqli_fetch_array($prd_filter_qry))
+			{
+				$product_id = $row["product_id"];
+				$product_category = $row["category_name"];
+				$product_brand = $row["brand_name"];
+				$product_name = $row["product_name"];
+				$product_price = $row["product_price"];
+				$product_desc = $row["product_desc"];
+				$product_img = $row["product_img"];
+				$product_total_qty = $row["product_total_qty"];
+				echo "	
+	 
+					<tr  class='text-center'>
+						<td>$i</td>
+						<td>$product_name</td>
+						<td> <img src='../prg_img/$product_img' width='50px' height='40px'></td>
+						<td>$product_category</td>
+						<td>$product_brand</td>
+						<td>Rs.$product_price.00</td>
+						<td>$product_total_qty</td>
+						<td>
+						 <div class='btn-group '>
+						 <a href='' product_edit_id='$product_id' class='btn btn-info product_edit'><i class='fa fa-edit'></i></a>
+						<a href='' product_delete_id='$product_id' class='btn btn-danger product_delete'><i class='fa fa-trash-alt'></i></a>
+						</div> 
+						</td>
+					  </tr>";
+					  $i++;
+	 
+			}
+ 
+		}
+		else
+			{
+				
+						echo "	
+	 
+					<tr  class='text-center'>
+					<td colspan='8'>No matching records found</td>
+					  </tr>";
+ 
+				
+			}
+		
+	}
 	elseif( isset($_POST["edit_admin_product"])){
 
 	}
@@ -263,7 +322,7 @@ $run_query = mysqli_query($con,$category_query);
 
 
 
-if(isset($_POST["get_admin_category"]) || isset($_POST["edit_category"]) || isset($_POST["remove_admin_category"]) ||  isset($_POST["update_admin_category"]) || isset($_POST["add_category_admin"]) || isset($_POST["category_count"])){
+if(isset($_POST["get_admin_category"]) || isset($_POST["edit_category"]) || isset($_POST["remove_admin_category"]) ||  isset($_POST["update_admin_category"]) || isset($_POST["add_category_admin"]) || isset($_POST["category_count"]) || isset($_POST["get_admin_category_filter"])){
 
 $category_query = "SELECT * FROM category_tbl where active= 1 ";
 $run_query = mysqli_query($con,$category_query);
@@ -377,6 +436,52 @@ if(isset($_POST["add_category_admin"]))
 	
 	
 	}
+	else if(isset($_POST["get_admin_category_filter"])){
+		
+		$search_val = $_POST["Search_category_filter_table"];
+		
+			 	 //check product is exist or not and it has active
+		$sql1 = "SELECT * FROM category_tbl WHERE active=1 and category_name like '%".$search_val."%'" ;
+		$check_query1 = mysqli_query($con,$sql1);
+		$get_filter_output = mysqli_num_rows($check_query1);
+ 
+		$i=1;
+		if($get_filter_output> 0){
+			while($row = mysqli_fetch_array($check_query1))
+				{
+					$category_id = $row["category_id"];
+					$category_name = $row["category_name"];
+					echo "
+						  <tr  class='text-center'>
+							<td>$i</td>
+							<td>$category_name</td>
+							 
+							<td>
+	
+							<div class='btn-group '>
+							<a href='' category_edit_id='$category_id' class='btn btn-info category_edit'><i class='fa fa-edit'></i></a>
+							<a href='' category_delete_id='$category_id' class='btn btn-danger category_delete'><i class='fa fa-trash-alt'></i></a>
+							</div> 
+							</td>
+						  </tr> 
+						   
+					"; $i++;
+				}
+			}
+			else
+			{
+				
+						echo "	
+	 
+					<tr  class='text-center'>
+					<td colspan='3'>No matching records found</td>
+					  </tr>";
+ 
+				
+			}
+		
+		
+	}
 	else if(isset($_POST["category_count"])){
 		
 		$category_query = "SELECT COUNT(category_id) as total_cat from category_tbl";
@@ -400,9 +505,9 @@ if(isset($_POST["add_category_admin"]))
 
  
 
-if(isset($_POST["get_admin_brand"]) || isset($_POST["edit_brand"]) || isset($_POST["delete_admin_brand"]) || isset($_POST["add_brand_admin"]) || isset($_POST["update_admin_brand"])  || isset($_POST["brand_count"])){
-	$category_query = "SELECT * FROM brand_tbl where active = 1";
-$run_query = mysqli_query($con,$category_query);
+if(isset($_POST["get_admin_brand"]) || isset($_POST["edit_brand"]) || isset($_POST["delete_admin_brand"]) || isset($_POST["add_brand_admin"]) || isset($_POST["update_admin_brand"])  || isset($_POST["brand_count"]) || isset($_POST["get_admin_brand_filter"])){
+	$brand_query = "SELECT * FROM brand_tbl where active = 1";
+$run_query = mysqli_query($con,$brand_query);
 
 	if(isset($_POST["get_admin_brand"]))
 	{
@@ -455,7 +560,8 @@ $run_query = mysqli_query($con,$category_query);
  
 		
 	}
-	else if(isset($_POST["add_brand_admin"])){
+	else if(isset($_POST["add_brand_admin"]))
+	{
 		
 		$brand_name= $_POST['brand_name'];
 		
@@ -498,7 +604,50 @@ $run_query = mysqli_query($con,$category_query);
 	
  
 	}
+	else if(isset($_POST["get_admin_brand_filter"]))
+	{
+		$search_val = $_POST["Search_brand_filter_table"];
+		$brand_query = "SELECT * FROM brand_tbl where active = 1 and brand_name like '%".$search_val."%'";
+		$run_query = mysqli_query($con,$brand_query);
+		
+		$i=1;		 
+		if(mysqli_num_rows($run_query) > 0){
+			while($row = mysqli_fetch_array($run_query))
+			{
+				$brand_id = $row["brand_id"];
+				$brand_name = $row["brand_name"];
+				echo "
+					 <tr  class='text-center'>
+						<td>$i</td>
+						<td>$brand_name</td>
+						 
+						<td>
 	
+						<div class='btn-group '>
+						<a href='' brand_edit_id='$brand_id' class='btn btn-info brand_edit'><i class='fa fa-edit'></i></a>
+						<a href='' brand_delete_id='$brand_id' class='btn btn-danger brand_delete'><i class='fa fa-trash-alt'></i></a>
+						</div> 
+						</td>
+					  </tr> 
+				";
+				$i++;
+			}
+		}
+			else
+			{
+				
+						echo "	
+	 
+					<tr  class='text-center'>
+					<td colspan='3'>No matching records found</td>
+					  </tr>";
+ 
+				
+			}
+		
+			
+	}
+
 		else if(isset($_POST["update_admin_brand"]))
 	{
 		
@@ -545,7 +694,47 @@ if(isset($_FILES["file"]["name"] ))
 
 
 
-
+//define a footer number
+if(isset($_POST["Prduct_table_footer_num"])){
+	$sql = "SELECT * FROM product_tbl where active=1";
+	$run_query = mysqli_query($con,$sql);
+	$count = mysqli_num_rows($run_query);
+	$pageno=ceil($count/5); //rouded 
+	for($i=1;$i<=$pageno;$i++)
+	{
+			echo "<label class='page-item'><a class='page-link' href='#' page='$i' id='page'>$i</a></label>";
+	}
+}
  
+ 
+ 
+ 
+ //define a footer number
+if(isset($_POST["Category_table_footer_num"])){
+	$sql = "SELECT * FROM category_tbl where active=1";
+	$run_query = mysqli_query($con,$sql);
+	$count = mysqli_num_rows($run_query);
+	$pageno=ceil($count/5); //rouded 
+	for($i=1;$i<=$pageno;$i++)
+	{
+			echo "<label class='page-item'><a class='page-link' href='#' page='$i' id='page'>$i</a></label>";
+	}
+}
+
+
+
+
+
+ //define a footer number
+if(isset($_POST["Brand_table_footer_num"])){
+	$sql = "SELECT * FROM brand_tbl where active=1";
+	$run_query = mysqli_query($con,$sql);
+	$count = mysqli_num_rows($run_query);
+	$pageno=ceil($count/5); //rouded 
+	for($i=1;$i<=$pageno;$i++)
+	{
+			echo "<label class='page-item'><a class='page-link' href='#' page='$i' id='page'>$i</a></label>";
+	}
+}
 
 ?>

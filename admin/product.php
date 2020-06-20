@@ -108,7 +108,28 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-hover">
+			  	  
+			  	  <div class="row ">
+			 
+						<div class=" col-sm-16 col-md-9 text-right p-1   ">
+					 
+						</div>
+							<div class="col-sm-16 col-md-3 text-right mb-3 ">
+							<div class="col-sm-12">
+							
+					 <div class="input-group input-group-sm">
+					 <input class="form-control form-control-navbar" type="search" id="product_filter" placeholder="Search" aria-label="Search" autocomplete="off">
+					<div class="input-group-append">
+					<button class="btn btn-navbar border" type="submit">
+						<i class="fas fa-search"></i>
+					</button>
+					</div>
+					</div>
+					
+						</div>
+						</div>
+						  </div>
+                <table  class="table table-bordered table-hover">
                   <thead>
                   <tr  class="text-center">
 					 <th>No</th>
@@ -125,8 +146,11 @@
                   <tbody id="get_all_product" class="text-center">
               
                   </tbody>
-              
+               
                 </table>
+			 
+				<div id="get_footer_num_product" class="mt-2 text-right"></div>
+		 
               </div>
            
             </div>

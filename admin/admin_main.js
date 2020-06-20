@@ -213,6 +213,7 @@ $(document).ready(function () {
 
  
 
+
 product_count();
 //product count for admin product 
 	function product_count(){
@@ -246,6 +247,28 @@ product_count();
     });
   });
 
+
+
+ //filter the category by the search box at admin category table
+ $("#product_filter").keyup(function () {
+	      var Serach_val = $("#product_filter").val();
+		  
+			$.ajax({
+			url: "admin_action.php",
+			method: "POST",
+			data: { get_admin_product_filter: 1,Search_product_filter_table:Serach_val },
+			success: function (data) {
+			$("#get_all_product").html(data);
+			},
+			 });
+		 
+
+
+    
+	
+	
+	 }) 
+	 
 //------------------------------------------------------------Category
 //get all catergory to the admin category table
   function category_tbl_get_category() {
@@ -355,8 +378,8 @@ category_count();
       data: { update_admin_category: 1, Update_catg_id: btn_val,Update_Category_Val:Category_txt }, // pass the arguments
       success: function (data) {
 		toastr.success('Successfully updated')
-		  
-			   	  $('#Category_txt').val("");
+		  	  $('#Category_txt').val("");
+			  $('#category_filter').val(""); // filter search text box in category table
 			    $("#category_add_footer").html("<button type='submit' class='btn btn-danger'  id='category_add_btn_admin'>Add</button>");
 			     category_tbl_get_category();
 				  
@@ -365,7 +388,7 @@ category_count();
   
 	  });
  
-	//category filter
+	/*category filter useless but chk
      $("#category_filter").on("input", function(){
 	var search_val = $("#category_filter").val();
      $.ajax({
@@ -378,7 +401,7 @@ category_count();
       },
     });
 	})
- 
+ */
  
   //remove the category from card
   $("body").delegate(".category_delete", "click", function () {
@@ -394,13 +417,29 @@ category_count();
 		  		toastr.success('Successfully deleted');
 				category_count();
 			category_tbl_get_category();
-		
 			  $('#category_form')[0].reset();
+			  $('#category_filter').val(""); // filter search text box in category table
       },
     });
   });
 
+ //filter the category by the search box at admin category table
+ $("#category_filter").keyup(function () {
+	      var Serach_val = $("#category_filter").val();
+		  
+			$.ajax({
+			url: "admin_action.php",
+			method: "POST",
+			data: { get_admin_category_filter: 1,Search_category_filter_table:Serach_val },
+			success: function (data) {
+			$("#get_all_category").html(data);
+			},
+			 });
+		 
 
+	
+	
+	 }) 
 //------------------------------------------------------------Category
 
 
@@ -485,6 +524,7 @@ category_count();
         brand_tbl_get_brand();
 		toastr.success('Successfully deleted');
 		 $('#Brand_form')[0].reset();
+		    $('#brand_filter').val("");
       },
     });
   });
@@ -527,6 +567,7 @@ category_count();
 		toastr.success('Successfully updated')
 		  
 			   	  $('#brand_txt').val("");
+				   $('#brand_filter').val("");
 			    $("#Brand_add_footer").html("<button type='submit' class='btn btn-danger'  id='brand_add_btn_admin'>Add</button>");
 			     brand_tbl_get_brand();
 				  
@@ -553,6 +594,28 @@ category_count();
 
 	}
 	
+	
+	
+ //filter the brand by the search box at admin category table
+ $("#brand_filter").keyup(function () {
+	 
+	 var Serach_val = $("#brand_filter").val();
+ 
+       
+			$.ajax({
+			url: "admin_action.php",
+			method: "POST",
+			data: { get_admin_brand_filter: 1,Search_brand_filter_table:Serach_val },
+			success: function (data) {
+		    $("#get_all_brand").html(data);
+			},
+			 });
+		 
+
+	
+	
+	 }) 
+	 
 	
  //------------------------------------------------------------Brand
   
@@ -608,9 +671,57 @@ category_count();
   }
  });
  
-  $("#clearsss").click(function(){	
-  	  $('#product_reg_form')[0].reset();
-   });
+ 
+ 
+ 		//generating the page number at footer
+		Prduct_table_footer_num();
+		function Prduct_table_footer_num(){
+		$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{Prduct_table_footer_num:1},
+					success	:	function(data){
+					$('#get_footer_num_product').html(data);
+					}
+					})
+					
+					}
+					
+					
+					
+					
+					
+							//generating the page number at footer
+		Category_table_footer_num();
+		function Category_table_footer_num(){
+		$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{Category_table_footer_num:1},
+					success	:	function(data){
+					$('#get_footer_num_category').html(data);
+					}
+					})
+					
+					}
+					
+					
+					
+					
+												//generating the page number at footer
+		Brand_table_footer_num();
+		function Brand_table_footer_num(){
+		$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{Brand_table_footer_num:1},
+					success	:	function(data){
+					$('#get_footer_num_brand').html(data);
+					}
+					})
+					
+					}
+					
  
  
 });

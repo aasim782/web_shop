@@ -123,7 +123,7 @@
 		  
 		  
 	 
-            <div class="card">			  
+            <div class="card card-success card-outline">			  
               <div class="card-header text-center"  >
             <h2>Brand</h2>
               </div>
@@ -132,11 +132,25 @@
 			  
 			  	  <div class="row">
 			 
-						  <div class="mb-3 col-sm-16 col-md-10 text-right p-1">
-						  Search:
+						  <div class="col-sm-16 col-md-9 text-right p-1">
+						   
 						</div>
-							<div class="col-sm-16 col-md-2 text-right ">
-							<div class="col-sm-12"><input type="search" id="category_filter" class="form-control form-control-sm" placeholder="" aria-controls="example1" autocomplete="off"></div>
+							<div class="col-sm-16  mb-3  col-md-3 text-right ">
+							<div class="col-sm-12">
+							
+				 
+							
+							
+							 <div class="input-group input-group-sm">
+					 <input class="form-control form-control-navbar" type="search" id="brand_filter" placeholder="Search" aria-label="Search" autocomplete="off">
+					<div class="input-group-append">
+					<button class="btn btn-navbar border" type="submit">
+						<i class="fas fa-search"></i>
+					</button>
+					</div>
+					</div>
+					
+							</div>
 						 
 							</div>
 						  </div>
@@ -155,10 +169,9 @@
 				  
 				  
                   </tbody>
-                  <tfoot>
-            
-                  </tfoot>
+                
                 </table>
+					<div id="get_footer_num_brand" class="mt-2 text-right"></div>
               </div>
               <!-- /.card-body -->
             </div>

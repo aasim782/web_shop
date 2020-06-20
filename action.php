@@ -923,7 +923,7 @@ $customer_note = $_POST['customer_note'];
 						{
 							
 								echo "<div class='alert alert-success alert-dismissible fade show col-lg-12' role='alert'>
-									  Dear Customer! <strong>new order updated </strong>
+									  Dear Customer! <strong>your order updated </strong>
 									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 										<span aria-hidden='true'>&times;</span>
 									  </button>

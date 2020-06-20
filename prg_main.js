@@ -62,20 +62,7 @@ $(document).ready(function(){
 		})
 	}
 
-
-
-
-	
-	
-
-
-
-
-
-
-
-
-
+ 
 
 	//filter by category
 	$("body").delegate("#category","click",function(event){
@@ -117,26 +104,33 @@ $(document).ready(function(){
 	//filter by search keywords using search btn
 	$("#search_btn").click(function(){
 	var keywords= $("#search_txt").val();
-		
+	var currentURL = window.location.pathname;
+	var check_page_name =currentURL.includes("index.php");
+	
 		if(keywords!='')
 			{
-	
-		$.ajax({
-			url		:	"action.php",
-			method	:	"POST",
-			data	:	{get_search:1,keywords:keywords}, // get_search - req ,keywords passing
-			success	:	function(data){
-			$("#get_product").html(data);
+				//identify the page . no page found in url that is index
+					if(check_page_name==true ||currentURL== "/project37/")
+						{
+							window.open("index.php?srch="+keywords+"","_self");
+						}
+						else
+						{
+							window.open("profile.php?srch="+keywords+"","_self");
+						} 
+	  
+				
 				
 			}
-				})
-				
+			else
+			{
+						window.open("index.php","_self");
 				
 			}
 		
 		
 		
-	}
+		}
 	)
 	
 	
@@ -144,15 +138,46 @@ $(document).ready(function(){
 	//filter by search keywords with press enter key in txt box
 	$('#search_txt').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
+	
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var keywords = search_params.get('srch');
 		
 		
-			var keywords= $("#search_txt").val();
+		var currentURL = window.location.pathname;
+		var check_page_name =currentURL.includes("index.php");
 		
-		if(keywords!='')
+		var keywords= $("#search_txt").val();
+				if(keycode == '13'){
+					
+						if(check_page_name==true ||currentURL== "/project37/"){
+							window.open("index.php?srch="+keywords+"","_self");//when index page
+						}
+						else
+						{
+							window.open("profile.php?srch="+keywords+"","_self");//when profile page
+						}
+        
+						}
+	
+	});
+
+
+
+
+
+		search_prd_txt();
+		function search_prd_txt(){
+			
+	 	 var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var keywords = search_params.get('srch');
+
+	 
+	 if(keywords!='')
 			{
 	
-		$.ajax({
+			$.ajax({
 			url		:	"action.php",
 			method	:	"POST",
 			data	:	{get_search:1,keywords:keywords}, 
@@ -160,16 +185,18 @@ $(document).ready(function(){
 			$("#get_product").html(data);
 				
 			}
+			
 				})
 				
 				
 			}
-		
-		
-        
-    }
-	});
+			else
+			{	
+				window.open("index.php","_self");
+			}
 
+
+		}
 
 	
 	$('#customer_reg_form').on('submit',function(event){
