@@ -108,18 +108,67 @@ if(isset($_POST["admin_userLogin"])){
 
  
 
+ 
+ 
+ 
+
 
 //Prduct Related Codes
-if(isset($_POST['add_to_prd_tbl']) || isset($_POST["get_admin_product"]) || isset($_POST["edit_admin_product"])  || isset($_POST["delete_admin_product"]) || isset($_POST["product_count"]) || isset($_POST["get_admin_product_filter"])){
+if(isset($_POST['add_to_prd_tbl']) || isset($_FILES["file"]["name"] ) || isset($_POST["get_admin_product"]) || isset($_POST["edit_admin_product"])  || isset($_POST["delete_admin_product"]) || isset($_POST["product_count"]) || isset($_POST["get_admin_product_filter"]) || isset($_POST["Prduct_table_footer_num"])){
+	
+	$page_number_limit=10; //per page have 10 products
+	if(isset($_POST["setpagenumber"])){
+		
+		$pageno=$_POST["pagenumber"];
+		$start=($pageno*$page_number_limit)-$page_number_limit;
+	}
+	else
+	{
+		$start=0;
+	}
+ 
+ 
+ 
+ 
+ //define a footer number of product
+if(isset($_POST["Prduct_table_footer_num"])){
+	$sql = "SELECT * FROM product_tbl where active=1";
+	$run_query = mysqli_query($con,$sql);
+	$count = mysqli_num_rows($run_query);
+	$pageno=ceil($count/10); //rouded 
+	for($i=1;$i<=$pageno;$i++)
+	{
+			echo "<label class='page-item'><a class='page-link' href='#' product_tbl_page_num='$i' id='product_tbl_page_num'>$i</a></label>";
+	}
+}
+
+	
+	
 	
 	$product_query = "SELECT  product_tbl.product_id,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
 					 from product_tbl,category_tbl,brand_tbl
-					 where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and product_tbl.active=1";
+					 where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1)  LIMIT $start,$page_number_limit";
 	$run_query = mysqli_query($con,$product_query);
  
-	if(isset($_POST['add_to_prd_tbl']) )
-	{
+	
+	
+	if(isset($_FILES["file"]["name"] ))
+		 {
+			 
+		 $test = explode('.', $_FILES["file"]["name"]);
+		 $ext = end($test);
+		 $name = rand(100, 999).'_abc'. '.' . $ext;
+		 $location = './upload/' . $name;  
+		 move_uploaded_file($_FILES["file"]["tmp_name"], $location);
+		 echo '<img src="'.$location.'" height="150" width="225" class="img-thumbnail" />';
 		 
+
+		 }
+ 
+
+ 
+ if(isset($_POST['add_to_prd_tbl']) )
+	{
 			$Product_id= $_POST['Product_id'];
 			$prd_add_date= $_POST['prd_add_date'];
 			$get_category= $_POST['get_category'];
@@ -167,7 +216,7 @@ if(isset($_POST['add_to_prd_tbl']) || isset($_POST["get_admin_product"]) || isse
 	
 	}
 	else if(isset($_POST["get_admin_product"]))
-	{	$i=1;
+	{	$i=$start+1;
 		if(mysqli_num_rows($run_query) > 0){
 			while($row = mysqli_fetch_array($run_query))
 			{
@@ -184,7 +233,7 @@ if(isset($_POST['add_to_prd_tbl']) || isset($_POST["get_admin_product"]) || isse
 					<tr  class='text-center'>
 						<td>$i</td>
 						<td>$product_name</td>
-						<td> <img src='../prg_img/$product_img' width='50px' height='40px'></td>
+						<td> <img src='../admin/upload/$product_img' width='50px' height='40px'></td>
 						<td>$product_category</td>
 						<td>$product_brand</td>
 						<td>Rs.$product_price.00</td>
@@ -212,7 +261,7 @@ if(isset($_POST['add_to_prd_tbl']) || isset($_POST["get_admin_product"]) || isse
 	  
 	 	$prd_filter_sql = "SELECT  product_tbl.product_id,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
 					 from product_tbl,category_tbl,brand_tbl
-					where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1) and (product_tbl.product_name like '%".$search_val."%' OR brand_tbl.brand_name like '%".$search_val."%'  OR category_tbl.category_name like '%".$search_val."%' OR product_tbl.product_total_qty like '%".$search_val."%' ) ";
+					where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1) and (product_tbl.product_name like '%".$search_val."%' OR brand_tbl.brand_name like '%".$search_val."%'  OR category_tbl.category_name like '%".$search_val."%' OR product_tbl.product_total_qty like '%".$search_val."%' OR product_tbl.product_price like '%".$search_val."%')  ";
 					$prd_filter_qry = mysqli_query($con,$prd_filter_sql);
 					$get_filter_output = mysqli_num_rows($prd_filter_qry);
 
@@ -233,7 +282,7 @@ if(isset($_POST['add_to_prd_tbl']) || isset($_POST["get_admin_product"]) || isse
 					<tr  class='text-center'>
 						<td>$i</td>
 						<td>$product_name</td>
-						<td> <img src='../prg_img/$product_img' width='50px' height='40px'></td>
+						<td> <img src='../admin/upload/$product_img' width='50px' height='40px'></td>
 						<td>$product_category</td>
 						<td>$product_brand</td>
 						<td>Rs.$product_price.00</td>
@@ -304,27 +353,49 @@ if(isset($_POST['add_to_prd_tbl']) || isset($_POST["get_admin_product"]) || isse
  
 
 
-
-
-
-
-if(isset($_POST["Category_filter"]))
-{
-$search_val = $_POST["search_val"];
-$category_query = "SELECT * FROM category_tbl where active= 1 ";
-$run_query = mysqli_query($con,$category_query);
  
+ 
+
+ 
+
+
+if(isset($_POST["get_admin_category"]) || isset($_POST["edit_category"]) || isset($_POST["remove_admin_category"]) ||  isset($_POST["update_admin_category"]) || isset($_POST["add_category_admin"]) || isset($_POST["category_count"]) || isset($_POST["get_admin_category_filter"]) || isset($_POST["Category_table_footer_num"])){
+
+	$page_number_limit=5; //per page have 10 products
+	if(isset($_POST["setpagenumber"])){
+		
+		$pageno=$_POST["pagenumber"];
+		$start=($pageno*$page_number_limit)-$page_number_limit;
+	}
+	else
+	{
+		$start=0;
+	}
+ 
+ 
+ 
+ 
+  //define a footer number for category
+if(isset($_POST["Category_table_footer_num"])){
+	$sql = "SELECT * FROM category_tbl where active=1";
+	$run_query = mysqli_query($con,$sql);
+	$count = mysqli_num_rows($run_query);
+	$pageno=ceil($count/5); //rouded 
+	for($i=1;$i<=$pageno;$i++)
+	{
+			echo "<label class='page-item'><a class='page-link' href='#' category_tbl_page_num='$i' id='category_tbl_page_num'>$i</a></label>";
+	}
 }
 
 
-
-
-
-
-
-if(isset($_POST["get_admin_category"]) || isset($_POST["edit_category"]) || isset($_POST["remove_admin_category"]) ||  isset($_POST["update_admin_category"]) || isset($_POST["add_category_admin"]) || isset($_POST["category_count"]) || isset($_POST["get_admin_category_filter"])){
-
-$category_query = "SELECT * FROM category_tbl where active= 1 ";
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+$category_query = "SELECT * FROM category_tbl where active= 1   LIMIT $start,$page_number_limit";
 $run_query = mysqli_query($con,$category_query);
  
  
@@ -378,7 +449,7 @@ if(isset($_POST["add_category_admin"]))
 }
 
 	else if(isset($_POST["get_admin_category"]))
-	{	$i=1;
+	{	$i=$start+1;
 		if(mysqli_num_rows($run_query) > 0){
 			while($row = mysqli_fetch_array($run_query))
 				{
@@ -504,13 +575,48 @@ if(isset($_POST["add_category_admin"]))
 }
 
  
+ 
+ 
 
-if(isset($_POST["get_admin_brand"]) || isset($_POST["edit_brand"]) || isset($_POST["delete_admin_brand"]) || isset($_POST["add_brand_admin"]) || isset($_POST["update_admin_brand"])  || isset($_POST["brand_count"]) || isset($_POST["get_admin_brand_filter"])){
-	$brand_query = "SELECT * FROM brand_tbl where active = 1";
+
+
+if(isset($_POST["get_admin_brand"]) || isset($_POST["edit_brand"]) || isset($_POST["delete_admin_brand"]) || isset($_POST["add_brand_admin"]) || isset($_POST["update_admin_brand"])  || isset($_POST["brand_count"]) || isset($_POST["get_admin_brand_filter"]) ||isset($_POST["Brand_table_footer_num"])){
+
+				 $page_number_limit=5; //per page have 10 products
+				 if(isset($_POST["setpagenumber"])){
+						
+						$pageno=$_POST["pagenumber"];
+						$start=($pageno*$page_number_limit)-$page_number_limit;
+					}
+					else
+					{
+						$start=0;
+					}
+				 
+
+				 
+				 //define a footer number for brand
+				if(isset($_POST["Brand_table_footer_num"])){
+					$sql = "SELECT * FROM brand_tbl where active=1 ";
+					$run_query = mysqli_query($con,$sql);
+					$count = mysqli_num_rows($run_query);
+					$pageno=ceil($count/5); //rouded 
+					for($i=1;$i<=$pageno;$i++)
+					{
+							echo "<label class='page-item'><a class='page-link' href='#' brand_tbl_page_num='$i' id='brand_tbl_page_num'>$i</a></label>";
+					}
+				}
+
+
+
+$brand_query = "SELECT * FROM brand_tbl where active = 1 LIMIT $start,$page_number_limit";
 $run_query = mysqli_query($con,$brand_query);
 
 	if(isset($_POST["get_admin_brand"]))
-	{
+	{ 
+		
+		
+		
 		$i=1;
 		if(mysqli_num_rows($run_query) > 0){
 			while($row = mysqli_fetch_array($run_query))
@@ -682,59 +788,16 @@ $run_query = mysqli_query($con,$brand_query);
 
 
 
-if(isset($_FILES["file"]["name"] ))
-{
- $test = explode('.', $_FILES["file"]["name"]);
- $ext = end($test);
- $name = rand(100, 999) . '.' . $ext;
- $location = './upload/' . $name;  
- move_uploaded_file($_FILES["file"]["tmp_name"], $location);
- echo '<img src="'.$location.'" height="150" width="225" class="img-thumbnail" />';
-}
 
 
 
-//define a footer number
-if(isset($_POST["Prduct_table_footer_num"])){
-	$sql = "SELECT * FROM product_tbl where active=1";
-	$run_query = mysqli_query($con,$sql);
-	$count = mysqli_num_rows($run_query);
-	$pageno=ceil($count/5); //rouded 
-	for($i=1;$i<=$pageno;$i++)
-	{
-			echo "<label class='page-item'><a class='page-link' href='#' page='$i' id='page'>$i</a></label>";
-	}
-}
+
  
  
- 
- 
- //define a footer number
-if(isset($_POST["Category_table_footer_num"])){
-	$sql = "SELECT * FROM category_tbl where active=1";
-	$run_query = mysqli_query($con,$sql);
-	$count = mysqli_num_rows($run_query);
-	$pageno=ceil($count/5); //rouded 
-	for($i=1;$i<=$pageno;$i++)
-	{
-			echo "<label class='page-item'><a class='page-link' href='#' page='$i' id='page'>$i</a></label>";
-	}
-}
 
 
 
 
 
- //define a footer number
-if(isset($_POST["Brand_table_footer_num"])){
-	$sql = "SELECT * FROM brand_tbl where active=1";
-	$run_query = mysqli_query($con,$sql);
-	$count = mysqli_num_rows($run_query);
-	$pageno=ceil($count/5); //rouded 
-	for($i=1;$i<=$pageno;$i++)
-	{
-			echo "<label class='page-item'><a class='page-link' href='#' page='$i' id='page'>$i</a></label>";
-	}
-}
 
 ?>

@@ -24,7 +24,7 @@
     <script src="js/popper.min.js?i=93"></script>
     <script src="js/bootstrap.min.js?i=93"></script>
 
-
+ 
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css?i=93">
@@ -116,7 +116,7 @@
 																</div>
 															</div></td>
 															<td class="col-sm-1 col-md-1" style="text-align: center">
-															  <img class="d-block w-100" height="50px" width="10px" src="prg_img/man_Shirt.jpg" alt="Third slide">
+															  <img class="d-block w-100" height="50px" width="10px" src="admin/upload/man_Shirt.jpg" alt="Third slide">
 															</td>
 															<td class="col-sm-1 col-md-1 text-center"><strong>Rs.400.87</strong></td>
 														</tr>
@@ -230,20 +230,20 @@
 			  </ol>
 			  <div class="carousel-inner"  style="border-radius: 50px 20px;" >
 				<div class="carousel-item ">  		<!-- Slider_image_1 -->
-				<img class="d-block w-100" src="prg_img/slider3.jpg" alt="Third slide">
+				<img class="d-block w-100" src="admin/upload/slider3.jpg" alt="Third slide">
 				</div>
 				<div class="carousel-item active">
-				  <img class="d-block w-100" src="prg_img/slider1.jpg"alt="Second slide">
+				  <img class="d-block w-100" src="admin/upload/slider1.jpg"alt="Second slide">
 				</div>
 			
 				<div class="carousel-item">
-				  <img class="d-block w-100" src="prg_img/slider3.jpg" alt="Third slide">
+				  <img class="d-block w-100" src="admin/upload/slider3.jpg" alt="Third slide">
 				</div>
 				<div class="carousel-item">
-				  <img class="d-block w-100" src="prg_img/slider4.jpg" alt="Third slide">
+				  <img class="d-block w-100" src="admin/upload/slider4.jpg" alt="Third slide">
 				</div>
 				<div class="carousel-item">
-				  <img class="d-block w-100" src="prg_img/slider5.jpg" alt="Third slide">
+				  <img class="d-block w-100" src="admin/upload/slider5.jpg" alt="Third slide">
 				</div>
 			  </div>
 			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -306,7 +306,7 @@
 			</div>
 				<div class="text-center">
 				
-				<img  class="card-img-top" src='prg_img/man_Shirt.jpg' align="center" style='width:160px;height:250px'/><br>		
+				<img  class="card-img-top" src='admin/upload/man_Shirt.jpg' align="center" style='width:160px;height:250px'/><br>		
 					<div class="text-center"  style="padding-top:15px;">
 					<i class="fas fa-star " style="color:orange"></i> 
                 	<i class="fas fa-star " style="color:orange"></i>
@@ -362,10 +362,14 @@
 
     </div>
     <!-- /.row -->
+	    <div   style="position:fixed;bottom:10px;right:3%;">
 
+	<img class="mb-2 " src="admin/upload/default/chat.png"  width="60px" height="60px" />
+ 
+  </div>
   </div>
   </div>
   <!-- /.container -->
-	
-</body>
+
+  </body>
 </html>

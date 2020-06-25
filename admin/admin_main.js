@@ -95,6 +95,8 @@ $(document).ready(function () {
     var product_keywords_txt =   $("#product_keywords_txt").val() ;
     var product_keywords_name_plus_keywords =   $("#product_name_txt").val()+ " " +product_keywords_txt ;
  
+  
+ var slip =image_name.split('fakepath\\');
     if (
       Product_id_txt == "" ||
       prd_add_date_txt == "" ||
@@ -388,20 +390,7 @@ category_count();
   
 	  });
  
-	/*category filter useless but chk
-     $("#category_filter").on("input", function(){
-	var search_val = $("#category_filter").val();
-     $.ajax({
-      url: "admin_action.php",
-      method: "POST",
-      data: { Category_filter: 1, Category_filter_val: search_val }, // pass the arguments
-      success: function (data) {
  
-		
-      },
-    });
-	})
- */
  
   //remove the category from card
   $("body").delegate(".category_delete", "click", function () {
@@ -673,6 +662,7 @@ category_count();
  
  
  
+ 
  		//generating the page number at footer
 		Prduct_table_footer_num();
 		function Prduct_table_footer_num(){
@@ -689,9 +679,29 @@ category_count();
 					
 					
 					
+		 //when the user click the particular page number it will be showup that page
+		$('body').delegate('#product_tbl_page_num','click',function() {
+			 event.preventDefault();
+			var pagenum= $(this).attr('product_tbl_page_num');  
+		 
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_admin_product:1,setpagenumber:1,pagenumber:pagenum},
+					success	:	function(data){
+						$("#get_all_product").html(data);
+					}
+					})
+			
+		})		
 					
 					
-							//generating the page number at footer
+					
+					
+					
+					
+					
+		 //generating the page number at footer for category
 		Category_table_footer_num();
 		function Category_table_footer_num(){
 		$.ajax({
@@ -703,12 +713,30 @@ category_count();
 					}
 					})
 					
+					}		
+					
+		 //when the user click the particular page number it will be showup that page
+		$('body').delegate('#category_tbl_page_num','click',function() {
+			 event.preventDefault();
+			var pagenum= $(this).attr('category_tbl_page_num');  
+	 
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_admin_category:1,setpagenumber:1,pagenumber:pagenum},
+					success	:	function(data){
+						$("#get_all_category").html(data);
 					}
+					})
+			
+		})		
 					
 					
 					
 					
-												//generating the page number at footer
+					
+					
+						 //generating the page number at footer
 		Brand_table_footer_num();
 		function Brand_table_footer_num(){
 		$.ajax({
@@ -721,6 +749,28 @@ category_count();
 					})
 					
 					}
+					
+	
+					
+				 //when the user click the particular page number it will be showup that page
+				 $('body').delegate('#brand_tbl_page_num','click',function() {
+			 event.preventDefault();
+			var pagenum= $(this).attr('brand_tbl_page_num');  
+	 
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_admin_category:1,setpagenumber:1,pagenumber:pagenum},
+					success	:	function(data){
+						$("#get_all_brand").html(data);
+					}
+					})
+			
+		})		
+					
+					
+					
+
 					
  
  

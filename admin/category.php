@@ -193,8 +193,6 @@
   </div>
   <!-- /.content-wrapper -->
  
-  
-   <?php  include "product_reg.php" ?>
   <!-- Main Footer -->
   <?php include "footer.php" ?>
   <!-- /Main Footer -->

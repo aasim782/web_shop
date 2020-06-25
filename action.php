@@ -91,7 +91,8 @@ if(isset($_POST["product"])){
 		$pageno=$_POST["pagenumber"];
 		$start=($pageno*$page_number_limit)-$page_number_limit;
 	}
-	else{
+	else
+	{
 		$start=0;
 	}
 	
@@ -127,7 +128,7 @@ if(isset($_POST["product"])){
 			</div>
 			
 		   <div class='text-center' >
-			<img  class='card-img-bottom text-center '  id='particular_product_search_btn'  pid='$product_id' src='prg_img/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
+			<img  class='card-img-bottom text-center '  id='particular_product_search_btn'  pid='$product_id' src='admin/upload/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
 			</div>
          
     <div class='form-group row justify-content-center'>
@@ -156,22 +157,38 @@ if(isset($_POST["product"])){
 
 //Get the product through category,brand or search button
 if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"]) || isset($_POST["get_search"])){
+
+	$page_number_limit=9; //per page have 9 products
+	
+	if(isset($_POST["setpagenumber"])){
+		
+		$pageno=$_POST["pagenumber"];
+		$start=($pageno*$page_number_limit)-$page_number_limit;
+	}
+	else
+	{
+		$start=0;
+	}
+	
+	
+	
+	
 	
 	if(isset($_POST["get_selected_category"])) //when we search through the category
 	{
 		$selected_cid = $_POST["selected_cid"];
-		$query = "SELECT * FROM product_tbl where active=1 and  product_category='$selected_cid'";
+		$query = "SELECT * FROM product_tbl where active=1 and  product_category='$selected_cid' LIMIT $start,$page_number_limit ";
 	}
 	else if(isset($_POST["get_selected_brand"]))    //when we search through the brand
 	{ 
 		$selected_bid = $_POST["selected_bid"];
-		$query = "SELECT * FROM product_tbl where active=1 and  product_brand='$selected_bid'";
+		$query = "SELECT * FROM product_tbl where active=1 and  product_brand='$selected_bid' LIMIT $start,$page_number_limit  ";
 	}
 	
 	else    //when we search through the brand
 	{ 
 		$selected_keywords = $_POST["keywords"];
-		$query = "SELECT * FROM product_tbl where active=1 and product_keywords LIKE '%$selected_keywords%' ";
+		$query = "SELECT * FROM product_tbl where active=1 and product_keywords LIKE '%$selected_keywords%' LIMIT $start,$page_number_limit ";
 	}
 
 	$run_query = mysqli_query($con,$query);
@@ -201,7 +218,7 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 			</div>
 			
 		   <div class='text-center' >
-			<img  class='card-img-bottom text-center ' pid='$product_id' id='particular_product_search_btn' src='prg_img/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
+			<img  class='card-img-bottom text-center ' pid='$product_id' id='particular_product_search_btn' src='admin/upload/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
 			</div>
          
     <div class='form-group row justify-content-center'>
@@ -348,7 +365,7 @@ if(isset($_GET["prd_view_page"]))
 			</div>
 			
 		   <div class='text-center' >
-			<img  class='card-img-bottom text-center ' src='prg_img/$product_img' align='center' style='padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
+			<img  class='card-img-bottom text-center ' src='admin/upload/$product_img' align='center' style='padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
 			</div>
          
     <div class='form-group row justify-content-center'>
@@ -640,7 +657,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 									
 														echo "<tr style='cursor: pointer;' id='card_page_view_url'>
 															<th class='col-2'>$no</th>
-																<td><img height='50px' width='50px' src='prg_img/$product_img' alt='Third slide'></td>
+																<td><img height='50px' width='50px' src='admin/upload/$product_img' alt='Third slide'></td>
 																<td style='width: 30%'><label style='cursor: pointer;'  >$product_name</label></td>
 															<td class='col-sm-1 col-md-1 text-center'><strong>$order_qtry</strong></td>
 															<td class='col-sm-1 col-md-1 text-center'><strong>Rs.$current_total_price.00</strong></td>
@@ -656,7 +673,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 											
 											echo " <div class='row mb-2 mt-4'>
 														<div class='col-md-1 text-center'><b>$no.</b></div>
-														<div class='col-md-3'><img height='55px' class='mr-3' width='55px' src='prg_img/$product_img' >$product_name
+														<div class='col-md-3'><img height='55px' class='mr-3' width='55px' src='admin/upload/$product_img' >$product_name
 														
 														 
 																<textarea class='form-control mt-2 note' id='note-$product_id'   pid='$product_id'     name='customer_note' rows='2' size='4'  placeholder='Note...'>$customer_note</textarea>
@@ -789,7 +806,8 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					  <div class='card card-body'>
 						Cash on delivery only posible under 50,000 on ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
 						that have term and conditions
-						<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Agree to conform' id='cash_on_delivery_btn'></div>
+						<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Agree to conform''></div>
+						<div class='text-center m-2'><input type='button' class='btn btn-warning' data-toggle='modal' data-target='#OTP_verify_model' value='Phone number verify'></div>
 					  </div>
 					</div>
 					
@@ -1049,7 +1067,7 @@ $check_query = mysqli_query($con,$sql);
 						  </div>
 				  </div>
 				  <div>
-						<img src='prg_img/$product_img' class='ml-2 mt-2 '  height='100px' width='100px'>
+						<img src='admin/upload/$product_img' class='ml-2 mt-2 '  height='100px' width='100px'>
 						
 				</div>  
 						
@@ -1066,7 +1084,7 @@ $check_query = mysqli_query($con,$sql);
 							</div>
 							
 							<div class='col text-right'>		
-							<img src='prg_img/$paymen_catg.jpg' class='text-right'  height='40px' width='60px'>
+							<img src='admin/upload/$paymen_catg.jpg' class='text-right'  height='40px' width='60px'>
  
 							</div>
 						  </div>
@@ -1275,7 +1293,7 @@ $order_id = $row["order_id"];
 }
 
 
- 
+ //prodcuct description on page view
  if(isset($_POST['prd_dec_details_get']))
 {
 $product_id = $_POST["pid"];
@@ -1329,7 +1347,7 @@ $product_desc = $row["product_desc"];
   <div class='container'>
   <div class='row'>
     <div class='col-4 text-center'>
-       <img class='thumbnail zoom card-img-bottom text-center  ' src='prg_img/$product_img' style='padding-top:10px;padding-bottom:10px;width:190px;height:250px'><br>		
+       <img class='thumbnail zoom card-img-bottom text-center  ' src='admin/upload/$product_img' style='padding-top:10px;padding-bottom:10px;width:190px;height:250px'><br>		
  
  		
     </div>
@@ -1462,7 +1480,7 @@ $product_desc = $row["product_desc"];
  
 			 
 
-   <div  class='col-sm-12 '><img  id='particular_product_search_btn'  class='card-img-bottom text-center border border-warning shadow-sm p-2 mt-2' src='prg_img/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label> 	</div>	
+   <div  class='col-sm-12 '><img  id='particular_product_search_btn'  class='card-img-bottom text-center border border-warning shadow-sm p-2 mt-2' src='admin/upload/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label> 	</div>	
     ";	
 		}	
 	}}
@@ -1509,7 +1527,7 @@ $product_desc = $row["product_desc"];
 			$product_img = $row["product_img"];
 			
 			echo "  
-    <div  class='col-sm-12 mb-2'><img  id='particular_product_search_btn' class='card-img-bottom text-center border mt-2' src='prg_img/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label></div>		
+<div  class='col-sm-12 mb-2'><img  id='particular_product_search_btn' class='card-img-bottom text-center border mt-2' src='admin/upload/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label></div>		
     ";	
 		
 		}	
@@ -1519,6 +1537,92 @@ $product_desc = $row["product_desc"];
   }
   }
   
+  
+  //send the code to the customer phone
+    if(isset($_POST['pohne_code_send_btn_func'])){
+		$customer_id = $_SESSION['cusid'] ;
+		$OTP = $_POST["OTP_code"];
+		$pohne_no = $_POST["pohne_no"];
+		
+
+		//customerId_sholud mension here
+ 
+		$customer_phone_query = "SELECT * from  customer_tbl where phone=$pohne_no && customer_id=$customer_id ";
+		$run_query = mysqli_query($con,$customer_phone_query);
+		$row = mysqli_num_rows($run_query);
+ 
+		if($row>0)
+		{
+			$sql = "update customer_tbl set otp_verify= $OTP  WHERE phone = $pohne_no && customer_id=$customer_id" ;
+			$check_query = mysqli_query($con,$sql);
+			echo "1";//update success
+		}
+		else
+		{
+			echo "2";//no recode exist
+		}
+ 
+		
+	}
+  
+  //phone number show for verification
+     if(isset($_POST['phone_number_show'])){
+		 
+		$customer_id = $_SESSION['cusid'] ;
+		 
+  	$customer_phone_query = "SELECT * from  customer_tbl where customer_id=$customer_id";
+		$run_query = mysqli_query($con,$customer_phone_query);
+		$row = mysqli_num_rows($run_query);
+		$row_data = mysqli_fetch_array($run_query);
+		$phone = $row_data["phone"];
+		
+		$phone = substr($phone, -3);
+		
+		echo "*******$phone";
+	 }
+	 
+	 
+  
+       if(isset($_POST['pohne_code_verify_fucn'])){
+		$customer_id = $_SESSION['cusid'] ; 
+		$OTP = $_POST["user_otp"];
+		$attempt_val = $_POST["attempt_val"];
+			
+		$customer_phone_query = "SELECT * from  customer_tbl where customer_id=$customer_id && otp_verify=$OTP";
+		$run_query = mysqli_query($con,$customer_phone_query);
+		$row = mysqli_num_rows($run_query);
+			if($row>0)
+				{
+				
+				$sql = "update customer_tbl set otp_verify= 1  WHERE  customer_id=$customer_id " ;
+				$check_query = mysqli_query($con,$sql);
+				echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Successfully veified<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"; 
+				echo '<script type="text/javascript">
+								window.open("index.php","_self");
+							</script>';
+				
+				}
+				else
+				{
+					if($attempt_val>=3){
+						$sql = "update customer_tbl set otp_verify=0  WHERE customer_id=$customer_id " ;
+						$check_query = mysqli_query($con,$sql);
+					echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> verification disabled try again<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"; 
+					echo '<script type="text/javascript">
+								window.open("index.php","_self");
+							</script>';
+					}
+					else
+					{
+						 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Your OTP code is wrong.Your Attempt $attempt_val<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"; 
+				
+					}
+					 
+				}
+				
+		
+		   }
+ 
   
   
 ?>

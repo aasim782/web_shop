@@ -172,7 +172,11 @@
                 
                 </table>
 					<div id="get_footer_num_brand" class="mt-2 text-right"></div>
+					
+
               </div>
+			  
+			  
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -188,7 +192,7 @@
   <!-- /.content-wrapper -->
  
    
-   <?php  include "product_reg.php" ?>
+ 
    
    
   <!-- Main Footer -->

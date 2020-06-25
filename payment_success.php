@@ -118,7 +118,7 @@
 																</div>
 															</div></td>
 															<td class="col-sm-1 col-md-1" style="text-align: center">
-															  <img class="d-block w-100" height="50px" width="10px" src="prg_img/man_Shirt.jpg" alt="Third slide">
+															  <img class="d-block w-100" height="50px" width="10px" src="admin/upload/man_Shirt.jpg" alt="Third slide">
 															</td>
 															<td class="col-sm-1 col-md-1 text-center"><strong>Rs.400.87</strong></td>
 														</tr>
@@ -178,7 +178,7 @@
 <div class="row  justify-content-center">
 <div class="alert alert-light">
   <h4 class="alert-heading text-center text-black">Thank you!</h4>
-    <div><center><img class="d-block w-60 " src="prg_img/correct.png" height="150px"  alt="Third slide"></center></div>
+    <div><center><img class="d-block w-60 " src="admin/upload/correct.png" height="150px"  alt="Third slide"></center></div>
   <p>Hello <b><?php echo $_SESSION['cus_fname'];?></b> your payment process successfully completed & your transaction id is : <b>12345</b></p>
   <hr>
 

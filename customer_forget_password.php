@@ -137,6 +137,64 @@
 
 
 
+ 
+
+
+
+<!--Phone number verification for cash on delivery-->
+<div class="modal fade" id="OTP_verify_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header  bg-warning">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user"></i>&nbspPhone number verification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+ 
+	 <form  >
+		<div id="otp_alert_msg" class=" mt-3"></div>
+			<div id="timer_show" class=" mt-3"></div>
+		
+			 
+				<p for="exampleDropdownFormEmail2">We need to verify your mobile phone. Please input the your full number.</p>
+					<b><div id="customer_phone_num" class="mb-2 text-center"></div></b>
+					
+				<div class="form-row col-md-12" id="otp_text_div">
+				<b><label for="validationCustom01">Enter your phone number</label></b>
+				 <input type="number" class="form-control" id="pohne_txt" placeholder="94769051995">
+				 </div>
+ 
+   
+			<div id="myHiddeOTP"></div>
+			<div id="balance"></div>
+			   	
+				
+				<div id="otp_timer_div" class="text-left ml-3 mt-2" >
+			  			
+			  	</div>	
+			  
+			  	<div id="otp_button_div" class=" text-center mt-3">
+				<button  id="pohne_code_send_btn" class="btn btn-danger">Send</button>
+				</div>	
+
+      </div>
+  
+	  </form> <!-- /Customer Reg form -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
 
 
 

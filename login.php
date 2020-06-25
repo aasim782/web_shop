@@ -191,7 +191,7 @@
 			  <button type="submit" id="login_page_login_btn" class="btn btn-danger">Login</button>	 
   
   	<div class="row mt-2 ">
-	<a class="nav-link"  href="#"  data-toggle="modal" data-target="#customer_forget_password_email" >Forgot password?</a>
+	<a class="nav-link"  href="#"  data-toggle="modal" data-target="#forget_OTP_verify_model" >Forgot password?</a>
  <a  class="nav-link" href="#"  data-toggle="modal" data-target="#customer_forget_password" >New Password?</a>
 
 </div>

@@ -178,7 +178,7 @@
   <div class="container">
   <div class="row">
     <div class="col-4">
-       <img  class='thumbnail zoom card-img-bottom text-center  ' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:190px;height:250px'/><br>		
+       <img  class='thumbnail zoom card-img-bottom text-center  ' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:190px;height:250px'/><br>		
  
  		
     </div>
@@ -274,9 +274,9 @@
 	<!--  recomended_prd_list_right ">
 	<div class="col justify-content-center text-center">
  <b align="center" >Recomended</b>
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b></label><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b></label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
  		
  
     </div>-->
@@ -290,10 +290,10 @@
 		 <!--
     <div class="col justify-content-center text-center ">
  <b align="center" >Recomended</b>
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='prg_img/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
+   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
  
     </div>
 	
@@ -372,9 +372,9 @@
     </div>
     <p class="mb-1">
 		The product is hands-free only in a sense of the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
-    <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
- <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
- <img  class='card-img-bottom text-center border mt-2' src='prg_img/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+    <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+ <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+ <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
  
   </a>
   

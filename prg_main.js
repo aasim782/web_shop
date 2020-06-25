@@ -895,6 +895,164 @@ number.onkeydown = function(e) {
 
 
 }*/
-						
+	
+ 
+
+
+
+
+
+
+
+
+//get customer phne for last 3digit
+phone_number_show();
+function phone_number_show(){
+	$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{phone_number_show:1},
+			success	:	function(data){
+		$("#customer_phone_num").html(data);
+		
+			}
+		})
+
+}
+
+
+//OTP for cash on delivery
+$('body').delegate('#pohne_code_send_btn','click',function() {
+	event.preventDefault(); //prevent from the submision
+	var pohne_txt = $("#pohne_txt").val();
+ 
+	if( pohne_txt == ""){
+		
+	 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+	}
+	else if( pohne_txt.length < 11 || pohne_txt.length > 11 )
+	{
+		
+	 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please enter coorrect number<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+	
+	}
+ 
+	else if(!pohne_txt.startsWith("94"))
+	{
+			 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Phone Number should start with '94' <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+	}
+ 
+	else
+		{
+ 
+ 	
+	var userId=12053;
+	var ApiKey="91oxM0uahaka5kAsmvEh"
+	var digits = '0123456789'; 
+    let OTP = ''; 
+    for (let i = 0; i < 6; i++ ) 
+	{ 
+        OTP += digits[Math.floor(Math.random() * 10)]; 
+	} 
+			$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{pohne_code_send_btn_func:1,pohne_no:pohne_txt,OTP_code:OTP},
+			success	:	function(data){
+				
+				
+			 
+			 if(data==1)
+			 {
+					 $('#myHiddeOTP').load('https://app.notify.lk/api/v1/send?user_id='+userId+'&api_key='+ApiKey+'&sender_id=NotifyDEMO&to='+pohne_txt+'&message=Your-code-is:'+OTP+'.');
+					//timer label
+					$("#otp_timer_div").html("<div>Time left = <span id='timer'></span></div>");		 
+
+					let timerOn = true;
+					function timer(remaining) {
+					  var m = Math.floor(remaining / 60);
+					  var s = remaining % 60;
+					  
+					  m = m < 10 ? '0' + m : m;
+					  s = s < 10 ? '0' + s : s;
+					  document.getElementById('timer').innerHTML = m + ':' + s;
+					  remaining -= 1;
+					  
+					  if(remaining >= 0 && timerOn) {
+						setTimeout(function() {
+							timer(remaining);
+						}, 1000);
+						return;
+					  }
+
+					  if(!timerOn) {
+						// Do validate stuff here
+						return;
+					  }
+					  
+					  // Do timeout stuff here
+					 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Verification timeout !</strong> please try agian<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+					 window.open("index.php","_self");
+					}
+				timer(120);//60seconds
+				 $("#customer_phone_num").html("");//empty 3 digit div
+				 $("#otp_alert_msg").html("<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please enter your OTP CODE<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+				 $("#otp_text_div").html("<input type='text' class='form-control' id='user_otp_txt' placeholder='Enter your OTP number'/>");
+				 $("#otp_button_div").html(" <button  id='pohne_code_verify_btn' class='btn btn-success'>Verify</button>");
+			 
+			 }
+			 else if(data==2)
+			 {
+				  $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Your phone number is wrong please make sure your number<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");	 
+		
+			 }
+			 
+			 
+		
+
+		
+			}
+		})
+		
+		
+		}
+	
+	
+
+
+})
+
+//verify OTP
+ var attempt=0;
+$('body').delegate('#pohne_code_verify_btn','click',function() {
+		event.preventDefault(); //prevent from the submision
+		var user_otp_txt = $("#user_otp_txt").val();
+ 
+		 attempt++;
+	 
+			if(user_otp_txt.length <6 || user_otp_txt.length>6)
+			 {
+		
+				 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> verification code is totally 6 digit <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");	 
+		
+			 }
+ 
+			 else{
+			$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{pohne_code_verify_fucn:1,user_otp:user_otp_txt,attempt_val:attempt},
+			success	:	function(data){
+				
+			  $("#otp_alert_msg").html(data);
+			}
+			 })  
+			 }
+		
+	
+})
+
+ 
+
 //end
 });

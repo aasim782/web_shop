@@ -115,7 +115,7 @@
 																</div>
 															</div></td>
 															<td class="col-sm-1 col-md-1" style="text-align: center">
-															  <img class="d-block w-100" height="50px" width="10px" src="prg_img/man_Shirt.jpg" alt="Third slide">
+															  <img class="d-block w-100" height="50px" width="10px" src="admin/upload/man_Shirt.jpg" alt="Third slide">
 															</td>
 															<td class="col-sm-1 col-md-1 text-center"><strong>Rs.400.87</strong></td>
 														</tr>
@@ -207,7 +207,7 @@
 							<div class="row ">		
 					  <div class="shadow-sm col-sm row border rounded ml-1 mb-2">
 				  <div class="col-sm mt-3">Order ID :<b>  10101</b>
-						<img src="prg_img/3Acharger.jpg" class="m-4 "  height="100px" width="100px"></div> 
+						<img src="admin/upload/3Acharger.jpg" class="m-4 "  height="100px" width="100px"></div> 
 						  <div class="card-body ">
 						  <div class="container">
 					 
