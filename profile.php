@@ -337,7 +337,7 @@
 		  <!-- /.row -->
 	</div>
 	<!-- /card-body -->
-				  <div class="card-footer" style="background-color:white;">
+				  <div class="card-footer text-right" style="background-color:white;">
 			  		 <!-- next button/pagination-->
 						<nav aria-label="asdasd" class="nav justify-content-center">
 					  <ul class="pagination" id="pagenumber">
@@ -362,14 +362,19 @@
 
     </div>
     <!-- /.row -->
-	    <div   style="position:fixed;bottom:10px;right:3%;">
 
-	<img class="mb-2 " src="admin/upload/default/chat.png"  width="60px" height="60px" />
- 
-  </div>
   </div>
   </div>
   <!-- /.container -->
+  
+   
+  
+  
+  <?php include "footer.php" ?>
+  
+  
+   
+  
 
   </body>
 </html>

@@ -1,4 +1,3 @@
--OTP verification for
-	-cash on delivery
--pagination click event writen
-" Ver 0.4.9 "
+-pagination for myorder
+-footer 
+" Ver 0.5.0 "

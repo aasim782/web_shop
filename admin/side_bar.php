@@ -81,6 +81,58 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="all_orders.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Orders</p>
+                </a>
+              </li>
+			  
+			    <li class="nav-item">
+                <a href="pending_order.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Panding Orders</p>
+                </a>
+              </li>
+			  
+			  
+              <li class="nav-item">
+                <a href="processing_order.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Processing Orders</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="shipped_order.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Shipped</p>
+                </a>
+              </li>
+                 <li class="nav-item">
+                <a href="delivered_order.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Delivered</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Offers
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">1500</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="pages/layout/top-nav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Panding Orders</p>
@@ -103,6 +155,8 @@
           </li>
 		  
 		  
+		  
+		  
 		     <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -116,7 +170,7 @@
               <li class="nav-item">
                 <a href="pages/layout/top-nav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Product</p>
+                  <p>All Customers</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -170,6 +224,35 @@
           </li>
 		  
 		  
+		   <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Reports
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">1500</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/layout/top-nav.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Sales Reports</p>
+                </a>
+              </li>
+         
+              
+            </ul>
+          </li>
+		  <li class="nav-item">
+            <a href="logout.php" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+				Databse backup
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
 		  
           <li class="nav-item">
             <a href="logout.php" class="nav-link">

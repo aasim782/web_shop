@@ -30,7 +30,7 @@
 	
 	
 	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=57">
+	<link rel="stylesheet" href="css/all.css?i=93">
     <title>Dress Line</title>
   </head>
   <body>
@@ -177,7 +177,7 @@
 	  
 	</nav>
 <!-- /navbar -->
-		
+
 
 		
 	
@@ -185,8 +185,8 @@
 	<div id="cart_msg"></div>
 
   <!-- Page Content -->
-				<div class="card">
-				  <div class="card-header " style="background-color:#ff4747;"><i class="fa fa-shopping-cart"></i>Cart</div>
+				<div class="card mb-3">
+				  <div class="card-header text-light" style="background-color:#ff4747;"><i class="fa fa-shopping-cart"></i>Cart</div>
 				  <div class="card-body">
 					<div class="row ">
 							<div class="col-md-1 text-center"><h5>No</h5></div>
@@ -228,15 +228,32 @@
 				 
 
 				  </div>
-				  <div class="card-footer text-right"><img src="https://www.payhere.lk/downloads/images/payhere_long_banner.png" alt="PayHere" width="400"/></div>
+				  <div class="card-footer text-right"><img src="" alt="PayHere" width="400"/></div>
 				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+		
+				
+				
+
+				
 				</div>
 	  
 
 	  
       <!-- /.col-lg-3 -->
 	
-	
+	 
+
+ 
+
+
 	
 			</div>
 			
@@ -251,8 +268,17 @@
     <!-- /.row -->
 
   </div>
+  
   </div>
   <!-- /.container -->
-	
+
+
+
+
+
+
+  <?php include "footer.php" ?>
+ 
+ 
 </body>
 </html>

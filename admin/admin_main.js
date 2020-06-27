@@ -104,7 +104,7 @@ $(document).ready(function () {
       get_brand_txt == "0" ||
       product_name_txt == "" ||
       product_price_txt == "" ||
-      prd_img == "" ||
+      prd_img_txt == "" ||
       product_desc_txt == "" ||
 	  Total_qty =="" ||
       product_keywords_txt == "" || image_name==""

@@ -1002,15 +1002,53 @@ $customer_note = $_POST['customer_note'];
 }
 
 
+ 
+	
+	
+	
+if(isset($_POST["myorder"]) || isset($_POST["myorder_footer_num"])){
+	$total=0;
+	$customer_id = $_SESSION['cusid'] ;
 
-
-if(isset($_POST["myorder"])){
-$total=0;
+	 //when click the page number star end assign on order page
+	$page_number_limit=5; 
+	if(isset($_POST["setpagenumber"])){
+		
+		$pageno=$_POST["pagenumber"];
+		$start=($pageno*$page_number_limit)-$page_number_limit;
+	}
+	else
+	{
+		$start=0;
+	}
+	
+	
+	
+	
+	 //display the order panination number
+	if(isset($_POST["myorder_footer_num"]))
+	{
+		$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3)" ;
+		$check_query = mysqli_query($con,$sql);
+ 
+		$count = mysqli_num_rows($check_query);
+		$pageno=ceil($count/5); //rouded 
+			for($i=1;$i<=$pageno;$i++)
+			{
+					echo "<label class='page-item'><a class='page-link' href='#' myorder_page_num='$i' id='myorder_page_num'>$i</a></label>";
+			}
+	}
+	
+	$i=	$start;
 $customer_id = $_SESSION['cusid'] ;
-$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3)" ;
+$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3) limit $start,$page_number_limit" ;
 $check_query = mysqli_query($con,$sql);
-						while($row = mysqli_fetch_array($check_query))
+		if(isset($_POST["myorder"])){
+	
+				while($row = mysqli_fetch_array($check_query))
 						{
+							
+							$i++;
 						$customer_ord_id = $row["customer_ord_id"];
 						$order_id = $row["order_id"];
 						$order_qtry = $row["order_qtry"];
@@ -1058,7 +1096,7 @@ $check_query = mysqli_query($con,$sql);
 				  <div class='col-12 mt-3'>
 				   <div class='row '>
 							<div class='col-sm'>
-							  Order ID : <b>$customer_ord_id</b> 
+							  <b class='text-success'>($i)</b> Order ID : <b>$customer_ord_id</b> 
 							</div>
 							
 							<div class='col-sm text-right'>
@@ -1121,7 +1159,9 @@ $check_query = mysqli_query($con,$sql);
 							
 							}	
 								
-								
+						
+}
+		
 
 	
 	

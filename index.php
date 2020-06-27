@@ -274,24 +274,27 @@
 		  
 		  	
 		  
-		  
-		  
-		  
-		  		  
+				
+					
+					
 		     </div>
-		  <!-- /.row -->
-	</div>
-	<!-- /card-body -->
-				 		
-				  <div class="card-footer" style="background-color:white;">
-			  		 <!-- next button/pagination-->
-						<nav aria-label="asdasd" class="nav justify-content-center">
-					  <ul class="pagination" id="pagenumber">
+		  <!-- /.row --> 
+		  
+		  
+						<div class="border content-center">
+		  
+	 
+					  <ul class="pagination " id="pagenumber">
 					
 						
 					  </ul>
-					</nav>
-				</div>
+			 
+					</div>
+					
+	</div>
+	<!-- /card-body -->
+				 		
+				  
 				   <!-- footer end --
 				   
 				   <!-- footer end -->
@@ -312,6 +315,6 @@
   </div>
   </div>
   <!-- /.container -->
-	
+	  <?php include "footer.php" ?>
 </body>
 </html>

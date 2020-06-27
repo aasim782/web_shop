@@ -595,8 +595,20 @@ $('.modal').on('hidden.bs.modal', function(){
 		
 		
 		
+
+	
+	
+	
+	
+
+
+
+
+//---------------------------------------my order page---------------------------------------
+
+
 			//get paid product (onlinepayent/cash on delivery/bank)
-			my_orders();
+		my_orders();
 			function my_orders(){
 			$.ajax({
 					url		:	"action.php",
@@ -607,9 +619,50 @@ $('.modal').on('hidden.bs.modal', function(){
 					}
 					})
 		
-		
-		
 	}
+	
+
+		 //generating the page number at myorder page footer 
+		myorder_footer_num();
+		function myorder_footer_num(){
+		$.ajax({
+					url		:	"action.php",
+					method	:	"POST",
+					data	:	{myorder_footer_num:1},
+					success	:	function(data){
+					$('#myorder_pagination').html(data);
+					}
+					})
+					
+					}
+					
+	
+					
+			 //when the user click the particular myorder page number it will be showup that page
+			  $('body').delegate('#myorder_page_num','click',function() {
+			 event.preventDefault();
+			var pagenum= $(this).attr('myorder_page_num');  
+	 
+					$.ajax({
+					url		:	"action.php",
+					method	:	"POST",
+					data	:	{myorder:1,setpagenumber:1,pagenumber:pagenum},
+					success	:	function(data){
+						$("#my_order_list").html(data);
+					}
+					})
+			
+		})		
+			
+//---------------------------------------my order page---------------------------------------
+
+	
+	
+	
+	
+	
+	
+	
 	
 	
 // change customer password
@@ -1053,6 +1106,18 @@ $('body').delegate('#pohne_code_verify_btn','click',function() {
 })
 
  
+
+
+
+
+
+
+
+
+
+
+
+
 
 //end
 });

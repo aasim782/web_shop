@@ -184,7 +184,7 @@
 
   <!-- Page Content -->
 				<div class="card ">
-				  <div class="card-header " style="background-color:#ff4747;"><i class="fa fa-shopping-cart"></i> My orders</div>
+				  <div class="card-header text-light" style="background-color:#ff4747;"><i class="fa fa-shopping-cart"></i> My orders</div>
 				  <div class="card-body">
 				
 
@@ -286,7 +286,7 @@
 				 
 
 				  </div>
-				  <div class="card-footer text-right"><img src="https://www.payhere.lk/downloads/images/payhere_long_banner.png" alt="PayHere" width="400"/></div>
+				  <div class="card-footer text-right" id="myorder_pagination"></div>
 				</div>
 				</div>
 	  
@@ -311,6 +311,6 @@
   </div>
   </div>
   <!-- /.container -->
-	
+	  <?php include "footer.php" ?>
 </body>
 </html>
