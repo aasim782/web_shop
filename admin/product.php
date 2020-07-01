@@ -102,22 +102,60 @@
 	  </div>
        
 
-          <div class="card card-warning card-outline">			  
-              <div class="card-header text-center"  >
-				<h2>Product</h2>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-			  	  
-			  	  <div class="row ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div class="card card-warning card-outline">	
+
+
+
+
+
+
+
+
+
+
+<div class="card-header border-transparent">
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+			
+				<div class="row mt-3 ">
 			 
-						<div class=" col-sm-16 col-md-9 text-right p-1   ">
-					 
+						<div class=" col-sm-16 col-md-8  text-left p-1   ">
+					 	 <h2><span class="info-box-icon"><i class="fa fa-shopping-basket"></i></span>  Product</h2>
 						</div>
-							<div class="col-sm-16 col-md-3 text-right mb-3 ">
+							<div class="col-sm-16 col-md-4 text-right mb-3 ">
 							<div class="col-sm-12">
 							
-					 <div class="input-group input-group-sm">
+				 <div class="input-group input-group-sm">
 					 <input class="form-control form-control-navbar" type="search" id="product_filter" placeholder="Search" aria-label="Search" autocomplete="off">
 					<div class="input-group-append">
 					<button class="btn btn-navbar border" type="submit">
@@ -129,6 +167,11 @@
 						</div>
 						</div>
 						  </div>
+
+              </div>
+ 
+              <!-- /.card-header -->
+              <div class="card-body">
                 <table  class="table table-bordered table-hover">
                   <thead>
                   <tr  class="text-center">

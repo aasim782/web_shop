@@ -591,7 +591,7 @@ if(isset($_POST["orderd_prd_count"]))
 if(isset($_POST["nav_list_total"]))
 {
 $customer_id = $_SESSION['cusid'] ;
-$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status='0'" ; //payment_status - 0 unpaid,1-online tra,2-bank,3-cahone delivery
+$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status='0'" ; //payment_status - 0 unpaid,1-online tra,2-bank,3-cash delivery
 $check_query = mysqli_query($con,$sql);
 $count = mysqli_num_rows($check_query);
 	 

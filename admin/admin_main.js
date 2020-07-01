@@ -769,9 +769,151 @@ category_count();
 		})		
 					
 					
-					
+	
+	//get all ordered prd to order admin table 
+	all_customer_order()	
+		function all_customer_order(){
 
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{all_customer_order:1},
+					success	:	function(data){
+						$("#all_customer_order").html(data);
+					}
+					})
 					
+		}
+		
+		
+		
+		
+		
+		 //filter the brand by the search box at admin category table
+ $("#all_order_filter").keyup(function () {
+	 
+	 var Serach_val = $("#all_order_filter").val();
  
+			$.ajax({
+			url: "admin_action.php",
+			method: "POST",
+			data: { get_all_order_filter: 1,Search_all_orde_filter_table:Serach_val },
+			success: function (data) {
+		  		$("#all_customer_order").html(data);
+			},
+			 });
+		 
+
+	
+	
+	 }) 
+	 
+
+	 
+		 
+		
+		
+		
+	 //get all_delivered_orders to admin deliver table 
+	all_delivered_orders()	
+		function all_delivered_orders(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{all_delivered_orders:1},
+					success	:	function(data){
+						$("#all_delivered_orders").html(data);
+					}
+					})
+					
+		}
+		
+		
+		
+			 //get all_panding_orders to admin deliver table 
+	get_all_panding_orders()	
+		function get_all_panding_orders(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_all_panding_orders:1},
+					success	:	function(data){
+						$("#panding_orders").html(data);
+					}
+					})
+					
+		}
+		
+		
+
+	 
+	 
+		
+		
+  
+  	//get all process order  to admin processing table 
+	get_all_process_orders()	
+		function get_all_process_orders(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_all_process_orders:1},
+					success	:	function(data){
+						$("#get_all_process_orders").html(data);
+					}
+					})
+					
+		}
+		
+		
+		
+		
+		
+				
+  
+  	//get all process order  to admin processing table 
+	get_all_shipped_orders()	
+		function get_all_shipped_orders(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_all_shipped_orders:1},
+					success	:	function(data){
+						$("#get_all_shipped_orders").html(data);
+					}
+					})
+					
+		}
+		
+		
+		
+		
+		
+		
+	//All order header .when click on top load the page 
+		$('body').delegate('#total_pending_order','click',function() {
+		window.open("pending_order.php","_self");
+			
+		});
+		
+		$('body').delegate('#total_processing_order','click',function() {
+		window.open("processing_order.php","_self");
+			
+		});
+
+		$('body').delegate('#total_shipped_order','click',function() {
+		window.open("shipped_order.php","_self");
+			
+		}); 
+
+		$('body').delegate('#total_delivered_order','click',function() {
+		window.open("delivered_order.php","_self");
+			
+		});
+		
  
 });

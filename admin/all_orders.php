@@ -54,11 +54,11 @@
     <section class="content">
       <div class="container-fluid ">
 	  <div class="row  ">
-          <div class="col-md-3  col-sm-6 col-12  mt-3">
+          <div class="col-md-3  col-sm-6 col-12  mt-3" style="cursor: pointer;"  id="total_pending_order">
             <div class="info-box shadow  bg-gradient-warning ">
               <span class="info-box-icon"><i class="fas fa-sync-alt"></i></span>
 
-              <div class="info-box-content">
+              <div class="info-box-content" >
                 <span class="info-box-text">Pending orders</span>
                 <span class="info-box-number">41,410</span>
 
@@ -74,11 +74,10 @@
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12  mt-3">
+          <div class="col-md-3 col-sm-6 col-12  mt-3" id="total_processing_order" style="cursor: pointer;">
             <div class="info-box shadow bg-gradient-info">
               <span class="info-box-icon"><i class="fa fa-spinner"></i></span>
-
-              <div class="info-box-content">
+              <div class="info-box-content" >
                 <span class="info-box-text"> Processing</span>
                 <span class="info-box-number">41,410</span>
 
@@ -94,11 +93,11 @@
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12 mt-3">
+          <div class="col-md-3 col-sm-6 col-12 mt-3"  id="total_shipped_order" style="cursor: pointer;">
             <div class="info-box shadow bg-gradient-success ">
-              <span class="info-box-icon"><i class="fa fa-paper-plane"></i></span>
+              <span class="info-box-icon"><i class="fa fa-truck"></i></span>
 
-              <div class="info-box-content">
+              <div class="info-box-content" >
                 <span class="info-box-text">Shipped</span>
                 <span class="info-box-number">41,410</span>
 
@@ -114,11 +113,11 @@
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12  mt-3">
-            <div class="info-box shadow  bg-gradient-danger">
+          <div class="col-md-3 col-sm-6 col-12  mt-3"  id="total_delivered_order"  style="cursor: pointer;">
+            <div class="info-box shadow  bg-gradient-secondary">
               <span class="info-box-icon"><i class="fa fa-chevron-circle-up"></i></span>
 
-              <div class="info-box-content">
+              <div class="info-box-content" >
                 <span class="info-box-text">Delivered</span>
                 <span class="info-box-number">41,410</span>
 
@@ -139,10 +138,8 @@
         <div class="row">
         <div class="col-12 mt-3">
              <!-- TABLE: LATEST ORDERS -->
-            <div class="card">
-              <div class="card-header border-transparent">
-                <h3 class="card-title">All Orders</h3>
-
+            <div class="card card-warning shadow  card-outline">
+              <div class="card-header  border-transparent">
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -151,21 +148,50 @@
                     <i class="fas fa-times"></i>
                   </button>
                 </div>
+			
+				<div class="row mt-3 ">
+			 
+						<div class=" col-sm-16 col-md-9  text-left p-1   ">
+					 	 <h2><span class="info-box-icon"><i class="fa fa-cart-plus"></i></span>  All orders</h2>
+						</div>
+							<div class="col-sm-16 col-md-3 text-right mb-3 ">
+							<div class="col-sm-12">
+							
+					 <div class="input-group input-group-sm">
+					 <input class="form-control form-control-navbar" type="search" id="all_order_filter" placeholder="Search" aria-label="Search" autocomplete="off">
+					<div class="input-group-append">
+					<button class="btn btn-navbar border" type="submit">
+						<i class="fas fa-search"></i>
+					</button>
+					</div>
+					</div>
+					
+						</div>
+						</div>
+						  </div>
+
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <div class="table-responsive">
                   <table class="table m-0">
                     <thead>
-                    <tr>
+                    <tr class='text-center bg-dark'>
+                      <th>No</th>
                       <th>Order ID</th>
-                      <th>Item</th>
+                      <th>Date</th>
+                      <th>Customer Name</th>
+                      <th>Product Name</th>
                       <th>Status</th>
-                      <th>Popularity</th>
+                   
+                      <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
+                    <tbody id="all_customer_order">
+                   
+				   
+				   
+				   <!--<tr>
                       <td><a href="pages/examples/invoice.html">OR9842</a></td>
                       <td>Call of Duty IV</td>
                       <td><span class="badge badge-success">Shipped</span></td>
@@ -248,7 +274,8 @@
                       <td>
                         <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
                       </td>
-                    </tr>
+                    </tr>-->
+				 
                     </tbody>
                   </table>
                 </div>
