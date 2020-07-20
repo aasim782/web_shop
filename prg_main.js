@@ -376,11 +376,10 @@ $(document).ready(function(){
 
 		$("body").delegate("#particular_product_search_btn","click",function(){
 		event.preventDefault();
-		var pid_val= $(this).attr('pid'); //get the value from our self pid attribute pid 
+		var pid_val= $(this).attr('pid'); //get the value from our self pid attribute pid  
+		window.open("product_view.php?pid="+pid_val+"","_self");
+	 
  
-	 window.open("product_view.php?pid="+pid_val+"","_self");
-	 
-	 
 	})	
 	
 

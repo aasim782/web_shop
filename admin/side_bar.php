@@ -72,7 +72,7 @@
 		  
 		      <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fa fa-shopping-basket"></i>
               <p>
                 Orders
                 <i class="fas fa-angle-left right"></i>
@@ -124,7 +124,7 @@
 		  
 		  <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fa fa-tags"></i>
               <p>
                 Offers
                 <i class="fas fa-angle-left right"></i>
@@ -168,24 +168,29 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="customer_list.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Customers</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="customer_complain.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Category</p>
+                  <p>Customer Complain</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
+                <a href="customer_feedback.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Brand</p>
+                  <p>Customer Feedback </p>
                 </a>
               </li>
-              
+                      <li class="nav-item">
+                <a href="message.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Customer Messages </p>
+                </a>
+              </li>
             </ul>
           </li>
 		  
@@ -193,7 +198,7 @@
 		  
 		      <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fa fa-envelope"></i>
               <p>
                 Messages
                 <i class="fas fa-angle-left right"></i>
@@ -226,7 +231,7 @@
 		  
 		   <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fa fa-list-alt"></i>
               <p>
                 Reports
                 <i class="fas fa-angle-left right"></i>
@@ -246,7 +251,7 @@
           </li>
 		  <li class="nav-item">
             <a href="logout.php" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fa fa-cogs"></i>
               <p>
 				Databse backup
                 <span class="right badge badge-danger">New</span>
@@ -256,7 +261,7 @@
 		  
           <li class="nav-item">
             <a href="logout.php" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fa fa-reply"></i>
               <p>
 				Logout
                 <span class="right badge badge-danger">New</span>

@@ -389,11 +389,27 @@ if(isset($_GET["prd_view_page"]))
 	*/
 
 if(isset($_POST["add_to_card"])){
-$order_id=0;
-	$customer_id = $_SESSION['cusid'] ;
+	$order_id=0;
+	@$customer_id = $_SESSION['cusid'] ;
 	$product_id = $_POST['product_id']; 
 	$product_qty = $_POST['product_qty']; 
 	
+	
+	//without signin message will show
+	if($customer_id=="")
+	{
+		
+			echo "	<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
+				  <strong>Dear! customer </strong>! Before order please sign in your account.
+				  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+					<span aria-hidden='true'>&times;</span>
+				  </button>
+				</div> ";
+		
+	}
+	else
+	{
+		
 	$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and product_id='$product_id' and payment_status='0'" ;
 	$check_query = mysqli_query($con,$sql);
 	$count = mysqli_num_rows($check_query);
@@ -408,7 +424,7 @@ $order_id=0;
 			
 		}
 		else
-		{						
+		{								
 				$sql ="SELECT * FROM product_tbl WHERE product_id = '$product_id'" ;
 					$check_query = mysqli_query($con,$sql);
 					$row = mysqli_fetch_array($check_query);
@@ -559,6 +575,8 @@ $order_id=0;
 				
 		
 		}
+	}
+
 	
 	
 
@@ -1664,5 +1682,6 @@ $product_desc = $row["product_desc"];
 		   }
  
   
+ 
   
 ?>

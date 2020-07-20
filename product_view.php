@@ -1,12 +1,6 @@
 <!doctype html>
 
-<?php session_start();
-	if(!isset($_SESSION['cusid']))
-	{
-		header("location:index.php");	
-	}
-
- ?>
+ 
  
 <html lang="en">
   <head>

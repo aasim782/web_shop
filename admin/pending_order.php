@@ -96,7 +96,7 @@
                   <table class="table m-0">
                     <thead>
                     <tr class='text-center bg-dark  shadow-sm'>
-                      <th>Order ID</th>
+                      <th>No</th>
                       <th>Order ID</th>
                       <th>Order Date</th>
                       <th>Customer Name</th>

@@ -1,13 +1,5 @@
 <!doctype html>
-<?php session_start();
-	if(!isset($_SESSION['cusid'])) //user loged or not check through the session
-	{
-		header("location:index.php");	 //access page
-	}
-		
-	
-	include "bank_deposit.php";
- ?>
+ 
 <html lang="en">
   <head>
   <style>

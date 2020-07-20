@@ -100,13 +100,13 @@
                   <table class="table m-0">
                     <thead>
                     <tr  class='text-center shadow-sm bg-dark '>
+                      <th>No</th>
                       <th>Order ID</th>
-                      <th>Item</th>
+                      <th>Order Date</th>
+                      <th>Customer Name</th>
+                      <th>Product Name</th>
                       <th>Status</th>
-                      <th>Popularity</th>
-                      <th>Popularity</th>
-                      <th>Popularity</th>
-                      <th>Popularity</th>
+                      <th>Action</th>
                     </tr>
                     </thead>
                   <tbody id="get_all_process_orders">

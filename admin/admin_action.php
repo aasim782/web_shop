@@ -886,9 +886,7 @@ $action_btn="";
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&   customer_ord_prds.order_status=3 " ;
  $check_query = mysqli_query($con,$sql);
-
-$status_btn="";
-$action_btn="";
+ 
 		$i=1;
 		while($row = mysqli_fetch_array($check_query))
 			{
@@ -1051,9 +1049,7 @@ $action_btn="";
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=0) )" ;
  $check_query = mysqli_query($con,$sql);
-
-$status_btn="";
-$action_btn="";
+ 
 		$i=1;
 		while($row = mysqli_fetch_array($check_query))
 			{
@@ -1103,8 +1099,7 @@ $action_btn="";
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=1) )" ;
  $check_query = mysqli_query($con,$sql);
 
-$status_btn="";
-$action_btn="";
+ 
 		$i=1;
 		while($row = mysqli_fetch_array($check_query))
 			{
@@ -1163,9 +1158,7 @@ $action_btn="";
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=2) )" ;
  $check_query = mysqli_query($con,$sql);
-
-$status_btn="";
-$action_btn="";
+ 
 		$i=1;
 		while($row = mysqli_fetch_array($check_query))
 			{
@@ -1203,13 +1196,55 @@ $action_btn="";
 	 
 	 
  }
+
  
  
  
  
  
  
+  //get all customers to admin customer table 
+ if(isset($_POST["get_all_customers"])){
  
+ $sql ="SELECT * from customer_tbl" ;
+ $check_query = mysqli_query($con,$sql);
+ 
+		$i=1;
+		while($row = mysqli_fetch_array($check_query))
+			{
+				$customer_id = $row["customer_id"];
+				$first_name = $row["first_name"];
+				$last_name = $row["last_name"];
+				$email = $row["email"];
+				$phone=$row["phone"];
+				$address=$row["address"];
+				$city=$row["city"];
+				$postal=$row["postal"];
+			  
+		
+		echo " <tr class='text-center' >	
+					 <td><b>$i </b></td>
+                      <td > <img src='upload/432_abc.png' width='70px' class='rounded-circle' height='70px'>  </td>
+                      <td> <b>$first_name</b></td>
+                      <td> <b>$last_name</b></td>
+                      <td><b>$email</b></td>
+                      <td ><b>$phone</b></td>
+                      <td ><b>$address</b></td>
+					  <td><b>$city </b></td>
+					  <td><b>$postal </b></td>
+                   </tr>
+				  
+					
+					
+					";
+					
+				$i++	;
+			}
+	 
+	 
+	 
+ }
+
  
  
  

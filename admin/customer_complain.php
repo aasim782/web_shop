@@ -57,11 +57,9 @@
         <div class="row">
         <div class="col-12 mt-3">
              <!-- TABLE: LATEST ORDERS -->
-         <div class="card shadow  card-warning card-outline">
-              <div class="card-header  bg-success border-transparent">
-            
-				  <div class="card-header border-transparent">
-                <div class="card-tools">
+            <div class="card card-light shadow card-outline">
+              <div class="card-header shadow-sm bg-warning border-transparent">
+                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                   </button>
@@ -69,18 +67,17 @@
                     <i class="fas fa-times"></i>
                   </button>
                 </div>
-			
-				<div class="row mt-3 ">
+				
+					<div class="row mt-3 ">
 			 
-				  	
-							<div class=" col-sm-16 col-md-9  text-left p-1   ">
-					 	 <h2><span class="info-box-icon"><i class="fa fa-truck"></i></span> 	Shipped Orders</h2>
+						<div class=" col-sm-16 col-md-9  text-left p-1   ">
+					 	 <h2><span class="info-box-icon"><i class="fa fa-thumbs-down"></i></span> Customers Complain</h2>
 						</div>
 							<div class="col-sm-16 col-md-3 text-right mb-3 ">
 							<div class="col-sm-12">
 							
 					 <div class="input-group input-group-sm">
-					 <input class="form-control form-control-navbar" type="search" id="all_order_filter" placeholder="Search" aria-label="Search" autocomplete="off">
+					 <input class="form-control form-control-navbar" type="search" id="product_filter" placeholder="Search" aria-label="Search" autocomplete="off">
 					<div class="input-group-append">
 					<button class="btn btn-navbar border" type="submit">
 						<i class="fas fa-search"></i>
@@ -91,27 +88,29 @@
 						</div>
 						</div>
 						  </div>
-
-              </div>
+						  
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <div class="table-responsive">
                   <table class="table m-0">
-                    <thead>
-                    <tr  class='text-center shadow-sm bg-dark '>
-						<th>No</th>
-                      <th>Order ID</th>
-                      <th>Order Date</th>
-                      <th>Customer Name</th>
-                      <th>Product Name</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                    <thead >
+                    <tr class='text-center  shadow-sm bg-dark'>
+                      <th>No</th>
+                      <th> </th>
+                      <th>Fistname</th>
+                      <th>Lastname</th>
+					  <th>Email</th>
+                      <th>Phone</th>
+                      <th>Address</th>
+                      <th>City  </th>
+                      <th>Postal</th>
+             
                     </tr>
                     </thead>
-                        <tbody id="get_all_shipped_orders">
-                     
+                   <tbody id="get_all_customer_complain" >				 
                     </tbody>
+                  
                   </table>
                 </div>
                 <!-- /.table-responsive -->

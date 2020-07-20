@@ -94,7 +94,7 @@
   
   
     <div class="form-row">
-    <div class="form-group col-8">
+    <div class="col-md-12">
     <label for="exampleFormControlTextarea1">Address</label>
     <textarea class="form-control" id="address"  name="addresstxt" rows="3"></textarea>
 

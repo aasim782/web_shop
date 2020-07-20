@@ -176,7 +176,7 @@
                 <div class="table-responsive">
                   <table class="table m-0">
                     <thead>
-                    <tr class='text-center bg-dark'>
+                    <tr class='text-center bg-dark shadow-sm'>
                       <th>No</th>
                       <th>Order ID</th>
                       <th>Date</th>

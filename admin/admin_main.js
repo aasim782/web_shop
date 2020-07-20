@@ -889,6 +889,25 @@ category_count();
 					
 		}
 		
+		//get all customer 
+		get_all_customers()	
+		function get_all_customers(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_all_customers:1},
+					success	:	function(data){
+						$("#get_all_customers").html(data);
+					}
+					})
+					
+		}
+		
+		
+		
+		
+		
 		
 		
 		

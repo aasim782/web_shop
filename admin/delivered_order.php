@@ -57,8 +57,8 @@
         <div class="row">
         <div class="col-12 mt-3">
              <!-- TABLE: LATEST ORDERS -->
-            <div class="card card-warning card-outline">
-              <div class="card-header border-transparent">
+            <div class="card card-dark shadow card-outline">
+              <div class="card-header shadow-sm bg-secondary border-transparent">
                  <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -95,7 +95,7 @@
                 <div class="table-responsive">
                   <table class="table m-0">
                     <thead >
-                    <tr class='text-center'>
+                    <tr class='text-center  shadow-sm bg-dark'>
                       <th>Order ID</th>
                       <th>Customer Name</th>
 					  <th>Order Date</th>
