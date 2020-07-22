@@ -263,6 +263,13 @@ $(document).ready(function(){
 		
 				
 			}
+			else if(phone.length < 11  )
+			{
+						
+			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Incorrect Phone Number !</strong> Please inlude 94<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+		
+				
+			}
 		
 			else if( passwords.length < 8 )
 			{
@@ -376,10 +383,18 @@ $(document).ready(function(){
 
 		$("body").delegate("#particular_product_search_btn","click",function(){
 		event.preventDefault();
-		var pid_val= $(this).attr('pid'); //get the value from our self pid attribute pid  
-		window.open("product_view.php?pid="+pid_val+"","_self");
-	 
- 
+		var pid_val= $(this).attr('pid'); //get the value from our self pid attribute pid 
+		var session_val= $(this).attr('session_val'); //get the value from our self pid attribute pid 
+	  
+		
+			 if(session_val=="")
+			 {
+			 window.open("unreg_product_view.php?pid="+pid_val+"","_self");
+			 }
+			 else
+			 {
+			 window.open("product_view.php?pid="+pid_val+"","_self");
+			 }
 	})	
 	
 
@@ -548,6 +563,7 @@ $('.modal').on('hidden.bs.modal', function(){
 		var product_price = $("#price-"+pid).text();
 		var product_total = product_qty * product_price;
 	
+ 
 			$.ajax({
 					url		:	"action.php",
 					method	:	"POST",
@@ -998,8 +1014,8 @@ $('body').delegate('#pohne_code_send_btn','click',function() {
 		{
  
  	
-	var userId=12053;
-	var ApiKey="91oxM0uahaka5kAsmvEh"
+	var userId=12208;
+	var ApiKey="Y1lXGXCJeGFmr5WNsYS5"
 	var digits = '0123456789'; 
     let OTP = ''; 
     for (let i = 0; i < 6; i++ ) 

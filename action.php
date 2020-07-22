@@ -157,7 +157,7 @@ if(isset($_POST["product"])){
 
 //Get the product through category,brand or search button
 if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"]) || isset($_POST["get_search"])){
-
+@$customer_id = $_SESSION['cusid'] ;
 	$page_number_limit=9; //per page have 9 products
 	
 	if(isset($_POST["setpagenumber"])){
@@ -203,11 +203,11 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 			$product_img = $row["product_img"];
 			$product_total_qty = $row["product_total_qty"];
 			echo "
-			        <div class=' col-4 mb-3' >
+			<div class=' col-4 mb-3' >
             <div class='  card shadow-sm'> 
-			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b style='cursor: pointer;' id='particular_product_search_btn' pid='$product_id'>$product_name</b>
+			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b style='cursor: pointer;' id='particular_product_search_btn' session_val='$customer_id'  pid='$product_id'>$product_name</b>
 			
-		<button type='button' id='particular_product_search_btn' pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
+		<button type='button' id='particular_product_search_btn' pid='$product_id' session_val='$customer_id'  style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
 					<div style='padding-top:1px;' >
 					<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
@@ -218,7 +218,7 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 			</div>
 			
 		   <div class='text-center' >
-			<img  class='card-img-bottom text-center ' pid='$product_id' id='particular_product_search_btn' src='admin/upload/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
+			<img  class='card-img-bottom text-center ' pid='$product_id' session_val='$customer_id'  id='particular_product_search_btn' src='admin/upload/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
 			</div>
          
     <div class='form-group row justify-content-center'>
@@ -389,14 +389,14 @@ if(isset($_GET["prd_view_page"]))
 	*/
 
 if(isset($_POST["add_to_card"])){
+
 	$order_id=0;
-	@$customer_id = $_SESSION['cusid'] ;
 	$product_id = $_POST['product_id']; 
 	$product_qty = $_POST['product_qty']; 
 	
 	
-	//without signin message will show
-	if($customer_id=="")
+	//without please sign in msg
+	if(!isset($_SESSION['cusid']))
 	{
 		
 			echo "	<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
@@ -409,7 +409,9 @@ if(isset($_POST["add_to_card"])){
 	}
 	else
 	{
-		
+	$customer_id = $_SESSION['cusid'] ;	
+	
+	
 	$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and product_id='$product_id' and payment_status='0'" ;
 	$check_query = mysqli_query($con,$sql);
 	$count = mysqli_num_rows($check_query);
@@ -824,9 +826,34 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					  <div class='card card-body'>
 						Cash on delivery only posible under 50,000 on ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
 						that have term and conditions
-						<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Agree to conform''></div>
-						<div class='text-center m-2'><input type='button' class='btn btn-warning' data-toggle='modal' data-target='#OTP_verify_model' value='Phone number verify'></div>
-					  </div>
+						 ";
+						 
+					//phone verify conform - agree button hide show 
+					
+					$sql_phn_veryfy ="SELECT * FROM customer_tbl WHERE customer_id = '$customer_id' && otp_verify = '1'"  ;
+					$check_query_sql_phn_veryfy = mysqli_query($con,$sql_phn_veryfy);
+					 $count = mysqli_num_rows($check_query_sql_phn_veryfy);
+				 
+					if($count==1)
+					{
+				
+						
+						echo "<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Agree to conform''></div>";
+						
+					}
+					else
+					{
+						echo "
+						<div class='text-center m-2'><input type='button' class='btn btn-warning' data-toggle='modal' data-target='#OTP_verify_model' value='Phone number verify'></div>";
+					}
+						
+						
+					
+					
+					
+					
+					
+					  echo "</div>
 					</div>
 					
 				  </div>
@@ -957,7 +984,8 @@ $customer_note = $_POST['customer_note'];
 						}	
 						else if($new_qty==$order_qtry)
 						{
-							
+						 $sql = "update customer_ord_prds set customer_note='$customer_note' WHERE customer_id = '$customer_id' AND product_id='$update_product_id' AND payment_status = 0" ;
+							$check_query = mysqli_query($con,$sql);
 								echo "<div class='alert alert-success alert-dismissible fade show col-lg-12' role='alert'>
 									  Dear Customer! <strong>your order updated </strong>
 									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
@@ -1513,6 +1541,7 @@ $product_desc = $row["product_desc"];
  
   if(isset($_POST['recomended_prd_list_right'])){
 	  
+	@$customer_id = $_SESSION['cusid'] ;
 	$product_id = $_POST["pid"];
 	$product_query = "SELECT * from  product_tbl where product_id=$product_id && active=1";
 	$run_query = mysqli_query($con,$product_query);
@@ -1538,7 +1567,7 @@ $product_desc = $row["product_desc"];
  
 			 
 
-   <div  class='col-sm-12 '><img  id='particular_product_search_btn'  class='card-img-bottom text-center border border-warning shadow-sm p-2 mt-2' src='admin/upload/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label> 	</div>	
+   <div  class='col-sm-12 '><img session_val='$customer_id'   id='particular_product_search_btn'  class='card-img-bottom text-center border border-warning shadow-sm p-2 mt-2' src='admin/upload/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label> 	</div>	
     ";	
 		}	
 	}}
@@ -1562,7 +1591,7 @@ $product_desc = $row["product_desc"];
  //Recomended product show left
  
   if(isset($_POST['recomended_prd_list_left'])){
-	  
+	 @$customer_id = $_SESSION['cusid'] ;
 	$product_id = $_POST["pid"];
 	$product_query = "SELECT * from  product_tbl where product_id=$product_id && active=1";
 	$run_query = mysqli_query($con,$product_query);
@@ -1585,7 +1614,7 @@ $product_desc = $row["product_desc"];
 			$product_img = $row["product_img"];
 			
 			echo "  
-<div  class='col-sm-12 mb-2'><img  id='particular_product_search_btn' class='card-img-bottom text-center border mt-2' src='admin/upload/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label></div>		
+<div  class='col-sm-12 mb-2'><img  session_val='$customer_id'   id='particular_product_search_btn' class='card-img-bottom text-center border mt-2' src='admin/upload/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label></div>		
     ";	
 		
 		}	
@@ -1682,6 +1711,5 @@ $product_desc = $row["product_desc"];
 		   }
  
   
- 
   
 ?>

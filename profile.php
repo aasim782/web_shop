@@ -71,9 +71,7 @@
 		</ul>
 		
 	   <ul class="navbar-nav">
-	 <li class="nav-item active">
-        <a class="nav-link" href="#" ><i class="fas fa-search"></i>Tracking</a>
-      </li>
+ 
 	   <li class="nav-item active" >
         <a class="nav-link" href="#" data-toggle="modal" data-target="#customer_complain_Model"   ><i class="fas fa-star"></i>Complain</a>
       </li>

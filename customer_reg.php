@@ -57,7 +57,7 @@
     </div>
 	<div class="col-6">
       <label for="validationCustom04">Phone</label>
-      <input type="text" class="form-control" size="10"  maxlength="10"  id="phone" name="phonetxt" placeholder="Phone">
+      <input type="text" class="form-control" size="10"  maxlength="11"  id="phone" name="phonetxt" placeholder="9477000000">
       </div>
     </div>
 

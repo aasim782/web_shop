@@ -140,11 +140,10 @@
 
 
 
-<!-- Sign Up Form -->
+ 
+<!-- top login button -->
+<a href='login.php' class='btn btn-danger' role='button'> <i class='fas fa-user'></i> Login</a>
 
-	 <li class="nav-item active">
-        <a class="nav-link" href="login.php"><i class="fas fa-user"></i> Login</a>
-      </li>
 
 
 <!-- /signIn -->

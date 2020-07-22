@@ -71,7 +71,7 @@
 		
 	   <ul class="navbar-nav">
 	 <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-star"></i> Feedback</a>
+        <a class="nav-link" href="#"><i class="fas fa-star"></i> Feedback   </a>
       </li>
 	   <li class="nav-item active" >
      
@@ -79,52 +79,7 @@
  			
 			
 			<!-- Sign Up Form -->
-	<div class="btn-group">
-	  <button type="button" class="btn btn-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-expanded="false">
-		<i class="fas fa-shopping-cart"></i>Cart<span class="badge">0</span>
-	  </button>
-
-
- <div class="dropdown-menu dropdown-menu-right ">
-								<div class="container">
-									<div class="row">
-								
-									
-											<div class="col-sm-12 col-md-10 col-md-offset-1">
-												<table class="table table-hover">
-													<thead  style='background-color:#ff4747;padding:10px;color:white;'>
-														<tr>
-															<th style='padding:10px;'>No</th>
-															<th style='padding:10px;'>Product Name</th>
-															<th style='padding:10px;'>Product Image</th>
-															<th style='padding:10px;' class="text-center">Quantity</th>
-															<th style='padding:10px;' class="text-center">Total price RS.</th>
-												
-
-														</tr>
-													</thead>	
-													
-												
-													<tbody >			
-											
-																	
-														<tr>
-													</tr>
-
-													
-														
-													
-													</tbody>
-												</table>
-											</div>
-											
-											
-									</div>
-								</div>
-				</div>
-
-				  
-	</div>
+ 
 <!-- /signIn -->
 
 
@@ -133,7 +88,7 @@
 <!-- Sign Up Form -->
 
 	 <li class="nav-item active">
-        <a class="nav-link" href="login.php"><i class="fas fa-user"></i> Login</a>
+      <a href='login.php' class='btn btn-danger' role='button'> <i class='fas fa-user'></i> Login</a>
       </li>
 
 
