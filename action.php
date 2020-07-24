@@ -1101,6 +1101,7 @@ $check_query = mysqli_query($con,$sql);
 						$product_id = $row["product_id"];
 						$current_price_per_prd = $row["current_price_per_prd"];
 						$customer_note = $row["customer_note"];
+						$order_status = $row["order_status"];
 						$current_total_price =  $current_price_per_prd* $order_qtry;
 						
 						$sql2 = "SELECT * FROM payment_tbl where order_id=$order_id" ;
@@ -1135,7 +1136,20 @@ $check_query = mysqli_query($con,$sql);
 						}
 						
 						
-															
+						//order status in myorder page panding/verified
+						if($order_status==0)
+						{
+							$payment_verify_status_veriable="<b class='text-danger'>Panding</b> ";
+							
+						}
+						else  
+						{
+							$payment_verify_status_veriable="<b class='text-success'>Verified</b> ";
+						
+						}
+						 
+						
+						
 	echo "
 				 <div class='row '>		
 				<div class='row col-12 shadow-sm col-sm   border rounded ml-1 mb-3'>
@@ -1164,7 +1178,7 @@ $check_query = mysqli_query($con,$sql);
 							<b> $product_name</b> 
 							</div>
 							<div class='col-sm'>
-								Payment :<b class='text-danger'> Panding  </b> 
+								Payment : $payment_verify_status_veriable
 							</div>
 							
 							<div class='col text-right'>		
@@ -1193,7 +1207,7 @@ $check_query = mysqli_query($con,$sql);
 
 								<div class='btn-group mt-2 '>
 										<a href='' class='btn btn-warning mr-2 rounded '><i class='fa fa-check'></i> Conform goods Received </a>
-										<a href='' class='btn btn-danger mr-2 rounded'><i class='fa fa-search'></i> Track Order </a>
+										<a href='' class='btn btn-danger mr-2 rounded' data-toggle='modal' data-target='#traking_model'><i class='fa fa-search'></i> Track Order </a>
 										<a href='message.php' class='btn btn-dark mr-2  rounded'><i class='fa fa-sms'></i> message</a>
 					
 										</div>

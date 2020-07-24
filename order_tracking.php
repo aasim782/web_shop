@@ -1,29 +1,11 @@
-<!doctype html>
-<?php session_start();
-	if(!isset($_SESSION['cusid'])) //user loged or not check through the session
-	{
-		header("location:index.php");	 //access page
-	}
-		
-	
-	include "bank_deposit.php";
- ?>
-<html lang="en">
-  <head>
-	
-	<style>
+ <style>
 	 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
  body {
      background-color: #eeeeee;
      font-family: 'Open Sans', serif
  }
-
- .container {
-     margin-top: 50px;
-     margin-bottom: 50px
- }
-
+ 
  .card {
      position: relative;
      display: -webkit-box;
@@ -167,114 +149,19 @@
      border-radius: 1px
  }
 	</style>
-	
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery.js?i=19"></script>
-    <script src="js/popper.min.js?i=19"></script>
-    <script src="js/bootstrap.min.js?i=19"></script>
-
-
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css?i=19">
-	<script src="js/all.js?i=19" data-auto-replace-svg="nest"></script>
-	<script src="prg_main.js?i=19" ></script>
-	
-	
-	 <!-- All icons -->
-	<link rel="stylesheet" href="css/all.css?i=19">
-    <title>Dress Line</title>
-  </head>
-  <body>
-  
-
-
-  
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-info" >
- <a class="navbar-brand" href="#">
-    <img src="https://learncodeweb.com/wp-content/uploads/2019/12/fb-login.png" width="30" height="30" class="d-inline-block align-top" alt="">
-   Dress Line
-  </a>
-
- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  </div>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav justify-content-center ">
-     <li class="nav-item active">
-        <a class="nav-link" href="profile.php"><i class="fas fa-home"></i>Home </a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-th-list"></i> Product</a>
-      </li>
-    </ul>
-		<!-- Search bar -->
-		<ul class="nav justify-content-center mr-auto ">
-		<div class="form-inline my-2 my-lg-0"> 
-		<input size="50" class="form-control mr-sm-2" id="search_txt" type="search" placeholder="i'm,shopping for..." aria-label="Search">
-		  <button class="btn btn-danger my-2 my-sm-0"  type="submit" id="search_btn">Search</button>
-		</div>
-		</ul>
-		
-	   <ul class="navbar-nav">
-	 <li class="nav-item active">
-        <a class="nav-link" href="#" ><i class="fas fa-search"></i> Tracking</a>
-      </li>
-	   <li class="nav-item active" >
-        <a class="nav-link" href="#"><i class="fas fa-star"></i> Complain</a>
-      </li>
- 			
-
-
-
-
-
-<!-- Sign Up Form -->
-<div class="btn-group">
-  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	Hi, <?php echo $_SESSION['cus_fname'];?> <!--nav bar name / login user fname-->
-  </button>
-  <div class="dropdown-menu dropdown-menu-right">
-    <button class="dropdown-item   btn btn-light " type="button">Cart</button>
-    <button class="dropdown-item   btn btn-light" type="button">Change Password</button>
-	<button class="dropdown-item btn btn-light" onclick="window.location='logout.php'"  type="button">Logout</button> <!-- login session reset-->
-  </div>
-</div>
-<!-- /signIn -->
-
-
-
-
-
-	
-	<!-- Button trigger modal -->
-
-
-
-
-	</ul>
-	  </div>
-	  
-	  
-	</nav>
-<!-- /navbar -->
+ 
 	  
 	  
 	  <!-- Large modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+ 
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="traking_model" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header  bg-warning">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user"></i>&nbspProduct Tracking</h5>
+      <div class="modal-header  bg-dark">
+        <h5 class="modal-title text-light" id="exampleModalLabel"><i class="fas fa-user"></i>&nbspProduct Tracking</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -289,10 +176,13 @@
             <h6>Order ID: OD45345345435</h6>
             <article class="card">
                 <div class="card-body row">
-                    <div class="col"> <strong>Estimated Delivery time:</strong> <br>29 nov 2019 </div>
+					 
+
+				   <div class="col"> <strong>Estimated Delivery time:</strong> <br>29 nov 2019 </div>
                     <div class="col"> <strong>Shipping BY:</strong> <br> BLUEDART, | <i class="fa fa-phone"></i> +1592222222228675986 </div>
                     <div class="col"> <strong>Status:</strong> <br> Picked by the cou222222222222rier </div>
                     <div class="col"> <strong>Tracking #:</strong> <br> BD04590352222222222222222294059 </div>
+                    <div class="col"> <strong>District #:</strong> <br> Ampara </div>
                 </div>
             </article>
             <div class="track">
@@ -439,6 +329,4 @@
   
  
   <!-- /.container -->
-	
-</body>
-</html>
+ 

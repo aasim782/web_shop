@@ -44,7 +44,10 @@
 <?php include "navbar.php" ?>
 
   <!-- Main Sidebar Container -->
-<?php  include "side_bar.php" ?>
+<?php  
+include "side_bar.php";
+include "bank_recipt_model.php";
+ ?>
  
 
   <!-- Content Wrapper. Contains page content -->

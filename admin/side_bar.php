@@ -113,6 +113,12 @@
                   <p>Delivered</p>
                 </a>
               </li>
+			     <li class="nav-item">
+                <a href="un_paid_order.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Unpaid</p>
+                </a>
+              </li>
             </ul>
           </li>
 		  

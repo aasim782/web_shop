@@ -1,7 +1,12 @@
--without login message show 
--wohtout login image click prd open
--without signin prduct name click prd open
--prd note prb solved(same qty again enter but different note there tha time recode update)
--phone number validation prb solve (reg include 94)
--agree button show hide coded
-" Ver 0.5.3 "
+-order table
+-pading coded  
+-shipping coded
+-process coded
+-deliver coded
+-unpaid coded
+-some icon added
+-panding payment verified status coded at my order page
+-tracking model  UI added 
+-recipt button show depends on bank deposit at(all order table and panding order table)
+-added back shadow at some button
+" Ver 0.5.4 "

@@ -44,11 +44,7 @@
 <?php include "navbar.php" ?>
 
   <!-- Main Sidebar Container -->
-<?php  include "side_bar.php" ;
-include "bank_recipt_model.php";
-
-
-?>
+<?php  include "side_bar.php" ?>
  
 
   <!-- Content Wrapper. Contains page content -->
@@ -61,8 +57,8 @@ include "bank_recipt_model.php";
         <div class="row">
         <div class="col-12 mt-3">
              <!-- TABLE: LATEST ORDERS -->
-            <div class="card card-success   shadow card-outline">
-            <div class="card-header bg-warning border-transparent">
+            <div class="card card-dark   shadow card-outline">
+            <div class="card-header bg-danger border-transparent">
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -75,7 +71,7 @@ include "bank_recipt_model.php";
 				<div class="row mt-3 ">
 			 
 						<div class=" col-sm-16 col-md-9  text-left p-1   ">
-					 	 <h2><span class="info-box-icon"><i class="fas fa-sync-alt"></i></span>  Panding orders</h2>
+					 	 <h2><span class="info-box-icon"><i class="fas fa-sync-alt"></i></span>  Unpaid orders</h2>
 						</div>
 							<div class="col-sm-16 col-md-3 text-right mb-3 ">
 							<div class="col-sm-12">
@@ -111,7 +107,7 @@ include "bank_recipt_model.php";
                       <th>Action</th>
                     </tr>
                     </thead>
-                     <tbody id="panding_orders">
+                     <tbody id="get_all_unpaid_orders">
                      
                     </tbody>
                   </table>

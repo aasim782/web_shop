@@ -353,7 +353,7 @@ category_count();
 	
 	 toastr.warning('You can edit now');
     var edit_pid = $(this).attr("category_edit_id"); //get the value from our selected product id
-	         $("#category_add_footer").html("<button type='submit' class='btn btn-success'  btn_val='"+edit_pid+"' id='category_update_btn_admin'>Update</button>");
+	 $("#category_add_footer").html("<button type='submit' class='btn btn-success'  btn_val='"+edit_pid+"' id='category_update_btn_admin'>Update</button>");
 	    $.ajax({
       url: "admin_action.php",
       method: "POST",
@@ -889,6 +889,54 @@ category_count();
 					
 		}
 		
+		
+		
+		
+		
+		
+		//get all process order  to admin processing table 
+	get_all_delivered_orders()	
+		function get_all_delivered_orders(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_all_delivered_orders:1},
+					success	:	function(data){
+						$("#all_delivered_orders").html(data);
+					}
+					})
+					
+		}
+		
+		
+		
+		
+		  
+  	//get all process order  to admin processing table 
+	get_all_unpaid_orders()	
+		function get_all_unpaid_orders(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_all_unpaid_orders:1},
+					success	:	function(data){
+						$("#get_all_unpaid_orders").html(data);
+					}
+					})
+					
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//get all customer 
 		get_all_customers()	
 		function get_all_customers(){
@@ -911,6 +959,68 @@ category_count();
 		
 		
 		
+		
+		//change panding order to process order
+			$('body').delegate('#order_accept_panding_btn','click',function() {
+			 event.preventDefault();
+				var ordid= $(this).attr('ordid');  
+			 
+	 	    	$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{change_panding_to_process:1,order_id:ordid},
+					success	:	function(data){
+						toastr.success('Order Accepted');
+						get_all_panding_orders();
+						all_customer_order();
+					}
+					})
+					
+					
+					
+			});
+
+
+	
+		 
+		
+		//change panding order to process order
+			$('body').delegate('#order_cancel_panding_btn','click',function() {
+			 event.preventDefault();
+			 var ordid= $(this).attr('ordid');  
+				alert(ordid);
+					
+					
+					
+			});
+		
+		
+			
+		 
+		
+		//change panding order to process order
+			$('body').delegate('#order_shipment_btn','click',function() {
+			 event.preventDefault();
+			 var ordid= $(this).attr('ordid');  
+			 
+						$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{change_process_to_shipment:1,order_id:ordid},
+					success	:	function(data){
+						toastr.success('Item shipped  to the customer');
+						all_customer_order();
+						get_all_process_orders()	
+					}
+					})
+					
+					
+			});
+		
+		
+		
+ 
+		 
 		
 		
 	//All order header .when click on top load the page 

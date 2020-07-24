@@ -102,6 +102,7 @@
                       <th>Product Name</th>
                       <th>Delivered Date</th>
                       <th>Recived Person Name</th>
+                      <th>Action </th>
                     </tr>
                     </thead>
                    <tbody id="all_delivered_orders" >

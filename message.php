@@ -1,4 +1,14 @@
 <!doctype html>
+ <?php
+
+
+ session_start();
+	if(!isset($_SESSION['cusid'])) //user loged or not check through the session
+	{
+		header("location:index.php");	 //access page
+	}
+
+ ?>
  
 <html lang="en">
   <head>
@@ -155,12 +165,7 @@
 		</ul>
 		
 	   <ul class="navbar-nav">
-	 <li class="nav-item active">
-        <a class="nav-link" href="#" ><i class="fas fa-search"></i>Tracking</a>
-      </li>
-	   <li class="nav-item active" >
-        <a class="nav-link" href="#" data-toggle="modal" data-target="#customer_complain_Model"   ><i class="fas fa-star"></i>Complain</a>
-      </li>
+	 
  			
 			
 			<!-- Sign Up Form -->

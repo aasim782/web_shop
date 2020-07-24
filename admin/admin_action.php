@@ -798,12 +798,14 @@ $run_query = mysqli_query($con,$brand_query);
  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
- FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3)" ;
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3) ORDER BY order_id ASC" ;
  $check_query = mysqli_query($con,$sql);
 
 $status_btn="";
 $action_btn="";
 		$i=1;
+		
+		 
 		while($row = mysqli_fetch_array($check_query))
 			{
 				$order_id = $row["order_id"];
@@ -822,30 +824,47 @@ $action_btn="";
 		if(($payment_status==1 && $order_status==0) || ($payment_status==2 && $order_status==0) || ($payment_status==3 && $order_status==0) )
 		{
 			 $status_btn=   "<span class='badge badge-warning'> Panding</span>";
-			 $action_btn=	"<button class='btn btn-success'>Accept</button> <button class='btn btn-danger'>Cancel</button>";
+			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id ' > Accept</button> 
+			 <button class='btn btn-danger shadow'>Cancel</button>";
 		}
 		
 		else if(($payment_status==1 && $order_status==1) || ($payment_status==2 && $order_status==1) || ($payment_status==3 && $order_status==1) )
 		{
 			 $status_btn=   "<span class='badge badge-info'> Processing</span>";
-			 $action_btn=	"<button class='btn btn-success'>Shipped</button>";
+			 $action_btn=	"<button class='btn btn-success shadow' id='order_shipment_btn' ordid='$order_id' >Shipped</button>";
 		}
 		else if($payment_status==0)
 		{
-			$action_btn= "<button class='btn btn-danger'>Message</button>";
+			$action_btn= "<button class='btn btn-danger shadow'>Message</button>";
 			$status_btn=   "<span class='badge badge-danger'> Uppaid</span>";
 		}
 		if(($payment_status==1 && $order_status==2) || ($payment_status==2 && $order_status==2) || ($payment_status==3 && $order_status==2) )
 		{
-			 $status_btn=   "<span class='badge badge-success'> shipped</span>";
-			 $action_btn=	"<button class='btn btn-success' disabled>Waiting for customer delivery</button>";
+			 $status_btn=   "<span class='badge badge-success' > shipped</span>";
+			 $action_btn=	"<button class='btn btn-success shadow' disabled>Waiting for customer delivery</button>";
 		}
 		
 		
-		
-		
-		
 		 
+ 	//recipt button show on all order table in admin	 
+	$sql_payment_category ="SELECT  payment_tbl.paymen_catg,payment_tbl.order_id,customer_ord_prds.order_status FROM payment_tbl,customer_ord_prds
+	where (payment_tbl.order_id = customer_ord_prds.order_id) && (payment_tbl.order_id=$order_id) && customer_ord_prds.order_status=0" ;
+	$check_query_payment_category = mysqli_query($con,$sql_payment_category);
+ 	$row1 = mysqli_fetch_array($check_query_payment_category);
+	$paymen_catg = $row1["paymen_catg"];
+		
+		
+		if($paymen_catg==2)
+		{
+		$recipt="<a href='' class='btn btn-info text-light shadow'  data-toggle='modal' data-target='#bank_recipt_model' ><i class='fa fa-list-alt'></i></a>";
+		}
+		else
+		{
+		$recipt="";
+		}
+	  
+		
+		
 		
 		echo " <tr class='text-center' >	
 					 <td><b>$i </b></td>
@@ -858,8 +877,9 @@ $action_btn="";
 					  </td>
                  
 					   <td>
-						$action_btn
+						$action_btn $recipt
                       </td>
+					   
                    </tr>
 				  
 					
@@ -937,7 +957,7 @@ $action_btn="";
 
 
  
-
+//all order filter filter
 
 if(isset($_POST["get_all_order_filter"]))
 	{
@@ -1042,12 +1062,12 @@ $action_btn="";
 
 
 
-//get all panding order  to admin panding table 
+//get all panding order  to admin panding table    order status ->0
  if(isset($_POST["get_all_panding_orders"])){
  
- $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
- ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
- FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=0) )" ;
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_qtry,customer_ord_prds.order_date, customer_ord_prds.product_id 
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.current_price_per_prd,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=0) ) ORDER BY order_id ASC" ;
  $check_query = mysqli_query($con,$sql);
  
 		$i=1;
@@ -1060,23 +1080,45 @@ $action_btn="";
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
-	 
+				$current_price_per_prd=$row["current_price_per_prd"];
+				$order_qtry=$row["order_qtry"];	
+	  
+ 	$sql_payment_category ="SELECT  payment_tbl.paymen_catg,payment_tbl.order_id,customer_ord_prds.order_status FROM payment_tbl,customer_ord_prds
+	where (payment_tbl.order_id = customer_ord_prds.order_id) && (payment_tbl.order_id=$order_id) && customer_ord_prds.order_status=0" ;
+	$check_query_payment_category = mysqli_query($con,$sql_payment_category);
+ 	$row1 = mysqli_fetch_array($check_query_payment_category);
+	$paymen_catg = $row1["paymen_catg"];
+		
+		
+		if($paymen_catg==2)
+		{
+		$recipt="<a href=''  class='btn btn-info text-light shadow' data-toggle='modal' data-target='#bank_recipt_model'><i class='fa fa-list-alt'></i></a>";
+		}
+		else
+		{
+		$recipt="";
+		}
+	  
 		echo " <tr class='text-center' >	
 					 <td><b>$i </b></td>
                       <td >   $order_id  </td>
                       <td> $order_date</td>
                       <td> $last_name</td>
                       <td>$product_name</td>
-                      <td   >
+                      <td>Rs.$current_price_per_prd.00</td>
+                      <td>$order_qtry</td>
+                      <td>
 					<span class='badge badge-warning'> Panding</span>
 					  </td>
                  
 					   <td>
-					<button class='btn btn-success'>Accept</button> <button class='btn btn-danger'>Cancel</button>
+					<button class='btn btn-success shadow' id='order_accept_panding_btn' ordid='$order_id ' >Accept</button> 
+					<button id='order_cancel_panding_btn' ordid='$order_id '  class='btn btn-danger shadow'>Cancel</button>
+					<button   ordid='$order_id '  class='btn btn-warning shadow' ><i class='fas fa-envelope text-light'></i></button>
+					$recipt
                       </td>
                    </tr>
-				  
-					
+			 
 					
 					";
 					
@@ -1091,12 +1133,12 @@ $action_btn="";
  
  
 
-//get all process order  to admin processing table 
+//get all process order  to admin processing table  order status ->1
  if(isset($_POST["get_all_process_orders"])){
  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
- FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=1) )" ;
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=1) ) order by order_id" ;
  $check_query = mysqli_query($con,$sql);
 
  
@@ -1122,7 +1164,7 @@ $action_btn="";
 					  </td>
                  
 					   <td>
-					<button class='btn btn-success'>Shipped</button>
+					<button class='btn btn-success shadow' id='order_shipment_btn' ordid='$order_id'>Shipped</button>
                       </td>
                    </tr>
 				  
@@ -1151,15 +1193,16 @@ $action_btn="";
  
  
  
- //get all process order  to admin processing table 
+ //get all shipped order  to admin shipped table  order status ->2
  if(isset($_POST["get_all_shipped_orders"])){
  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
- FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=2) )" ;
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=2) ) order by order_id" ;
  $check_query = mysqli_query($con,$sql);
  
 		$i=1;
+				
 		while($row = mysqli_fetch_array($check_query))
 			{
 				$order_id = $row["order_id"];
@@ -1182,8 +1225,74 @@ $action_btn="";
 					  </td>
                  
 					   <td>
-						<button class='btn btn-success' disabled>Waiting for customer delivery</button>
+						<button class='btn btn-success shadow' disabled>Waiting for customer delivery</button>
+						<button   ordid='$order_id'  class='btn btn-info shadow'><i class='fas fa-envelope'></i></button>
+						<a href=''  class='btn btn-warning remove shadow'><i class='fas fa-print'></i></a>
                       </td>
+
+                   </tr>
+				  
+					
+					
+					";
+					
+				$i++	;
+				
+				
+				
+			}
+	 
+	 
+	 
+ }
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ //get all deliver order  to admin deliver table  order status ->3
+ if(isset($_POST["get_all_delivered_orders"])){
+ 
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=3) ) order by order_id" ;
+ $check_query = mysqli_query($con,$sql);
+ 
+		$i=1;
+		while($row = mysqli_fetch_array($check_query))
+			{
+				$order_id = $row["order_id"];
+				$order_date = $row["order_date"];
+				$product_name = $row["product_name"];
+				$last_name = $row["last_name"];
+				$customer_note=$row["customer_note"];
+				$payment_status=$row["payment_status"];
+				$order_status=$row["order_status"];
+			  
+		
+		echo " <tr class='text-center' >	
+					 <td><b>$i </b></td>
+                      <td >   $order_id  </td>
+                      <td> $order_date</td>
+                      <td> $last_name</td>
+                 
+                      <td   >
+					   asdasda
+					  </td>
+                  <td   >
+					   asdasda
+					  </td>
+                 
+					   <td>
+						 <a href=''  class='btn btn-warning remove'><i class='fas fa-print'></i></a>
+						 <a href=''  class='btn btn-success remove'><i class='fas fa-envelope'></i></a>
+						 <a href=''  class='btn btn-danger remove'><i class='fa fa-trash-alt'></i></a>
+					 
+                      </td>
+
                    </tr>
 				  
 					
@@ -1200,6 +1309,68 @@ $action_btn="";
  
  
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ //get all unpaid order  to admin unpaid table 
+ if(isset($_POST["get_all_unpaid_orders"])){
+ 
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date,customer_ord_prds.order_qtry,customer_ord_prds.current_price_per_prd, customer_ord_prds.product_id 
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=0)) order by order_id" ;
+  $check_query = mysqli_query($con,$sql);
+ 
+		$i=1;
+		while($row = mysqli_fetch_array($check_query))
+			{
+				$order_id = $row["order_id"];
+				$order_date = $row["order_date"];
+				$product_name = $row["product_name"];
+				$last_name = $row["last_name"];
+				$customer_note=$row["customer_note"];
+				$payment_status=$row["payment_status"];
+				$order_status=$row["order_status"];
+			  	$current_price_per_prd=$row["current_price_per_prd"];
+				$order_qtry=$row["order_qtry"];
+		
+ 		echo " <tr class='text-center' >	
+					 <td><b>$i </b></td>
+                      <td >   $order_id  </td>
+                      <td> $order_date</td>
+                      <td> $last_name</td>
+                      <td>$product_name</td>
+                      <td>Rs.$current_price_per_prd.00</td>
+                      <td>$order_qtry</td>
+             
+                      <td>
+					<span class='badge badge-danger'> unpaid</span>
+					  </td>
+                 
+					   <td>
+	 
+					<button   ordid='$order_id'  class='btn btn-info'><i class='fas fa-envelope'></i></button>
+                      </td>
+                   </tr>
+			 
+					
+					";
+					
+				$i++	;
+			}
+	 
+	 
+	 
+	 
+ }
+
+ 
+
  
  
  
@@ -1247,10 +1418,23 @@ $action_btn="";
 
  
  
+  if(isset($_POST["change_panding_to_process"])){
+	  
+	  	$order_id = $_POST["order_id"];
+		$sql = "update customer_ord_prds set order_status='1' WHERE order_id = '$order_id'" ;
+		$check_query = mysqli_query($con,$sql);
+  }
  
  
  
  
+  
+  if(isset($_POST["change_process_to_shipment"])){
+	  
+	  	$order_id = $_POST["order_id"];
+		$sql = "update customer_ord_prds set order_status='2' WHERE order_id = '$order_id'" ;
+		$check_query = mysqli_query($con,$sql);
+  }
  
  
  

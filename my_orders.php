@@ -10,7 +10,11 @@
  ?>
 <html lang="en">
   <head>
-  <?php include "customer_reg.php"; ?>
+  <?php 
+	include "customer_reg.php";
+  	include "order_tracking.php";
+  ?>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -192,7 +196,7 @@
    	<ul class="list-group">
 		  <li class="list-group-item active">Orders</li>
 		  <li class="list-group-item"><a  href="my_orders.php" >All orders</a></li>
-		  <li class="list-group-item">Tracking</li>
+		  <li class="list-group-item" data-toggle="modal" data-target=".bd-example-modal-lg" >Tracking</li>
 		  <li class="list-group-item" > <a  href="#" data-toggle="modal" data-target="#customer_complain_Model" >Complain</a></li>
 		  <li class="list-group-item"> <a  href="message.php"  > Message</a> </li>
 		</ul>

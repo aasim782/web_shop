@@ -218,7 +218,7 @@ $(document).ready(function(){
 			//default validation values
 			var nameformat = /^[A-Za-z]+$/;; 
 			var emailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-			var phonenumberformat= /^\d{10}$/;
+			var phonenumberformat= /^\d{11}$/;
 			var postalcodeformat= /^\d{5}$/;
 			
 			
@@ -263,7 +263,7 @@ $(document).ready(function(){
 		
 				
 			}
-			else if(phone.length < 11  )
+			else if(phone.length <= 10 )
 			{
 						
 			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Incorrect Phone Number !</strong> Please inlude 94<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
