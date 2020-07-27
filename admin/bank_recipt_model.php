@@ -2,7 +2,7 @@
 <!--begin::Modal-->
 <div class="modal fade"  id="bank_recipt_model"  role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content" style="width:900px; ">
+        <div class="modal-content" style="width:800px; ">
             <div class="modal-header bg-info">
                 <h5 class="modal-title" id="">Bank Reciept</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -12,7 +12,7 @@
               <div class="modal-body">
         <form>
           <div class="form-group">
-            <img src="upload/E1943301_IS.jpeg" width="100%" height="50%">
+				<div id="bankslip_image_View"></div>
           </div>
          
         </form>
@@ -24,3 +24,4 @@
         </div>
     </div>
 </div>
+        

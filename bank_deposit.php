@@ -65,8 +65,14 @@
 		
 			<div class="custom-file ">
 				
-				  <input type="file" class="custom-file-input" id="upolod_slip_txt" lang="es">
-				  <label class="custom-file-label" for="customFileLang">Upload your receipt</label>
+		 <form  >
+         
+            <div > 
+                <input type="file" id="file" name="file" />
+             
+            </div>
+       
+				  
 				</div>
 
 		
@@ -79,9 +85,10 @@
 
       </div>
       <div class="modal-footer">
-        <button type="submit" id='bank_dep_btn' class="btn btn-danger">Send</button>
+      <input type="button" class="btn btn-danger" value="Upload" name="but_upload" id="but_upload">
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
+	  </form> <!-- /Customer Reg form -->
 	  </form> <!-- /Customer Reg form -->
     </div>
   </div>

@@ -776,38 +776,58 @@ complain_item_list();
 
 
 //bank payment
- $("#bank_dep_btn").click(function(){	
+ $("#but_upload").click(function(){	
 	event.preventDefault(); //prevent from the submision
-
-	var dep_datetxt = $("#de_datetxt").val(); 
+ 
+  
+ 	var dep_datetxt = $("#de_datetxt").val(); 
 	var dep_timetxt = $("#de_timetxt").val(); 
 	var branch_name_txt = $('#branch_nametxt').val();
-	var upolod_slip_txt = $('#upolod_slip_txt').val();
-
-		if(dep_datetxt == "" || dep_timetxt == "" || branch_name_txt == "" || upolod_slip_txt == "")
+	var files = $('#file')[0].files[0];
+	
+	if(dep_datetxt == "" || dep_timetxt == "" || branch_name_txt == "" 	|| typeof files == 'undefined')
 		{
 			$('#bank_dep_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 		}
 		else
 		{
-			 	 		$.ajax({
-					url		:	"action.php",
-					method	:	"POST",
-					data	:	{bank_dep:1,dep_date:dep_datetxt,dep_time:dep_timetxt,branch_name:branch_name_txt,upolod_slip:upolod_slip_txt},
-					success	:	function(data){
-							$('#bank_dep_alert_msg').html(data);
-							$('#customer_bankdep_form')[0].reset();
-								my_orders();
+			 //image upload
+				var fd = new FormData();
+               						 
+                fd.append('file',files);
+				fd.append('bank_dep', 1); //arguments
+				fd.append('dep_date',dep_datetxt); //arguments
+				fd.append('dep_time', dep_timetxt); //arguments
+				fd.append('branch_name',branch_name_txt); //arguments
+			 
+			 
+				
+                $.ajax({
+                    url:'action.php',
+                    type:'post',
+                    data:fd,
+                    contentType: false,
+                    processData: false,
+                    success:function(data){
+ 
+					$('#bank_dep_alert_msg').html(data);
+					$('#customer_bankdep_form')[0].reset();
+					
+						my_orders();
 						card_page_list(); //no need to refresh  it will be load all the orderd products
 						cart_prd_count();  // if i remive card qty decrease function call
 						card_container_btn();
 						cart_nav_list_total(); //order bedget count in navebutto list
 						orderd_prd_count();
-						}
-					})
+						 
+                    }
+                });
+			
 		}
+ 
+ 
 
-	
+
 
 })
 

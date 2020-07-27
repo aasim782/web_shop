@@ -1017,10 +1017,26 @@ category_count();
 					
 			});
 		
-		
+		//bank deposit slip view btn code
+			$('body').delegate('#bankslip_image_btn','click',function() {
+			 event.preventDefault();
+			 
+		 	 var ordid= $(this).attr('ordid');  
+			 
+		 		$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{bankslip_image_view:1,order_id:ordid},
+					success	:	function(data){
+				 
+								$("#bankslip_image_View").html(data);
+					}
+					})
+			 	
+					
+			});
 		
  
-		 
 		
 		
 	//All order header .when click on top load the page 

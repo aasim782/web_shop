@@ -185,6 +185,7 @@ include "bank_recipt_model.php";
                       <th>Date</th>
                       <th>Customer Name</th>
                       <th>Product Name</th>
+                      <th>Payment</th>
                       <th>Status</th>
                    
                       <th>Action</th>

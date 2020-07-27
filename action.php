@@ -1317,21 +1317,66 @@ echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 
 //bank deposit upoload process and place order
 if(isset($_POST["bank_dep"])){
-$customer_id = $_SESSION['cusid'];
+
+  
+ //bank deposit code
+		$customer_id = $_SESSION['cusid'];
 		$dep_date = $_POST["dep_date"];
 		$dep_time = $_POST["dep_time"];
 		$branch_name = $_POST["branch_name"];	
-		$upolod_slip_img = $_POST["upolod_slip"];	
- 
+	 
 
 $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=0)" ;
 $check_query = mysqli_query($con,$sql);
 $row = mysqli_fetch_array($check_query);
 $order_id = $row["order_id"];
 						
+$today= date('Y-m-d'); //get system dates
+
+  
+$orderid=$order_id.".";	
+		
+/* Getting file name */
+$filename = $_FILES['file']['name'];
+ 
+
+date_default_timezone_set('Asia/Kolkata');
+//define date and time
+$date = date('Y-m-d_H-i-s_', time());
+
+/* Location */
+$location = "./prg_img/"."bank_slip."."/";
+$uploadOk = 1;
+$imageFileType = pathinfo($filename,PATHINFO_EXTENSION);
+
+
+$new_file_name=$date.$orderid.$imageFileType;
+
+/* Valid extensions */
+$valid_extensions = array("jpg","jpeg","png");
+
+/* Check file extension */
+if(!in_array(strtolower($imageFileType), $valid_extensions)) {
+    	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File extension not suppoted !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+}
+else
+{
+	 
+			 if($uploadOk == 0){
+			     	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+			}else{
+			   /* Upload file */
+			   if(move_uploaded_file($_FILES['file']['tmp_name'],$location.$new_file_name)){
 				 
-						$today= date('Y-m-d'); //get system dates
-						
+			   }else{
+			     	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+			
+			   }
+			}
+				
+				
+				
+								
 						 
 							$sql = "update customer_ord_prds set payment_status=1 where customer_id= '$customer_id' && order_id = '$order_id' ";
 							mysqli_query($con,$sql);
@@ -1345,13 +1390,16 @@ $order_id = $row["order_id"];
 										$row = mysqli_fetch_array($check_query);
 											$payment_id = $row["payment_id"];
 	
-								$sql = "INSERT INTO `bank_dep_tbl`(`payment_id`,`dep_date`,`dep_time`,`branch_name`,`upolod_slip_img`) VALUES ($payment_id,'$dep_date','$dep_time','$branch_name','$upolod_slip_img')";
+								$sql = "INSERT INTO `bank_dep_tbl`(`payment_id`,`dep_date`,`dep_time`,`branch_name`,`upolod_slip_img`) VALUES ($payment_id,'$dep_date','$dep_time','$branch_name','$new_file_name')";
 									mysqli_query($con,$sql);
 									
 								echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong> Your order completed !</strong>Please wait until seller verify your payment<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
  
 										
 								}
+ 
+	
+			}	
  
 }
 

@@ -803,6 +803,8 @@ $run_query = mysqli_query($con,$brand_query);
 
 $status_btn="";
 $action_btn="";
+
+$recipt="";
 		$i=1;
 		
 		 
@@ -824,60 +826,84 @@ $action_btn="";
 		if(($payment_status==1 && $order_status==0) || ($payment_status==2 && $order_status==0) || ($payment_status==3 && $order_status==0) )
 		{
 			 $status_btn=   "<span class='badge badge-warning'> Panding</span>";
-			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id ' > Accept</button> 
-			 <button class='btn btn-danger shadow'>Cancel</button>";
+			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id ' ><i class='fa fa-check text-light'></i></button> 
+			 <button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>";
 		}
 		
 		else if(($payment_status==1 && $order_status==1) || ($payment_status==2 && $order_status==1) || ($payment_status==3 && $order_status==1) )
 		{
 			 $status_btn=   "<span class='badge badge-info'> Processing</span>";
-			 $action_btn=	"<button class='btn btn-success shadow' id='order_shipment_btn' ordid='$order_id' >Shipped</button>";
+			 $action_btn=	"<button class='btn btn-warning shadow' id='order_shipment_btn' ordid='$order_id' ><i class='fa fa-truck text-dark'></i></button>";
 		}
 		else if($payment_status==0)
 		{
-			$action_btn= "<button class='btn btn-danger shadow'>Message</button>";
-			$status_btn=   "<span class='badge badge-danger'> Uppaid</span>";
+			$action_btn= " ";
+			$status_btn=   "<span class='badge badge-danger'> Unpaid</span>";
 		}
 		if(($payment_status==1 && $order_status==2) || ($payment_status==2 && $order_status==2) || ($payment_status==3 && $order_status==2) )
 		{
 			 $status_btn=   "<span class='badge badge-success' > shipped</span>";
-			 $action_btn=	"<button class='btn btn-success shadow' disabled>Waiting for customer delivery</button>";
+			 $action_btn=	"<button class='btn btn-success shadow' disabled>Deliver</button>";
 		}
+ 
+	  
 		
-		
-		 
  	//recipt button show on all order table in admin	 
 	$sql_payment_category ="SELECT  payment_tbl.paymen_catg,payment_tbl.order_id,customer_ord_prds.order_status FROM payment_tbl,customer_ord_prds
-	where (payment_tbl.order_id = customer_ord_prds.order_id) && (payment_tbl.order_id=$order_id) && customer_ord_prds.order_status=0" ;
+	where (payment_tbl.order_id = customer_ord_prds.order_id) && (payment_tbl.order_id=$order_id) " ;
 	$check_query_payment_category = mysqli_query($con,$sql_payment_category);
  	$row1 = mysqli_fetch_array($check_query_payment_category);
 	$paymen_catg = $row1["paymen_catg"];
+	$order_status = $row1["order_status"];
 		
 		
-		if($paymen_catg==2)
+$msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'></i></button>";
+
+		if($paymen_catg==1)
 		{
-		$recipt="<a href='' class='btn btn-info text-light shadow'  data-toggle='modal' data-target='#bank_recipt_model' ><i class='fa fa-list-alt'></i></a>";
+		$recipt="";
+		$paymen_catg_img="<img src='upload/1.jpg' width='50px' height='30px'>";
+		}
+		else if( $paymen_catg==2)
+		{
+		$paymen_catg_img="<img src='upload/2.jpg' width='50px' height='30px'>";
+			  if($paymen_catg==2 && $order_status==0)
+						{
+						$recipt="<a href='' class='btn btn-info text-light shadow' ordid='$order_id' id='bankslip_image_btn' data-toggle='modal' data-target='#bank_recipt_model' ><i class='fa fa-list-alt'></i></a>";
+							 
+						}else
+						{
+							$recipt="";
+						 
+						}
+
+		}
+		else if($paymen_catg==3)
+		{
+		$recipt="";
+		$paymen_catg_img="<img src='upload/3.jpg' width='50px' height='30px'>";
 		}
 		else
 		{
-		$recipt="";
+			$paymen_catg_img="<span class='badge badge-danger'> Unpaid</span>";
+			$recipt="";
 		}
 	  
 		
-		
-		
+		 
 		echo " <tr class='text-center' >	
 					 <td><b>$i </b></td>
                       <td >   $order_id  </td>
                       <td> $order_date</td>
                       <td> $last_name</td>
                       <td>$product_name</td>
-                      <td   >
-					   $status_btn
+                      <td>$paymen_catg_img</td>
+                      <td >
+					   $status_btn    
 					  </td>
                  
 					   <td>
-						$action_btn $recipt
+						$action_btn  $recipt $msg
                       </td>
 					   
                    </tr>
@@ -1082,22 +1108,30 @@ $action_btn="";
 				$order_status=$row["order_status"];
 				$current_price_per_prd=$row["current_price_per_prd"];
 				$order_qtry=$row["order_qtry"];	
-	  
- 	$sql_payment_category ="SELECT  payment_tbl.paymen_catg,payment_tbl.order_id,customer_ord_prds.order_status FROM payment_tbl,customer_ord_prds
-	where (payment_tbl.order_id = customer_ord_prds.order_id) && (payment_tbl.order_id=$order_id) && customer_ord_prds.order_status=0" ;
+	   
+	//recipt button show on all order table in admin	 
+	$sql_payment_category ="SELECT  payment_tbl.paymen_catg,payment_tbl.order_id,customer_ord_prds.order_status FROM payment_tbl,customer_ord_prds
+	where (payment_tbl.order_id = customer_ord_prds.order_id) && (payment_tbl.order_id=$order_id) " ;
 	$check_query_payment_category = mysqli_query($con,$sql_payment_category);
  	$row1 = mysqli_fetch_array($check_query_payment_category);
 	$paymen_catg = $row1["paymen_catg"];
 		
-		
-		if($paymen_catg==2)
-		{
-		$recipt="<a href=''  class='btn btn-info text-light shadow' data-toggle='modal' data-target='#bank_recipt_model'><i class='fa fa-list-alt'></i></a>";
-		}
-		else
+		if($paymen_catg==1)
 		{
 		$recipt="";
+		$paymen_catg_img="<img src='upload/1.jpg' width='50px' height='30px'>";
 		}
+		if($paymen_catg==2)
+		{
+		$recipt="<a href='' class='btn btn-info text-light shadow' ordid='$order_id' id='bankslip_image_btn' data-toggle='modal' data-target='#bank_recipt_model' ><i class='fa fa-list-alt'></i></a>";	
+		$paymen_catg_img="<img src='upload/2.jpg' width='50px' height='30px'>";
+		}
+		if($paymen_catg==3)
+		{
+		$recipt="";
+		$paymen_catg_img="<img src='upload/3.jpg' width='50px' height='30px'>";
+		}
+	 
 	  
 		echo " <tr class='text-center' >	
 					 <td><b>$i </b></td>
@@ -1107,15 +1141,17 @@ $action_btn="";
                       <td>$product_name</td>
                       <td>Rs.$current_price_per_prd.00</td>
                       <td>$order_qtry</td>
+                      <td>$paymen_catg_img</td>
                       <td>
 					<span class='badge badge-warning'> Panding</span>
 					  </td>
                  
 					   <td>
-					<button class='btn btn-success shadow' id='order_accept_panding_btn' ordid='$order_id ' >Accept</button> 
-					<button id='order_cancel_panding_btn' ordid='$order_id '  class='btn btn-danger shadow'>Cancel</button>
-					<button   ordid='$order_id '  class='btn btn-warning shadow' ><i class='fas fa-envelope text-light'></i></button>
-					$recipt
+					<button class='btn btn-success shadow' id='order_accept_panding_btn' ordid='$order_id ' alt='asdas' ><i class='fa fa-check text-light'></i> </button> 
+					<button id='order_cancel_panding_btn' ordid='$order_id '  class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>
+					$recipt 
+					<button   ordid='$order_id '  class='btn btn-dark shadow' ><i class='fas fa-envelope text-light'></i></button>
+					 
                       </td>
                    </tr>
 			 
@@ -1165,6 +1201,7 @@ $action_btn="";
                  
 					   <td>
 					<button class='btn btn-success shadow' id='order_shipment_btn' ordid='$order_id'>Shipped</button>
+					<button   ordid='$order_id '  class='btn btn-dark shadow' ><i class='fas fa-envelope text-light'></i></button>
                       </td>
                    </tr>
 				  
@@ -1227,7 +1264,9 @@ $action_btn="";
 					   <td>
 						<button class='btn btn-success shadow' disabled>Waiting for customer delivery</button>
 						<button   ordid='$order_id'  class='btn btn-info shadow'><i class='fas fa-envelope'></i></button>
+						<button   ordid='$order_id '  class='btn btn-dark shadow' ><i class='fas fa-envelope text-light'></i></button>
 						<a href=''  class='btn btn-warning remove shadow'><i class='fas fa-print'></i></a>
+						
                       </td>
 
                    </tr>
@@ -1434,6 +1473,24 @@ $action_btn="";
 	  	$order_id = $_POST["order_id"];
 		$sql = "update customer_ord_prds set order_status='2' WHERE order_id = '$order_id'" ;
 		$check_query = mysqli_query($con,$sql);
+  }
+ 
+ 
+ 
+  
+  
+  if(isset($_POST["bankslip_image_view"])){
+	
+	 	$order_id = $_POST["order_id"];
+		
+$sql ="SELECT payment_tbl.payment_id,payment_tbl.order_id,bank_dep_tbl.upolod_slip_img,bank_dep_tbl.payment_id FROM payment_tbl,bank_dep_tbl
+ where (payment_tbl.payment_id = bank_dep_tbl.payment_id)  && (payment_tbl.order_id=$order_id)" ;
+$check_query = mysqli_query($con,$sql);
+$row = mysqli_fetch_array($check_query);
+$image_name = $row["upolod_slip_img"];
+	  
+	  	 echo " <img src='../prg_img/bank_slip/$image_name' width='100%' height='50%'>";
+ 
   }
  
  

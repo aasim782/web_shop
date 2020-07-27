@@ -46,8 +46,6 @@
   <!-- Main Sidebar Container -->
 <?php  include "side_bar.php" ;
 include "bank_recipt_model.php";
-
-
 ?>
  
 
@@ -107,6 +105,7 @@ include "bank_recipt_model.php";
                       <th>Product Name</th>
                       <th>Price</th>
                       <th>Qty</th>
+                      <th>Payment</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>

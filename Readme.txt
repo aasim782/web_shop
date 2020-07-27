@@ -1,12 +1,3 @@
--order table
--pading coded  
--shipping coded
--process coded
--deliver coded
--unpaid coded
--some icon added
--panding payment verified status coded at my order page
--tracking model  UI added 
--recipt button show depends on bank deposit at(all order table and panding order table)
--added back shadow at some button
-" Ver 0.5.4 "
+-bankslip image upload option coded
+-bankslip view option at admin panel coded
+" Ver 0.5.5 "
