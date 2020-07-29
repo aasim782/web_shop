@@ -385,8 +385,8 @@ $(document).ready(function(){
 		event.preventDefault();
 		var pid_val= $(this).attr('pid'); //get the value from our self pid attribute pid 
 		var session_val= $(this).attr('session_val'); //get the value from our self pid attribute pid 
-	  
-		
+ 
+		 
 			 if(session_val=="")
 			 {
 			 window.open("unreg_product_view.php?pid="+pid_val+"","_self");
@@ -750,9 +750,8 @@ complain_item_list();
 
 	var customer_ord_id = $("#complain_item_list").val(); 
 	var complain_message = $('#complain_messagetxt').val();
- 
- 
-	if(complain_message == "" || customer_ord_id=="Please Select Order ID.." )
+  
+	if(complain_message == "" || customer_ord_id == "null" )
 		{
 			$('#customer_complain_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 		}
@@ -773,6 +772,47 @@ complain_item_list();
 	
 
 })
+
+
+
+
+
+
+
+
+
+
+
+ 
+  //complain about orderd product
+  $("#customer_feedback_btn").click(function(){	
+	event.preventDefault(); //prevent from the submision
+ 
+	var feedback_messager_txt = $('#feedback_messagetxt').val();
+ 
+ 
+	if(feedback_messager_txt == "")
+		{
+			$('#customer_feedback_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+		}
+		else{
+			 		$.ajax({
+					url		:	"action.php",
+					method	:	"POST",
+					data	:	{feedback_msg:1,feedback_message:feedback_messager_txt},
+					success	:	function(data){
+					$('#customer_feedback_msg').html(data);
+						  $('#customer_feedback_frm')[0].reset();
+						  	
+					
+					}
+					})
+		}
+
+	
+
+})
+
 
 
 //bank payment

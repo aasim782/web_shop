@@ -953,9 +953,46 @@ category_count();
 		}
 		
 		
+				
+	
 		
 		
 		
+		
+		
+		 //get all customer feedback
+		get_all_customers_feedback();	
+		function get_all_customers_feedback(){
+ 
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_all_customers_feedback:1},
+					success	:	function(data){
+					 
+						$("#get_all_customers_feedback").html(data);
+					}
+					})
+					
+		}
+		
+		
+		
+			//get all customer complain
+		get_all_customers_complain()	
+		function get_all_customers(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_all_customers_complain:1},
+					success	:	function(data){
+						$("#get_all_customers_complain").html(data);
+						
+					}
+					})
+					
+		}
 		
 		
 		

@@ -248,22 +248,16 @@
        
 		
 	   <!-- password change Form -->
-	 <form id="customer_complian_form" >
-	 		<div id="customer_complain_msg" ></div>
+	 <form id="customer_feedback_frm" >
+	 		<div id="customer_feedback_msg" ></div>
 		  <div class="form-row justify-content-center ">
-		<div class="form-group col-md-6 ">
-      
-      <select id="complain_item_list" class="form-control ">
-	  
-      </select>
-    </div>
-			
+	 
 			</div>
 	<div class="form-row">
 	 
 	<div class="col-12">
-      <label for="validationCustom04">Complain Message</label>
-         <textarea class="form-control" id="complain_messagetxt"  name="complain_message"  placeholder="Message" rows="10"></textarea>
+      <label for="validationCustom04">Send your Feedback</label>
+         <textarea class="form-control" id="feedback_messagetxt"  name="feedback_message"  placeholder="Feedback" rows="10"></textarea>
 		 </div>
     </div>
       </div>

@@ -198,6 +198,7 @@
 		  <li class="list-group-item"><a  href="my_orders.php" >All orders</a></li>
 		  <li class="list-group-item" data-toggle="modal" data-target=".bd-example-modal-lg" >Tracking</li>
 		  <li class="list-group-item" > <a  href="#" data-toggle="modal" data-target="#customer_complain_Model" >Complain</a></li>
+		  <li class="list-group-item" > <a  href="#" data-toggle="modal" data-target="#customer_feedback_Model" style="cursor: pointer;">Feedback</a></li>
 		  <li class="list-group-item"> <a  href="message.php"  > Message</a> </li>
 		</ul>
     </div>

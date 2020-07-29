@@ -75,7 +75,7 @@
 						</div>
 							<div class="col-sm-16 col-md-3 text-right mb-3 ">
 							<div class="col-sm-12">
-							
+						<!--	
 					 <div class="input-group input-group-sm">
 					 <input class="form-control form-control-navbar" type="search" id="product_filter" placeholder="Search" aria-label="Search" autocomplete="off">
 					<div class="input-group-append">
@@ -83,7 +83,7 @@
 						<i class="fas fa-search"></i>
 					</button>
 					</div>
-					</div>
+					</div>-->
 					
 						</div>
 						</div>
@@ -91,24 +91,16 @@
 						  
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
+            <div class="card-body p-0">
                 <div class="table-responsive">
                   <table class="table m-0">
                     <thead >
                     <tr class='text-center  shadow-sm bg-dark'>
-                      <th>No</th>
-                      <th> </th>
-                      <th>Fistname</th>
-                      <th>Lastname</th>
-					  <th>Email</th>
-                      <th>Phone</th>
-                      <th>Address</th>
-                      <th>City  </th>
-                      <th>Postal</th>
+            
              
                     </tr>
                     </thead>
-                   <tbody id="get_all_customer_feedback" >				 
+                   <tbody id="get_all_customers_feedback" >				 
                     </tbody>
                   
                   </table>

@@ -96,19 +96,11 @@
                   <table class="table m-0">
                     <thead >
                     <tr class='text-center  shadow-sm bg-dark'>
-                      <th>No</th>
-                      <th> </th>
-                      <th>Fistname</th>
-                      <th>Lastname</th>
-					  <th>Email</th>
-                      <th>Phone</th>
-                      <th>Address</th>
-                      <th>City  </th>
-                      <th>Postal</th>
+            
              
                     </tr>
                     </thead>
-                   <tbody id="get_all_customer_complain" >				 
+                   <tbody id="get_all_customers_complain" >				 
                     </tbody>
                   
                   </table>

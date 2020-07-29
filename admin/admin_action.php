@@ -838,7 +838,8 @@ $recipt="";
 		else if($payment_status==0)
 		{
 			$action_btn= " ";
-			$status_btn=   "<span class='badge badge-danger'> Unpaid</span>";
+			$status_btn=   "<span class='badge badge-danger'> Unpaid</span> ";
+			
 		}
 		if(($payment_status==1 && $order_status==2) || ($payment_status==2 && $order_status==2) || ($payment_status==3 && $order_status==2) )
 		{
@@ -886,7 +887,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 		else
 		{
 			$paymen_catg_img="<span class='badge badge-danger'> Unpaid</span>";
-			$recipt="";
+			$recipt="<button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>";
 		}
 	  
 		
@@ -1394,6 +1395,7 @@ $action_btn="";
 					   <td>
 	 
 					<button   ordid='$order_id'  class='btn btn-info'><i class='fas fa-envelope'></i></button>
+					<button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>
                       </td>
                    </tr>
 			 
@@ -1455,6 +1457,129 @@ $action_btn="";
 	 
  }
 
+
+
+
+ 
+  //get all customers complain to admin customer complain table  
+  //complain -1 , feedback -2
+ if(isset($_POST["get_all_customers_complain"])){
+ 
+ $sql ="SELECT comments_tbl.description,customer_tbl.first_name,customer_tbl.last_name,comments_tbl.customer_ord_id 
+ from comments_tbl,customer_tbl,customer_ord_prds
+ where (comments_tbl.customer_ord_id =customer_ord_prds.customer_ord_id) && (comments_tbl.customer_id=customer_tbl.customer_id)&& comments_tbl.comment_type='1'" ;
+ $check_query = mysqli_query($con,$sql);
+ 
+		$i=1;
+		while($row = mysqli_fetch_array($check_query))
+			{
+				$description = $row["description"];
+				$first_name = $row["first_name"];
+				$last_name = $row["last_name"];
+				$customer_ord_id = $row["customer_ord_id"];
+			 
+		 
+			  
+		
+		echo " <tr class='text-center shadow-sm rounded-sm' >	
+					 <td>
+                   
+				   	  <div class='row mt-2 '>
+								<div class='col-sm'>
+							<p class='card-text text-left'>Customer Name: <b>$first_name $last_name </b> </p>
+								</div>	<div class='col-sm'>
+										<p class='card-text text-center'><b></b> </p>
+								</div>
+								
+								<div class='col-sm'>
+								<p class='card-text text-right'>Item ID :<b>$customer_ord_id </b> </p>
+								</div>	
+								</div>	
+							<p class='card-text mt-2  '>$description <small><b></b></small></p>
+							  </div>
+								
+
+								<div class='btn-group mt-2  '>
+										<a href='' class='btn btn-warning mr-2 rounded '><i class='fa fa-check'></i> Accept </a>
+ 
+										<a href='message.php' class='btn btn-danger mr-2  rounded'><i class='fa fa-times'></i> Cancel</a>
+										<a href='message.php' class='btn btn-dark mr-2  rounded'><i class='fa fa-sms'></i> message</a>
+					
+								 </div>
+						  </div>
+						  </div>
+						</div>
+				   </td>
+					 </tr>
+					
+					";
+					
+				$i++	;
+			}
+	 
+	 
+	 
+ }
+
+
+
+ 
+
+
+
+
+ //get all customers complain to admin customer complain table  
+  //complain -1 , feedback -2
+ if(isset($_POST["get_all_customers_feedback"])){
+  $sql ="SELECT comments_tbl.description,comments_tbl.comment_type 
+  from comments_tbl where  comments_tbl.comment_type='2' " ;
+ $check_query = mysqli_query($con,$sql);
+ 
+		$i=1;
+		while($row = mysqli_fetch_array($check_query))
+			{
+				$description = $row["description"];
+				 
+		
+		echo " <tr class='text-center shadow-sm rounded-sm' >	
+					 <td>
+                   
+				   	  <div class='row mt-2 '>
+								<div class='col-sm'>
+						 
+								</div>	<div class='col-sm'>
+										<p class='card-text text-center'><b></b> </p>
+								</div>
+								
+								<div class='col-sm'>
+								<p class='card-text text-right'> <b> </b> </p>
+								</div>	
+								</div>	
+							<p class='card-text mt-2  '>$description <small><b></b></small></p>
+							  </div>
+								
+
+								<div class='btn-group mt-2  '>
+										<a href='' class='btn btn-warning mr-2 rounded '><i class='fa fa-check'></i> Accept </a>
+ 
+										<a href='message.php' class='btn btn-danger mr-2  rounded'><i class='fa fa-times'></i> Cancel</a>
+ 
+					
+								 </div>
+						  </div>
+						  </div>
+						</div>
+				   </td>
+					 </tr>
+					
+					";
+					
+				$i++	;
+			}
+	 
+	 
+	 
+ }
  
  
   if(isset($_POST["change_panding_to_process"])){

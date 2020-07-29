@@ -81,7 +81,7 @@
 		
 	   <ul class="navbar-nav">
 	 <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-star"></i>Feedback</a>
+        <a class="nav-link"   data-toggle="modal" data-target="#customer_feedback_Model" style="cursor: pointer;"><i class="fas fa-star"></i>Feedback</a>
       </li>
 	   <li class="nav-item active" >
      
@@ -279,29 +279,27 @@
 		     </div>
 		  <!-- /.row --> 
 		  
-		  
-						<div class="border content-center">
-		  
-	 
-					  <ul class="pagination " id="pagenumber">
-					
-						
-					  </ul>
-			 
-					</div>
+		   
 					
 	</div>
 	<!-- /card-body -->
 				 		
-				  
-				   <!-- footer end --
-				   
+		<div class="card-footer text-right" style="background-color:white;">
+			  		 <!-- next button/pagination-->
+						<nav aria-label="asdasd" class="nav justify-content-center">
+					  <ul class="pagination" id="pagenumber">
+					
+						
+					  </ul>
+					</nav>
+				</div>
 				   <!-- footer end -->
 				
 				
 				</div>
 	
 			</div>
+			
 			    <!-- card end -->
 			
  

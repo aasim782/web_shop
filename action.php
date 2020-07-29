@@ -69,6 +69,7 @@ if(isset($_POST["brand"])){
 
 //define a footer number
 if(isset($_POST["page_footer_num"])){
+	
 	$sql = "SELECT * FROM product_tbl where active=1";
 	$run_query = mysqli_query($con,$sql);
 	$count = mysqli_num_rows($run_query);
@@ -83,7 +84,7 @@ if(isset($_POST["page_footer_num"])){
 
 //all product without filter creiteria
 if(isset($_POST["product"])){
-	
+	@$customer_id = $_SESSION['cusid'] ;
 	$page_number_limit=9; //per page have 9 products
 	
 	if(isset($_POST["setpagenumber"])){
@@ -115,9 +116,9 @@ if(isset($_POST["product"])){
 			echo "
 			     <div class='col-4 mb-3' >
             <div class='card shadow-sm'> 
-			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b style='cursor: pointer;' id='particular_product_search_btn'  pid='$product_id'>$product_name</b>
+			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b style='cursor: pointer;' id='particular_product_search_btn' session_val='$customer_id'   pid='$product_id'>$product_name</b>
 			
-		<button type='button' id='particular_product_search_btn'  pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
+		<button type='button' id='particular_product_search_btn' session_val='$customer_id'  pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
 					<div style='padding-top:1px;' >
 					<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
@@ -128,17 +129,17 @@ if(isset($_POST["product"])){
 			</div>
 			
 		   <div class='text-center' >
-			<img  class='card-img-bottom text-center '  id='particular_product_search_btn'  pid='$product_id' src='admin/upload/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
+			<img  class='card-img-bottom text-center '  id='particular_product_search_btn'  session_val='$customer_id'  pid='$product_id' src='admin/upload/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
 			</div>
          
     <div class='form-group row justify-content-center'>
 
         <label for='inputPassword' class='p-1'>QTY :</label>
         <div class='col-sm-4'>
-            <input type='number' class='form-control' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
+            <input type='number' class='form-control' min='1' size='2' session_val='$customer_id'  pid='$product_id' value='1'  id='qty-$product_id' >
 		</div>
 		</div>
-	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
+	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' session_val='$customer_id'  pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
 	<div class='text-center pt-1' style='background-color:#fffff;'><label for='class_type' ><h4><span class=' label label-primary' align='center'>&nbsp Rs.$product_price.00 &nbsp </span></h4></label>	</div>
 			</div>
             </div>
@@ -1274,7 +1275,7 @@ $sql = "SELECT  customer_ord_prds.customer_ord_id,customer_ord_prds.product_id
 		AND (customer_ord_prds.customer_id = '$customer_id' and (customer_ord_prds.payment_status=1 or  customer_ord_prds.payment_status=2 or customer_ord_prds.payment_status=3))" ;
 $check_query = mysqli_query($con,$sql);
 
-	echo " <option >Please Select Order .. </option>";
+	echo " <option value='null'>Please Select Order .. </option>";
 			while($row = mysqli_fetch_array($check_query))
 						{	$product_id = $row["product_id"];
 							$customer_ord_id = $row["customer_ord_id"];
@@ -1300,13 +1301,14 @@ $check_query = mysqli_query($con,$sql);
 
 
 
-//complain msg insert in to table
+//complain msg insert in to table 
+//comments type :- complain-1,Feedback-2
 if(isset($_POST["complain_msg"])){
 $customer_id = $_SESSION['cusid'] ;
 $customer_ord_id = $_POST['customer_ord_ids'] ;
 $complain_message = $_POST['complain_messages'] ;
 
-$sql = "INSERT INTO `comments_tbl` (comments_id,customer_id,comment_type,customer_ord_id,description) VALUES (NULL, $customer_id,'complain' ,$customer_ord_id, '$complain_message')";
+$sql = "INSERT INTO `comments_tbl` (comments_id,customer_id,comment_type,customer_ord_id,description) VALUES (NULL, $customer_id,'1' ,$customer_ord_id, '$complain_message')";
 $check_query = mysqli_query($con,$sql);
 
 echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Complain !</strong> Successfully send to the seller<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
@@ -1314,6 +1316,36 @@ echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 
 
 }
+
+
+
+
+
+
+
+//feedback msg insert in to table 
+//comments type :- complain-1,Feedback-2
+if(isset($_POST["feedback_msg"])){
+$customer_id = $_SESSION['cusid'] ;
+$feedback_message = $_POST['feedback_message'] ;
+
+$sql = "INSERT INTO `comments_tbl` (comments_id,customer_id,comment_type,customer_ord_id,description) VALUES (NULL, $customer_id,'2','Null', '$feedback_message')";
+$check_query = mysqli_query($con,$sql);
+ 
+
+echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Complain !</strong> Successfully send<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+
+
+}
+
+
+
+
+
+
+
+
+
 
 //bank deposit upoload process and place order
 if(isset($_POST["bank_dep"])){
