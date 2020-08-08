@@ -1,3 +1,5 @@
+ 
+  <?php  include "db_backup.php"; ?>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -24,7 +26,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="dashboard.php" class="nav-link active">
+            <a href="index.php" class="nav-link active">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Dashboard
@@ -151,9 +153,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Brand</p>
+                  <p>Add banner</p>
                 </a>
               </li>
               
@@ -202,38 +204,30 @@
 		  
 		  
 		  
-		      <li class="nav-item has-treeview">
+		    
+		  
+		  	   <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-envelope"></i>
+              <i class="nav-icon fa fa-university"></i>
               <p>
-                Messages
+                  Courier service
                 <i class="fas fa-angle-left right"></i>
                 <span class="badge badge-info right">1500</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+              
+             
+          <li class="nav-item">
+                <a href="../admin/cori_login.php"  target="_blank" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Panding Orders</p>
+                  <p>Courier service login</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Completed Orders</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Brand</p>
-                </a>
-              </li>
+         
               
             </ul>
           </li>
-		  
 		  
 		   <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -246,7 +240,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Sales Reports</p>
                 </a>
@@ -255,10 +249,22 @@
               
             </ul>
           </li>
-		  <li class="nav-item">
-            <a href="logout.php" class="nav-link">
-              <i class="nav-icon fa fa-cogs"></i>
+		  
+   <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-envelope"></i>
               <p>
+                Messages
+                 
+                <span class="badge badge-info right">1500</span>
+              </p>
+            </a>
+        
+          </li>
+		  <li class="nav-item"  data-toggle="modal" data-target="#db_backup_Model" style="cursor: pointer;">
+            <a   class="nav-link">
+              <i class="nav-icon fa fa-cogs"></i>
+              <p >
 				Databse backup
                 <span class="right badge badge-danger">New</span>
               </p>

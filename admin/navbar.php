@@ -91,32 +91,44 @@
         </div>
       </li>
       <!-- Notifications Dropdown Menu -->
+	  
+	  
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-warning navbar-badge" id="total_orders_count"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header">15 Notifications</span>
+          <span class="dropdown-header" id="total_orders_count" >15 Notifications</span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
+          <a href="pending_order.php" class="dropdown-item">
+            <i class="fas fa-sync-alt mr-2"></i>Panding orders
+            <span class="float-right text-muted text-sm" id="count_total_panding_order_noti"></span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
+          <a href="processing_order.php" class="dropdown-item">
+            <i class="fa fa-spinner mr-2"></i> Processing Orders
+            <span class="float-right text-muted text-sm"  id="count_total_process_order_noti"> </span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
+          <a href="un_paid_order.php" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i>Unpaid Orders
+            <span class="float-right text-muted text-sm" id="count_total_unpaid_order_noti"></span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+		    <a href="shipped_order.php" class="dropdown-item">
+            <i class="fa fa-truck mr-2"></i>Shipped Orders
+            <span class="float-right text-muted text-sm" id="count_total_shipped_order_noti"></span>
+          </a>
+		   <div class="dropdown-divider"></div>
+          <a href="all_orders.php" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
+	  
+	  
+	  
+	  
+	  
          <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Product

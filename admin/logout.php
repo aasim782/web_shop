@@ -1,8 +1,18 @@
 <?php 
 session_start();
-unset($_SESSION['cusid']); //reset the cusid session
-unset($_SESSION['cus_fname']); //reset the fname session
-unset($_SESSION['adminid']); //reset the fname session
-header("location:../admin/login.php"); //aceess page
+
+if($_SESSION['cour_user_id'])
+{
+unset($_SESSION['cour_user_id']); //reset the cori_id session
+ header("location:../admin/cori_login.php"); //aceess page
+}
+else if($_SESSION['adminid'])
+{ 
+	unset($_SESSION['adminid']); //reset admin session
+	header("location:../admin/login.php"); //aceess page
+}
 
 ?>
+
+
+

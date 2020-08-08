@@ -63,14 +63,12 @@ include "bank_recipt_model.php";
 
               <div class="info-box-content" >
                 <span class="info-box-text">Pending orders</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-number" id="count_total_panding_order"> </span>
 
                 <div class="progress">
                   <div class="progress-bar" style="width: 70%"></div>
                 </div>
-                <span class="progress-description">
-                  70% Increase in 30 Days
-                </span>
+               
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -82,14 +80,12 @@ include "bank_recipt_model.php";
               <span class="info-box-icon"><i class="fa fa-spinner"></i></span>
               <div class="info-box-content" >
                 <span class="info-box-text"> Processing</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-number"  id="count_total_process_order"> </span>
 
                 <div class="progress">
                   <div class="progress-bar" style="width: 70%"></div>
                 </div>
-                <span class="progress-description">
-                  70% Increase in 30 Days
-                </span>
+             
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -102,34 +98,30 @@ include "bank_recipt_model.php";
 
               <div class="info-box-content" >
                 <span class="info-box-text">Shipped</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-number" id="count_total_shipped_order"></span>
 
                 <div class="progress">
                   <div class="progress-bar" style="width: 70%"></div>
                 </div>
-                <span class="progress-description">
-                  70% Increase in 30 Days
-                </span>
+           
               </div>
               <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12  mt-3"  id="total_delivered_order"  style="cursor: pointer;">
-            <div class="info-box shadow  bg-gradient-secondary">
-              <span class="info-box-icon"><i class="fa fa-chevron-circle-up"></i></span>
+          <div class="col-md-3 col-sm-6 col-12  mt-3"  id="total_unpaid_order"  style="cursor: pointer;">
+            <div class="info-box shadow  bg-danger">
+              <span class="info-box-icon"><i class="fa fa-ban"></i></span>
 
               <div class="info-box-content" >
-                <span class="info-box-text">Delivered</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-text">Unpaid Orders</span>
+                <span class="info-box-number" id="count_total_unpaid_order"></span>
 
                 <div class="progress">
                   <div class="progress-bar" style="width: 70%"></div>
                 </div>
-                <span class="progress-description">
-                  70% Increase in 30 Days
-                </span>
+              
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -182,7 +174,7 @@ include "bank_recipt_model.php";
                     <tr class='text-center bg-dark shadow-sm'>
                       <th>No</th>
                       <th>Order ID</th>
-                      <th>Date</th>
+                      <th>Order Date</th>
                       <th>Customer Name</th>
                       <th>Product Name</th>
                       <th>Payment</th>
@@ -281,15 +273,18 @@ include "bank_recipt_model.php";
                     </tr>-->
 				 
                     </tbody>
+					
+					
                   </table>
                 </div>
                 <!-- /.table-responsive -->
               </div>
               <!-- /.card-body -->
-             
+               <div class="card-footer bg-transparent border-success bg-dark text-right">	<div id='get_customer_order_footer_num'></div></div>
               <!-- /.card-footer -->
             </div>
             <!-- /.card -->
+		
         </div>
         </div>
         <!-- /.row -->

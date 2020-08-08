@@ -59,7 +59,7 @@ include "bank_recipt_model.php";
         <div class="row">
         <div class="col-12 mt-3">
              <!-- TABLE: LATEST ORDERS -->
-            <div class="card card-success   shadow card-outline">
+            <div class="card card-light   shadow card-outline">
             <div class="card-header bg-warning border-transparent">
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">

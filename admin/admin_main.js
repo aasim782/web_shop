@@ -65,101 +65,152 @@ $(document).ready(function () {
   });
 
 
-
-
+	
 //product Add form
-  $("#prd_btns").on("click", function (event) {
-	event.preventDefault(); //prevent from the submision
+	product_add_form();
+  function product_add_form() {	
+    $.ajax({
+        url: "admin_action.php",
+        method: "POST",
+        data: {
+          get_product_add_form: 1,
+ 
+        }, // get_search - req ,keywords passing
+        success: function (data) {
+									get_product_id();
+									date();
+									get_category_admin();
+									get_brand_admin();
+									product_tbl_get_product;
+								$("#get_add_form").html(data);
+	
+						},
+							});
 
-   $("#get_add_form").html("<div class='card card-warning card-outline'>   <div class='card-header text-center'  ><div class='card-tools'><button type='button' class='btn btn-tool' data-card-widget='collapse'><i class='fas fa-minus'></i></button><button type='button' class='btn btn-tool' data-card-widget='remove'><i class='fas fa-times'></i></button></div>				<h2>Add Product</h2>              </div>			            <div class='card-body'>            <form id='product_reg_form' >	 		<div id='product_reg_msg' > </div>		  <div class='form-row'>			<div class='col-md-6'>			  <label for='validationCustom01'>Product ID</label>			  <input type='text' class='form-control text-center' id='Product_id_txt' name=''    disabled>					</div>						<div class='col-md-6'>			  <label for='validationCustom02'>Date</label>			  <input type='date' class='form-control text-center' id='prd_add_date_txt'  name=''  >					</div>			</div>							<div class='form-row mt-2'>     <div class='form-group col-6'>           <label for='validationCustom02'>Category</label>     <select id='get_category' class='form-control'></select>    </div>   <div class='form-group col-6'>          <label for='validationCustom02'>Brand</label>      <select id='get_brand' class='form-control'></select>    </div>   </div>			  <div class='form-row '>		<div class='col-6'>		  <label for='validationCustom03'>Product Name</label>	  		  <input type='text' class='form-control' id='product_name_txt'  maxlength='18' name='product_name' placeholder='Product Name'>		</div>	   		<div class='col-md-6'>		  <label for='validationCustom05'>Product Price</label>		  <input type='number'  min='1' class='form-control' id='product_price_txt' placeholder='Product Price'>	</div>	  </div>  	       <div class='form-row mt-2  '>    <div class='col-6 form-group'>    <label for='validationCustom03'>Total Quantity</label>	  		  <input type='number' min='1'  class='form-control' id='Total_qty' maxlength='10' name='Total_qty' placeholder='Total Quantity' autocomplete='off'>	   <label for='exampleFormControlFile1' class='mt-1'>Select Product Image</label>  <div class='custom-file' >  <input     type='file' name='file' id='file' ></div> </div>    <div class='col-6 form-group mt-2 text-center'> <label for='exampleFormControlFile1' id='uploaded_image' width='50%'><img src='./upload/No_Image.png' height='150' width='225' class='img-thumbnail'> </label></div>  </div>      <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom05'>Product Decription</label> <div class='col-md-12'>   <textarea class='textarea' id='product_desc_txt'  name='product_dec' placeholder='Place some text here'style='width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 30px;'></textarea>                            </div>           </div>        </div> <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom03'>Product Keywords</label>	<div class='col-md-12'>    <textarea class='form-control' id='product_keywords_txt'  name='ProductKeyword' rows='3'></textarea>   </div> <div class='modal-footer'> <button type='button' id='form_prd_add_btn' class='btn btn-danger'>Add</button><button type='button' class='btn btn-secondary'    data-card-widget='remove' >Close</button></div></form> </div></div><script>$(function () { $('.textarea').summernote() })</script></div></div> ");
-  })
+
+
+
+
+ }
   
 
 
+
+
+
+//file upload extension and size check  
+   $(document).on('change', '#file', function(){
+  var name = document.getElementById("file").files[0].name;
+  var form_data = new FormData();
+  var ext = name.split('.').pop().toLowerCase();
+  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) 
+  {
+ toastr.error('Invalid file format !');
+ $("#file").val("");
+ 
+	  
+  }
+  var oFReader = new FileReader();
+  oFReader.readAsDataURL(document.getElementById("file").files[0]);
+  var f = document.getElementById("file").files[0];
+  var fsize = f.size||f.fileSize;
+  if(fsize > 2000000)
+  {
+	toastr.error('Image File Size is very big !');
+	$("#file").val("");
+ 
+  }
+ 
+ });
+ 
+ 
+ 
   // admin part
  
-	    $("body").delegate("#form_prd_add_btn", "click", function () {
+  $("body").delegate("#form_prd_add_btn", "click", function () {
     event.preventDefault(); //prevent from the submision
-
+ 
     //get the value from form using post method
     var Product_id_txt = $("#Product_id_txt").val();
     var prd_add_date_txt = $("#prd_add_date_txt").val();
     var get_category_txt = $("#get_category").val();
     var get_brand_txt = $("#get_brand").val();
     var product_name_txt = $("#product_name_txt").val();
-    var image_name = $("#file").val();
-    var product_price_txt = $("#product_price_txt").val();
-    var prd_img_txt = $("#prd_img").val();
+    var product_profit_txt = $("#product_profit_txt").val();
+	var get_item_price= $("#product_price_txt").val();
+	var product_price_txt = ((product_profit_txt /100)*get_item_price) +parseInt(get_item_price) ;
     var product_desc_txt = $("#product_desc_txt").val();
     var Total_qty = $("#Total_qty").val();
     var product_keywords_txt =   $("#product_keywords_txt").val() ;
     var product_keywords_name_plus_keywords =   $("#product_name_txt").val()+ " " +product_keywords_txt ;
+	var files = $('#file')[0].files[0];
+        if (Product_id_txt == "" || prd_add_date_txt == "" || get_category_txt == "0" || get_brand_txt == "0" || product_name_txt == "" || product_price_txt == "" || typeof files == 'undefined'|| product_desc_txt == "" || Total_qty =="" || product_keywords_txt == "" || product_profit_txt=="") 
+			{
+				  toastr.error('Please fill all the field');
+			}	
+			else
+			{
+				var fd = new FormData();		 
+				fd.append('add_to_prd_tbl', 1); //arguments
+				fd.append('file',files);
+				fd.append('Product_id',Product_id_txt); //arguments
+				fd.append('prd_add_date', prd_add_date_txt); //arguments
+				fd.append('get_category',get_category_txt); //arguments
+				fd.append('get_brand',get_brand_txt); //arguments
+				fd.append('product_name',product_name_txt); //arguments
+				fd.append('product_price',product_price_txt); //arguments
+				fd.append('product_profit_rate',product_profit_txt); //arguments
+				fd.append('product_desc',product_desc_txt); //arguments
+				fd.append('product_keywords',product_keywords_name_plus_keywords); //arguments
+				fd.append('prd_total_qty',Total_qty); //arguments
+				
+				    $.ajax({
+                    url:'admin_action.php',
+                    type:'post',
+                    data:fd,
+                    contentType: false,
+                    processData: false,
+                    success:function(data){
+						
+						 					 
+								  // 1 is from php code for the exist product 
+								  if(data ==1)
+								  {
+									 toastr.error("Already product is exist");
+								  } 
+								   // 2 is from php code for the exist product but inactive 
+								  else if(data==2)
+								 {
+								  toastr.error("Already product is exist and it has inactive ");
+								 }
+								  else
+								 {
+								 
+									toastr.success("Product successfully added");
+									product_count();
+									product_tbl_get_product();
+									get_product_id();
+									date();
+									get_category_admin();
+									get_brand_admin();
+									product_tbl_get_product;
+									product_add_form();
+									$('#product_reg_form')[0].reset();
+									
+								 }
+						  
+						
+						 
+  
+                    }
+                });
+				
+				
+				
+				
+			}
  
-  
- var slip =image_name.split('fakepath\\');
-    if (
-      Product_id_txt == "" ||
-      prd_add_date_txt == "" ||
-      get_category_txt == "0" ||
-      get_brand_txt == "0" ||
-      product_name_txt == "" ||
-      product_price_txt == "" ||
-      prd_img_txt == "" ||
-      product_desc_txt == "" ||
-	  Total_qty =="" ||
-      product_keywords_txt == "" || image_name==""
-    ) {
-	  toastr.error('Please fill all the field');
-    } else {
-      $.ajax({
-        url: "admin_action.php",
-        method: "POST",
-        data: {
-          add_to_prd_tbl: 1,
-          Product_id: Product_id_txt,
-          prd_add_date: prd_add_date_txt,
-          get_category: get_category_txt,
-          get_brand: get_brand_txt,
-          product_name: product_name_txt,
-          product_price: product_price_txt,
-          prd_img: prd_img_txt,
-          product_desc: product_desc_txt,
-          product_keywords: product_keywords_name_plus_keywords,
-          prd_total_qty: Total_qty,
-        },
-        success: function (data) {
-			
-		 
-		  // 1 is from php code for the exist product 
-		  if(data ==1)
-		  {
-			 toastr.error("Already product is exist");
-		  } 
-		   // 2 is from php code for the exist product but inactive 
-		  else if(data==2)
-		 {
-		  toastr.error("Already product is exist and it has inactive ");
-		 }
-		  else
-		 {
-		 
-			toastr.success("Product successfully added");
-			product_count();
-			product_tbl_get_product();
-			$("#get_add_form").html("");
-			$('#product_reg_form')[0].reset();
-		 }
-  
-  
-  
-  
-  
  
-  
-		
-        },
-      });
-    }
   });
   
   
@@ -609,58 +660,11 @@ category_count();
  //------------------------------------------------------------Brand
   
   
-  
-  
-  
-   $(document).on('change', '#file', function(){
-	 
-  var name = document.getElementById("file").files[0].name;
-  var form_data = new FormData();
-  var ext = name.split('.').pop().toLowerCase();
-  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) 
-  {
+ 
 
-
- $("#product_reg_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Invalid <strong>file format !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
- $("#file").val("");
- $("#uploaded_image").html("");
-	  
-  }
-  var oFReader = new FileReader();
-  oFReader.readAsDataURL(document.getElementById("file").files[0]);
-  var f = document.getElementById("file").files[0];
-  var fsize = f.size||f.fileSize;
-  if(fsize > 2000000)
-  {
-	$("#product_reg_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Image File Size <strong>is very big !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
- $("#file").val("");
- $("#uploaded_image").html("");
-  
-  
-  }
-  else
-  {
-   form_data.append("file", document.getElementById('file').files[0]);
-  
-   $.ajax({
-    url:"admin_action.php",
-    method:"POST",
-    data: form_data,
-    contentType: false,
-    cache: false,
-    processData: false,
-    beforeSend:function(){
-     $('#uploaded_image').html("<label class='text-success'>Image Uploading...</label>");
-    },   
-    success:function(data)
-    {
-     $('#uploaded_image').html(data);
-    }
-   });
-  }
- });
  
  
+	
  
  
  		//generating the page number at footer
@@ -788,6 +792,49 @@ category_count();
 		
 		
 		
+	 //generating the page number at footer for all order table in admin
+		all_customer_order_footer_num()
+		function all_customer_order_footer_num(){
+		$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{all_customer_order_footer_num:1},
+					success	:	function(data){
+ 
+					$('#get_customer_order_footer_num').html(data);
+					}
+					})
+					
+			 }
+		 
+		 
+		 
+		 
+		 //all_customer_order_footer_num click
+		 $('body').delegate('#all_order_table_footer_num','click',function() {
+			var pagenum= $(this).attr('all_order_table_footer_num');  
+			
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{all_customer_order:1,setpagenumber:1,pagenumber:pagenum},
+					success	:	function(data){
+					$("#all_customer_order").html(data);
+					}
+					})
+			
+		})
+			 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 		
 		 //filter the brand by the search box at admin category table
  $("#all_order_filter").keyup(function () {
@@ -810,18 +857,14 @@ category_count();
 	 
 
 	 
-		 
-		
-		
-		
 	 //get all_delivered_orders to admin deliver table 
-	all_delivered_orders()	
-		function all_delivered_orders(){
+	get_all_delivered_orders()	
+		function get_all_delivered_orders(){
 
 					$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
-					data	:	{all_delivered_orders:1},
+					data	:	{get_all_delivered_orders:1},
 					success	:	function(data){
 						$("#all_delivered_orders").html(data);
 					}
@@ -829,23 +872,44 @@ category_count();
 					
 		}
 		
-		
+ 
+		 
 		
 			 //get all_panding_orders to admin deliver table 
 	get_all_panding_orders()	
 		function get_all_panding_orders(){
-
+ 
 					$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
 					data	:	{get_all_panding_orders:1},
 					success	:	function(data){
-						$("#panding_orders").html(data);
+					$("#panding_orders").html(data);
+				
+					}
+					})
+					
+			 
+				 
+		}
+		
+		 
+		
+			//count unpaid orders
+	count_total_panding_order()	
+		function count_total_panding_order(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{count_total_panding_order:1},
+					success	:	function(data){
+						$("#count_total_panding_order").html(data);
+						$("#count_total_panding_order_noti").html(data);
 					}
 					})
 					
 		}
-		
 		
 
 	 
@@ -869,12 +933,33 @@ category_count();
 		}
 		
 		
+		 //count shpped orders
+		count_total_process_order()	
+		function count_total_process_order(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{count_total_process_order:1},
+					success	:	function(data){
+						$("#count_total_process_order").html(data);
+						$("#count_total_process_order_noti").html(data);
+						
+						
+					}
+					})
+					
+		}
+		
+		
+		
+		
 		
 		
 		
 				
   
-  	//get all process order  to admin processing table 
+  	//get all shipped order  to admin processing table 
 	get_all_shipped_orders()	
 		function get_all_shipped_orders(){
 
@@ -889,21 +974,17 @@ category_count();
 					
 		}
 		
-		
-		
-		
-		
-		
-		//get all process order  to admin processing table 
-	get_all_delivered_orders()	
-		function get_all_delivered_orders(){
+		//count shpped orders
+		count_total_shipped_order()	
+		function count_total_shipped_order(){
 
 					$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
-					data	:	{get_all_delivered_orders:1},
+					data	:	{count_total_shipped_order:1},
 					success	:	function(data){
-						$("#all_delivered_orders").html(data);
+						$("#count_total_shipped_order").html(data);
+						$("#count_total_shipped_order_noti").html(data);
 					}
 					})
 					
@@ -912,8 +993,12 @@ category_count();
 		
 		
 		
+		
+		 
+		
+		
 		  
-  	//get all process order  to admin processing table 
+  	//get all unpaid order  to admin processing table 
 	get_all_unpaid_orders()	
 		function get_all_unpaid_orders(){
 
@@ -931,10 +1016,25 @@ category_count();
 		
 		
 		
+	//count unpaid orders
+	count_total_unpaid_order()	
+		function count_total_unpaid_order(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{count_total_unpaid_order:1},
+					success	:	function(data){
+						$("#count_total_unpaid_order").html(data);
+						$("#count_total_unpaid_order_noti").html(data);
+						
+					}
+					})
+					
+		}
 		
 		
-		
-		
+		 
 		
 		
 		//get all customer 
@@ -953,47 +1053,7 @@ category_count();
 		}
 		
 		
-				
-	
-		
-		
-		
-		
-		
-		 //get all customer feedback
-		get_all_customers_feedback();	
-		function get_all_customers_feedback(){
- 
-					$.ajax({
-					url		:	"admin_action.php",
-					method	:	"POST",
-					data	:	{get_all_customers_feedback:1},
-					success	:	function(data){
-					 
-						$("#get_all_customers_feedback").html(data);
-					}
-					})
-					
-		}
-		
-		
-		
-			//get all customer complain
-		get_all_customers_complain()	
-		function get_all_customers(){
-
-					$.ajax({
-					url		:	"admin_action.php",
-					method	:	"POST",
-					data	:	{get_all_customers_complain:1},
-					success	:	function(data){
-						$("#get_all_customers_complain").html(data);
-						
-					}
-					})
-					
-		}
-		
+				 
 		
 		
 		
@@ -1047,7 +1107,8 @@ category_count();
 					success	:	function(data){
 						toastr.success('Item shipped  to the customer');
 						all_customer_order();
-						get_all_process_orders()	
+						get_all_process_orders()
+					
 					}
 					})
 					
@@ -1074,6 +1135,11 @@ category_count();
 			});
 		
  
+ 
+ 
+ 
+ 
+   
 		
 		
 	//All order header .when click on top load the page 
@@ -1092,10 +1158,139 @@ category_count();
 			
 		}); 
 
-		$('body').delegate('#total_delivered_order','click',function() {
-		window.open("delivered_order.php","_self");
+		$('body').delegate('#total_unpaid_order','click',function() {
+		window.open("un_paid_order.php","_self");
 			
 		});
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 //get all customer feedback
+		get_all_customers_feedback();	
+		function get_all_customers_feedback(){
  
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_all_customers_feedback:1},
+					success	:	function(data){
+					 
+						$("#get_all_customers_feedback").html(data);
+					}
+					})
+					
+		}
+		
+		
+		
+			//get all customer complain
+		get_all_customers_complain()	
+		function get_all_customers_complain(){
+
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_all_customers_complain:1},
+					success	:	function(data){
+						$("#get_all_customers_complain").html(data);
+						
+					}
+					})
+					
+		}	
+		
+		
+		
+		
+		
+			
+		
+		
+ 
+ 
+ 
+ //courier login
+	$("#courier_login_page_login_btn").click(function(){	
+	event.preventDefault(); //prevent from the submision
+		var cori_email_txt = $('#cori_email_txt').val();
+		var cori_password_txt = $('#cori_password_txt').val();
+		var emailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		
+			if(cori_email_txt == "" || cori_password_txt == "")
+			{
+				
+			$('#cori_login_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear User !</strong> Please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+		
+			}
+			
+			else if(!emailformat.test(cori_email_txt))
+			{
+				$('#cori_login_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Incorrect <strong>Email !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+		
+			}
+	
+			else{	
+		
+				$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{courier_login:1,cori_email:cori_email_txt,cori_password:cori_password_txt}, // get_search - req ,keywords passing
+					success	:	function(data){
+				
+							$('#cori_login_alert_msg').html(data); 	//from php userLogin method in action
+					}
+					})
+						
+				
+			}
+		})
+	
+ 
+	 //db_backup_btn
+	$("#db_backup_btn").click(function(){	
+		event.preventDefault(); //prevent from the submision
+	 			$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{db_backup:1}, 
+					success	:	function(data){
+				 	$('#db_backup_msg').html(data); 
+
+					}
+					})
+ 
+	});
+		
+	 
+	//coriour tracking page update button coded 
+	 $("#courier_tracking_info_update_btn").click(function(){	
+	 event.preventDefault(); //prevent from the submision
+	 var cori_tracking_id_txt = $('#cori_tracking_id_txt').val();
+			if(cori_tracking_id_txt=="")
+			{
+				 	$('#cori_tracking_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> Please enter the tracking ID</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"); 
+			}else
+			{
+				$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{courier_tracking_info_update:1,cori_tracking_id:cori_tracking_id_txt}, 
+					success	:	function(data){
+				 	$('#cori_tracking_alert_msg').html(data); 
+					$('#cori_tracking_id_txt').val("");
+
+					}
+					})
+			}
+	 })
+		
+		
+		
 });

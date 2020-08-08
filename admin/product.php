@@ -90,10 +90,7 @@
 		  
 		  
 		  
-
-		   	  <div class="text-right   mb-3">	
-		<a href="" update_id="$product_id" class="btn btn-success"     id="prd_btns"  ><i class="fa fa-plus-circle"></i> Add Product</a>
-	  </div>
+ 
 		      <div id="product_reg_msg">
 	  </div>		  
  
@@ -104,6 +101,69 @@
 
 
 
+ 
+
+          </div>
+          <!-- /.col-md-6 -->
+          <div class="col-lg-3  ">
+          <div class="card card-primary shadow-sm card-outline">
+              <div class="card-header">
+                <h5 class="m-0 text-primary">TOTAL PRODUCTS</h5>
+              </div>
+         <div class="card-body  bg-primary justfy-content-center  ">
+                 <label class="card-title " id="count_product" style="font-size:52pt;"></label> 
+              </div>
+            </div>
+
+            <div class="card card-danger card-outline">
+              <div class="card-header">
+                <h5 class="m-0 text-danger">TOTAL CATEGORY</h5>
+              </div>
+              <div class="card-body text-center bg-danger">
+                <label class="card-title " id="count_catg" style="font-size:52pt"></label>
+  
+              </div>
+            </div>
+			
+			         <div class="card card-success card-outline">
+              <div class="card-header">
+                <h5 class="m-0 text-success">TOTAL BRAND</h5>
+              </div>
+           <div class="card-body bg-success">
+                <label class="card-title text-center"  id="count_brand" style="font-size:52pt"></label>
+  
+              </div>
+            </div>
+			   
+			   <!--
+			   <div class="card card-primary shadow-sm card-outline  ">
+              <div class="card-header">
+                <h5 class="m-0 text-primary">In Active</h5>
+              </div>
+				<div class="card-body  bg-primary justfy-content-center pb-5">
+                 <label class="card-title "style="font-size:10pt;">Total Inactive Products : </label> 
+                 <label class="card-title "style="font-size:10pt;">Total Inactive Brands : </label> 
+                 <label class="card-title "style="font-size:10pt;">Total Inactive Categories : </label> 
+              </div>
+            </div>
+			
+			-->
+			
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 
 
@@ -116,26 +176,12 @@
 
 
 
-
-
-
-
-
-
-
-
+       <div class="row">
+          <div class="col-lg-12">
 
 
           <div class="card card-warning card-outline">	
-
-
-
-
-
-
-
-
-
+ 
 
 <div class="card-header border-transparent">
                 <div class="card-tools">
@@ -197,41 +243,24 @@
               </div>
            
             </div>
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-3 mt-5">
-          <div class="card card-primary shadow-sm card-outline">
-              <div class="card-header">
-                <h5 class="m-0 text-primary">TOTAL PRODUCTS</h5>
-              </div>
-         <div class="card-body  bg-primary justfy-content-center  ">
-                 <label class="card-title " id="count_product" style="font-size:52pt;"></label> 
-              </div>
             </div>
-
-            <div class="card card-danger card-outline">
-              <div class="card-header">
-                <h5 class="m-0 text-danger">TOTAL CATEGORY</h5>
-              </div>
-              <div class="card-body text-center bg-danger">
-                <label class="card-title " id="count_catg" style="font-size:52pt"></label>
-  
-              </div>
             </div>
-			
-			         <div class="card card-success card-outline">
-              <div class="card-header">
-                <h5 class="m-0 text-success">TOTAL BRAND</h5>
-              </div>
-           <div class="card-body bg-success">
-                <label class="card-title text-center"  id="count_brand" style="font-size:52pt"></label>
-  
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
-        </div>
-        <!-- /.row -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
