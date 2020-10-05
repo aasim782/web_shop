@@ -17,6 +17,72 @@
   
   <body>
   
+   
+  
+  <!-- customer login model -->
+<div class="modal fade" id="customer_login_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header  bg-warning">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user"></i>&nbspCustomer Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+	<div class="container  ">
+    	<div class="container" >
+			<div id="cus_reg_alert_msg_login" class=" mt-3"></div>
+		</div>
+				<form class="mt-4">
+			  <div class="form-group ">
+				<label for="exampleDropdownFormEmail2">Email address</label>
+				<input type="email" class="form-control" id="lg_email_txt" placeholder="email@example.com">
+			  </div>
+			  <div class="form-group">
+				<label for="exampleDropdownFormPassword2">Password</label>
+				<input type="password" class="form-control" id="lg_password_txt" placeholder="Password">
+			  </div>
+ 
+			
+ 
+ 
+    <a class="nav-link " href="#"  id="create_form_model" data-toggle="modal" data-target="#signupModel"  role="tab"> <i class="fas fa-man"></i> Create Account</a>
+ 
+	</div>
+	
+ 
+	
+	
+ 
+
+      </div>
+      <div class="modal-footer">
+          <button type="submit" id="login_page_login_btn" class="btn btn-danger">Login</button>	 
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+ </form>
+    </div>
+  </div>
+</div> <!-- /Customer form model -->
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
 <!-- signupModel -->
 <div class="modal fade" id="signupModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -78,20 +144,7 @@
 		</div>
 	  </div>
   
-    <div class="form-row">
-  		<div class="col-md-6">
-		  <label for="validationCustom05">City</label>
-		  <input type="text" class="form-control" id="city" name="citytxt" placeholder="City">
 
-		</div>
-  
-    <div class="col-6">
-      <label for="validationCustom05">Postal Code</label>
-      <input type="text" class="form-control" id="postal"  maxlength="5"  name="postaltxt" placeholder="Postal Code" >
-
-    </div>
-  </div>
-  
   
     <div class="form-row">
     <div class="col-md-12">
@@ -100,7 +153,20 @@
 
 	</div>
 	</div>
-	
+	    <div class="form-row">
+  		<div class="col-md-6">
+		  <label for="validationCustom05">City</label>
+		  <input type="text" class="form-control" id="city" name="citytxt" placeholder="City">
+
+		</div>
+  
+    <div class="col-6">
+      <label for="validationCustom05">Postal Code</label>
+      <input type="number" class="form-control" id="postal" maxlength="3"  name="postaltxt" placeholder="Postal Code" >
+
+    </div>
+  </div>
+  
 
       </div>
       <div class="modal-footer">

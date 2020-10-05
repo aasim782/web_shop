@@ -160,8 +160,8 @@
 <div class="modal fade bd-example-modal-lg" id="traking_model" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header  bg-dark">
-        <h5 class="modal-title text-light" id="exampleModalLabel"><i class="fas fa-user"></i>&nbspProduct Tracking</h5>
+      <div class="modal-header  bg-warning">
+        <h5 class="modal-title text-dark" id="exampleModalLabel"><i class="fa fa-transgender"></i></i>&nbspProduct Tracking</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -173,120 +173,40 @@
     <article class="card">
      
         <div class="card-body">
-            <h6>Order ID: OD45345345435</h6>
-            <article class="card">
-                <div class="card-body row">
+		
+		<div class="container">
+			  <div class="row">
+				<div class="col-sm">
+				<h6>Shipping ID: <b id="trk_model_order_id"> </b></h6> 
+				</div>
+				<div class="col-sm">
+		 
+				</div>
+				<div class="col-sm">
+				<h6>   <b id="trk_model_order_id"> </b></h6>
+				</div>
+			  </div>
+		</div> 
+						
+			
+			
+			
+            <article class="card shadow-sm">
+                <div class="card-body row" id="tracking_model_details">
 					 
 
-				   <div class="col"> <strong>Estimated Delivery time:</strong> <br>29 nov 2019 </div>
-                    <div class="col"> <strong>Shipping BY:</strong> <br> BLUEDART, | <i class="fa fa-phone"></i> +1592222222228675986 </div>
-                    <div class="col"> <strong>Status:</strong> <br> Picked by the cou222222222222rier </div>
-                    <div class="col"> <strong>Tracking #:</strong> <br> BD04590352222222222222222294059 </div>
-                    <div class="col"> <strong>District #:</strong> <br> Ampara </div>
+			
                 </div>
             </article>
-            <div class="track">
-                <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order confirmed</span> </div>
-                <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Picked by courier</span> </div>
-                <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
-                <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span class="text">Ready for pickup</span> </div>
+            <div class="track" id="tracking_prograss_line">
+			
+ 
             </div>
             <hr>
-            <ul class="row">
-                <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571751108/Ecommerce/laptop-dell-xps-15-computer-monitors-laptops.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$950 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571750967/Ecommerce/ef192a21ec96.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">HP Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$850 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571750722/Ecommerce/acer-v-17-nitro-realsense.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-				
-				      <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571750722/Ecommerce/acer-v-17-nitro-realsense.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-				
-				      <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571750722/Ecommerce/acer-v-17-nitro-realsense.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-				      <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571750722/Ecommerce/acer-v-17-nitro-realsense.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>      <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571750722/Ecommerce/acer-v-17-nitro-realsense.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-				      <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571750722/Ecommerce/acer-v-17-nitro-realsense.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
-				      <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571750722/Ecommerce/acer-v-17-nitro-realsense.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>      <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571750722/Ecommerce/acer-v-17-nitro-realsense.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>      <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571750722/Ecommerce/acer-v-17-nitro-realsense.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>      <li class="col-md-4">
-                    <figure class="itemside mb-3">
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571750722/Ecommerce/acer-v-17-nitro-realsense.jpg" class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$650 </span>
-                        </figcaption>
-                    </figure>
-                </li>
+            <ul class="row" id="traveling_item">
+			
+				 
+            
             </ul>
             <hr>	
 			

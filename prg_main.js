@@ -199,11 +199,11 @@ $(document).ready(function(){
 		}
 
 	
+	//customer resgistration form
 	$('#customer_reg_form').on('submit',function(event){
 			
 			event.preventDefault(); //prevent from the submision
-			
-			
+			 
 			//get the value from form using post method
 			var fname = $('#fname').val();
 			var lname = $('#lname').val();
@@ -225,7 +225,7 @@ $(document).ready(function(){
 			if(fname == "" || lname == "" || email == "" || phone == "" || passwords == "" || repassword == "" || address == "" || city == "" || postal == "" )
 			{
 				
-			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Please fill all the fields to continue<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 			}	
 			else if(!nameformat.test(fname))
@@ -245,28 +245,28 @@ $(document).ready(function(){
 				else if(fname == lname)
 			{
 						
-			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Firstname and Lastname </strong>  are same !<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Firstname and Lastname </strong>  are the same!<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 				
 			}
 			else if(!emailformat.test(email))
 			{
 						
-			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Incorrect Email !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Incorrect Email!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 				
 			}
 			else if(!phonenumberformat.test(phone))
 			{
 						
-			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Incorrect Phone Number !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Incorrect Phone Number!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 				
 			}
 			else if(phone.length <= 10 )
 			{
 						
-			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Incorrect Phone Number !</strong> Please inlude 94<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Incorrect Phone Number!</strong> Please inlude 94<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 				
 			}
@@ -274,7 +274,7 @@ $(document).ready(function(){
 			else if( passwords.length < 8 )
 			{
 						
-			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Please enter password 6 - 20 characters !</strong> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Please enter a password of 6 - 20 characters !</strong> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 				
 			}
@@ -282,7 +282,7 @@ $(document).ready(function(){
 			else if( passwords != repassword)
 			{
 						
-			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Password not match with</strong> Conform password !<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Password doesn't match with each other</strong> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 				
 			}	
@@ -290,7 +290,7 @@ $(document).ready(function(){
 				else if(!postalcodeformat.test(postal))
 			{
 						
-			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Incorrect Postal code !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+			$('#cus_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Incorrect Postal code!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 				
 			}	
@@ -317,7 +317,7 @@ $(document).ready(function(){
 		
 	});
 
-	//filter by search keywords using search btn
+	//customer login page login
 	$("#login_page_login_btn").click(function(){	
 	event.preventDefault(); //prevent from the submision
 		var lg_email_txt = $('#lg_email_txt').val();
@@ -327,13 +327,13 @@ $(document).ready(function(){
 			if(lg_email_txt == "" || lg_password_txt == "")
 			{
 				
-			$('#cus_reg_alert_msg_login').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+			$('#cus_reg_alert_msg_login').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 			}
 			
 			else if(!emailformat.test(lg_email_txt))
 			{
-				$('#cus_reg_alert_msg_login').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Incorrect <strong>Email !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+				$('#cus_reg_alert_msg_login').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Incorrect <strong>Email!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 			}
 	
@@ -353,7 +353,16 @@ $(document).ready(function(){
 			}
 		})
 	
-
+ 
+ 
+ 
+ 
+ 
+ 
+//login model hide when click create account button
+$('body').delegate('#create_form_model','click',function() {
+ $('#customer_login_model').modal('hide');
+})
 
 
 
@@ -380,7 +389,7 @@ $(document).ready(function(){
 		
 	})	
 	
-
+		// particular product search button click
 		$("body").delegate("#particular_product_search_btn","click",function(){
 		event.preventDefault();
 		var pid_val= $(this).attr('pid'); //get the value from our self pid attribute pid 
@@ -511,9 +520,7 @@ $(document).ready(function(){
 $('.modal').on('hidden.bs.modal', function(){
     $(this).find('form')[0].reset();
 });
-
-
-
+ 
 
 
 			
@@ -636,6 +643,43 @@ $('.modal').on('hidden.bs.modal', function(){
 		
 	}
 	
+	
+		//tracking prograss line color apply
+			function tracking_prograss_line(get_order_id,customer_ord_id_txt){
+				   
+				  var g_order_id = get_order_id;
+				  var customer_ord_id_txt = customer_ord_id_txt;
+				  
+					$.ajax({
+					url		:	"action.php",
+					method	:	"POST",
+					data	:	{tracking_prograss_line:1,order_id:g_order_id,customer_ord_id:customer_ord_id_txt}, // get the added product into cart
+					success	:	function(data){
+						$('#tracking_prograss_line').html(data);
+					}
+					})
+			}
+			
+			
+		 //tracking model details (payment still not verified/vertified/tracking ifo)
+		tracking_model_details();
+		function tracking_model_details(get_order_id,customer_ord_id_txt)
+		{
+				    var g_order_id = get_order_id;
+				    var customer_ord_id_txt = customer_ord_id_txt;
+					$.ajax({
+					url		:	"action.php",
+					method	:	"POST",
+					data	:	{tracking_model_details:1,order_id:g_order_id,customer_ord_id:customer_ord_id_txt}, // get the added product into cart
+					success	:	function(data){
+						$('#tracking_model_details').html(data);
+					}
+					})
+			
+		}
+	
+	
+	
 
 		 //generating the page number at myorder page footer 
 		myorder_footer_num();
@@ -690,17 +734,17 @@ $("#cus_chanepassword_btn").click(function(){
 		
 			if(Old_password == "" || New_Paasword == "" || Confirm_Paaswordtxt =="")
 			{
-						$('#customer_change_passwrd_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+						$('#customer_change_passwrd_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 			}
 			else if(New_Paasword.length < 8 )
 			{
 				
-				$('#customer_change_passwrd_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Please enter new password</strong> 6 - 20 characters ! <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+				$('#customer_change_passwrd_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Please enter the new password</strong> 6 - 20 characters ! <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 		
 			}
 			else if(New_Paasword != Confirm_Paaswordtxt)
 			{
-					$('#customer_change_passwrd_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> password not match<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+					$('#customer_change_passwrd_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> password doesn't match with each other<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 			}
 		
 		
@@ -753,7 +797,7 @@ complain_item_list();
   
 	if(complain_message == "" || customer_ord_id == "null" )
 		{
-			$('#customer_complain_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+			$('#customer_complain_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 		}
 		else{
 			 		$.ajax({
@@ -793,7 +837,7 @@ complain_item_list();
  
 	if(feedback_messager_txt == "")
 		{
-			$('#customer_feedback_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+			$('#customer_feedback_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 		}
 		else{
 			 		$.ajax({
@@ -827,7 +871,7 @@ complain_item_list();
 	
 	if(dep_datetxt == "" || dep_timetxt == "" || branch_name_txt == "" 	|| typeof files == 'undefined')
 		{
-			$('#bank_dep_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+			$('#bank_dep_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 		}
 		else
 		{
@@ -897,7 +941,7 @@ complain_item_list();
    
    
   prd_dec_detail();
-  //prd_dec_details tab details;
+ //prd_dec_details tab details;
  function prd_dec_detail(){
 	 
 	 	var url = new URL(document.URL);
@@ -919,6 +963,31 @@ complain_item_list();
  }
 	
  
+  
+  
+ //prd feedbacks
+get_customer_order_item_feedback();
+function get_customer_order_item_feedback(){
+	
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var product_id_txt = search_params.get('pid');
+		
+	 	$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{get_customer_order_item_feedback:1,product_id:product_id_txt},
+			success	:	function(data){
+		 
+			  $("#trk_model_order_id").html(get_order_id);
+		 
+			}
+	
+})
+	
+}
+
+
  
  //Single product view in productViewPage 
  function particular_prd_view()
@@ -934,7 +1003,7 @@ complain_item_list();
 			data	:	{particular_prd_view:1,pid:product_id},
 			success	:	function(data){
 			 $('#indivitual_prd_view').html(data);
-			 	$('#Indivitual_product_view').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+			 	$('#Indivitual_product_view').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 		
 			}
 		})
@@ -1023,13 +1092,7 @@ number.onkeydown = function(e) {
 
 
 }*/
-	
- 
-
-
-
-
-
+	 
 
 
 
@@ -1056,26 +1119,26 @@ $('body').delegate('#pohne_code_send_btn','click',function() {
  
 	if( pohne_txt == ""){
 		
-	 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+	 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
 	}
 	else if( pohne_txt.length < 11 || pohne_txt.length > 11 )
 	{
 		
-	 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please enter coorrect number<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+	 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please enter your correct number<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
 	
 	}
  
 	else if(!pohne_txt.startsWith("94"))
 	{
-			 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Phone Number should start with '94' <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+			 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Phone Number should start with '94' <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
 	}
  
 	else
 		{
  
  	
-	var userId=12208;
-	var ApiKey="Y1lXGXCJeGFmr5WNsYS5"
+	var userId=12282;
+	var ApiKey="suAX3Nb90O7FUcKldDi4"
 	var digits = '0123456789'; 
     let OTP = ''; 
     for (let i = 0; i < 6; i++ ) 
@@ -1087,9 +1150,7 @@ $('body').delegate('#pohne_code_send_btn','click',function() {
 			method	:	"POST",
 			data	:	{pohne_code_send_btn_func:1,pohne_no:pohne_txt,OTP_code:OTP},
 			success	:	function(data){
-				
-				
-			 
+				 
 			 if(data==1)
 			 {
 					 $('#myHiddeOTP').load('https://app.notify.lk/api/v1/send?user_id='+userId+'&api_key='+ApiKey+'&sender_id=NotifyDEMO&to='+pohne_txt+'&message=Your-code-is:'+OTP+'.');
@@ -1119,19 +1180,19 @@ $('body').delegate('#pohne_code_send_btn','click',function() {
 					  }
 					  
 					  // Do timeout stuff here
-					 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Verification timeout !</strong> please try agian<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+					 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Verification timeout!</strong> Please try agian<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
 					 window.open("index.php","_self");
 					}
 				timer(120);//60seconds
 				 $("#customer_phone_num").html("");//empty 3 digit div
-				 $("#otp_alert_msg").html("<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> please enter your OTP CODE<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
-				 $("#otp_text_div").html("<input type='text' class='form-control' id='user_otp_txt' placeholder='Enter your OTP number'/>");
+				 $("#otp_alert_msg").html("<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please enter your OTP CODE<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+				 $("#otp_text_div").html("<input type='number' class='form-control' id='user_otp_txt' placeholder='Enter your 6-digit OTP code'/>");
 				 $("#otp_button_div").html(" <button  id='pohne_code_verify_btn' class='btn btn-success'>Verify</button>");
 			 
 			 }
 			 else if(data==2)
 			 {
-				  $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Your phone number is wrong please make sure your number<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");	 
+				  $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Your phone number is incorrect, Please make correct your phone number<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");	 
 		
 			 }
 			 
@@ -1157,14 +1218,14 @@ $('body').delegate('#pohne_code_verify_btn','click',function() {
 		var user_otp_txt = $("#user_otp_txt").val();
  
 		 attempt++;
-	 
+	  
 			if(user_otp_txt.length <6 || user_otp_txt.length>6)
 			 {
 		
-				 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> verification code is totally 6 digit <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");	 
+				 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> verification code is 6-digit code <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");	 
 		
 			 }
- 
+
 			 else{
 			$.ajax({
 			url		:	"action.php",
@@ -1185,14 +1246,105 @@ $('body').delegate('#pohne_code_verify_btn','click',function() {
 
 
 
+//customer trcking model button 
+$('body').delegate('#trcking_btn','click',function() {
+	
+	 var get_order_id= $(this).attr('order_id');  
+	 var customer_ord_id_txt= $(this).attr('customer_ord_id');  
+ 
+	$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{tracking_model_items:1,order_id:get_order_id,customer_ord_id:customer_ord_id_txt},
+			success	:	function(data){
+			 tracking_prograss_line(get_order_id,customer_ord_id_txt);
+			 tracking_model_details(get_order_id,customer_ord_id_txt);
+			  $("#traveling_item").html(data);
+			  $("#trk_model_order_id").html(get_order_id);
+		 
+			}
+	
+})
+});
+ 
+ 
+
+  
+
+//fedback start coded
+$('.stars a').on('mouseover', function(){
+  $('.stars span, .stars a').removeClass('active');
+
+  $(this).addClass('active');
+  $('.stars span').addClass('active');
+   
+ var rating_val= $(this).attr('rating_val');  
+ 
+   $("#rated_val").html(rating_val);
+	$("#g_rating_val").val(rating_val);
+ 
+});
 
 
 
 
+//refreshing the page
+			$('body').delegate('#feedback_close_button','click',function() {
+				location.reload();
+			})				
+				
+ 
 
 
+//pass the customer order id/item id to customer prd fedback cofirm btn
+$('body').delegate('#customer_prd_conform_btn','click',function() {
+	 var customer_ord_id= $(this).attr('customer_ord_id');  
+	$("#customer_prd_fedb_conform_btn").val(customer_ord_id);
+	
+ 		$('#customer_prd_conform_feedback').modal('show');
+	
+  })
 
 
+//get customer order id/item id to confirm btn
+$('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
+	var customer_ord_id_val= $("#customer_prd_fedb_conform_btn").val();
+	var customer_item_beedback_txt= $("#customer_item_beedback_txt").val();
+	var g_rating_val= $("#g_rating_val").val();
+	var files = $('#file')[0].files[0];
+ 
+				var fd = new FormData();
+				//image upload	
+			 			
+                fd.append('customer_order_item_feedback',1);
+				fd.append('customer_ord_id', customer_ord_id_val); //arguments
+				fd.append('customer_item_feedback_description', customer_item_beedback_txt); //arguments
+				fd.append('g_rating', g_rating_val); //arguments
+			  
+                $.ajax({
+                    url:'action.php',
+                    type:'post',
+                    data:fd,
+                    contentType: false,
+                    processData: false,
+                    success:function(data){
+							my_orders();
+						  $("#cus_order_feedback_alert_msg").html(data);
+						  $("#cus_order_feedback_form").html(data);
+						  $("#customer_prd_fedb_conform_footer").html(" <button type='button' class='btn btn-secondary' data-dismiss='modal' id='feedback_close_button'>Close</button>");
+							orderd_prd_count(); //orders count nave menue
+							complain_item_list();//compline list shot at the select menue
+                    }
+                });
+				
+				})
+				
+				
+			
+			
+			 
+		 			
+				
+  
 
-//end
 });

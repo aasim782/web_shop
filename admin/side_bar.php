@@ -78,7 +78,7 @@
               <p>
                 Orders
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">1500</span>
+                <span class="badge badge-info right" id="total_pending_order"></span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -86,6 +86,7 @@
                 <a href="all_orders.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Orders</p>
+				  
                 </a>
               </li>
 			  
@@ -134,9 +135,9 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-tags"></i>
               <p>
-                Offers
+                Offer
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">1500</span>
+                
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -171,7 +172,7 @@
               <p>
                 Customer
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">1500</span>
+          
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -193,12 +194,7 @@
                   <p>Customer Feedback </p>
                 </a>
               </li>
-                      <li class="nav-item">
-                <a href="message.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Customer Messages </p>
-                </a>
-              </li>
+                    
             </ul>
           </li>
 		  
@@ -212,7 +208,7 @@
               <p>
                   Courier service
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">1500</span>
+              
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -235,7 +231,7 @@
               <p>
                 Reports
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">1500</span>
+        
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -255,8 +251,6 @@
               <i class="nav-icon fa fa-envelope"></i>
               <p>
                 Messages
-                 
-                <span class="badge badge-info right">1500</span>
               </p>
             </a>
         

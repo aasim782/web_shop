@@ -78,14 +78,7 @@ include "bank_recipt_model.php";
 							<div class="col-sm-16 col-md-3 text-right mb-3 ">
 							<div class="col-sm-12">
 							
-					 <div class="input-group input-group-sm">
-					 <input class="form-control form-control-navbar" type="search" id="all_order_filter" placeholder="Search" aria-label="Search" autocomplete="off">
-					<div class="input-group-append">
-					<button class="btn btn-navbar border" type="submit">
-						<i class="fas fa-search"></i>
-					</button>
-					</div>
-					</div>
+				 
 					
 						</div>
 						</div>

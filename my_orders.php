@@ -4,15 +4,15 @@
 	{
 		header("location:index.php");	 //access page
 	}
-		
-	
-	include "bank_deposit.php";
+		 
  ?>
 <html lang="en">
   <head>
   <?php 
 	include "customer_reg.php";
   	include "order_tracking.php";
+  	include "customer_prd_conform_feedback.php";
+		 
   ?>
 
     <!-- Required meta tags -->
@@ -28,6 +28,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css?i=40">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="js/all.js?i=40" data-auto-replace-svg="nest"></script>
 	<script src="prg_main.js?i=40" ></script>
 	
@@ -196,7 +197,6 @@
    	<ul class="list-group">
 		  <li class="list-group-item active">Orders</li>
 		  <li class="list-group-item"><a  href="my_orders.php" >All orders</a></li>
-		  <li class="list-group-item" data-toggle="modal" data-target=".bd-example-modal-lg" >Tracking</li>
 		  <li class="list-group-item" > <a  href="#" data-toggle="modal" data-target="#customer_complain_Model" >Complain</a></li>
 		  <li class="list-group-item" > <a  href="#" data-toggle="modal" data-target="#customer_feedback_Model" style="cursor: pointer;">Feedback</a></li>
 		  <li class="list-group-item"> <a  href="message.php"  > Message</a> </li>

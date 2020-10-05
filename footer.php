@@ -78,7 +78,7 @@
 <div class="col-sm-3" id="store-address">
 <h4><strong>Newsletter Subscription</strong></h4>
 <hr>
-<form action="https://visitor2.constantcontact.com/api/signup" method="post" class="ajax-form" data-callback-pre="callback_newsletter_subscription" id="form-newsletter-subscription">
+<form method="post" class="ajax-form" data-callback-pre="callback_newsletter_subscription" id="form-newsletter-subscription">
 <input type="hidden" name="ca"  >
 <input type="hidden" name="list" >
 <input type="email" name="email" class="form-control" placeholder="Please enter your email address" required="" style="margin-bottom:5px">
@@ -87,7 +87,7 @@
 
 
 </div>
-<div class="col-sm-8"><span id="helpBlock" style="margin:0" class="help-block">We will NEVER share your email address.</span></div>
+<div class="col-12"><span id="helpBlock" style="margin:0" class="help-block">We will NEVER share your email address.</span></div>
 </div>
 </form>
  
@@ -108,7 +108,7 @@
 </div>
 </div>	    <div   style="position:fixed;bottom:10px;right:3%;">
 
-	<img class="mb-2 " src="admin/upload/default/chat.png"  width="60px" height="60px" />
+	<!--<img class="mb-2 " src="admin/upload/default/chat.png"  width="60px" height="60px" /> -->
  
   </div>
   

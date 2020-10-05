@@ -65,11 +65,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav justify-content-center ">
      <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-home"></i>Home </a>
+        <a class="nav-link" href="index.php"><i class="fas fa-home"></i>Home </a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-th-list"></i> Product</a>
-      </li>
+     
     </ul>
 		<!-- Search bar -->
 		<ul class="nav justify-content-center mr-auto ">
@@ -142,7 +140,8 @@
 
  
 <!-- top login button -->
-<a href='login.php' class='btn btn-danger' role='button'> <i class='fas fa-user'></i> Login</a>
+<a   data-toggle="modal" data-target="#customer_login_model"  class='btn btn-danger' role='button' style='color:white;'>  <i class='fas fa-user'></i> Login</a>
+<a  data-toggle="modal" data-target="#signupModel"  class='btn btn-warning ml-2 text-center' role='button'> <i class='fas fa-user'></i> Register</a>
 
 
 

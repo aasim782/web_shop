@@ -196,7 +196,30 @@
 					</li>
 					</li> -->
 
-	<!-- Category -->		
+	<!-- Category -->	
+<div class="col mb-2"> 
+ <a href='#' class='list-group-item list-group-item-action ' style='color:white;background-color:#ffc107;' >
+	<h5><i class='fas fa-th-list' ></i>&nbspPrice</h5></a> 
+		<a id='category' class='list-group-item list-group-item-action' cid='$cid'>	
+	
+	
+		<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      	<input type="number" min="0" class="form-control" placeholder="Min" value="0" pattern="[0-9]*"   autocomplete="off">
+    </div>
+	to
+    <div class="col-sm">
+     	<input type="number" min="0" class="form-control" placeholder="Min" value="0" pattern="[0-9]*"   autocomplete="off">
+    </div>
+ 
+  </div>
+</div>
+ </a>
+</div>
+ 
+	
+	
 						<div id="get_category"> </div>
 				
 		

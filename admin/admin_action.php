@@ -92,15 +92,19 @@ echo "<div class='card card-warning card-outline'>
 		
 		 
 			<div class='col-sm'>
-			<label for='validationCustom05'>Product Price(Buying)</label>	
-			<input type='number'  min='1' class='form-control text-center' id='product_price_txt' placeholder='Product Price'>	
+			<label for='validationCustom05'>Buying Price</label>	
+			<input type='number'  min='1' class='form-control text-center' id='product_price_txt' placeholder='Price'>	
 			</div>
 		 
 		 <div class='col-sm'>
 			<label for='validationCustom05'>Profit rate %</label>	
 			<input type='number'  min='1' class='form-control text-center' id='product_profit_txt' value='5' placeholder='Profit Rate'>	
-	  
 		</div>
+		 <div class='col-sm'>
+			<label for='validationCustom05'>Price</label>	
+			<input type='number'  min='1' class='form-control text-center' id='product_price_with_rate_txt' placeholder='Price' disabled>	
+			</div>
+			
 	</div>  	     
 	<div class='form-row mt-2  '>   
 	<div class='col-6 form-group'>    <label for='validationCustom03'>Total Quantity</label>	  		  <input type='number' min='1'  class='form-control' id='Total_qty' maxlength='10' name='Total_qty' placeholder='Total Quantity' autocomplete='off'></div> <div class='form-group col-6'> 	   <label for='exampleFormControlFile1' class='mt-1'>Select Product Image</label>  <div class='custom-file' >  <input     type='file' name='file' id='file' ></div> </div>    <div class='col-6 form-group mt-2 text-center'></label></div>  </div>      <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom05'>Product Decription</label> <div class='col-md-12'>   <textarea class='textarea' id='product_desc_txt'  name='product_dec' placeholder='Place some text here'style='width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 30px;'></textarea>                            </div>           </div>        </div> <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom03'>Product Keywords</label>	<div class='col-md-12'>    <textarea class='form-control' id='product_keywords_txt'  name='ProductKeyword' rows='3'></textarea>   </div> <div class='modal-footer'> <button type='button' id='form_prd_add_btn' name='form_prd_add_btn' class='btn btn-danger'>Add</button><button type='button' class='btn btn-secondary'    data-card-widget='remove' >Close</button></div></form> </div></div><script>$(function () { $('.textarea').summernote() })</script></div></div> ";
@@ -218,7 +222,7 @@ if(isset($_POST["Prduct_table_footer_num"])){
 
 			/* Check file extension */
 			if(!in_array(strtolower($imageFileType), $valid_extensions)) {
-					echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File extension not suppoted !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+					echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File extension not suppoted!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
 			}
 			else
 			{ 	  
@@ -273,7 +277,9 @@ if(isset($_POST["Prduct_table_footer_num"])){
 	}
 	}
 	else if(isset($_POST["get_admin_product"]))
-	{	$i=$start+1;
+	{	
+
+		$i=$start+1;
 		if(mysqli_num_rows($run_query) > 0){
 			while($row = mysqli_fetch_array($run_query))
 			{
@@ -298,7 +304,7 @@ if(isset($_POST["Prduct_table_footer_num"])){
 						<td>
 						 <div class='btn-group '>
 						 <a href='' product_edit_id='$product_id' class='btn btn-info product_edit'><i class='fa fa-edit'></i></a>
-						<a href='' product_delete_id='$product_id' class='btn btn-danger product_delete'><i class='fa fa-trash-alt'></i></a>
+						 <a href='' product_delete_id='$product_id'  data-toggle='modal' data-target='#product_del_confirm_Modal' class='btn btn-danger btn_product_delete'><i class='fa fa-trash-alt'></i></a>
 						</div> 
 						</td>
 					  </tr>";
@@ -521,7 +527,8 @@ if(isset($_POST["add_category_admin"]))
 	
 							<div class='btn-group '>
 							<a href='' category_edit_id='$category_id' class='btn btn-info category_edit'><i class='fa fa-edit'></i></a>
-							<a href='' category_delete_id='$category_id' class='btn btn-danger category_delete'><i class='fa fa-trash-alt'></i></a>
+							<a  href='' category_delete_id='$category_id' data-toggle='modal' data-target='#category_del_confirm_Modal' class='btn btn-danger btn_category_delete'><i class='fa fa-trash-alt'></i></a>
+							 
 							</div> 
 							</td>
 						  </tr> 
@@ -550,7 +557,7 @@ if(isset($_POST["add_category_admin"]))
 	$run_query = mysqli_query($con,$category_query);
 	
 	echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
-	data-auto-dismiss>Category <strong> successfully deleted</strong> <button type='button' 
+	data-auto-dismiss>Category <strong> Successfully deleted</strong> <button type='button' 
 	class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 
 	}
@@ -681,6 +688,8 @@ $run_query = mysqli_query($con,$brand_query);
 				$brand_id = $row["brand_id"];
 				$brand_name = $row["brand_name"];
 				echo "
+				 
+
 					 <tr  class='text-center'>
 						<td>$i</td>
 						<td>$brand_name</td>
@@ -688,8 +697,9 @@ $run_query = mysqli_query($con,$brand_query);
 						<td>
 	
 						<div class='btn-group '>
+						<a  href='' brand_delete_id='$brand_id' data-toggle='modal' data-target='#brand_del_confirm_Modal' class='btn btn-danger btn_delete_model'><i class='fa fa-trash-alt'></i></a>
 						<a href='' brand_edit_id='$brand_id' class='btn btn-info brand_edit'><i class='fa fa-edit'></i></a>
-						<a href='' brand_delete_id='$brand_id' class='btn btn-danger brand_delete'><i class='fa fa-trash-alt'></i></a>
+					 
 						</div> 
 						</td>
 					  </tr> 
@@ -884,7 +894,7 @@ $run_query = mysqli_query($con,$brand_query);
  //get all orders
  if(isset($_POST["all_customer_order"]) )
  {
-	  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
+	  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3)  ORDER BY order_id ASC LIMIT $start,$page_number_limit " ;
  $check_query = mysqli_query($con,$sql);
@@ -903,6 +913,7 @@ $recipt="";
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
+				$customer_ord_id=$row["customer_ord_id"];
 				 
 	 
 		
@@ -912,14 +923,14 @@ $recipt="";
 		if(($payment_status==1 && $order_status==0) || ($payment_status==2 && $order_status==0) || ($payment_status==3 && $order_status==0) )
 		{
 			 $status_btn=   "<span class='badge badge-warning'> Panding</span>";
-			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id ' ><i class='fa fa-check text-light'></i></button> 
+			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id' cust_order_id='$customer_ord_id' ><i class='fa fa-check text-light'></i></button> 
 			 <button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>";
 		}
 		
 		else if(($payment_status==1 && $order_status==1) || ($payment_status==2 && $order_status==1) || ($payment_status==3 && $order_status==1) )
 		{
 			 $status_btn=   "<span class='badge badge-info'> Processing</span>";
-			 $action_btn=	"<button class='btn btn-warning shadow' id='order_shipment_btn' ordid='$order_id' ><i class='fa fa-truck text-dark'></i></button>";
+			 $action_btn=	"<button class='btn btn-warning shadow' id='order_shipment_btn' ordid='$order_id'  cust_order_id='$customer_ord_id'  ><i class='fa fa-truck text-dark'></i></button>";
 		}
 		else if($payment_status==0)
 		{
@@ -1031,15 +1042,17 @@ if(isset($_POST["get_all_order_filter"]))
 	{
 		
  $search_val = $_POST["Search_all_orde_filter_table"];
- $search_val = $_POST["Search_all_orde_filter_table"];
  
-  
- $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
+ 
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3) and  ((customer_ord_prds.order_id  like '%".$search_val."%') OR (customer_ord_prds.order_date like '%".$search_val."%') OR  (customer_tbl.last_name like '%".$search_val."%') OR  (product_tbl.product_name like '%".$search_val."%') OR  (product_tbl.product_name like '%".$search_val."%')) " ;
  $check_query = mysqli_query($con,$sql);
-
-$status_btn="";
+	$total_rows=mysqli_num_rows($check_query);
+	
+	
+	if($total_rows>0){
+		$status_btn="";
 $action_btn="";
 		$i=1;
 		while($row = mysqli_fetch_array($check_query))
@@ -1051,53 +1064,100 @@ $action_btn="";
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
+				$customer_ord_id=$row["customer_ord_id"];
 				 
-	 
-		
+	  
 	 //$order_status=0 -> panding ,$order_status=1 ->process ,$order_status=2 -> Shipped, $order_status=3 ->compelted
 	 //$payment_status=1 ->online  ,  $payment_status=2 ->bank , $payment_status=3 -> cash on delivery
-		
-		if(($payment_status==1 && $order_status==0) || ($payment_status==2 && $order_status==0) || ($payment_status==3 && $order_status==0) )
+
+				if(($payment_status==1 && $order_status==0) || ($payment_status==2 && $order_status==0) || ($payment_status==3 && $order_status==0) )
 		{
 			 $status_btn=   "<span class='badge badge-warning'> Panding</span>";
-			 $action_btn=	"<button class='btn btn-success'>Accept</button> <button class='btn btn-danger'>Cancel</button>";
+			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id' cust_order_id='$customer_ord_id' ><i class='fa fa-check text-light'></i></button> 
+			 <button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>";
 		}
 		
 		else if(($payment_status==1 && $order_status==1) || ($payment_status==2 && $order_status==1) || ($payment_status==3 && $order_status==1) )
 		{
 			 $status_btn=   "<span class='badge badge-info'> Processing</span>";
-			 $action_btn=	"<button class='btn btn-success'>Shipped</button>";
+			 $action_btn=	"<button class='btn btn-warning shadow' id='order_shipment_btn' ordid='$order_id'  cust_order_id='$customer_ord_id'  ><i class='fa fa-truck text-dark'></i></button>";
 		}
 		else if($payment_status==0)
 		{
-			$action_btn= "<button class='btn btn-danger'>Message</button>";
-			$status_btn=   "<span class='badge badge-danger'> Uppaid</span>";
+			$action_btn= " ";
+			$status_btn=   "<span class='badge badge-danger'> Unpaid</span> ";
+			
 		}
 		if(($payment_status==1 && $order_status==2) || ($payment_status==2 && $order_status==2) || ($payment_status==3 && $order_status==2) )
 		{
-			 $status_btn=   "<span class='badge badge-success'> shipped</span>";
-			 $action_btn=	"<button class='btn btn-success' disabled>Waiting for customer delivery</button>";
+			 $status_btn=   "<span class='badge badge-success' > shipped</span>";
+			 $action_btn=	"<button class='btn btn-success shadow' disabled>Deliver</button>";
 		}
 		
 		
 		
 		
 		
-		 
 		
-		echo " <tr class='text-center'>	
-                      <td><b>$i </b></td>
-                      <td> $order_id  </td>
+ 
+ 	
+ 	//recipt button show on all order table in admin	 
+	$sql_payment_category ="SELECT  payment_tbl.paymen_catg,payment_tbl.order_id,customer_ord_prds.order_status FROM payment_tbl,customer_ord_prds
+	where (payment_tbl.order_id = customer_ord_prds.order_id) && (payment_tbl.order_id=$order_id) " ;
+	$check_query_payment_category = mysqli_query($con,$sql_payment_category);
+ 	$row1 = mysqli_fetch_array($check_query_payment_category);
+	$paymen_catg = $row1["paymen_catg"];
+	$order_status = $row1["order_status"];
+		
+		
+$msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'></i></button>";
+
+		if($paymen_catg==1)
+		{
+		$recipt="";
+		$paymen_catg_img="<img src='upload/1.jpg' width='50px' height='30px'>";
+		}
+		else if( $paymen_catg==2)
+		{
+		$paymen_catg_img="<img src='upload/2.jpg' width='50px' height='30px'>";
+			  if($paymen_catg==2 && $order_status==0)
+						{
+						$recipt="<a href='' class='btn btn-info text-light shadow' ordid='$order_id' id='bankslip_image_btn' data-toggle='modal' data-target='#bank_recipt_model' ><i class='fa fa-list-alt'></i></a>";
+							 
+						}else
+						{
+							$recipt="";
+						 
+						}
+
+		}
+		else if($paymen_catg==3)
+		{
+		$recipt="";
+		$paymen_catg_img="<img src='upload/3.jpg' width='50px' height='30px'>";
+		}
+		else
+		{
+			$paymen_catg_img="<span class='badge badge-danger'> Unpaid</span>";
+			$recipt="<button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>";
+		}
+	  
+		 
+		echo " <tr class='text-center' >	
+					 <td><b>$i</b></td>
+                      <td >   $order_id  </td>
                       <td> $order_date</td>
                       <td> $last_name</td>
                       <td>$product_name</td>
-                      <td  > 
-					   $status_btn
+                      <td>$paymen_catg_img</td>
+                      <td >
+					   $status_btn    
 					  </td>
                  
 					   <td>
-						$action_btn
+						$action_btn  $recipt $msg
                       </td>
+					   
                    </tr>
 				  
 					
@@ -1108,6 +1168,18 @@ $action_btn="";
 			}
 	 
 	 
+	}
+	  else
+	  {
+		  	 echo "
+					<tr class='text-center'>
+					<td colspan='8'>No matching records found</td>
+					  </tr>";
+		  
+	  }
+	 
+	 
+
  
 		}
 		
@@ -1133,7 +1205,7 @@ $action_btn="";
 //get all panding order  to admin panding table    order status ->0
  if(isset($_POST["get_all_panding_orders"]) || isset($_POST["count_total_panding_order"]) ){
  
- $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_qtry,customer_ord_prds.order_date, customer_ord_prds.product_id 
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_qtry,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.current_price_per_prd,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=0) ) ORDER BY order_id ASC" ;
  $check_query = mysqli_query($con,$sql);
@@ -1161,6 +1233,7 @@ $action_btn="";
 				$order_status=$row["order_status"];
 				$current_price_per_prd=$row["current_price_per_prd"];
 				$order_qtry=$row["order_qtry"];	
+				$customer_ord_id=$row["customer_ord_id"];	
 	   
 	//recipt button show on all order table in admin	 
 	$sql_payment_category ="SELECT  payment_tbl.paymen_catg,payment_tbl.order_id,customer_ord_prds.order_status FROM payment_tbl,customer_ord_prds
@@ -1204,7 +1277,7 @@ $action_btn="";
 					   <table class='table border-0'>
 							<tr>
 								<td>
-								<button class='btn btn-success shadow' id='order_accept_panding_btn' ordid='$order_id ' alt='asdas' ><i class='fa fa-check text-light'></i> </button> 
+								<button class='btn btn-success shadow' id='order_accept_panding_btn' cust_order_id='$customer_ord_id' ordid='$order_id ' alt='asdas' ><i class='fa fa-check text-light'></i> </button> 
 								</td>
 								<td>
 								<button id='order_cancel_panding_btn' ordid='$order_id '  class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>
@@ -1247,7 +1320,7 @@ $action_btn="";
 //get all process order  to admin processing table  order status ->1
  if(isset($_POST["get_all_process_orders"]) || isset($_POST["count_total_process_order"])){
  
- $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=1) ) order by order_id" ;
  $check_query = mysqli_query($con,$sql);
@@ -1277,6 +1350,7 @@ $action_btn="";
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
+				$cust_order_id=$row["customer_ord_id"];
 	   
 		echo " <tr class='text-center' >	
 					 <td><b>$i </b></td>
@@ -1289,7 +1363,7 @@ $action_btn="";
 					  </td>
                  
 					   <td>
-					<button class='btn btn-success shadow' id='order_shipment_btn' ordid='$order_id'>Shipped</button>
+					<button class='btn btn-success shadow' id='order_shipment_btn' cust_order_id='$cust_order_id' ordid='$order_id'>Shipped</button>
 					<button   ordid='$order_id '  class='btn btn-dark shadow' ><i class='fas fa-envelope text-light'></i></button>
                       </td>
                    </tr>
@@ -1708,7 +1782,8 @@ $action_btn="";
   if(isset($_POST["change_panding_to_process"])){
 	  
 	  	$order_id = $_POST["order_id"];
-		$sql = "update customer_ord_prds set order_status='1' WHERE order_id = '$order_id'" ;
+	  	$cust_order_id = $_POST["cust_order_id"];
+		$sql = "update customer_ord_prds set order_status='1' WHERE order_id = '$order_id' and customer_ord_id=$cust_order_id" ;
 		$check_query = mysqli_query($con,$sql);
   }
  
@@ -1719,7 +1794,8 @@ $action_btn="";
   if(isset($_POST["change_process_to_shipment"])){
 	  
 	  	$order_id = $_POST["order_id"];
-		$sql = "update customer_ord_prds set order_status='2' WHERE order_id = '$order_id'" ;
+	  	$cust_order_id = $_POST["cust_order_id"];
+		$sql = "update customer_ord_prds set order_status='2' WHERE order_id = '$order_id' and customer_ord_id=$cust_order_id" ;
 		$check_query = mysqli_query($con,$sql);
 
 			
@@ -1775,7 +1851,7 @@ if(isset($_POST["courier_login"])){
 				$row = mysqli_fetch_array($check_query);
 				$_SESSION['cour_user_id'] = $row['id'];
 				echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
-				data-auto-dismiss><strong>Successfully login</strong> <button type='button' 
+				data-auto-dismiss><strong>Login Successfull</strong> <button type='button' 
 				class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 				echo "<script> window.location.assign('cori_tracking.php'); </script>";	
 		}
@@ -1794,7 +1870,7 @@ if(isset($_POST["db_backup"])){
 	 
   
   		echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
-		data-auto-dismiss>Database<strong> successfully</strong> backup<button type='button' 
+		data-auto-dismiss>Database<strong> successfully</strong> backuped<button type='button' 
 		class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 
 }
@@ -1820,7 +1896,7 @@ if(isset($_POST["courier_tracking_info_update"])){
 			$check_query = mysqli_query($con,$sql);
 
 			echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
-			data-auto-dismiss>Database<strong> successfully</strong> Updated<button type='button' 
+			data-auto-dismiss>Tracking infomation <strong> successfully</strong> Updated<button type='button' 
 			class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 		}
 		else

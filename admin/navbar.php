@@ -1,7 +1,10 @@
  
 <!-- product registration modedl  -->
 
-
+<?php  
+include "models.php";
+ ?>
+ 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -9,26 +12,13 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="dashboard.php" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+ 
+
+
   
     </ul>
 
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+ 
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -130,18 +120,15 @@
 	  
 	  
          <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Product
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
  
-		<button class="dropdown-item btn btn-light" data-toggle="modal"     id="prd_btn" data-target="#product_reg_model" type="button">Add Product</button> 
-			<div class="dropdown-divider"></div>		  
+		<a class="dropdown-item btn btn-light"   href="logout.php"  type="button">Logout</a > 
  
-		  		  <button class="dropdown-item btn btn-light" data-toggle="modal"    data-target="#Category_reg_model" type="button">Add Category</button> 
-		    <div class="dropdown-divider"></div>
-		  <button class="dropdown-item btn btn-light" data-toggle="modal"   data-target="#brand_reg_model" type="button">Add Brand</button> 
- 
+		 
+		 
         </div>
 		
       </li>

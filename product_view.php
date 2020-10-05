@@ -398,9 +398,9 @@
     </div>
     <p class="mb-1">
 		The product is hands-free only in a sense of the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
-    <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
- <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
- <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+    <img  class='card-img-bottom text-center border mt-2' src='admin/upload/Product_images/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+ <img  class='card-img-bottom text-center border mt-2' src='admin/upload/Product_images/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+ <img  class='card-img-bottom text-center border mt-2' src='admin/upload/Product_images/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
  
   </a>
   

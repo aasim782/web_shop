@@ -6,12 +6,14 @@
 	}
 		
 	
-	include "bank_deposit.php";
+
  ?>
 <html lang="en">
   <head>
 <?php include "customer_reg.php"; ?>
-<?php include "customer_forget_password.php"; ?>
+<?php include "customer_forget_password.php";
+	include "bank_deposit.php";
+	?>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -226,7 +228,7 @@
 				 
 
 				  </div>
-				  <div class="card-footer text-right"><img src="" alt="PayHere" width="400"/></div>
+				  <div class="card-footer text-right"><img src="https://www.payhere.lk/downloads/images/payhere_long_banner.png" alt="PayHere" width="400"/></div>
 				</div>
 				
 				

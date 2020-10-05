@@ -124,6 +124,7 @@ $(document).ready(function () {
  });
  
  
+
  
   // admin part
  
@@ -146,7 +147,7 @@ $(document).ready(function () {
 	var files = $('#file')[0].files[0];
         if (Product_id_txt == "" || prd_add_date_txt == "" || get_category_txt == "0" || get_brand_txt == "0" || product_name_txt == "" || product_price_txt == "" || typeof files == 'undefined'|| product_desc_txt == "" || Total_qty =="" || product_keywords_txt == "" || product_profit_txt=="") 
 			{
-				  toastr.error('Please fill all the field');
+				  toastr.error('Please fill all the fields');
 			}	
 			else
 			{
@@ -181,7 +182,7 @@ $(document).ready(function () {
 								   // 2 is from php code for the exist product but inactive 
 								  else if(data==2)
 								 {
-								  toastr.error("Already product is exist and it has inactive ");
+								  toastr.error("Already product exists and it is inactive right now ");
 								 }
 								  else
 								 {
@@ -214,7 +215,20 @@ $(document).ready(function () {
   });
   
   
-
+ //calculate current price with profit  change value at text box
+  $("body").delegate("#product_price_txt", "input", function () {
+	var get_item_price= $("#product_price_txt").val();
+	var product_profit_txt = $("#product_profit_txt").val();
+	var product_price_txt = ((product_profit_txt /100)*get_item_price) +parseInt(get_item_price) ;
+	  $("#product_price_with_rate_txt").val(product_price_txt);
+  })
+  //calculate current price with profit increase rate
+   $("body").delegate("#product_profit_txt", "input", function () {
+	var get_item_price= $("#product_price_txt").val();
+	var product_profit_txt = $("#product_profit_txt").val();
+	var product_price_txt = ((product_profit_txt /100)*get_item_price) +parseInt(get_item_price) ;
+	  $("#product_price_with_rate_txt").val(product_price_txt);
+   })
 
  
  
@@ -228,11 +242,11 @@ $(document).ready(function () {
 
     if (admin_email_txt == "" || admin_password_txt == "") {
       $("#admin_alert_msg_login").html(
-        "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
+        "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
       );
     } else if (!emailformat.test(admin_email_txt)) {
       $("#admin_alert_msg_login").html(
-        "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Incorrect <strong>Email !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
+        "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Incorrect <strong>Email!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
       );
     } else {
       $.ajax({
@@ -283,11 +297,20 @@ product_count();
 
 	}
 
+
+
+  // change the category id to category confirm model
+  $("body").delegate(".btn_product_delete", "click", function () {
+    var product_delete_id = $(this).attr("product_delete_id"); //get the value from our selected product id
+    var product_id 	= $("#product_delete_id_btn").val(product_delete_id); 
+  })
+  
+  
   //delete the product from table
   $("body").delegate(".product_delete", "click", function () {
     event.preventDefault();
-    var product_id = $(this).attr("product_delete_id"); //get the value from our selected product id
-
+    var product_id 	= $("#product_delete_id_btn").val(); 
+ 
     $.ajax({
       url: "admin_action.php",
       method: "POST",
@@ -296,6 +319,8 @@ product_count();
 		  toastr.success('Successfully deleted');
 		 product_count();
         product_tbl_get_product();
+		 $('#product_del_confirm_Modal').modal('hide'); // hide the model
+		 Prduct_table_footer_num();
       },
     });
   });
@@ -346,7 +371,7 @@ product_count();
     var Category_txt = $("#Category_txt").val();
 
     if (Category_txt == "") {
-          toastr.error('Please fill all the field')
+          toastr.error('Please fill all the fields')
 } else {
       $.ajax({
         url: "admin_action.php",
@@ -357,12 +382,12 @@ product_count();
 		// 1 is from php code for the exist product  and active
 		 if(data ==1)
 		 {
-			toastr.error("Already category is exist");
+			toastr.error("Already this category exists");
 		 }	
 		 // 2 is from php code for the exist product  but inactive
 		 else if(data==2)
 		 {
-			 toastr.error("Already category is exist and it has inactive ");
+			 toastr.error("Already this category exists and it is inactive right now ");
 		 }
 		  else
 		 { 
@@ -443,12 +468,21 @@ category_count();
  
  
  
+ 
+  // change the category id to category confirm model
+  $("body").delegate(".btn_category_delete", "click", function () {
+    var delete_pid = $(this).attr("category_delete_id"); //get the value from our selected product id
+	 $("#category_delete_id_btn").val(delete_pid); 
+  })
+  
+  
+  
   //remove the category from card
   $("body").delegate(".category_delete", "click", function () {
     event.preventDefault();
-
-    var delete_pid = $(this).attr("category_delete_id"); //get the value from our selected product id
-
+ 
+	var delete_pid= $("#category_delete_id_btn").val(); 
+ 
     $.ajax({
       url: "admin_action.php",
       method: "POST",
@@ -456,9 +490,11 @@ category_count();
       success: function (data) {
 		  		toastr.success('Successfully deleted');
 				category_count();
-			category_tbl_get_category();
+				category_tbl_get_category();
 			  $('#category_form')[0].reset();
-			  $('#category_filter').val(""); // filter search text box in category table
+			  $('#category_filter').val(""); // filter category through search box 
+			  $('#category_del_confirm_Modal').modal('hide'); // hide the model
+			  Category_table_footer_num();
       },
     });
   });
@@ -495,7 +531,7 @@ category_count();
 	var brand_txt = $("#brand_txt").val();
 
     if (brand_txt == "") {
-          toastr.error('Please fill all the field')
+          toastr.error('Please fill all the fields')
 	} else {
       $.ajax({
         url: "admin_action.php",
@@ -507,12 +543,12 @@ category_count();
 	 // 1 is from php code for the exist brand  and active
 		 if(data ==1)
 		 {
-			toastr.error("Already brand is exist");
+			toastr.error("Already this brand exists");
 		 }	
 		 // 2 is from php code for the exist brand  but inactive
 		 else if(data==2)
 		 {
-			 toastr.error("Already brand is exist and it has inactive ");
+			 toastr.error("Already this brand exists and it is inactive right now");
 		 }
 		  else
 		 { 
@@ -522,12 +558,8 @@ category_count();
 			$("#brand_txt").val("");
 			brand_tbl_get_brand();
 		 }
-		 
-		 
-		 
-		 
-		 
-		 
+		  
+		  
 	
         },
       });
@@ -550,11 +582,19 @@ category_count();
 
 
 
+
+ // change the brand id to brand confirm model
+  $("body").delegate(".btn_delete_model", "click", function () {
+    var brand_id = $(this).attr("brand_delete_id"); //get the value from our selected brand id
+	 $("#brand_delete_id_btn").val(brand_id); 
+  })
+
+
   //remove the brand
   $("body").delegate(".brand_delete", "click", function () {
-    event.preventDefault();
-    var brand_id = $(this).attr("brand_delete_id"); //get the value from our selected product id
-
+   event.preventDefault();
+   var brand_id = $("#brand_delete_id_btn").val();
+   
     $.ajax({
       url: "admin_action.php",
       method: "POST",
@@ -565,6 +605,8 @@ category_count();
 		toastr.success('Successfully deleted');
 		 $('#Brand_form')[0].reset();
 		    $('#brand_filter').val("");
+			$('#brand_del_confirm_Modal').modal('hide');
+			 Brand_table_footer_num();
       },
     });
   });
@@ -757,14 +799,14 @@ category_count();
 	
 					
 				 //when the user click the particular page number it will be showup that page
-				 $('body').delegate('#brand_tbl_page_num','click',function() {
+			  $('body').delegate('#brand_tbl_page_num','click',function() {
 			 event.preventDefault();
 			var pagenum= $(this).attr('brand_tbl_page_num');  
 	 
 					$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
-					data	:	{get_admin_category:1,setpagenumber:1,pagenumber:pagenum},
+					data	:	{get_admin_brand:1,setpagenumber:1,pagenumber:pagenum},
 					success	:	function(data){
 						$("#get_all_brand").html(data);
 					}
@@ -1061,33 +1103,39 @@ category_count();
 			$('body').delegate('#order_accept_panding_btn','click',function() {
 			 event.preventDefault();
 				var ordid= $(this).attr('ordid');  
+				var cust_order_id_txt= $(this).attr('cust_order_id');  
+				 
 			 
 	 	    	$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
-					data	:	{change_panding_to_process:1,order_id:ordid},
+					data	:	{change_panding_to_process:1,order_id:ordid,cust_order_id:cust_order_id_txt},
 					success	:	function(data){
 						toastr.success('Order Accepted');
 						get_all_panding_orders();
 						all_customer_order();
+						count_total_panding_order()	
+						count_total_process_order()
+						
 					}
 					})
 					
 					
 					
 			});
-
-
-	
-		 
+			
+			
+			
+			
+			
+			 
 		
-		//change panding order to process order
+		//panding order cancel in padding order page
 			$('body').delegate('#order_cancel_panding_btn','click',function() {
 			 event.preventDefault();
 			 var ordid= $(this).attr('ordid');  
 				alert(ordid);
-					
-					
+ 
 					
 			});
 		
@@ -1099,16 +1147,18 @@ category_count();
 			$('body').delegate('#order_shipment_btn','click',function() {
 			 event.preventDefault();
 			 var ordid= $(this).attr('ordid');  
+			 var cust_order_id_txt= $(this).attr('cust_order_id');  
 			 
 						$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
-					data	:	{change_process_to_shipment:1,order_id:ordid},
+					data	:	{change_process_to_shipment:1,order_id:ordid,cust_order_id:cust_order_id_txt},
 					success	:	function(data){
 						toastr.success('Item shipped  to the customer');
 						all_customer_order();
 						get_all_process_orders()
-					
+						count_total_process_order()
+						count_total_shipped_order()	
 					}
 					})
 					
@@ -1226,13 +1276,13 @@ category_count();
 			if(cori_email_txt == "" || cori_password_txt == "")
 			{
 				
-			$('#cori_login_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear User !</strong> Please fill all the field<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+			$('#cori_login_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear User!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 			}
 			
 			else if(!emailformat.test(cori_email_txt))
 			{
-				$('#cori_login_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Incorrect <strong>Email !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+				$('#cori_login_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Incorrect <strong>Email!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 			}
 	

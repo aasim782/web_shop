@@ -82,25 +82,14 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-9">
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
- 
+		   
 		      <div id="product_reg_msg">
 	  </div>		  
  
 	 
 	  <div id="get_add_form">
 	  </div>
-       
-
-
-
+        
  
 
           </div>
@@ -161,19 +150,7 @@
 		
 		
 		
-		
-		
-		
-
-
-
-
-
-
-
-
-
-
+		 
 
 
        <div class="row">
@@ -183,7 +160,7 @@
           <div class="card card-warning card-outline">	
  
 
-<div class="card-header border-transparent">
+			<div class="card-header border-transparent">
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>

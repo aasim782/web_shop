@@ -36,14 +36,14 @@
 	 		<div id="cus_alert_msg" > </div>
 		  <div class="form-row">
 			<div class="col-md-6">
-			  <label for="validationCustom01">Produxt Name</label>
-			  <input type="text" class="form-control" id="fname" name="fnametxt" placeholder="First name">
+			  <label for="validationCustom01">Firt Name </label>
+			  <input type="text" class="form-control" id="Customes_order_fnametxt" name="Customes_order_fnametxt" placeholder="First name">
 		
 			</div>
 			
 			<div class="col-md-6">
-			  <label for="validationCustom02">Qty</label>
-			  <input type="text" class="form-control" id="lname"  name='lnametxt' placeholder="Last name" >
+			  <label for="validationCustom02">Last Name</label>
+			  <input type="text" class="form-control" id="Customes_order_lnametxt"  name='Customes_order_lnametxt' placeholder="Last name" >
 		
 			</div>
 			</div>
@@ -52,51 +52,21 @@
 	<div class="form-row">
 	    <div class="col-md-6">
       <label for="validationCustom02">Email</label>
-      <input type="text" class="form-control" id="email"  name="emailtxt" placeholder="Email" >
+      <input type="text" class="form-control" id="Customes_order_emailtxt"  name="Customes_order_emailtxt" placeholder="Email" >
 
     </div>
 	<div class="col-6">
       <label for="validationCustom04">Phone</label>
-      <input type="text" class="form-control" size="10"  maxlength="10"  id="phone" name="phonetxt" placeholder="Phone">
+      <input type="text" class="form-control" size="10"  maxlength="10"  id="Customes_order_phonetxt" name="Customes_order_phonetxt" placeholder="Phone">
       </div>
     </div>
 
   
-  
-	  <div class="form-row">
-		<div class="col-6">
-		  <label for="validationCustom03">Create Paasword</label>
-		  
-		  <input type="password" class="form-control" id="password" name="password1txt" placeholder="Create Paasword">
-
-		</div>
-	   
-		<div class="col-md-6">
-		  <label for="validationCustom05">Confirm Paasword</label>
-		  <input type="password" class="form-control" id="repassword" placeholder="Confirm Paasword">
-
-		</div>
-	  </div>
-  
+    
     <div class="form-row">
-  		<div class="col-md-6">
-		  <label for="validationCustom05">City</label>
-		  <input type="text" class="form-control" id="city" name="citytxt" placeholder="City">
-
-		</div>
-  
-    <div class="col-6">
-      <label for="validationCustom05">Postal Code</label>
-      <input type="text" class="form-control" id="postal"  maxlength="5"  name="postaltxt" placeholder="Postal Code" >
-
-    </div>
-  </div>
-  
-  
-    <div class="form-row">
-    <div class="form-group col-8">
-    <label for="exampleFormControlTextarea1">Address</label>
-    <textarea class="form-control" id="address"  name="addresstxt" rows="3"></textarea>
+    <div class="form-group col-12">
+    <label for="exampleFormControlTextarea1">What do you want</label>
+    <textarea class="form-control" id="Customes_order_txt"  name="Customes_order_msg" rows="3"></textarea>
 
 	</div>
 	</div>

@@ -38,7 +38,7 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
-
+ 
 
 <!--navbar-->
 <?php include "navbar.php" ?>

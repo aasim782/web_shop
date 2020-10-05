@@ -129,14 +129,14 @@ if(isset($_POST["product"])){
 			</div>
 			
 		   <div class='text-center' >
-			<img  class='card-img-bottom text-center '  id='particular_product_search_btn'  session_val='$customer_id'  pid='$product_id' src='admin/upload/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
+			<img  class='card-img-bottom text-center '  id='particular_product_search_btn'  session_val='$customer_id'  pid='$product_id' src='admin/upload/Product_images/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
 			</div>
          
     <div class='form-group row justify-content-center'>
 
         <label for='inputPassword' class='p-1'>QTY :</label>
         <div class='col-sm-4'>
-            <input type='number' class='form-control' min='1' size='2' session_val='$customer_id'  pid='$product_id' value='1'  id='qty-$product_id' >
+            <input type='number' class='form-control ' min='1' size='2' session_val='$customer_id'  pid='$product_id' value='1'  id='qty-$product_id' >
 		</div>
 		</div>
 	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' session_val='$customer_id'  pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
@@ -219,14 +219,14 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 			</div>
 			
 		   <div class='text-center' >
-			<img  class='card-img-bottom text-center ' pid='$product_id' session_val='$customer_id'  id='particular_product_search_btn' src='admin/upload/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
+			<img  class='card-img-bottom text-center ' pid='$product_id' session_val='$customer_id'  id='particular_product_search_btn' src='admin/upload/Product_images/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
 			</div>
          
     <div class='form-group row justify-content-center'>
 
         <label for='inputPassword' class='p-1'>QTY :</label>
         <div class='col-sm-4'>
-            <input type='number' class='form-control' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
+            <input type='number' class='form-control text-center' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
 		</div>
 		</div>
 	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
@@ -242,9 +242,9 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 		echo "
 		<div class='container text-center'>
 			<div class='alert alert-info '  role='alert' >
-			  <h4 class='alert-heading'>We haven't such a product right now.!</h4>
-			  <p>We have sorry to say, we haven't such a product.!</p>
-			  <p  >You can make a customes order </p>
+			  <h4 class='alert-heading'>We don't have such kind of a product right now.!</h4>
+			  <p>We are sorry to say that we don't have such a product.!</p>
+			  <p  >You can make a request here for your need </p>
 			  <button class='btn btn-danger mt-2'  data-toggle='modal' data-target='#customes_order' ><i class='fa fa-shopping-cart'></i> CLICK HERE</button>  </p>
 			</div> 
 			</div> 
@@ -295,7 +295,7 @@ if(isset($_POST["cus_reg"])){
 		if($run_query){
 		
 		echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
-		data-auto-dismiss><strong>Successfully Registered</strong> <button type='button' 
+		data-auto-dismiss><strong>Registered Successfully</strong> <button type='button' 
 		class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 		echo "<script> window.location.assign('login.php'); </script>";		
 		exit();
@@ -319,7 +319,7 @@ if(isset($_POST["userLogin"])){
 				$_SESSION['cusid'] = $row['customer_id'];
 				$_SESSION['cus_fname'] = $row['first_name'];
 				echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
-				data-auto-dismiss><strong>Successfully login</strong> <button type='button' 
+				data-auto-dismiss><strong>Signed in Successfully</strong> <button type='button' 
 				class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 				echo "<script> window.location.assign('profile.php'); </script>";	
 		}
@@ -332,62 +332,7 @@ if(isset($_POST["userLogin"])){
 		}
 }
 
-/*dont kow why we used
-if(isset($_GET["prd_view_page"]))
-	{
-		 
-		$product_id= $_GET["pid"];
-		
- $query = "SELECT * FROM product_tbl where active=1 and product_id = $product_id ";
-	$run_query = mysqli_query($con,$query);
-	while($row = mysqli_fetch_array($run_query))
-		{
-			$product_id = $row["product_id"];
-			$product_category = $row["product_category"];
-			$product_brand = $row["product_brand"];
-			$product_name = $row["product_name"];
-			$product_price = $row["product_price"];
-			$product_desc = $row["product_desc"];
-			$product_img = $row["product_img"];
-			$product_total_qty = $row["product_total_qty"];
-			echo "
-			        <div class=' col-4 mb-3' >
-            <div class='  card'> 
-			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b>$product_name</b>sssssssssssssssssssssssss
-			
-		<button type='button' id='particular_product_search_btn' pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
-					<div style='padding-top:1px;' >sssssssssssssssssssssssssssss
-					<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-					<i class='fas fa-star'></i>
-					</div>
-			</div>
-			
-		   <div class='text-center' >
-			<img  class='card-img-bottom text-center ' src='admin/upload/$product_img' align='center' style='padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
-			</div>
-         
-    <div class='form-group row justify-content-center'>
 
-        <label for='inputPassword' class='p-1'>QTY :</label>
-        <div class='col-sm-4'>
-            <input type='number' class='form-control' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
-		</div>
-		</div>
-	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
-	<div class='text-center pt-1' style='background-color:#fffff;'><label for='class_type' ><h4><span class=' label label-primary' align='center'>&nbsp Rs.$product_price.00 &nbsp </span></h4></label>	</div>
-			</div>
-            </div>
-          </div>
-			";
-		}
-		
-		
-		
-	}
-	*/
 
 if(isset($_POST["add_to_card"])){
 
@@ -400,12 +345,12 @@ if(isset($_POST["add_to_card"])){
 	if(!isset($_SESSION['cusid']))
 	{
 		
-			echo "	<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
-				  <strong>Dear! customer </strong>! Before order please sign in your account.
-				  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-					<span aria-hidden='true'>&times;</span>
-				  </button>
-				</div> ";
+		  echo "<script type='text/javascript'>
+			$(document).ready(function(){
+			$('#customer_login_model').modal('show');
+			});
+			</script>
+			";
 		
 	}
 	else
@@ -419,7 +364,7 @@ if(isset($_POST["add_to_card"])){
 		if($count>0)
 		{
 				echo "	<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
-				  <strong>Product already added to the Cart..! </strong>. 'You can increase your quantity at cart page'
+				  <strong>Product has been already added to the Cart..! </strong>. 'You can increase your quantity from the cart'
 				  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 					<span aria-hidden='true'>&times;</span>
 				  </button>
@@ -433,6 +378,9 @@ if(isset($_POST["add_to_card"])){
 					$row = mysqli_fetch_array($check_query);
 					$product_id = $row["product_id"];
 					$product_price = $row["product_price"];
+					
+					date_default_timezone_set('Asia/Kolkata');
+					//define date and time
 					$today = date("Y-m-d"); // get the date
 					
 			$sql = "SELECT * FROM customer_ord_prds " ;
@@ -511,7 +459,7 @@ if(isset($_POST["add_to_card"])){
 						
 						if($product_total_qty==0){
 							echo "<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
-									  Dear, Cusomer ! <strong>this product is out of stocks.</strong>
+									  Dear, Cusomer ! <strong>This product is out of stock.</strong>
 									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 										<span aria-hidden='true'>&times;</span>
 									  </button>
@@ -520,7 +468,7 @@ if(isset($_POST["add_to_card"])){
 						else if(($product_qty>$product_total_qty) &&  ($product_total_qty!=0))
 						{
 								echo "<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
-									  Dear, Customer ! <strong>We have in stock $product_total_qty item only.</strong>
+									  Dear, Customer ! <strong>Right now we have only $product_total_qty in our stock in this item.</strong>
 									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 										<span aria-hidden='true'>&times;</span>
 									  </button>
@@ -559,7 +507,7 @@ if(isset($_POST["add_to_card"])){
 								 
 								mysqli_query($con,$sql);
 									echo "<div class='alert alert-success alert-dismissible fade show col-lg-12' role='alert'>
-									  <strong>Product Successfully added to</strong> the Cart..!
+									  <strong>Product Successfully added to</strong> Cart..!
 									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 										<span aria-hidden='true'>&times;</span>
 									  </button>
@@ -602,7 +550,7 @@ if(isset($_POST["cart_count"]))
 if(isset($_POST["orderd_prd_count"]))
 {
 	$customer_id = $_SESSION['cusid'] ;
-			$sql ="SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or payment_status=2 or payment_status=3)" ;
+			$sql ="SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1) and (order_status=0 || order_status=1 || order_status=2)" ;
 					$check_query = mysqli_query($con,$sql);
 					echo mysqli_num_rows($check_query);	//total customer orded product (with different payment)
 	
@@ -657,7 +605,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 						$product_id = $row["product_id"];
 						$current_price_per_prd = $row["current_price_per_prd"];
 						
-						$current_total_price =  	$current_price_per_prd* $order_qtry;
+						$current_total_price = $current_price_per_prd* $order_qtry;
 						
 						$sql = "SELECT * FROM product_tbl where product_id='$product_id'" ;
 						$check_query1 = mysqli_query($con,$sql);
@@ -678,7 +626,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 									
 														echo "<tr style='cursor: pointer;' id='card_page_view_url'>
 															<th class='col-2'>$no</th>
-																<td><img height='50px' width='50px' src='admin/upload/$product_img' alt='Third slide'></td>
+																<td><img height='50px' width='50px' src='admin/upload/Product_images/$product_img' alt='Third slide'></td>
 																<td style='width: 30%'><label style='cursor: pointer;'  >$product_name</label></td>
 															<td class='col-sm-1 col-md-1 text-center'><strong>$order_qtry</strong></td>
 															<td class='col-sm-1 col-md-1 text-center'><strong>Rs.$current_total_price.00</strong></td>
@@ -694,16 +642,13 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 											
 											echo " <div class='row mb-2 mt-4'>
 														<div class='col-md-1 text-center'><b>$no.</b></div>
-														<div class='col-md-3'><img height='55px' class='mr-3' width='55px' src='admin/upload/$product_img' >$product_name
+														<div class='col-md-3'><img height='55px' class='mr-3' width='55px' src='admin/upload/Product_images/$product_img' >$product_name
 														
 														 
 																<textarea class='form-control mt-2 note' id='note-$product_id'   pid='$product_id'     name='customer_note' rows='2' size='4'  placeholder='Note...'>$customer_note</textarea>
-														 
-														
-														
+														  
 														</div>
-												
-															
+												 
 														<div class='col-md-1  '>	
 												
 														<input type='number'   min='1' class='form-control text-center qty ' id='qty-$product_id' pid='$product_id'  value='$order_qtry'>
@@ -816,7 +761,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 				  <div class='col-12 justify-content-center'>
 					<div class='collapse multi-collapse' id='bank_btn_clk'>
 					  <div class='card card-body'>
-						Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+						Please upload a picture of your money deposited slip. Click here to upload it (Please inclued the date, time and branch). 
 						<div class='text-center m-2'><button class='btn btn-warning ' type='button'  data-toggle='modal' data-target='#bankdepModel'  >Upload</button></div>
 					  </div>
 					</div>
@@ -825,8 +770,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					
 					<div class='collapse multi-collapse' id='cash_on_delivery_btn_click'>
 					  <div class='card card-body'>
-						Cash on delivery only posible under 50,000 on ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-						that have term and conditions
+						Cash on delivery is only posible for the products under 50,000. For the prducts more than 50,000 it can be paid through online paymnet or bank deposit. 
 						 ";
 						 
 					//phone verify conform - agree button hide show 
@@ -839,7 +783,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					{
 				
 						
-						echo "<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Agree to conform''></div>";
+						echo "<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Conform''></div>";
 						
 					}
 					else
@@ -848,11 +792,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 						<div class='text-center m-2'><input type='button' class='btn btn-warning' data-toggle='modal' data-target='#OTP_verify_model' value='Phone number verify'></div>";
 					}
 						
-						
-					
-					
-					
-					
+						 
 					
 					  echo "</div>
 					</div>
@@ -875,7 +815,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 
 			 
 		<input type='hidden' name='order_id' value='$order_id'>
-		<input type='hidden' name='items' value='Door bell wireless'><br>
+		<input type='hidden' name='items' value='Dressline'><br>
 		<input type='hidden' name='currency' value='LKR'>
 		<input type='hidden' name='amount' value='$final_total'>  
  
@@ -976,7 +916,7 @@ $customer_note = $_POST['customer_note'];
 						if($product_total_qty==0 && $order_qtry<$new_qty){
 							
 								echo "<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
-									  Dear, Cusomer ! <strong>this product is out of stocks.</strong>
+									  Dear, Cusomer ! <strong>This product is out of stock right now.</strong>
 									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 										<span aria-hidden='true'>&times;</span>
 									  </button>
@@ -988,7 +928,7 @@ $customer_note = $_POST['customer_note'];
 						 $sql = "update customer_ord_prds set customer_note='$customer_note' WHERE customer_id = '$customer_id' AND product_id='$update_product_id' AND payment_status = 0" ;
 							$check_query = mysqli_query($con,$sql);
 								echo "<div class='alert alert-success alert-dismissible fade show col-lg-12' role='alert'>
-									  Dear Customer! <strong>your order updated </strong>
+									  Dear Customer! <strong>your order has been updated </strong>
 									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 										<span aria-hidden='true'>&times;</span>
 									  </button>
@@ -998,7 +938,7 @@ $customer_note = $_POST['customer_note'];
 						else if(($aditinal_added > $product_total_qty)   )
 						{
 								echo "<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
-									  Dear, Cusomer ! <strong>you can order moreovers $product_total_qty item only.</strong>
+									  Dear, Cusomer ! <strong>Right now we have only $product_total_qty items in our stocks.</strong>
 									  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 										<span aria-hidden='true'>&times;</span>
 									  </button>
@@ -1013,7 +953,7 @@ $customer_note = $_POST['customer_note'];
 							if($check_query){
 		
 									echo "	<div class='alert alert-success alert-dismissible fade show col-lg-12' role='alert'>
-							  <strong>Product Successfully updated</strong> to the Cart..!
+							  <strong>Product Quantity Successfully updated</strong> to the Cart..!
 							  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 								<span aria-hidden='true'>&times;</span>
 							  </button>
@@ -1051,6 +991,7 @@ $customer_note = $_POST['customer_note'];
 
  
 	
+ 
 	
 	
 if(isset($_POST["myorder"]) || isset($_POST["myorder_footer_num"])){
@@ -1075,7 +1016,7 @@ if(isset($_POST["myorder"]) || isset($_POST["myorder_footer_num"])){
 	 //display the order panination number
 	if(isset($_POST["myorder_footer_num"]))
 	{
-		$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3)" ;
+		$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3) and !(order_status =3)" ;
 		$check_query = mysqli_query($con,$sql);
  
 		$count = mysqli_num_rows($check_query);
@@ -1088,7 +1029,7 @@ if(isset($_POST["myorder"]) || isset($_POST["myorder_footer_num"])){
 	
 	$i=	$start;
 $customer_id = $_SESSION['cusid'] ;
-$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3) limit $start,$page_number_limit" ;
+$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3) and !(order_status=3) limit $start,$page_number_limit" ;
 $check_query = mysqli_query($con,$sql);
 		if(isset($_POST["myorder"])){
 	
@@ -1098,6 +1039,7 @@ $check_query = mysqli_query($con,$sql);
 							$i++;
 						$customer_ord_id = $row["customer_ord_id"];
 						$order_id = $row["order_id"];
+						$order_date = $row["order_date"];
 						$order_qtry = $row["order_qtry"];
 						$product_id = $row["product_id"];
 						$current_price_per_prd = $row["current_price_per_prd"];
@@ -1107,6 +1049,10 @@ $check_query = mysqli_query($con,$sql);
 						
 						$sql2 = "SELECT * FROM payment_tbl where order_id=$order_id" ;
 						$check_query2 = mysqli_query($con,$sql2);
+						
+						
+						
+						
 						
 						while($row = mysqli_fetch_array($check_query2))
 						{
@@ -1129,11 +1075,7 @@ $check_query = mysqli_query($con,$sql);
 								$product_img = $row["product_img"];
 								
 							}	
-							
-							
-							
-							
-							
+							 
 						}
 						
 						
@@ -1161,12 +1103,12 @@ $check_query = mysqli_query($con,$sql);
 							</div>
 							
 							<div class='col-sm text-right'>
-							Ordered Date :<b> $payment_date  </b> 
+							Ordered Date :<b> $order_date  </b> 
 							</div>
 						  </div>
 				  </div>
 				  <div>
-						<img src='admin/upload/$product_img' class='ml-2 mt-2 '  height='100px' width='100px'>
+						<img src='admin/upload/Product_images/$product_img' class='ml-2 mt-2 '  height='100px' width='100px'>
 						
 				</div>  
 						
@@ -1205,10 +1147,20 @@ $check_query = mysqli_query($con,$sql);
 							<p class='card-text mt-2 '>Note : <small><b>$customer_note</b></small></p>
 							  </div>
 								
-
-								<div class='btn-group mt-2 '>
-										<a href='' class='btn btn-warning mr-2 rounded '><i class='fa fa-check'></i> Conform goods Received </a>
-										<a href='' class='btn btn-danger mr-2 rounded' data-toggle='modal' data-target='#traking_model'><i class='fa fa-search'></i> Track Order </a>
+				
+								<div class='btn-group mt-2'>
+								";
+										if(!($order_status==2))
+										{
+											echo"<button  class='btn btn-warning mr-2 rounded disabled'><i class='fa fa-check'></i> Conform goods Received </button>";
+										}
+										else
+										{
+											echo"<a href='' class='btn btn-warning mr-2 rounded  order_id='$order_id'    customer_ord_id='$customer_ord_id'  id='customer_prd_conform_btn'  data-toggle='modal'><i class='fa fa-check'></i> Conform goods Received </a>";
+										}
+									  
+									  echo "
+										<a href='' class='btn btn-danger mr-2 rounded' order_id='$order_id'  customer_ord_id='$customer_ord_id'  id='trcking_btn' data-toggle='modal' data-target='#traking_model'><i class='fa fa-search'></i> Track Order </a>
 										<a href='message.php' class='btn btn-dark mr-2  rounded'><i class='fa fa-sms'></i> message</a>
 					
 										</div>
@@ -1228,6 +1180,14 @@ $check_query = mysqli_query($con,$sql);
 	
 } 
 
+ 
+ 
+ 
+
+	 
+	
+	
+	
 //customer change password
 if(isset($_POST["chnagepassowrd"])){
 
@@ -1248,14 +1208,14 @@ if(isset($_POST["chnagepassowrd"])){
 					$check_query = mysqli_query($con,$sql);
 						if($check_query)
 						{
-						echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> password changed<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+						echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> password changed succesfully<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 						}	
 												
 					}
 					else
 						{
 													
-						echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> your old password is wrong<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+						echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> your old password is incorrect<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 					
 													
 						}
@@ -1272,7 +1232,7 @@ $customer_id = $_SESSION['cusid'] ;
 $sql = "SELECT  customer_ord_prds.customer_ord_id,customer_ord_prds.product_id 
 		FROM customer_tbl,customer_ord_prds 
 		WHERE customer_tbl.customer_id = customer_ord_prds.customer_id 
-		AND (customer_ord_prds.customer_id = '$customer_id' and (customer_ord_prds.payment_status=1 or  customer_ord_prds.payment_status=2 or customer_ord_prds.payment_status=3))" ;
+		AND (customer_ord_prds.customer_id = '$customer_id' and (customer_ord_prds.payment_status=1 or  customer_ord_prds.payment_status=2 or customer_ord_prds.payment_status=3))  and !(customer_ord_prds.order_status=0 || customer_ord_prds.order_status =3)" ;
 $check_query = mysqli_query($con,$sql);
 
 	echo " <option value='null'>Please Select Order .. </option>";
@@ -1311,7 +1271,7 @@ $complain_message = $_POST['complain_messages'] ;
 $sql = "INSERT INTO `comments_tbl` (comments_id,customer_id,comment_type,customer_ord_id,description) VALUES (NULL, $customer_id,'1' ,$customer_ord_id, '$complain_message')";
 $check_query = mysqli_query($con,$sql);
 
-echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Complain !</strong> Successfully send to the seller<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Complain !</strong> Successfully sent to the seller<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 						
 
 
@@ -1333,7 +1293,7 @@ $sql = "INSERT INTO `comments_tbl` (comments_id,customer_id,comment_type,custome
 $check_query = mysqli_query($con,$sql);
  
 
-echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Complain !</strong> Successfully send<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Complain !</strong> Sent Successfully<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 
 
 }
@@ -1364,7 +1324,6 @@ $row = mysqli_fetch_array($check_query);
 $order_id = $row["order_id"];
 						
 $today= date('Y-m-d'); //get system dates
-
   
 $orderid=$order_id.".";	
 		
@@ -1389,25 +1348,24 @@ $valid_extensions = array("jpg","jpeg","png");
 
 /* Check file extension */
 if(!in_array(strtolower($imageFileType), $valid_extensions)) {
-    	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File extension not suppoted !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+    	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File extension not suppoted!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
 }
 else
 {
 	 
 			 if($uploadOk == 0){
-			     	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+			     	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
 			}else{
 			   /* Upload file */
 			   if(move_uploaded_file($_FILES['file']['tmp_name'],$location.$new_file_name)){
 				 
 			   }else{
-			     	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+			     	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
 			
 			   }
 			}
 				
-				
-				
+				 
 								
 						 
 							$sql = "update customer_ord_prds set payment_status=1 where customer_id= '$customer_id' && order_id = '$order_id' ";
@@ -1425,7 +1383,7 @@ else
 								$sql = "INSERT INTO `bank_dep_tbl`(`payment_id`,`dep_date`,`dep_time`,`branch_name`,`upolod_slip_img`) VALUES ($payment_id,'$dep_date','$dep_time','$branch_name','$new_file_name')";
 									mysqli_query($con,$sql);
 									
-								echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong> Your order completed !</strong>Please wait until seller verify your payment<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+								echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong> Your order has been completed succesfully!</strong> Please wait until the seller verifies your payment<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
  
 										
 								}
@@ -1466,7 +1424,7 @@ $order_id = $row["order_id"];
 								$sql = "INSERT INTO `cash_on_delivery`(`payment_id`) VALUES ($payment_id)";
 								mysqli_query($con,$sql);
 									
-								echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong> Your order completed !</strong>Please wait until seller verify your payment<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+								echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong> Your order has been completed sucessfully!</strong>Please wait until seller verify your payment<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
  
 										
 								} 
@@ -1527,7 +1485,7 @@ $product_desc = $row["product_desc"];
   <div class='container'>
   <div class='row'>
     <div class='col-4 text-center'>
-       <img class='thumbnail zoom card-img-bottom text-center  ' src='admin/upload/$product_img' style='padding-top:10px;padding-bottom:10px;width:190px;height:250px'><br>		
+       <img class='thumbnail zoom card-img-bottom text-center  ' src='admin/upload/Product_images/$product_img' style='padding-top:10px;padding-bottom:10px;width:190px;height:250px'><br>		
  
  		
     </div>
@@ -1567,16 +1525,26 @@ $product_desc = $row["product_desc"];
     </div>
 
   <div class='col-3 text-left'> 
-		   <input type='number' class='form-control' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
+		   <input type='number' class='form-control text-center' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
     </div>
   </div>
   
   
   	 <div class='row mt-3'>	 
  
-	 <div class='col-sm'> 
-	  <p class='text-success'>In Stock</p>   
-    </div>
+	 <div class='col-sm' id='stock_msg'> 
+	 ";
+	 
+	 if($product_total_qty>0){
+		  echo "<p class='text-success'>In Stock</p>";
+	 }
+	 else
+	 {
+		 echo "<p class='text-danger'>Out of Stock</p>";
+	 }
+
+	   
+   	 echo " </div>
  
   </div>
 					
@@ -1637,7 +1605,7 @@ $product_desc = $row["product_desc"];
 	  
 	@$customer_id = $_SESSION['cusid'] ;
 	$product_id = $_POST["pid"];
-	$product_query = "SELECT * from  product_tbl where product_id=$product_id && active=1";
+	$product_query = "SELECT * from  product_tbl where (product_id=$product_id && active=1)";
 	$run_query = mysqli_query($con,$product_query);
 	echo " <b align='center' >Recomended</b>";
 	if(mysqli_num_rows($run_query) > 0){
@@ -1647,7 +1615,7 @@ $product_desc = $row["product_desc"];
 	 //category id
 	$product_category_id = $row["product_category"];	
 	
- 	$product = "SELECT  product_id,product_img , product_price ,RAND() as IDX FROM product_tbl where product_category = $product_category_id ORDER BY IDX  limit 3";
+ 	$product = "SELECT  product_id,product_img , product_price ,RAND() as IDX FROM product_tbl where active=1 and product_category = $product_category_id ORDER BY IDX  limit 3";
 	$run_query = mysqli_query($con,$product);
 
 	if(mysqli_num_rows($run_query) > 0){
@@ -1661,7 +1629,7 @@ $product_desc = $row["product_desc"];
  
 			 
 
-   <div  class='col-sm-12 '><img session_val='$customer_id'   id='particular_product_search_btn'  class='card-img-bottom text-center border border-warning shadow-sm p-2 mt-2' src='admin/upload/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label> 	</div>	
+   <div  class='col-sm-12 '><img session_val='$customer_id'   id='particular_product_search_btn'  class='card-img-bottom text-center border border-warning shadow-sm p-2 mt-2' src='admin/upload/Product_images/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label> 	</div>	
     ";	
 		}	
 	}}
@@ -1687,7 +1655,7 @@ $product_desc = $row["product_desc"];
   if(isset($_POST['recomended_prd_list_left'])){
 	 @$customer_id = $_SESSION['cusid'] ;
 	$product_id = $_POST["pid"];
-	$product_query = "SELECT * from  product_tbl where product_id=$product_id && active=1";
+	$product_query = "SELECT * from  product_tbl where (product_id=$product_id && active=1)";
 	$run_query = mysqli_query($con,$product_query);
 	echo " <b align='center' >Recomended</b>";
 	if(mysqli_num_rows($run_query) > 0){
@@ -1697,7 +1665,7 @@ $product_desc = $row["product_desc"];
 	 //category id
 	$product_category_id = $row["product_category"];	
 	
- 	$product = "SELECT product_id,product_img , product_price ,RAND() as prd FROM product_tbl ORDER BY prd  limit 4";
+ 	$product = "SELECT product_id,product_img , product_price ,RAND() as prd FROM product_tbl  where active=1 ORDER BY prd  limit 4";
 	$run_query = mysqli_query($con,$product);
 
 	if(mysqli_num_rows($run_query) > 0){
@@ -1708,7 +1676,7 @@ $product_desc = $row["product_desc"];
 			$product_img = $row["product_img"];
 			
 			echo "  
-<div  class='col-sm-12 mb-2'><img  session_val='$customer_id'   id='particular_product_search_btn' class='card-img-bottom text-center border mt-2' src='admin/upload/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label></div>		
+<div  class='col-sm-12 mb-2'><img  session_val='$customer_id'   id='particular_product_search_btn' class='card-img-bottom text-center border border-warning shadow-sm p-2 mt-2' src='admin/upload/Product_images/$product_img' pid='$Click_product_id' style='padding-top:10px;padding-bottom:10px;width:100px;height:100px;cursor: pointer;'/><label style='color:brown;'> <b>Rs.$product_price.00</b></label></div>		
     ";	
 		
 		}	
@@ -1717,6 +1685,8 @@ $product_desc = $row["product_desc"];
 	  
   }
   }
+  
+  
   
   
   //send the code to the customer phone
@@ -1745,13 +1715,17 @@ $product_desc = $row["product_desc"];
  
 		
 	}
+	
+	
+	
+	
   
   //phone number show for verification
      if(isset($_POST['phone_number_show'])){
 		 
 		$customer_id = $_SESSION['cusid'] ;
 		 
-  	$customer_phone_query = "SELECT * from  customer_tbl where customer_id=$customer_id";
+		$customer_phone_query = "SELECT * from  customer_tbl where customer_id=$customer_id";
 		$run_query = mysqli_query($con,$customer_phone_query);
 		$row = mysqli_num_rows($run_query);
 		$row_data = mysqli_fetch_array($run_query);
@@ -1777,9 +1751,9 @@ $product_desc = $row["product_desc"];
 				
 				$sql = "update customer_tbl set otp_verify= 1  WHERE  customer_id=$customer_id " ;
 				$check_query = mysqli_query($con,$sql);
-				echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Successfully veified<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"; 
+				echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Successfully verified<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"; 
 				echo '<script type="text/javascript">
-								window.open("index.php","_self");
+								window.open("cart.php","_self");
 							</script>';
 				
 				}
@@ -1788,14 +1762,14 @@ $product_desc = $row["product_desc"];
 					if($attempt_val>=3){
 						$sql = "update customer_tbl set otp_verify=0  WHERE customer_id=$customer_id " ;
 						$check_query = mysqli_query($con,$sql);
-					echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> verification disabled try again<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"; 
+					echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> verification is disabled, Please try again<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"; 
 					echo '<script type="text/javascript">
 								window.open("index.php","_self");
 							</script>';
 					}
 					else
 					{
-						 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Your OTP code is wrong.Your Attempt $attempt_val<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"; 
+						 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer !</strong> Your OTP code is incorrect. Your $attempt_val attempt<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"; 
 				
 					}
 					 
@@ -1804,6 +1778,242 @@ $product_desc = $row["product_desc"];
 		
 		   }
  
+ 
+ 
+ 
+ //tracking model getting data
+    if(isset($_POST['tracking_model_items'])){
+	$order_id = $_POST["order_id"];
+	$customer_ord_id = $_POST["customer_ord_id"];
+	$sql = "SELECT  customer_ord_prds.product_id,customer_ord_prds.order_qtry,product_tbl.product_name ,product_tbl.product_img,product_tbl.product_price,customer_ord_prds.order_id FROM customer_ord_prds,product_tbl
+	where (customer_ord_prds.order_id = $order_id and customer_ord_prds.product_id=product_tbl.product_id)";
+	$check_query = mysqli_query($con,$sql);
+   
+ if(mysqli_num_rows($check_query) > 0){
+		while($row = mysqli_fetch_array($check_query))
+		{ 
+			$product_name = $row["product_name"];	
+			$product_price =$row["product_price"];	
+			$product_img =  $row["product_img"];	
+			$order_qtry =  $row["order_qtry"];	
+		 
+			
+		 echo"
+		 <li class='col-md-4'>
+                    <figure class='itemside mb-3'>
+                        <div class='aside'><img src='admin/upload/Product_images/$product_img' class='img-sm border'></div>
+                        <figcaption class='info align-self-center'>
+                            <p class='title'>$product_name<br>Qty: $order_qtry </p> <span class='text-muted'>Rs. $product_price.00 </span>
+                        </figcaption>
+                    </figure>
+                </li>
+				
+				";
+			
+			
+		}
+	}
+	
+		 
+		  
+	 
+	 
+	 }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  //tracking prograss color line
+ if(isset($_POST["tracking_prograss_line"]))
+	{
+		
+$order_id = $_POST['order_id'];
+$customer_ord_id = $_POST['customer_ord_id'];
+$sql = "SELECT * FROM customer_ord_prds WHERE order_id=$order_id and customer_ord_id=$customer_ord_id" ;
+$check_query = mysqli_query($con,$sql);
+$row_data = mysqli_fetch_array($check_query);
+$order_status = $row_data["order_status"];
+	
+		
+		if($order_status==0)
+		{
+			echo "<div class='step'> <span class='icon'> <i class='fa fa-check'></i> </span> <span class='text'>Order confirmed</span> </div>
+                <div class='step'> <span class='icon'> <i class='fa fa-user'></i> </span> <span class='text'> Packing</span> </div>
+                <div class='step'> <span class='icon'> <i class='fa fa-truck'></i> </span> <span class='text'> On the way </span> </div>
+                <div class='step'> <span class='icon'> <i class='fa fa-box'></i> </span> <span class='text'>Ready for pickup</span> </div>";
+	
+		}
+		else if($order_status==1)
+		{
+				echo "<div class='step active'> <span class='icon'> <i class='fa fa-check'></i> </span> <span class='text'>Order confirmed</span> </div>
+                <div class='step active'> <span class='icon'> <i class='fa fa-user'></i> </span> <span class='text'> Packing</span> </div>
+                <div class='step'> <span class='icon'> <i class='fa fa-truck'></i> </span> <span class='text'> On the way </span> </div>
+                <div class='step'> <span class='icon'> <i class='fa fa-box'></i> </span> <span class='text'>Ready for pickup</span> </div>";
+	
+		}
+		 else if($order_status==2)
+		{
+				echo "<div class='step active'> <span class='icon'> <i class='fa fa-check'></i> </span> <span class='text'>Order confirmed</span> </div>
+                <div class='step active'> <span class='icon'> <i class='fa fa-user'></i> </span> <span class='text'> Packing</span> </div>
+                <div class='step active'> <span class='icon'> <i class='fa fa-truck'></i> </span> <span class='text'> On the way </span> </div>
+                <div class='step'> <span class='icon'> <i class='fa fa-box'></i> </span> <span class='text'>Ready for pickup</span> </div>";
+	
+		}		
+		else if($order_status==3)
+		{
+				echo  "<div class='step active'> <span class='icon'> <i class='fa fa-check'></i> </span> <span class='text'>Order confirmed</span> </div>
+                <div class='step active'> <span class='icon'> <i class='fa fa-user'></i> </span> <span class='text'> Packing</span> </div>
+                <div class='step active'> <span class='icon'> <i class='fa fa-truck'></i> </span> <span class='text'> On the way </span> </div>
+                <div class='step active'> <span class='icon'> <i class='fa fa-box'></i> </span> <span class='text'>Ready for pickup</span> </div>";
+	
+		}
+		else
+		{
+						echo  "Error";
+		}
+	 
+		 
+	
+	}
+	
+	
+//shipment and tracking details at tracking model
+ if(isset($_POST["tracking_model_details"]))
+	{
+		$order_id = $_POST['order_id'];
+		$customer_ord_id = $_POST['customer_ord_id'];
+		$status="";
+		$sql = "SELECT * FROM customer_ord_prds WHERE order_id=$order_id and customer_ord_id=$customer_ord_id" ;
+		$check_query = mysqli_query($con,$sql);
+		$row_data = mysqli_fetch_array($check_query);
+		$order_status = $row_data["order_status"];
+
+		
+		
+		if($order_status==0)
+		{
+				echo "<div class='col text-center text-danger'> <strong> Payment Not Verified</strong> </div> ";
+		}
+		else if($order_status==1)
+		{
+			 
+			echo " 
+                   <div class='col text-center '> <strong>Status</strong> <br> Panding for shipment</div>
+                    ";
+		}
+		else if($order_status==2)
+		{
+		$sql = "SELECT * FROM delivery_tbl WHERE order_id=$order_id " ;
+		$check_query = mysqli_query($con,$sql);
+		$row_data = mysqli_fetch_array($check_query);
+		$prd_send_date = $row_data["prd_send_date"];
+		$delivery_id = $row_data["delivery_id"];
+	 
+		$sql = "SELECT * FROM tracking_tbl WHERE delivery_id = $delivery_id" ;
+		$check_query = mysqli_query($con,$sql);
+		$row_data = mysqli_fetch_array($check_query);
+		$tracking_id = $row_data["tracking_id"];
+ 
+		$sql = "SELECT * FROM customer_ord_prds WHERE order_id=$order_id " ;
+		$check_query = mysqli_query($con,$sql);
+		$row_data = mysqli_fetch_array($check_query);
+		$order_status = $row_data["order_status"];
+		
+		
+		$sql = "SELECT * FROM tracking_tbl WHERE delivery_id=$delivery_id" ;
+		$check_query = mysqli_query($con,$sql);
+		$row_data = mysqli_fetch_array($check_query);
+		$current_district = $row_data["current_district"];
+		
+		
+		
+		
+		
+		  echo "	   <div class='col'> <strong>Shipped :</strong> <br><label > $prd_send_date<label> </div>
+				   <div class='col text-center'> <strong>Tracking ID #:</strong> <br> $tracking_id  </div>
+                   <div class='col'> <strong>Status:</strong> <br> On the way</div>
+                   <div class='col'> <strong>Current District #:</strong> <br> <strong class='text-success'>$current_district <strong></div>";
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//shipment and tracking details at tracking model
+ if(isset($_POST["customer_order_item_feedback"]))
+	{
+ 	$customer_id = $_SESSION['cusid'] ;
+	$customer_ord_id = $_POST['customer_ord_id'];
+	$customer_item_feedback_description = $_POST['customer_item_feedback_description'];
+	$g_rating = $_POST['g_rating'];
+	
+			
+	 date_default_timezone_set('Asia/Kolkata');
+		//define date and time
+	 $date = date("Y-m-d"); // get the date
+ 
+ 	$sql = "INSERT INTO `comments_tbl`(`customer_id`,`date`,`comment_type`,`customer_ord_id`,`description`,`feedback_img_1`,`feedback_img_2`,`feedback_img_3`,`rating`) VALUES ($customer_id,'$date',3,$customer_ord_id,'$customer_item_feedback_description','image1','image2','image3',$g_rating)";
+	mysqli_query($con,$sql);
+		
+	 
+	// used to get the order id through customer order id
+	$sql = "SELECT * FROM customer_ord_prds WHERE customer_ord_id=$customer_ord_id " ;
+		$check_query = mysqli_query($con,$sql);
+		$row_data = mysqli_fetch_array($check_query);
+		$order_id = $row_data["order_id"];
+
+ 	 
+	// update parcel recived date
+	$sql = "update delivery_tbl set prd_received_date='$date' where order_id=$order_id" ;
+	$check_query = mysqli_query($con,$sql);	
+	
+	//update customer order status = 3
+	$sql = "update customer_ord_prds set order_status=3  WHERE customer_ord_id=$customer_ord_id " ;
+	$check_query = mysqli_query($con,$sql);	
+	
+	echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>  Thank you for your feedback!</strong>  </div>";
   
+		  
+
+	}
+	
+	
+	
+//get customer ordered item feedback
+ if(isset($_POST["get_customer_order_item_feedback"]))
+	{
+		
+	$product_id = $_POST['product_id'];
+	$sql = "SELECT comments_tbl.date,comments_tbl.customer_id,comments_tbl.description,comments_tbl.feedback_img_1,comments_tbl.feedback_img_2,comments_tbl.feedback_img_3 FROM comments_tbl
+	WHERE customer_ord_prds.customer_ord_id= " ;
+	$check_query = mysqli_query($con,$sql);
+		
+		 
+		
+	 if(mysqli_num_rows($check_query) > 0){
+		while($row = mysqli_fetch_array($check_query))
+		{ 
+			echo "";
+		}
+		
+	}
+	}
   
 ?>

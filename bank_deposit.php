@@ -30,9 +30,7 @@
 		
 	   <!-- Customer Registration Form -->
 	 <form id="customer_bankdep_form" >
-	 		<div id="bank_dep_alert_msg" ><div class="alert alert-primary" role="alert">
-				Please upload your slip
-			</div></div>
+	 		<div id="bank_dep_alert_msg" > </div>
 		  <div class="form-row mb-2">
 			<div class="col-md-6">
 			  <label for="validationCustom01">Deposited date</label>
