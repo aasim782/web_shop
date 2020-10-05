@@ -170,15 +170,11 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 	{
 		$start=0;
 	}
-	
-	
-	
-	
-	
+	 
 	if(isset($_POST["get_selected_category"])) //when we search through the category
 	{
 		$selected_cid = $_POST["selected_cid"];
-		$query = "SELECT * FROM product_tbl where active=1 and  product_category='$selected_cid' LIMIT $start,$page_number_limit ";
+		$query = "SELECT * FROM product_tbl where active=1 and  product_category='$selected_cid'  LIMIT $start,$page_number_limit ";
 	}
 	else if(isset($_POST["get_selected_brand"]))    //when we search through the brand
 	{ 
@@ -356,12 +352,19 @@ if(isset($_POST["add_to_card"])){
 	else
 	{
 	$customer_id = $_SESSION['cusid'] ;	
-	
-	
+	 
+  
 	$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and product_id='$product_id' and payment_status='0'" ;
 	$check_query = mysqli_query($con,$sql);
 	$count = mysqli_num_rows($check_query);
-		if($count>0)
+	
+	
+	$sql ="SELECT * FROM product_tbl WHERE product_id = '$product_id' and active=1" ;
+	$check_query = mysqli_query($con,$sql);
+	$count_product=mysqli_num_rows($check_query);	
+				
+	
+		if($count>0 && $count_product>0)
 		{
 				echo "	<div class='alert alert-danger alert-dismissible fade show col-lg-12' role='alert'>
 				  <strong>Product has been already added to the Cart..! </strong>. 'You can increase your quantity from the cart'
@@ -373,8 +376,11 @@ if(isset($_POST["add_to_card"])){
 		}
 		else
 		{								
-				$sql ="SELECT * FROM product_tbl WHERE product_id = '$product_id'" ;
-					$check_query = mysqli_query($con,$sql);
+				$sql ="SELECT * FROM product_tbl WHERE product_id = '$product_id' and active=1" ;
+				$check_query = mysqli_query($con,$sql);
+				$count_product=mysqli_num_rows($check_query);
+				if($count_product>0)
+				 {
 					$row = mysqli_fetch_array($check_query);
 					$product_id = $row["product_id"];
 					$product_price = $row["product_price"];
@@ -383,9 +389,9 @@ if(isset($_POST["add_to_card"])){
 					//define date and time
 					$today = date("Y-m-d"); // get the date
 					
-			$sql = "SELECT * FROM customer_ord_prds " ;
-			$check_query = mysqli_query($con,$sql);
-			$count = mysqli_num_rows($check_query);
+					$sql = "SELECT * FROM customer_ord_prds " ;
+					$check_query = mysqli_query($con,$sql);
+					$count = mysqli_num_rows($check_query);
 				if($count==0)
 				{
 					
@@ -445,7 +451,7 @@ if(isset($_POST["add_to_card"])){
 				}
 				
 				 
-				$sql ="SELECT * FROM product_tbl WHERE product_id = '$product_id'" ;
+				$sql ="SELECT * FROM product_tbl WHERE product_id = '$product_id' and active=1" ;
 					$check_query = mysqli_query($con,$sql);
 					$row = mysqli_fetch_array($check_query);
 					$product_id = $row["product_id"];
@@ -520,7 +526,20 @@ if(isset($_POST["add_to_card"])){
 						}
 				
 							
-								
+					}
+					else
+					{
+						
+						 echo "<script type='text/javascript'>
+						$(document).ready(function(){
+						$('#prodcuct_not_available_msg_model').modal('show');
+					      setTimeout(function(){// wait for 5 secs(2)
+							   location.reload(); // then reload the page.(3)
+						  }, 2000); 
+						});
+						</script>
+						";
+					}								
 			
 				
 				

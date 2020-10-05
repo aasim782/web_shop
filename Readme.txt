@@ -1,7 +1,4 @@
-added the confirmational model for
- -Category
- -brand
- -product delete 
- " Ver 0.5.9"
+admin delete the product automatically no loger product msg come and refresh
+ " Ver 0.6.0"
  
  

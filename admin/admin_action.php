@@ -353,8 +353,8 @@ if(isset($_POST["Prduct_table_footer_num"])){
 						<td>
 						 <div class='btn-group '>
 						 <a href='' product_edit_id='$product_id' class='btn btn-info product_edit'><i class='fa fa-edit'></i></a>
-						<a href='' product_delete_id='$product_id' class='btn btn-danger product_delete'><i class='fa fa-trash-alt'></i></a>
-						</div> 
+					 	 <a href='' product_delete_id='$product_id'  data-toggle='modal' data-target='#product_del_confirm_Modal' class='btn btn-danger btn_product_delete'><i class='fa fa-trash-alt'></i></a>
+					 </div> 
 						</td>
 					  </tr>";
 					  $i++;
@@ -595,8 +595,8 @@ if(isset($_POST["add_category_admin"]))
 	
 							<div class='btn-group '>
 							<a href='' category_edit_id='$category_id' class='btn btn-info category_edit'><i class='fa fa-edit'></i></a>
-							<a href='' category_delete_id='$category_id' class='btn btn-danger category_delete'><i class='fa fa-trash-alt'></i></a>
-							</div> 
+							 <a  href='' category_delete_id='$category_id' data-toggle='modal' data-target='#category_del_confirm_Modal' class='btn btn-danger btn_category_delete'><i class='fa fa-trash-alt'></i></a>
+							 </div> 
 							</td>
 						  </tr> 
 						   
@@ -697,9 +697,9 @@ $run_query = mysqli_query($con,$brand_query);
 						<td>
 	
 						<div class='btn-group '>
-						<a  href='' brand_delete_id='$brand_id' data-toggle='modal' data-target='#brand_del_confirm_Modal' class='btn btn-danger btn_delete_model'><i class='fa fa-trash-alt'></i></a>
 						<a href='' brand_edit_id='$brand_id' class='btn btn-info brand_edit'><i class='fa fa-edit'></i></a>
-					 
+						<a  href='' brand_delete_id='$brand_id' data-toggle='modal' data-target='#brand_del_confirm_Modal' class='btn btn-danger btn_delete_model'><i class='fa fa-trash-alt'></i></a>
+						
 						</div> 
 						</td>
 					  </tr> 
@@ -798,7 +798,7 @@ $run_query = mysqli_query($con,$brand_query);
 	
 						<div class='btn-group '>
 						<a href='' brand_edit_id='$brand_id' class='btn btn-info brand_edit'><i class='fa fa-edit'></i></a>
-						<a href='' brand_delete_id='$brand_id' class='btn btn-danger brand_delete'><i class='fa fa-trash-alt'></i></a>
+						<a  href='' brand_delete_id='$brand_id' data-toggle='modal' data-target='#brand_del_confirm_Modal' class='btn btn-danger btn_delete_model'><i class='fa fa-trash-alt'></i></a>
 						</div> 
 						</td>
 					  </tr> 

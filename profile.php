@@ -15,6 +15,7 @@
   include "customer_reg.php";
   include "customes_order.php";
   ?>
+  <?php include "customer_models.php" ?>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -76,6 +77,8 @@
         <a class="nav-link" href="#" data-toggle="modal" data-target="#customer_complain_Model"   ><i class="fas fa-star"></i>Complain</a>
       </li>
  			
+			
+			
 			
 			<!-- Sign Up Form -->
 	<div class="btn-group" >

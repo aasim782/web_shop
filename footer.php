@@ -1,11 +1,4 @@
-
-
-
-
-
-
-
-
+  
 <div class="col-sm-12 mt-4 border-top"  >
 
 <div class="row text-center mt-3 " id="footer-site-highlights">
