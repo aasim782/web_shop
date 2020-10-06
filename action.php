@@ -170,11 +170,46 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 	{
 		$start=0;
 	}
+	
+	 
 	 
 	if(isset($_POST["get_selected_category"])) //when we search through the category
-	{
+	{	
+	
 		$selected_cid = $_POST["selected_cid"];
 		$query = "SELECT * FROM product_tbl where active=1 and  product_category='$selected_cid'  LIMIT $start,$page_number_limit ";
+  
+		$selected_cid = $_POST["selected_cid"];
+		//verify category as active or in active
+		$category_verify_query = "SELECT * FROM category_tbl where category_id=$selected_cid and active=1";
+		$category_run_query = mysqli_query($con,$category_verify_query);
+		$category_verify_val = mysqli_num_rows($category_run_query);
+		 
+		//if it is inactive auto refresh
+		if($category_verify_val <= 0)
+		 {	
+		
+			 echo "<script type='text/javascript'>
+						$(document).ready(function(){
+						$('#category_not_available_msg_model').modal('show');
+					      setTimeout(function(){// wait for 2 secs
+							   location.reload(); // then reload the page.
+						  }, 2000); 
+						
+						
+						 product_longer_available_msg();
+						function product_longer_available_msg(){
+						$('.card-body').html('<center>Sorry, this category is no longer available</center>');
+						}
+						  
+						});
+						 
+						</script>
+						";
+			
+		 }
+	  
+		 
 	}
 	else if(isset($_POST["get_selected_brand"]))    //when we search through the brand
 	{ 
@@ -1251,7 +1286,7 @@ $customer_id = $_SESSION['cusid'] ;
 $sql = "SELECT  customer_ord_prds.customer_ord_id,customer_ord_prds.product_id 
 		FROM customer_tbl,customer_ord_prds 
 		WHERE customer_tbl.customer_id = customer_ord_prds.customer_id 
-		AND (customer_ord_prds.customer_id = '$customer_id' and (customer_ord_prds.payment_status=1 or  customer_ord_prds.payment_status=2 or customer_ord_prds.payment_status=3))  and !(customer_ord_prds.order_status=0 || customer_ord_prds.order_status =3)" ;
+		AND (customer_ord_prds.customer_id = '$customer_id' and (customer_ord_prds.payment_status=1 or  customer_ord_prds.payment_status=2 or customer_ord_prds.payment_status=3))  and !(customer_ord_prds.order_status=0 || customer_ord_prds.order_status =3 || customer_ord_prds.order_status =1)" ;
 $check_query = mysqli_query($con,$sql);
 
 	echo " <option value='null'>Please Select Order .. </option>";
@@ -2034,5 +2069,43 @@ $order_status = $row_data["order_status"];
 		
 	}
 	}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   if(isset($_POST["product_available_verify"]))
+	{
+	$product_id = $_POST['product_id'];
+	$sql = "SELECT * from product_tbl where product_id= $product_id and  active=1" ;
+	$check_query = mysqli_query($con,$sql);
+	$count_prd=mysqli_num_rows($check_query);
+		
+		if($count_prd>0)
+		{
+			echo "1";
+		}
+		else
+		{
+			echo "2";
+		}
+	}
+  
+  
+  
+  
+  
+  
+  
+  
   
 ?>

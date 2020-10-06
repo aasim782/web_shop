@@ -556,6 +556,10 @@ if(isset($_POST["add_category_admin"]))
 	$category_query = "UPDATE `category_tbl` SET `active`= 0 WHERE category_id = $delete_id";
 	$run_query = mysqli_query($con,$category_query);
 	
+	$category_query = "UPDATE `product_tbl` SET `active`= 0 WHERE product_category = $delete_id";
+	$run_query = mysqli_query($con,$category_query);
+	
+	
 	echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 	data-auto-dismiss>Category <strong> Successfully deleted</strong> <button type='button' 
 	class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";

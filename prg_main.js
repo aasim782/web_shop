@@ -394,16 +394,49 @@ $('body').delegate('#create_form_model','click',function() {
 		event.preventDefault();
 		var pid_val= $(this).attr('pid'); //get the value from our self pid attribute pid 
 		var session_val= $(this).attr('session_val'); //get the value from our self pid attribute pid 
- 
-		 
-			 if(session_val=="")
-			 {
-			 window.open("unreg_product_view.php?pid="+pid_val+"","_self");
-			 }
-			 else
-			 {
-			 window.open("product_view.php?pid="+pid_val+"","_self");
-			 }
+   
+		 	$.ajax({
+					url		:	"action.php",
+					method	:	"POST",
+					data	:	{product_available_verify:1,product_id:pid_val}, 
+					success	:	function(data){
+			 		
+					//if product is active 
+					if(data==1)
+					{
+						
+						if(session_val=="")
+						 {
+						 window.open("unreg_product_view.php?pid="+pid_val+"","_self");
+						 }
+						 else
+						 {
+						 window.open("product_view.php?pid="+pid_val+"","_self");
+						 }
+						 
+					}
+					else //if product is inactive 
+					{
+						
+						$('#category_not_available_msg_model').modal('show');
+					      setTimeout(function(){// wait for 2 secs
+							   location.reload(); // then reload the page.
+						  }, 2000); 
+						
+						
+						 product_longer_available_msg();
+						function product_longer_available_msg(){
+						$('.card-body').html('<center>Sorry, this category is no longer available</center>');
+						}
+					}
+				
+			 
+					}
+					
+					})
+					
+					
+		
 	})	
 	
 
