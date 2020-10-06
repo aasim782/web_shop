@@ -179,7 +179,7 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 		$selected_cid = $_POST["selected_cid"];
 		$query = "SELECT * FROM product_tbl where active=1 and  product_category='$selected_cid'  LIMIT $start,$page_number_limit ";
   
-		$selected_cid = $_POST["selected_cid"];
+ 
 		//verify category as active or in active
 		$category_verify_query = "SELECT * FROM category_tbl where category_id=$selected_cid and active=1";
 		$category_run_query = mysqli_query($con,$category_verify_query);
@@ -213,8 +213,42 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 	}
 	else if(isset($_POST["get_selected_brand"]))    //when we search through the brand
 	{ 
+	
+	 
 		$selected_bid = $_POST["selected_bid"];
 		$query = "SELECT * FROM product_tbl where active=1 and  product_brand='$selected_bid' LIMIT $start,$page_number_limit  ";
+	
+	
+		//verify category as active or in active
+		$brand_verify_query = "SELECT * FROM brand_tbl where brand_id=$selected_bid and active=1";
+		$brand_run_query = mysqli_query($con,$brand_verify_query);
+		$brand_verify_val = mysqli_num_rows($brand_run_query);
+		 
+		//if it is inactive auto refresh
+		if($brand_verify_val <= 0)
+		 {	
+		
+			 echo "<script type='text/javascript'>
+						$(document).ready(function(){
+						$('#category_not_available_msg_model').modal('show');
+					      setTimeout(function(){// wait for 2 secs
+							   location.reload(); // then reload the page.
+						  }, 2000); 
+						
+						
+						 product_longer_available_msg();
+						function product_longer_available_msg(){
+						$('.card-body').html('<center>Sorry, this category is no longer available</center>');
+						}
+						  
+						});
+						 
+						</script>
+						";
+			
+		 }
+	
+	
 	}
 	
 	else    //when we search through the brand

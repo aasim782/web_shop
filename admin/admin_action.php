@@ -734,8 +734,9 @@ $run_query = mysqli_query($con,$brand_query);
 	$brand_query = "UPDATE `brand_tbl` SET `active`= 0 WHERE brand_id = '$delete_id' ";
 	$run_query = mysqli_query($con,$brand_query);
 	
- 
-		
+	$category_query = "UPDATE `product_tbl` SET `active`= 0 WHERE product_brand = $delete_id";
+	$run_query = mysqli_query($con,$category_query);
+	
 	}
 	else if(isset($_POST["add_brand_admin"]))
 	{
