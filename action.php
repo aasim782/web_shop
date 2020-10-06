@@ -1381,7 +1381,7 @@ $sql = "INSERT INTO `comments_tbl` (comments_id,customer_id,comment_type,custome
 $check_query = mysqli_query($con,$sql);
  
 
-echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Complain !</strong> Sent Successfully<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss>Sent Succesfully, Thanks for feedback us! <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 
 
 }

@@ -305,7 +305,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header  bg-warning">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-key"></i>&nbspCustomer Feedback</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-envelope"></i>&nbspFeedback Us</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -315,15 +315,19 @@
 		
 	   <!-- password change Form -->
 	 <form id="customer_feedback_frm" >
-	 		<div id="customer_feedback_msg" ></div>
+	 		<div id="customer_feedback_msg"  ><div class="alert alert-warning alert-dismissible fade show" role="alert" data-auto-dismiss=""> We will Use your feedback to Improve our portal.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div></div>
+			
 		  <div class="form-row justify-content-center ">
 	 
 			</div>
 	<div class="form-row">
 	 
 	<div class="col-12">
-      <label for="validationCustom04">Send your Feedback</label>
-         <textarea class="form-control" id="feedback_messagetxt"  name="feedback_message"  placeholder="Feedback" rows="10"></textarea>
+      <label for="validationCustom04">Message: *</label>
+         <textarea class="form-control" id="feedback_messagetxt"  name="feedback_message"   placeholder="Tell us What You Like about us? or What should we do to more to improve our portal." rows="10"></textarea>
+		 
+		 
+		 
 		 </div>
     </div>
       </div>

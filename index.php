@@ -78,9 +78,7 @@
 		</ul>
 		
 	   <ul class="navbar-nav">
-	 <li class="nav-item active">
-        <a class="nav-link"   data-toggle="modal" data-target="#customer_feedback_Model" style="cursor: pointer;"><i class="fas fa-star"></i>Feedback</a>
-      </li>
+
 	   <li class="nav-item active" >
      
       </li>

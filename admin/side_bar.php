@@ -267,9 +267,9 @@
 		  
           <li class="nav-item">
             <a href="logout.php" class="nav-link">
-              <i class="nav-icon fa fa-reply"></i>
+              <i class="nav-icon fa fa-power-off"></i>
               <p>
-				Logout
+				Sign out
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>

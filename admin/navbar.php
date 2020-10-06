@@ -117,21 +117,12 @@ include "models.php";
 	  
 	  
 	  
-	  
-	  
-         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Admin
+	<li class="nav-item">
+        <a class="nav-link" href="logout.php" role="button">
+          <i class="fa fa-power-off"></i> 
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
- 
-		<a class="dropdown-item btn btn-light"   href="logout.php"  type="button">Logout</a > 
- 
-		 
-		 
-        </div>
-		
       </li>
+ 
     </ul>
   </nav>
   <!-- /.navbar -->
