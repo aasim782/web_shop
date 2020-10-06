@@ -418,7 +418,7 @@ $('body').delegate('#create_form_model','click',function() {
 					else //if product is inactive 
 					{
 						
-						$('#category_not_available_msg_model').modal('show');
+						$('#prodcuct_not_available_msg_model').modal('show');
 					      setTimeout(function(){// wait for 2 secs
 							   location.reload(); // then reload the page.
 						  }, 2000); 
@@ -426,7 +426,7 @@ $('body').delegate('#create_form_model','click',function() {
 						
 						 product_longer_available_msg();
 						function product_longer_available_msg(){
-						$('.card-body').html('<center>Sorry, this category is no longer available</center>');
+						$('.card-body').html('<center>Sorry, this product is no longer available</center>');
 						}
 					}
 				

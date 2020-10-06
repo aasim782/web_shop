@@ -230,7 +230,7 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 		
 			 echo "<script type='text/javascript'>
 						$(document).ready(function(){
-						$('#category_not_available_msg_model').modal('show');
+						$('#brand_not_available_msg_model').modal('show');
 					      setTimeout(function(){// wait for 2 secs
 							   location.reload(); // then reload the page.
 						  }, 2000); 
@@ -238,7 +238,7 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 						
 						 product_longer_available_msg();
 						function product_longer_available_msg(){
-						$('.card-body').html('<center>Sorry, this category is no longer available</center>');
+						$('.card-body').html('<center>Sorry, this brand is no longer available</center>');
 						}
 						  
 						});
