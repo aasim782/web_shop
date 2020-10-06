@@ -922,12 +922,12 @@ $recipt="";
 				 
 	 
 		
-	 //$order_status=0 -> panding ,$order_status=1 ->process ,$order_status=2 -> Shipped, $order_status=3 ->compelted
+	 //$order_status=0 -> pending ,$order_status=1 ->process ,$order_status=2 -> Shipped, $order_status=3 ->compelted
 	 //$payment_status=1 ->online  ,  $payment_status=2 ->bank , $payment_status=3 -> cash on delivery
 		
 		if(($payment_status==1 && $order_status==0) || ($payment_status==2 && $order_status==0) || ($payment_status==3 && $order_status==0) )
 		{
-			 $status_btn=   "<span class='badge badge-warning'> Panding</span>";
+			 $status_btn=   "<span class='badge badge-warning'> Pending</span>";
 			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id' cust_order_id='$customer_ord_id' ><i class='fa fa-check text-light'></i></button> 
 			 <button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>";
 		}
@@ -1072,12 +1072,12 @@ $action_btn="";
 				$customer_ord_id=$row["customer_ord_id"];
 				 
 	  
-	 //$order_status=0 -> panding ,$order_status=1 ->process ,$order_status=2 -> Shipped, $order_status=3 ->compelted
+	 //$order_status=0 -> Pending ,$order_status=1 ->process ,$order_status=2 -> Shipped, $order_status=3 ->compelted
 	 //$payment_status=1 ->online  ,  $payment_status=2 ->bank , $payment_status=3 -> cash on delivery
 
 				if(($payment_status==1 && $order_status==0) || ($payment_status==2 && $order_status==0) || ($payment_status==3 && $order_status==0) )
 		{
-			 $status_btn=   "<span class='badge badge-warning'> Panding</span>";
+			 $status_btn=   "<span class='badge badge-warning'> Pending</span>";
 			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id' cust_order_id='$customer_ord_id' ><i class='fa fa-check text-light'></i></button> 
 			 <button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>";
 		}
@@ -1207,7 +1207,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 
 
 
-//get all panding order  to admin panding table    order status ->0
+//get all pending order  to admin pending table    order status ->0
  if(isset($_POST["get_all_panding_orders"]) || isset($_POST["count_total_panding_order"]) ){
  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_qtry,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
@@ -1783,7 +1783,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 	 
  }
  
-   //change the panding  stage to process
+   //change the pending  stage to process
   if(isset($_POST["change_panding_to_process"])){
 	  
 	  	$order_id = $_POST["order_id"];

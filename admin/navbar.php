@@ -92,7 +92,7 @@ include "models.php";
           <span class="dropdown-header" id="total_orders_count" >15 Notifications</span>
           <div class="dropdown-divider"></div>
           <a href="pending_order.php" class="dropdown-item">
-            <i class="fas fa-sync-alt mr-2"></i>Panding orders
+            <i class="fas fa-sync-alt mr-2"></i>Pending orders
             <span class="float-right text-muted text-sm" id="count_total_panding_order_noti"></span>
           </a>
           <div class="dropdown-divider"></div>

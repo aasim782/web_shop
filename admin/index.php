@@ -34,7 +34,13 @@
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  
+ 
+	 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="../js/jquery.js?i=135"></script>
+ 
+	<script src="../prg_main.js?i=135" ></script>
+	<script src="admin_main.js?i=135" ></script>
+	
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -61,12 +67,12 @@
               <div class="inner">
                 <h3>150</h3>
 
-                <p>New Orders</p>
+                <p>Number of Sales</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      
             </div>
           </div>
           <!-- ./col -->
@@ -74,14 +80,14 @@
             <!-- small box -->
             <div class="small-box shadow bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>Rs. 540000.00</h3>
 
-                <p>Bounce Rate</p>
+                <p>Revenue</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-stats-bars m-4"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+  
             </div>
           </div>
           <!-- ./col -->
@@ -89,380 +95,156 @@
             <!-- small box -->
             <div class="small-box shadow bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>Rs. 44000.00</h3>
 
-                <p>User Registrations</p>
+                <p>Profit</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="fas fa-chart-line m-4"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box shadow bg-danger">
+            <div class="small-box shadow bg-secondary ">
               <div class="inner">
-                <h3>65</h3>
+                <h3>Rs. 496000.00 </h3>
 
-                <p>Unique Visitors</p>
+                <p>Cost</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="ion ion-pie-graph  m-4"></i>
+				
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              
             </div>
           </div>
           <!-- ./col -->
         </div>
         <!-- /.row -->
+		
+		  <div class="row  mt-3">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box shadow bg-danger ">
+              <div class="inner">
+                <h3 id="count_product"></h3>
+			<p>Total Products</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-shopping-basket"></i>
+              </div>
+      
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box shadow bg-info">
+              <div class="inner">
+                <h3 id="count_catg"></h3>
+
+                <p>Total Categories</p>
+              </div>
+              <div class="icon">
+                 <i class="fa fa-list-alt"></i>
+              </div>
+  
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box shadow bg-blue">
+              <div class="inner">
+                <h3 id="count_brand"></h3>
+
+                <p>Total Brands</p>
+              </div>
+              <div class="icon">
+              <i class="fab fa-bandcamp"></i>
+              </div>
+            
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box shadow bg-purple">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Total Customers</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+		
+		
+		
+		
         <!-- Main row -->
-        <div class="row bg-danger pt-2 shadow-sm ">
+        <div class="row pt-2">
           <!-- Left col -->
-          <section class="col-lg-4 connectedSortable ui-sortable">
-            <!-- Custom tabs (Charts with tabs)-->
-         
-			   <!-- solid sales graph -->
-            <div class="card bg-gradient-info">
-              <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
+   
+		   
+		  
+		  <div class="col-md-6">
+            <!-- Line chart -->
+            <div class="card card-primary ">
+              <div class="card-header">
                 <h3 class="card-title">
-                  <i class="fas fa-th mr-1"></i>
-                  Sales Graph
+                  <i class="far fa-chart-bar"></i>
+                  Total Sales
                 </h3>
 
-                <div class="card-tools">
-                  <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
+                 
               </div>
-              <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                <canvas class="chart chartjs-render-monitor" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 272px;" width="272" height="250"></canvas>
+                <div class="card-body">
+                <div id="bar-chart" style="height: 300px;"></div>
               </div>
-              <!-- /.card-body -->
-              <div class="card-footer bg-transparent">
-                <div class="row">
-                  <div class="col-4 text-center">
-                    <div style="display:inline;width:60px;height:60px;"><canvas width="60" height="60"></canvas><input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgcolor="#39CCCC" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px; background: none; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px; -webkit-appearance: none;"></div>
-
-                    <div class="text-white">Mail-Orders</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <div style="display:inline;width:60px;height:60px;"><canvas width="60" height="60"></canvas><input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgcolor="#39CCCC" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px; background: none; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px; -webkit-appearance: none;"></div>
-
-                    <div class="text-white">Online</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <div style="display:inline;width:60px;height:60px;"><canvas width="60" height="60"></canvas><input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgcolor="#39CCCC" readonly="readonly" style="width: 34px; height: 20px; position: absolute; vertical-align: middle; margin-top: 20px; margin-left: -47px; border: 0px; background: none; font: bold 12px Arial; text-align: center; color: rgb(57, 204, 204); padding: 0px; -webkit-appearance: none;"></div>
-
-                    <div class="text-white">In-Store</div>
-                  </div>
-                  <!-- ./col -->
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- /.card-footer -->
+              <!-- /.card-body-->
             </div>
             <!-- /.card -->
- 
- 
-          </section>
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-4 connectedSortable ui-sortable">
-  
-            <div class="card">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Sales</h3>
-                  <a href="javascript:void(0);">View Report</a>
-                </div>
+
+    
+
+          </div>
+          <!-- /.col (LEFT) -->
+            <!-- PIE CHART -->
+            <div class="card card-danger ">
+              <div class="card-header">
+                <h3 class="card-title">Customer Orders</h3>
+              
               </div>
               <div class="card-body">
-                <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">$18,230.00</span>
-                    <span>Sales Over Time</span>
-                  </p>
-                  <p class="ml-auto d-flex flex-column text-right">
-                    <span class="text-success">
-                      <i class="fas fa-arrow-up"></i> 33.1%
-                    </span>
-                    <span class="text-muted">Since last month</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-
-                <div class="position-relative mb-4">
-                  <canvas id="sales-chart" height="200"></canvas>
-                </div>
-
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> This year
-                  </span>
-
-                  <span>
-                    <i class="fas fa-square text-gray"></i> Last year
-                  </span>
-                </div>
-              </div>
-            </div>
-            <!-- /.card -->
-
-
-
-			
-			
-			
-			
-           </section>
-		 <section class="col-lg-4 connectedSortable ui-sortable">
+                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>        
 		 
-			  <!-- Calendar -->
-            <div class="card pb-2 bg-gradient-success pb-5 ">
-              <div class="card-header border-0 ui-sortable-handle pb-5" style="cursor: move;">
-
-                <h3 class="card-title">
-                  <i class="far fa-calendar-alt"></i>
-                  Calendar
-                </h3>
-                <!-- tools card -->
-                <div class="card-tools">
-                  <!-- button with a dropdown -->
-                
-                  <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-                <!-- /. tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body pt-0">
-                <!--The calendar -->
-                <div id="calendar" style="width: 100%"><div class="bootstrap-datetimepicker-widget usetwentyfour"><ul class="list-unstyled"><li class="show"><div class="datepicker"><div class="datepicker-days" style=""><table class="table table-sm"><thead><tr><th class="prev" data-action="previous"><span class="fa fa-chevron-left" title="Previous Month"></span></th><th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Month">June 2020</th><th class="next" data-action="next"><span class="fa fa-chevron-right" title="Next Month"></span></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td data-action="selectDay" data-day="05/31/2020" class="day old weekend">31</td><td data-action="selectDay" data-day="06/01/2020" class="day">1</td><td data-action="selectDay" data-day="06/02/2020" class="day">2</td><td data-action="selectDay" data-day="06/03/2020" class="day">3</td><td data-action="selectDay" data-day="06/04/2020" class="day">4</td><td data-action="selectDay" data-day="06/05/2020" class="day">5</td><td data-action="selectDay" data-day="06/06/2020" class="day weekend">6</td></tr><tr><td data-action="selectDay" data-day="06/07/2020" class="day weekend">7</td><td data-action="selectDay" data-day="06/08/2020" class="day">8</td><td data-action="selectDay" data-day="06/09/2020" class="day">9</td><td data-action="selectDay" data-day="06/10/2020" class="day">10</td><td data-action="selectDay" data-day="06/11/2020" class="day">11</td><td data-action="selectDay" data-day="06/12/2020" class="day">12</td><td data-action="selectDay" data-day="06/13/2020" class="day weekend">13</td></tr><tr><td data-action="selectDay" data-day="06/14/2020" class="day weekend">14</td><td data-action="selectDay" data-day="06/15/2020" class="day">15</td><td data-action="selectDay" data-day="06/16/2020" class="day">16</td><td data-action="selectDay" data-day="06/17/2020" class="day">17</td><td data-action="selectDay" data-day="06/18/2020" class="day">18</td><td data-action="selectDay" data-day="06/19/2020" class="day">19</td><td data-action="selectDay" data-day="06/20/2020" class="day weekend">20</td></tr><tr><td data-action="selectDay" data-day="06/21/2020" class="day weekend">21</td><td data-action="selectDay" data-day="06/22/2020" class="day">22</td><td data-action="selectDay" data-day="06/23/2020" class="day active today">23</td><td data-action="selectDay" data-day="06/24/2020" class="day">24</td><td data-action="selectDay" data-day="06/25/2020" class="day">25</td><td data-action="selectDay" data-day="06/26/2020" class="day">26</td><td data-action="selectDay" data-day="06/27/2020" class="day weekend">27</td></tr><tr><td data-action="selectDay" data-day="06/28/2020" class="day weekend">28</td><td data-action="selectDay" data-day="06/29/2020" class="day">29</td><td data-action="selectDay" data-day="06/30/2020" class="day">30</td><td data-action="selectDay" data-day="07/01/2020" class="day new">1</td><td data-action="selectDay" data-day="07/02/2020" class="day new">2</td><td data-action="selectDay" data-day="07/03/2020" class="day new">3</td><td data-action="selectDay" data-day="07/04/2020" class="day new weekend">4</td></tr><tr><td data-action="selectDay" data-day="07/05/2020" class="day new weekend">5</td><td data-action="selectDay" data-day="07/06/2020" class="day new">6</td><td data-action="selectDay" data-day="07/07/2020" class="day new">7</td><td data-action="selectDay" data-day="07/08/2020" class="day new">8</td><td data-action="selectDay" data-day="07/09/2020" class="day new">9</td><td data-action="selectDay" data-day="07/10/2020" class="day new">10</td><td data-action="selectDay" data-day="07/11/2020" class="day new weekend">11</td></tr></tbody></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" data-action="previous"><span class="fa fa-chevron-left" title="Previous Year"></span></th><th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Year">2020</th><th class="next" data-action="next"><span class="fa fa-chevron-right" title="Next Year"></span></th></tr></thead><tbody><tr><td colspan="7"><span data-action="selectMonth" class="month">Jan</span><span data-action="selectMonth" class="month">Feb</span><span data-action="selectMonth" class="month">Mar</span><span data-action="selectMonth" class="month">Apr</span><span data-action="selectMonth" class="month">May</span><span data-action="selectMonth" class="month active">Jun</span><span data-action="selectMonth" class="month">Jul</span><span data-action="selectMonth" class="month">Aug</span><span data-action="selectMonth" class="month">Sep</span><span data-action="selectMonth" class="month">Oct</span><span data-action="selectMonth" class="month">Nov</span><span data-action="selectMonth" class="month">Dec</span></td></tr></tbody></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" data-action="previous"><span class="fa fa-chevron-left" title="Previous Decade"></span></th><th class="picker-switch" data-action="pickerSwitch" colspan="5" title="Select Decade">2020-2029</th><th class="next" data-action="next"><span class="fa fa-chevron-right" title="Next Decade"></span></th></tr></thead><tbody><tr><td colspan="7"><span data-action="selectYear" class="year old">2019</span><span data-action="selectYear" class="year active">2020</span><span data-action="selectYear" class="year">2021</span><span data-action="selectYear" class="year">2022</span><span data-action="selectYear" class="year">2023</span><span data-action="selectYear" class="year">2024</span><span data-action="selectYear" class="year">2025</span><span data-action="selectYear" class="year">2026</span><span data-action="selectYear" class="year">2027</span><span data-action="selectYear" class="year">2028</span><span data-action="selectYear" class="year">2029</span><span data-action="selectYear" class="year old">2030</span></td></tr></tbody></table></div><div class="datepicker-decades" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" data-action="previous"><span class="fa fa-chevron-left" title="Previous Century"></span></th><th class="picker-switch" data-action="pickerSwitch" colspan="5">2000-2090</th><th class="next" data-action="next"><span class="fa fa-chevron-right" title="Next Century"></span></th></tr></thead><tbody><tr><td colspan="7"><span data-action="selectDecade" class="decade old" data-selection="2006">1990</span><span data-action="selectDecade" class="decade" data-selection="2006">2000</span><span data-action="selectDecade" class="decade active" data-selection="2016">2010</span><span data-action="selectDecade" class="decade" data-selection="2026">2020</span><span data-action="selectDecade" class="decade" data-selection="2036">2030</span><span data-action="selectDecade" class="decade" data-selection="2046">2040</span><span data-action="selectDecade" class="decade" data-selection="2056">2050</span><span data-action="selectDecade" class="decade" data-selection="2066">2060</span><span data-action="selectDecade" class="decade" data-selection="2076">2070</span><span data-action="selectDecade" class="decade" data-selection="2086">2080</span><span data-action="selectDecade" class="decade" data-selection="2096">2090</span><span data-action="selectDecade" class="decade old" data-selection="2106">2100</span></td></tr></tbody></table></div></div></li><li class="picker-switch accordion-toggle"></li></ul></div></div>
-              </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-			
-		
-		</section>
 		
 		</div>
 		
+		   <!-- Main row -->
+        <div class="row pt-2   ">
 		
 		
-		
-			<div class="row bg-info mt-2 pt-2">
-		
-			  <section class="col-lg-7 connectedSortable ui-sortable">
-			<div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Recently Added Products</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <ul class="products-list product-list-in-card pl-2 pr-2">
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">Samsung TV
-                        <span class="badge badge-warning float-right">$1800</span></a>
-                      <span class="product-description">
-                        Samsung 32" 1080p 60Hz LED Smart HDTV.
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">Bicycle
-                        <span class="badge badge-info float-right">$700</span></a>
-                      <span class="product-description">
-                        26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">
-                        Xbox One <span class="badge badge-danger float-right">
-                        $350
-                      </span>
-                      </a>
-                      <span class="product-description">
-                        Xbox One Console Bundle with Halo Master Chief Collection.
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="dist/img/default-150x150.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">PlayStation 4
-                        <span class="badge badge-success float-right">$399</span></a>
-                      <span class="product-description">
-                        PlayStation 4 500GB Console (PS4)
-                      </span>
-                    </div>
-                  </li>
-                  <!-- /.item -->
-                </ul>
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer text-center">
-                <a href="javascript:void(0)" class="uppercase">View All Products</a>
-              </div>
-              <!-- /.card-footer -->
-            </div>
-			
-			 </section >
-			  <section class="col-lg-5 connectedSortable ui-sortable">
- 
-			<div class="card">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Online Store Visitors</h3>
-                  <a href="javascript:void(0);">View Report</a>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">820</span>
-                    <span>Visitors Over Time</span>
-                  </p>
-                  <p class="ml-auto d-flex flex-column text-right">
-                    <span class="text-success">
-                      <i class="fas fa-arrow-up"></i> 12.5%
-                    </span>
-                    <span class="text-muted">Since last week</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-
-                <div class="position-relative mb-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                  <canvas id="visitors-chart" height="200" width="334" class="chartjs-render-monitor" style="display: block; width: 334px; height: 200px;"></canvas>
-                </div>
-
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> This Week
-                  </span>
-
-                  <span>
-                    <i class="fas fa-square text-gray"></i> Last Week
-                  </span>
-                </div>
-              </div>
-            </div>
-			
-			
-			 </section>
-			 </div>
-
-		
-			<div class="row mt-2 bg-dark mt-2 pt-2">
-		
-			  <section class="col-lg-7 connectedSortable ui-sortable">
-            <div class="card">
-              <div class="card-header border-0">
-                <h3 class="card-title">Online Store Overview</h3>
-                <div class="card-tools">
-                  <a href="#" class="btn btn-sm btn-tool">
-                    <i class="fas fa-download"></i>
-                  </a>
-                  <a href="#" class="btn btn-sm btn-tool">
-                    <i class="fas fa-bars"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                  <p class="text-success text-xl">
-                    <i class="ion ion-ios-refresh-empty"></i>
-                  </p>
-                  <p class="d-flex flex-column text-right">
-                    <span class="font-weight-bold">
-                      <i class="ion ion-android-arrow-up text-success"></i> 12%
-                    </span>
-                    <span class="text-muted">CONVERSION RATE</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                  <p class="text-warning text-xl">
-                    <i class="ion ion-ios-cart-outline"></i>
-                  </p>
-                  <p class="d-flex flex-column text-right">
-                    <span class="font-weight-bold">
-                      <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
-                    </span>
-                    <span class="text-muted">SALES RATE</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-                <div class="d-flex justify-content-between align-items-center mb-0">
-                  <p class="text-danger text-xl">
-                    <i class="ion ion-ios-people-outline"></i>
-                  </p>
-                  <p class="d-flex flex-column text-right">
-                    <span class="font-weight-bold">
-                      <i class="ion ion-android-arrow-down text-danger"></i> 1%
-                    </span>
-                    <span class="text-muted">REGISTRATION RATE</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-              </div>
-            </div>
-         
-          </section>
-		  
-		  </div>
-		   
-		   <div class="row">
-          <div class="col-md-6">
+		                <div class="col-md-6">
             <!-- AREA CHART -->
-            <div class="card card-primary">
+            <div class="card card-primary card-outline">
               <div class="card-header">
-                <h3 class="card-title">Area Chart</h3>
+                <h3 class="card-title">Sales Revenue</h3>
 
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
+             
               </div>
               <div class="card-body">
                 <div class="chart">
@@ -474,100 +256,111 @@
             <!-- /.card -->
 
 
-            <!-- PIE CHART -->
-            <div class="card card-danger">
-              <div class="card-header">
-                <h3 class="card-title">Pie Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
           </div>
-          <!-- /.col (LEFT) -->
-          <div class="col-md-6">
-            <!-- LINE CHART -->
-            <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title">Line Chart</h3>
-
+		  
+		  
+		  
+		<div class="card  card-outline">
+              <div class="card-header bg-dark ">
+                <h3 class="card-title"><i class="fas fa-thumbtack"></i> Recently Added Products</h3>
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+ 
                 </div>
               </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
+              <div class="card-body p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+					<th>Date</th>	
+                    <th>Product</th>
+                     
+                    <th>Brand</th>
+                    <th>Price</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+				   <td>
+                       12/02/2020
+                    </td>
+                    <td>
+                      <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                       Galaxy A50
+                    </td>
+                     
+                                        <td>
+                    Electronics
+                    </td>
+                    <td>
+                      Rs.22500.00
+                    </td>
+                  </tr>
+                 <tr>
+				   <td>
+                       10/02/2020
+                    </td>
+                    <td>
+                      <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+					Kids wears 
+                    </td>
+					
+                     <td>
+                    Kids wears
+                    </td>
+				 
+
+                    <td>
+                      Rs.5000.00
+                    </td>
+					
+					
+					
+					
+                  </tr>
+				  <tr>
+				   <td>
+                       10/02/2020
+                    </td>
+                    <td>
+                      <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                        Headphone 
+                    </td>
+                                          <td>
+                  Electronics
+                    </td>
+                    <td>
+                      Rs.12500.00
+                    </td>
+                  </tr>
+				  <tr>
+				   <td>
+                       08/02/2020
+                    </td>
+                    <td>
+                      <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                       Electronics
+                    </td>
+                                          <td>
+					Hp Laptop
+                    </td>
+                   
+                    <td>
+                      Rs.50000.00
+                    </td>
+                  </tr>
+				  
+                  </tbody>
+                </table>
               </div>
-              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
+			
 
-            <!-- BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- STACKED BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Stacked Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-     
-		 
-		
-		
-          <!-- right col -->
-        </div>
-        </div>
+		  
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
 	  
-	  
-	  
-	  
+ 	  
+	   
 	  
 	  
     </section>
@@ -598,6 +391,17 @@
 
 
 
+
+
+
+
+
+
+
+ 
+
+
+
   <!-- Main Footer -->
  
   <?php include "footer.php" ?>
@@ -618,6 +422,28 @@
 <script src="plugins/chart.js/Chart.min.js"></script>
 <script src="dist/js/demo.js"></script>
 <script src="dist/js/pages/dashboard3.js"></script>
+ 
+ <!-- FLOT CHARTS -->
+<script src="plugins/flot/jquery.flot.js"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script src="plugins/flot-old/jquery.flot.resize.min.js"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script src="plugins/flot-old/jquery.flot.pie.min.js"></script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
  <script>
   $(function () {
     /* ChartJS
@@ -687,40 +513,25 @@
       options: areaChartOptions
     })
 
-    //-------------
-    //- LINE CHART -
-    //--------------
-    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-    var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
-    var lineChartData = jQuery.extend(true, {}, areaChartData)
-    lineChartData.datasets[0].fill = false;
-    lineChartData.datasets[1].fill = false;
-    lineChartOptions.datasetFill = false
-
-    var lineChart = new Chart(lineChartCanvas, { 
-      type: 'line',
-      data: lineChartData, 
-      options: lineChartOptions
-    })
-
+ 
     //-------------
     //- DONUT CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
-    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+    var donutChartCanvas = $('#pieChart').get(0).getContext('2d')
     var donutData        = {
       labels: [
-          'Chrome', 
-          'IE',
-          'FireFox', 
-          'Safari', 
-          'Opera', 
-          'Navigator', 
+          'Pending Orders', 
+          'Process Orders',
+          'Shipped Orders', 
+          'Delivered Orders', 
+          'Un Paid Orders', 
+          
       ],
       datasets: [
         {
-          data: [700,500,400,600,300,100],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+          data: [10,60,4,200,100],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc' ],
         }
       ]
     }
@@ -736,23 +547,7 @@
       options: donutOptions      
     })
 
-    //-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieData        = donutData;
-    var pieOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    var pieChart = new Chart(pieChartCanvas, {
-      type: 'pie',
-      data: pieData,
-      options: pieOptions      
-    })
+ 
 
     //-------------
     //- BAR CHART -
@@ -800,7 +595,65 @@
       data: stackedBarChartData,
       options: stackedBarChartOptions
     })
+	
+	 
+	
+	
   })
+  
+  
+  
+  
+  
+ 
+  
+  
+  
+  
+    $(function () {
+    
+
+    /*
+     * BAR CHART
+     * ---------
+     */
+
+    var bar_data = {
+      data : [[1,10], [2,8], [3,4], [4,13], [5,17], [6,9]],
+      bars: { show: true }
+    }
+    $.plot('#bar-chart', [bar_data], {
+      grid  : {
+        borderWidth: 1,
+        borderColor: '#f3f3f3',
+        tickColor  : '#f3f3f3'
+      },
+      series: {
+         bars: {
+          show: true, barWidth: 0.5, align: 'center',
+        },
+      },
+      colors: ['#3c8dbc'],
+      xaxis : {
+        ticks: [[1,'January'], [2,'February'], [3,'March'], [4,'April'], [5,'May'], [6,'June']]
+      }
+    })
+    /* END BAR CHART */
+
+     
+
+  })
+
+  /*
+   * Custom Label formatter
+   * ----------------------
+   */
+  function labelFormatter(label, series) {
+    return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
+      + label
+      + '<br>'
+      + Math.round(series.percent) + '%</div>'
+  }
 </script>
 </body>
 </html>

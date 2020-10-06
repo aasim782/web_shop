@@ -93,7 +93,7 @@
 			    <li class="nav-item">
                 <a href="pending_order.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Panding Orders</p>
+                  <p>Pending Orders</p>
                 </a>
               </li>
 			  
@@ -144,19 +144,14 @@
               <li class="nav-item">
                 <a href="pages/layout/top-nav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Panding Orders</p>
+                   <p>Add banner</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Completed Orders</p>
-                </a>
-              </li>
+        
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add banner</p>
+                  <p>Offer</p>
                 </a>
               </li>
               
@@ -231,7 +226,6 @@
               <p>
                 Reports
                 <i class="fas fa-angle-left right"></i>
-        
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -241,8 +235,18 @@
                   <p>Sales Reports</p>
                 </a>
               </li>
-         
-              
+				<li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Inventory Reports</p>
+                </a>
+              </li>
+              	<li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Customers Reports</p>
+                </a>
+              </li>
             </ul>
           </li>
 		  
