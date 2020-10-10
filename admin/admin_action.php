@@ -116,7 +116,7 @@ if(isset($_POST["admin_userLogin"])){
 		$admin_email = $_POST["admin_email"]; // mysql_real_escape_string used prevent from @ - sysmbol enter values
 		$admin_password= md5($_POST["admin_password"]);// get password encryption
 	
-		$sql = "SELECT * FROM admin_tbl WHERE email = '$admin_email' and password='$admin_password' " ;
+		$sql = "SELECT * FROM user_tbl WHERE email = '$admin_email' and password='$admin_password' " ;
 		$check_query = mysqli_query($con,$sql);
 		$count_email = mysqli_num_rows($check_query);
 		if($count_email==1)
@@ -885,7 +885,7 @@ $run_query = mysqli_query($con,$brand_query);
 				if(isset($_POST["all_customer_order_footer_num"])){
 					$sql = "SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
 						,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
-					FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3) ";
+					FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3) && customer_ord_prds.active=1 ";
 					$run_query = mysqli_query($con,$sql);
 					$count = mysqli_num_rows($run_query);
 					$pageno=ceil($count/10); //rouded 
@@ -901,7 +901,7 @@ $run_query = mysqli_query($con,$brand_query);
  {
 	  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
- FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3)  ORDER BY order_id ASC LIMIT $start,$page_number_limit " ;
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3)  && customer_ord_prds.active=1 ORDER BY order_id ASC LIMIT $start,$page_number_limit " ;
  $check_query = mysqli_query($con,$sql);
 
 $status_btn="";
@@ -929,13 +929,15 @@ $recipt="";
 		{
 			 $status_btn=   "<span class='badge badge-warning'> Pending</span>";
 			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id' cust_order_id='$customer_ord_id' ><i class='fa fa-check text-light'></i></button> 
-			 <button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>";
+			 <button cust_order_id='$customer_ord_id' class='btn btn-danger shadow remove'><i class='fa fa-times text-light'></i></button>";
 		}
 		
 		else if(($payment_status==1 && $order_status==1) || ($payment_status==2 && $order_status==1) || ($payment_status==3 && $order_status==1) )
 		{
 			 $status_btn=   "<span class='badge badge-info'> Processing</span>";
-			 $action_btn=	"<button class='btn btn-warning shadow' id='order_shipment_btn' ordid='$order_id'  cust_order_id='$customer_ord_id'  ><i class='fa fa-truck text-dark'></i></button>";
+			 $action_btn=	"<button class='btn btn-warning shadow' id='order_shipment_btn' ordid='$order_id'  cust_order_id='$customer_ord_id'  ><i class='fa fa-truck text-dark'></i></button>
+							 <button cust_order_id='$customer_ord_id' class='btn btn-danger shadow remove'><i class='fa fa-times text-light'></i></button>";
+		
 		}
 		else if($payment_status==0)
 		{
@@ -946,7 +948,7 @@ $recipt="";
 		if(($payment_status==1 && $order_status==2) || ($payment_status==2 && $order_status==2) || ($payment_status==3 && $order_status==2) )
 		{
 			 $status_btn=   "<span class='badge badge-success' > shipped</span>";
-			 $action_btn=	"<button class='btn btn-success shadow' disabled>Deliver</button>";
+			 $action_btn=	"<button class='btn btn-success shadow'>Conform goods Received</button>";
 		}
  
 	  
@@ -985,11 +987,12 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 		{
 		$recipt="";
 		$paymen_catg_img="<img src='upload/3.jpg' width='50px' height='30px'>";
+		
 		}
 		else
 		{
 			$paymen_catg_img="<span class='badge badge-danger'> Unpaid</span>";
-			$recipt="<button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>";
+			$recipt="<button cust_order_id='$customer_ord_id' class='btn btn-danger shadow remove'><i class='fa fa-times text-light'></i></button>";
 		}
 	  
 		
@@ -1079,7 +1082,7 @@ $action_btn="";
 		{
 			 $status_btn=   "<span class='badge badge-warning'> Pending</span>";
 			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id' cust_order_id='$customer_ord_id' ><i class='fa fa-check text-light'></i></button> 
-			 <button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>";
+			 <button cust_order_id='$customer_ord_id' class='btn btn-danger shadow remove'><i class='fa fa-times text-light'></i></button>";
 		}
 		
 		else if(($payment_status==1 && $order_status==1) || ($payment_status==2 && $order_status==1) || ($payment_status==3 && $order_status==1) )
@@ -1096,7 +1099,7 @@ $action_btn="";
 		if(($payment_status==1 && $order_status==2) || ($payment_status==2 && $order_status==2) || ($payment_status==3 && $order_status==2) )
 		{
 			 $status_btn=   "<span class='badge badge-success' > shipped</span>";
-			 $action_btn=	"<button class='btn btn-success shadow' disabled>Deliver</button>";
+			 $action_btn=	"<button class='btn btn-success shadow' disabled>Conform goods Received </button>";
 		}
 		
 		
@@ -1212,7 +1215,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_qtry,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.current_price_per_prd,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
- FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=0) ) ORDER BY order_id ASC" ;
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=0) ) && customer_ord_prds.active=1 ORDER BY order_id ASC" ;
  $check_query = mysqli_query($con,$sql);
  $count_panding_order = mysqli_num_rows($check_query);
 	
@@ -1238,7 +1241,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 				$order_status=$row["order_status"];
 				$current_price_per_prd=$row["current_price_per_prd"];
 				$order_qtry=$row["order_qtry"];	
-				$customer_ord_id=$row["customer_ord_id"];	
+				$customer_ord_id = $row["customer_ord_id"];	
 	   
 	//recipt button show on all order table in admin	 
 	$sql_payment_category ="SELECT  payment_tbl.paymen_catg,payment_tbl.order_id,customer_ord_prds.order_status FROM payment_tbl,customer_ord_prds
@@ -1285,7 +1288,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 								<button class='btn btn-success shadow' id='order_accept_panding_btn' cust_order_id='$customer_ord_id' ordid='$order_id ' alt='asdas' ><i class='fa fa-check text-light'></i> </button> 
 								</td>
 								<td>
-								<button id='order_cancel_panding_btn' ordid='$order_id '  class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>
+								<button cust_order_id='$customer_ord_id'  class='btn btn-danger shadow remove'><i class='fa fa-times text-light'></i></button>
 								</td>
 							</tr>
 							
@@ -1327,7 +1330,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
- FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=1) ) order by order_id" ;
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=1) ) && customer_ord_prds.active=1 order by order_id" ;
  $check_query = mysqli_query($con,$sql);
  $count_process_order = mysqli_num_rows($check_query);
 	
@@ -1445,10 +1448,9 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 					  </td>
                  
 					   <td>
-						<button class='btn btn-success shadow' disabled>Waiting for customer delivery</button>
-						<button   ordid='$order_id'  class='btn btn-info shadow'><i class='fas fa-envelope'></i></button>
+						<button class='btn btn-success shadow' >Conform goods Received </button>
 						<button   ordid='$order_id '  class='btn btn-dark shadow' ><i class='fas fa-envelope text-light'></i></button>
-						<a href=''  class='btn btn-warning remove shadow'><i class='fas fa-print'></i></a>
+ 
 						
                       </td>
 
@@ -1481,7 +1483,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
  //get all deliver order  to admin deliver table  order status ->3
  if(isset($_POST["get_all_delivered_orders"])){
  
- $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=3) ) order by order_id" ;
  $check_query = mysqli_query($con,$sql);
@@ -1501,6 +1503,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
+				$customer_ord_id =$row["customer_ord_id"];
 			  
 		
 		echo " <tr class='text-center' >	
@@ -1517,9 +1520,9 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 					  </td>
                  
 					   <td>
-						 <a href=''  class='btn btn-warning remove'><i class='fas fa-print'></i></a>
+						 
 						 <a href=''  class='btn btn-success remove'><i class='fas fa-envelope'></i></a>
-						 <a href=''  class='btn btn-danger remove'><i class='fa fa-trash-alt'></i></a>
+						 <a href=''  cust_order_id='$customer_ord_id' class='btn btn-danger remove'><i class='fa fa-trash-alt'></i></a>
 					 
                       </td>
 
@@ -1551,9 +1554,9 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
  //get all unpaid order  to admin unpaid table 
  if(isset($_POST["get_all_unpaid_orders"]) || isset($_POST["count_total_unpaid_order"]) ){
  
- $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date,customer_ord_prds.order_qtry,customer_ord_prds.current_price_per_prd, customer_ord_prds.product_id 
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date,customer_ord_prds.order_qtry,customer_ord_prds.current_price_per_prd, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
- FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=0)) order by order_id" ;
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=0)) && customer_ord_prds.active=1 order by order_id" ;
   $check_query = mysqli_query($con,$sql);
   $count_unpaid_order = mysqli_num_rows($check_query);
 	
@@ -1578,6 +1581,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 				$order_status=$row["order_status"];
 			  	$current_price_per_prd=$row["current_price_per_prd"];
 				$order_qtry=$row["order_qtry"];
+				$customer_ord_id=$row["customer_ord_id"];
 		
  		echo " <tr class='text-center' >	
 					 <td><b>$i </b></td>
@@ -1595,7 +1599,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 					   <td>
 	 
 					<button   ordid='$order_id'  class='btn btn-info'><i class='fas fa-envelope'></i></button>
-					<button class='btn btn-danger shadow'><i class='fa fa-times text-light'></i></button>
+					<button cust_order_id='$customer_ord_id' class='btn btn-danger shadow remove'><i class='fa fa-times text-light'></i></button>
                       </td>
                    </tr>
 			 
@@ -1912,4 +1916,24 @@ if(isset($_POST["courier_tracking_info_update"])){
 		}
 
 }
+
+
+
+
+
+//Remove Customer Order
+if(isset($_POST["remove_cus_order"])){
+    $remove_cust_order_id = $_POST["remove_cust_order_id"]; 
+	$sql = "UPDATE `customer_ord_prds` SET `active`=0 WHERE customer_ord_id = $remove_cust_order_id" ;
+	$check_query = mysqli_query($con,$sql);
+}
+
+
+
+
+
+
+
+
+
 ?>

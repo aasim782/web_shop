@@ -202,7 +202,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="far fa-chart-bar"></i>
-                  Total Sales
+                  Order
                 </h3>
 
                  
@@ -221,11 +221,11 @@
             <!-- PIE CHART -->
             <div class="card card-danger ">
               <div class="card-header">
-                <h3 class="card-title">Customer Orders</h3>
+                <h3 class="card-title"><i class="fas fa-users"></i> Customer Order Status</h3>
               
               </div>
               <div class="card-body">
-                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                <canvas id="pieCharts" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
               </div>        
 		 
               <!-- /.card-body -->
@@ -242,7 +242,7 @@
             <!-- AREA CHART -->
             <div class="card card-primary card-outline">
               <div class="card-header">
-                <h3 class="card-title">Sales Revenue</h3>
+                <h3 class="card-title"><i class="fas fa-chart-area"></i> Sales Rrevenue & Cost</h3>
 
              
               </div>
@@ -259,10 +259,37 @@
           </div>
 		  
 		  
+		 
+			
+         <!-- /.col (LEFT) -->
+            <!-- PIE CHART -->
+            <div class="card card-danger ">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fab fa-product-hunt"></i> Top 5 Fast moving Products </h3>
+              
+              </div>
+               <div class="card-body">
+                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+			  
+		 
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
 		  
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+	  
+ 	  
+	   
+	       <!-- Main row -->
+        <div class="row pt-2">
+          <!-- Left col -->
+                   <div class="col-12">
+		     
 		<div class="card  card-outline">
               <div class="card-header bg-dark ">
-                <h3 class="card-title"><i class="fas fa-thumbtack"></i> Recently Added Products</h3>
+                <h3 class="card-title"><i class="fas fa-thumbtack"></i>  Recently Added Products</h3>
                 <div class="card-tools">
  
                 </div>
@@ -353,15 +380,12 @@
                 </table>
               </div>
             </div>
-			
-
+            </div>
 		  
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-	  
- 	  
-	   
-	  
+	
+ 
+		
+		</div>
 	  
     </section>
     <!-- /.content-header -->
@@ -454,6 +478,9 @@
     //--------------
     //- AREA CHART -
     //--------------
+    //--------------
+    //- AREA CHART -
+    //--------------
 
     // Get context with jQuery - using jQuery's .get() method.
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
@@ -512,13 +539,70 @@
       data: areaChartData, 
       options: areaChartOptions
     })
-
  
     //-------------
     //- DONUT CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
     var donutChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var donutData        = {
+      labels: [
+          'Galaxy A50', 
+          'Women Watches',
+          'Hp Laptop', 
+          'Headphone', 
+          'Mouse', 
+          
+      ],
+      datasets: [
+        {
+          data: [10,60,4,200,100],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc' ],
+        }
+      ]
+    }
+    var donutOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    var donutChart = new Chart(donutChartCanvas, {
+      type: 'doughnut',
+      data: donutData,
+      options: donutOptions      
+    })
+
+
+  //-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieData        = donutData;
+    var pieOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    var pieChart = new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions      
+    })
+
+
+
+
+
+
+
+
+
+
+
+    var donutChartCanvas = $('#pieCharts').get(0).getContext('2d')
     var donutData        = {
       labels: [
           'Pending Orders', 
@@ -547,6 +631,11 @@
       options: donutOptions      
     })
 
+
+
+
+ 
+ 
  
 
     //-------------

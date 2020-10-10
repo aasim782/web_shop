@@ -68,7 +68,7 @@ include "bank_recipt_model.php";
                 <div class="progress">
                   <div class="progress-bar" style="width: 70%"></div>
                 </div>
-               
+               <a   class="small-box-footer mt-2">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -84,8 +84,9 @@ include "bank_recipt_model.php";
 
                 <div class="progress">
                   <div class="progress-bar" style="width: 70%"></div>
+				  
                 </div>
-             
+                            <a   class="small-box-footer mt-2">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -103,7 +104,7 @@ include "bank_recipt_model.php";
                 <div class="progress">
                   <div class="progress-bar" style="width: 70%"></div>
                 </div>
-           
+                          <a   class="small-box-footer mt-2">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -121,7 +122,7 @@ include "bank_recipt_model.php";
                 <div class="progress">
                   <div class="progress-bar" style="width: 70%"></div>
                 </div>
-              
+                             <a   class="small-box-footer mt-2">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
               <!-- /.info-box-content -->
             </div>

@@ -12,102 +12,8 @@
  
 <html lang="en">
   <head>
-  <style>
-
-
-
  
-.chat_img {
-	float: left;
-	width: 11%;
-}
-
-.chat_img img {
-	width: 100%
-}
- 
-.chat_people {
-	overflow: hidden;
-	clear: both;
-}
-
- 
-.incoming_msg_img {
-	display: inline-block;
-	width: 6%;
-}
-
-
-.outgoing_msg_img {
-	display: inline-block;
-	width: 6%;
-	
-	
-}
-
-.incoming_msg_img img {
-	width: 100%;
-}
-
-.outgoing_msg_img img {
-	width: 100%;
-	
-}
-
-.received_msg {
-	display: inline-block;
-	padding: 0 0 0 10px;
-	vertical-align: top;
-	width: 92%;
-}
-.sent_msg {
- 
-}
-
-.received_withd_msg p {
-
-	background: #ebebeb none repeat scroll 0 0;
-	border-radius: 0 15px 15px 15px;
-	color: #646464;
-	font-size: 14px;
-	margin: 0;
-	padding: 5px 10px 5px 12px;
-	width: 100%;
-}
-
-.sent_withd_msg p {
-	  align-items: center;
-	background: #ebebeb none repeat scroll 0 0;
-	border-radius: 15px 0px 15px 15px;
-	color: #646464;
-	font-size: 14px;
-
-	padding: 5px 10px 5px 12px;
-	width: 100%;
-}
-
-
-.time_date {
-	color: #747474;
-	display: block;
-	font-size: 12px;
-	margin: 8px 0 0;
-}
-
-.received_withd_msg {
-	width: 57%;
-}
-.sent_withd_msg {
-	width: 57%;
- 
-}
- 
-.msg_history {
-	height: 500px;
-	overflow-y: auto;
-}
-
-  </style>
+  <?php include "customer_models.php"; ?>
   <?php include "customer_reg.php"; ?>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -244,6 +150,7 @@
 <i class="fas fa-user"></i> <?php echo $_SESSION['cus_fname'];?> <!--nav bar name / login user fname-->
   </button>
   <div class="dropdown-menu dropdown-menu-right">
+  
      <button class="dropdown-item   btn btn-light " onclick="window.location='cart.php'" type="button">Cart List <span class="badge badge-primary"  id='badge_in_nave_manue'>0</span> </button>
     <button class="dropdown-item   btn btn-light " onclick="window.location='my_orders.php'" type="button">My orders  <span class="badge badge-primary"  id='orders_badge_in_nave_manue'>0</span> </button>
     <button class="dropdown-item   btn btn-light" type="button"  data-toggle="modal" data-target="#chanepasswordModel" >Change Password</button>
@@ -284,63 +191,77 @@
   <div class="row">
     <div class="col-3">
    	<ul class="list-group">
-		  <li class="list-group-item active">Orders</li>
+		   <li class="list-group-item active">Orders</li>
 		  <li class="list-group-item"><a  href="my_orders.php" >All orders</a></li>
-		  <li class="list-group-item">Tracking</li>
 		  <li class="list-group-item" > <a  href="#" data-toggle="modal" data-target="#customer_complain_Model" >Complain</a></li>
-		  <li class="list-group-item"> <a  href="message.php"  > Message</a> </li>
+		  <li class="list-group-item" > <a  href="#" data-toggle="modal" data-target="#customer_feedback_Model" style="cursor: pointer;">Feedback</a></li>
+		  <li class="list-group-item"> <a  href="message.php" > Messages</a> </li>
 		</ul>
     </div>
     <div class="col-9 ">
     	<div class="container ">
 			  <div  id="my_order_lists"></div>
 <div class="card">
-  <h5 class="card-header text-center">Message Center</h5>
+  <h5 class="card-header text-center">Messages <i class="fas fa-plus-square text-success"  data-toggle="modal" data-target="#customer_message_model" style="cursor: pointer;"></i> </h5>
   <div class="card-body">
 
-  	  <div class="msg_history">
-	  
-	  
-		<div class="incoming_msg mb-4">
-		  <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-		  <div class="received_msg">
-			<div class="received_withd_msg">
-			  <p>Hi,ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
-			  <span class="time_date text-left pl-2">2020/12/02 10:10:10 AM</span></div>
-		  </div>
-		</div>
-		
-	 	
-    </div>
-		<div class="outgoing_msg mb-4 ">
-		  <div class="outgoing_msg_img "> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-		  <div class="sent_msg">
-			<div class="sent_withd_msg text-center">
-			  <p>Hi,ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
-			  <span class="time_date text-left pl-2">2020/12/02 10:10:10 AM</span></div>
-		  </div>
-		</div>
-    </div>
-  	  <div class="card-footer">  
-		<form class="form-inline">
-			  <div class="form-group mx-sm-4 mb-2">
-			   
-				  <input type="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Message">
-			  </div>
-			  <button type="submit" class="btn btn-danger mb-2">Send</button>
-			</form>
-	  </div>
-	  
-	  
-	  
+ 			<tr class="text-center shadow-sm rounded-sm">	
+					 <td>
+                 	<div class="bg-light mb-1  p-3">
+							<p class="card-text mt-2  text-right">Dear seller do you have hp laptop <small><b></b></small></p>
+							  
 
-</div>
-					
+ 
+					 </div>
+					 
+					   	<div class="mb-1">
+							<p class="card-text mt-2  ">Yes<small><b></b></small></p>
+							  
+
+								<div class="btn-group mt-2  ">
+										<a href="" class="btn btn-warning mr-2 rounded " data-toggle="modal" data-target="#customer_message_model"><i class="fa fa-check"></i> Reply </a>
+ 
+										<a href="message.php" class="btn btn-danger mr-2  rounded"><i class="fa fa-times"></i> Cancel</a>
+ 
+								 </div>
+							</div>
+								 
+									 
+								
+								<div class="bg-light text-right mb-1  p-3">
+						  							<p class="card-text mt-2  "> how many year of your warranty?.I am waiting 4r ur reply can you give more info?</p>
+							 
+								 </div>
+							
+								<div class=" text-right mb-1  ">
+
+						  							<p class="card-text bg-light mt-2 p-3 ">And which knind of warranty (service or hardware warranty) <small><b></b></small></p>
+				 		 
+								 </div>
+							<div class="mb-1">
+							<p class="card-text mt-2 ">we are only providing service warranty <small><b></b></small></p>
+							  
+
+								<div class="btn-group mt-2  ">
+										<a href="" class="btn btn-warning mr-2 rounded " data-toggle="modal" data-target="#customer_message_model"><i class="fa fa-check"></i> Reply </a>
+ 
+										<a href="message.php" class="btn btn-danger mr-2  rounded"><i class="fa fa-times"></i> Cancel</a>
+ 
+								 </div>
+							</div>
+								
+						  
+					  
+						
+				   </td>
+					 </tr>
 
 				  </div>
     </div>
 
   </div>
+</div>
+</div>
 </div>
 				  
 				  

@@ -23,7 +23,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header  bg-warning">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user"></i>&nbspCustomes Order</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user"></i>&nbspCustome Order</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -33,39 +33,21 @@
 		
 	   <!-- Customer Registration Form -->
 	 <form id="customes_order_form" >
-	 		<div id="cus_alert_msg" > </div>
-		  <div class="form-row">
-			<div class="col-md-6">
-			  <label for="validationCustom01">Firt Name </label>
-			  <input type="text" class="form-control" id="Customes_order_fnametxt" name="Customes_order_fnametxt" placeholder="First name">
-		
-			</div>
+	 		<div id="cus_alert_msg" >
 			
-			<div class="col-md-6">
-			  <label for="validationCustom02">Last Name</label>
-			  <input type="text" class="form-control" id="Customes_order_lnametxt"  name='Customes_order_lnametxt' placeholder="Last name" >
-		
-			</div>
-			</div>
-	
-	
-	<div class="form-row">
-	    <div class="col-md-6">
-      <label for="validationCustom02">Email</label>
-      <input type="text" class="form-control" id="Customes_order_emailtxt"  name="Customes_order_emailtxt" placeholder="Email" >
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			  Place your custom order content, We will try our best to get it for you
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div> 
 
-    </div>
-	<div class="col-6">
-      <label for="validationCustom04">Phone</label>
-      <input type="text" class="form-control" size="10"  maxlength="10"  id="Customes_order_phonetxt" name="Customes_order_phonetxt" placeholder="Phone">
-      </div>
-    </div>
-
-  
-    
+</div>
+   
     <div class="form-row">
     <div class="form-group col-12">
-    <label for="exampleFormControlTextarea1">What do you want</label>
+	
+    <label for="exampleFormControlTextarea1">Tell us about what do you need *</label>
     <textarea class="form-control" id="Customes_order_txt"  name="Customes_order_msg" rows="3"></textarea>
 
 	</div>

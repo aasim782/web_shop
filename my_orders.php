@@ -12,6 +12,7 @@
 	include "customer_reg.php";
   	include "order_tracking.php";
   	include "customer_prd_conform_feedback.php";
+  	include "customer_models.php";
 		 
   ?>
 
@@ -75,7 +76,7 @@
 	   <ul class="navbar-nav">
 	 
 	   <li class="nav-item active" >
-        <a class="nav-link" href="#" data-toggle="modal" data-target="#customer_complain_Model"   ><i class="fas fa-star"></i>Complain</a>
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#customer_complain_Model"   ><i class="fas fa-comments"></i> Complain</a>
       </li>
  			
 			
@@ -199,7 +200,7 @@
 		  <li class="list-group-item"><a  href="my_orders.php" >All orders</a></li>
 		  <li class="list-group-item" > <a  href="#" data-toggle="modal" data-target="#customer_complain_Model" >Complain</a></li>
 		  <li class="list-group-item" > <a  href="#" data-toggle="modal" data-target="#customer_feedback_Model" style="cursor: pointer;">Feedback</a></li>
-		  <li class="list-group-item"> <a  href="message.php"  > Message</a> </li>
+		  <li class="list-group-item"> <a  href="message.php" > Messages</a> </li>
 		</ul>
     </div>
     <div class="col-sm mr-2">

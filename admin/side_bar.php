@@ -116,7 +116,16 @@
                   <p>Delivered</p>
                 </a>
               </li>
-			     <li class="nav-item">
+			      <li class="nav-item">
+                <a href="cancelled_order.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cancelled</p>
+                </a>
+              </li>
+			  
+			  
+			  
+			  <li class="nav-item">
                 <a href="un_paid_order.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Unpaid</p>
@@ -142,14 +151,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="banner.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                   <p>Add banner</p>
+                   <p>Banner</p>
                 </a>
               </li>
         
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="offer.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Offer</p>
                 </a>
@@ -232,26 +241,38 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Sales Reports</p>
+                  <p>Sales Report</p>
                 </a>
               </li>
 				<li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inventory Reports</p>
+                  <p>Stock Report</p>
                 </a>
               </li>
               	<li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Customers Reports</p>
+                  <p>Customer's Details Report</p>
                 </a>
               </li>
+			 <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Feedback Report</p>
+                </a>
+              </li>
+			  
+			  
+			  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#out_of_stock_Modal">
+		  Launch demo modal
+		</button>
+
             </ul>
           </li>
 		  
    <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="customer_message.php" class="nav-link">
               <i class="nav-icon fa fa-envelope"></i>
               <p>
                 Messages
@@ -264,7 +285,7 @@
               <i class="nav-icon fa fa-cogs"></i>
               <p >
 				Databse backup
-                <span class="right badge badge-danger">New</span>
+          
               </p>
             </a>
           </li>
@@ -274,7 +295,7 @@
               <i class="nav-icon fa fa-power-off"></i>
               <p>
 				Sign out
-                <span class="right badge badge-danger">New</span>
+                
               </p>
             </a>
           </li>

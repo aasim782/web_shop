@@ -24,7 +24,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header  bg-warning">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user"></i>&nbspCustomer Login</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user"></i>&nbsp Login</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -37,7 +37,7 @@
 		</div>
 				<form class="mt-4">
 			  <div class="form-group ">
-				<label for="exampleDropdownFormEmail2">Email address</label>
+				<label for="exampleDropdownFormEmail2">Email</label>
 				<input type="email" class="form-control" id="lg_email_txt" placeholder="email@example.com">
 			  </div>
 			  <div class="form-group">
@@ -46,10 +46,17 @@
 			  </div>
  
 			
- 
- 
+  <div class="col-12">
+	<div class="col-sm">
     <a class="nav-link " href="#"  id="create_form_model" data-toggle="modal" data-target="#signupModel"  role="tab"> <i class="fas fa-man"></i> Create Account</a>
- 
+	</div>
+		<div class="col-sm">
+    	   <a class="nav-link " href="#"   data-toggle="modal" data-target="#customer_forget_Password_model"  role="tab"> <i class="fas fa-man"></i>Forgot password </a>
+	</div>
+	
+	
+
+	</div>
 	</div>
 	
  
@@ -89,7 +96,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header  bg-warning">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user"></i>&nbspCustomer Registration</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user"></i>&nbspRegistration</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -170,7 +177,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-danger">Save changes</button>
+        <button type="submit" class="btn btn-danger">Save</button>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
 	  </form> <!-- /Customer Reg form -->
@@ -254,7 +261,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header  bg-warning">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-key"></i>&nbspCustomer Complain</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-key"></i>&nbspComplain</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -277,7 +284,7 @@
 	<div class="form-row">
 	 
 	<div class="col-12">
-      <label for="validationCustom04">Complain Message</label>
+      <label for="validationCustom04">Complain </label>
          <textarea class="form-control" id="complain_messagetxt"  name="complain_message"  placeholder="Message" rows="10"></textarea>
 		 </div>
     </div>

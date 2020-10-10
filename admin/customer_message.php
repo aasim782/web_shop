@@ -44,6 +44,7 @@
 <?php include "navbar.php" ?>
 
   <!-- Main Sidebar Container -->
+<?php  include "models.php" ?>
 <?php  include "side_bar.php" ?>
  
 
@@ -57,8 +58,8 @@
         <div class="row">
         <div class="col-12 mt-3">
              <!-- TABLE: LATEST ORDERS -->
-            <div class="card card-dark shadow card-outline">
-              <div class="card-header shadow-sm bg-secondary border-transparent">
+            <div class="card card-light shadow card-outline">
+              <div class="card-header shadow-sm bg-danger  border-transparent">
                  <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -71,12 +72,19 @@
 					<div class="row mt-3 ">
 			 
 						<div class=" col-sm-16 col-md-9  text-left p-1   ">
-					 	 <h2><span class="info-box-icon"><i class="fa fa-chevron-circle-up btn-"></i></span> Delivered orders</h2>
+					 	 <h2><span class="info-box-icon"><i class="fas fa-envelope"></i></span> Customer's Message</h2>
 						</div>
 							<div class="col-sm-16 col-md-3 text-right mb-3 ">
 							<div class="col-sm-12">
-							
-			 
+						<!--	
+					 <div class="input-group input-group-sm">
+					 <input class="form-control form-control-navbar" type="search" id="product_filter" placeholder="Search" aria-label="Search" autocomplete="off">
+					<div class="input-group-append">
+					<button class="btn btn-navbar border" type="submit">
+						<i class="fas fa-search"></i>
+					</button>
+					</div>
+					</div>-->
 					
 						</div>
 						</div>
@@ -84,21 +92,54 @@
 						  
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
+            <div class="card-body p-0">
                 <div class="table-responsive">
                   <table class="table m-0">
                     <thead >
                     <tr class='text-center  shadow-sm bg-dark'>
-                      <th>Order ID</th>
-                      <th>Customer Name</th>
-					  <th>Order Date</th>
-                      <th>Product Name</th>
-                      <th>Delivered Date</th>
-                      <th>Recived Person Name</th>
-                      <th>Action </th>
+            
+             
                     </tr>
                     </thead>
-                   <tbody id="all_delivered_orders" >
+                   <tbody id="get_all_customers_message" >	
+
+
+
+
+			<tr class="text-center shadow-sm rounded-sm">	
+					 <td>
+                   
+				   	  <div class="row mt-2 ">
+						<div class="col-sm">
+						<p class="card-text text-left">Date : <b>30.12.2020</b> </p> 
+								</div>	
+								<div class="col-sm">
+										<p class="card-text text-l"><b></b> </p>
+								</div>
+								
+								<div class="col-sm">
+								<p class="card-text text-right" >Customer email : <b>faizal@gmail.com </b> </p>
+								</div>	
+								</div>	
+							<p class="card-text mt-2" style="cursor: pointer;">how many year of your warranty?.I am waiting 4r ur reply can you give more info? <small><b></b></small></p>
+							  
+								
+
+								<div class="btn-group mt-2  ">
+										<a href="" class="btn btn-warning mr-2 rounded " data-toggle="modal" data-target="#admin_message_model" ><i class="fa fa-check"></i> Reply </a>
+ 
+										<a href="message.php" class="btn btn-danger mr-2  rounded"><i class="fa fa-times"></i> Cancel</a>
+  
+								 </div>
+						  
+						  
+						
+				   </td>
+					 </tr>
+
+
+
+				   
                     </tbody>
                   
                   </table>

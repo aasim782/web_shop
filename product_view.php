@@ -82,7 +82,8 @@
 		
 	   <ul class="navbar-nav">
 	 <li class="nav-item active">
-        <a class="nav-link" href="#" ><i class="fas fa-search"></i> Tracking</a>
+		<a class="nav-link" href="#" data-toggle="modal" data-target="#customer_complain_Model">
+		<i class="fas fa-comments"></i> Complain</a>
       </li>
 	  
 			
@@ -344,106 +345,99 @@
   <div class="tab-pane fade  mt-4  " id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
     <a  class="list-group-item list-group-item-action flex-column align-items-start ">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">  DIYAMANTHI ATHAUDAHETTI
+      <div class="row "><h5 class="mb-1 ml-3 mr-2"> Farhana Musthafa</h5>
 	  
-					<div class="justify-content-center">
+	  <div class="justify-content-center">
 					<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
 					<i class='fas fa-star'></i>
-					</div></h5>
+					</div>
+	</div>
 
-      <small>3 days ago</small>
+      <small>01/02/2020</small>
     </div>
-    <p class="mb-1">
-		The product is good and compatible, tested with my Mix 2S and Huawei P20 successfully. The materials with which it is built are similar to the original brand product. It only has one defect, it works 100% for hands-free only in a sense of the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
-    <small>Donec id elit non mi porta.</small>
+    <p class="mb-1 mt-1">
+	Very nice product. Very good packaging. </p>
+    
   </a>
- 
- 
+  
+  
+  
     <a  class="list-group-item list-group-item-action flex-column align-items-start ">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">  DIYAMANTHI ATHAUDAHETTI
+      <div class="row "><h5 class="mb-1 ml-3 mr-2">Mohamed Aasim</h5>
 	  
-					<div class="justify-content-center">
+	  <div class="justify-content-center">
 					<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
 					<i class='fas fa-star'></i>
-					</div></h5>
+					</div>
+	</div>
 
-      <small>3 days ago</small>
+      <small>07/05/2020</small>
     </div>
-    <p class="mb-1">
-		The product is good and compatible, tested with my Mix 2S and Huawei P20 successfully. The materials with which it is built are similar to the original brand product. It only has one defect, it works 100% for hands-free only in a sense of the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
-    <small>Donec id elit non mi porta.</small>
+    <p class="mb-1 mt-1">
+	Very fast. Shipment completed in 5 days. Everything </p>
+    
   </a>
   
   
+  
+    
+  
+  
+ 
+ 
+ 
+  
      <a  class="list-group-item list-group-item-action flex-column align-items-start  ">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">  DIYAMANTHI ATHAUDAHETTI
-	  
-					<div class="justify-content-center">
+       <div class="d-flex w-100 justify-content-between">
+	  <div class="row "><h5 class="mb-1 ml-3 mr-2">  Kumuthini Ashokkumar</h5>
+	  <div class="justify-content-center">
 					<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
 					<i class='fas fa-star'></i>
-					</div></h5>
-
-      <small>3 days ago</small>
-    </div>
+					</div>
+					
+	</div>
+	 <small>01/02/2020</small>
+	 </div>
     <p class="mb-1">
-		The product is hands-free only in a sense of the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
-    <img  class='card-img-bottom text-center border mt-2' src='admin/upload/Product_images/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
- <img  class='card-img-bottom text-center border mt-2' src='admin/upload/Product_images/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
- <img  class='card-img-bottom text-center border mt-2' src='admin/upload/Product_images/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+		Good seller, the printer is the same from the description. The shipping time is short and the packet is good</p>
+    <img  class='card-img-bottom text-center border mt-2' src='prg_img/feedback/F_05_03_2020_05_02_122.jpg'   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+ <img  class='card-img-bottom text-center border mt-2' src='prg_img/feedback/F_01_2020_05_02_122.jpg'    style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
+ <img  class='card-img-bottom text-center border mt-2' src='prg_img/feedback/F_05_03_2020_05_02_122.jpg'   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
  
   </a>
   
  
   
      <a  class="list-group-item list-group-item-action flex-column align-items-start  ">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">  DIYAMANTHI ATHAUDAHETTI
+	        <div class="d-flex w-100 justify-content-between">
+      <div class="row "><h5 class="mb-1 ml-3 mr-2">  Niyas Muhaideen</h5>
 	  
-					<div class="justify-content-center">
+	  <div class="justify-content-center">
 					<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
                 	<i class='fas fa-star ' style='color:orange'></i>
 					<i class='fas fa-star'></i>
-					</div></h5>
-
-      <small>3 days ago</small>
-    </div>
+					</div>
+	</div>
+		 <small>01/02/2020</small>
+	 </div>
     <p class="mb-1">
-		The product is good and   the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
+Very fast shipment. Very good quality product. I'm very happy with this printer. In my opinion, best quality/price printer. Very good communication with seller. Thanks for this service.</p>
     <small>Donec id elit non mi porta.</small>
   </a> 
   
-     <a  class="list-group-item list-group-item-action flex-column align-items-start  ">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">  DIYAMANTHI ATHAUDAHETTI
-	  
-					<div class="justify-content-center">
-					<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-					<i class='fas fa-star'></i>
-					</div></h5>
-
-      <small>3 days ago</small>
-    </div>
-    <p class="mb-1">
-		The product is good and compatible, tested with my Mix 2S and Huawei P20 successfully. The materials with which it is built are similar to the original brand product. It only has one defect, it works 100% for hands-free only in a sense of the connection that is whether you insert it to the phone in a sense works, if you turn him around, not so it's not 100% reversible. The shipment was very fast, then in less than a month.</p>
-    <small>Donec id elit non mi porta.</small>
-  </a>
-  
+ 
   </div>
  
 </div>

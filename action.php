@@ -5,6 +5,7 @@ include "db_conn/config.php";
 
 //left side category list 
 if(isset($_POST["category"])){
+	
 	$category_query = "SELECT * FROM category_tbl where active=1";
 	$run_query = mysqli_query($con,$category_query);
 	
@@ -20,7 +21,18 @@ if(isset($_POST["category"])){
 			<a href='#' id='category' class='list-group-item list-group-item-action' cid='$cid'>$cat_name</a>		
 			";
 		}
+		
+		@$customer_id = $_SESSION['cusid'] ;	
+		
+		if($customer_id=='')
+		{
+			
+		}
+		else
+		{
 			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customes_order'  >Customs Order</a>";
+		}
+			
 	}
 }
 
@@ -423,7 +435,7 @@ if(isset($_POST["add_to_card"])){
 	$customer_id = $_SESSION['cusid'] ;	
 	 
   
-	$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and product_id='$product_id' and payment_status='0'" ;
+	$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and product_id='$product_id' and payment_status='0' && active=1" ;
 	$check_query = mysqli_query($con,$sql);
 	$count = mysqli_num_rows($check_query);
 	
@@ -468,13 +480,13 @@ if(isset($_POST["add_to_card"])){
 				}
 				else
 				{		//conforming the existing custormer or not
-						$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' " ;
+						$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' && active=1 " ;
 						$check_query = mysqli_query($con,$sql);
 						$row1 = mysqli_num_rows($check_query);
 						
 					if($row1>0)	
 					{		//customer have any paid orders
-						$sql = "SELECT order_id FROM customer_ord_prds WHERE customer_id = '$customer_id' and ( payment_status=0) " ;
+						$sql = "SELECT order_id FROM customer_ord_prds WHERE customer_id = '$customer_id' and ( payment_status=0) && active=1 " ;
 						$check_query = mysqli_query($con,$sql);
 						$row2 = mysqli_num_rows($check_query);
 				
@@ -490,7 +502,7 @@ if(isset($_POST["add_to_card"])){
 								
 							else
 								{	//if he haven't order id  increse by 1
-									$sql = "SELECT max(order_id) as max_order_id  FROM customer_ord_prds " ;
+									$sql = "SELECT max(order_id) as max_order_id  FROM customer_ord_prds  " ;
 									$check_query = mysqli_query($con,$sql);
 									$row = mysqli_num_rows($check_query);
 										
@@ -626,7 +638,7 @@ if(isset($_POST["add_to_card"])){
 if(isset($_POST["cart_count"]))
 {
 	$customer_id = $_SESSION['cusid'] ;
-			$sql ="SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status=0" ;
+			$sql ="SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status=0 && active=1" ;
 					$check_query = mysqli_query($con,$sql);
 					echo mysqli_num_rows($check_query);	//total row for that customer ordered without payment
 	
@@ -638,7 +650,7 @@ if(isset($_POST["cart_count"]))
 if(isset($_POST["orderd_prd_count"]))
 {
 	$customer_id = $_SESSION['cusid'] ;
-			$sql ="SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1) and (order_status=0 || order_status=1 || order_status=2)" ;
+			$sql ="SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1) and (order_status=0 || order_status=1 || order_status=2) && active=1" ;
 					$check_query = mysqli_query($con,$sql);
 					echo mysqli_num_rows($check_query);	//total customer orded product (with different payment)
 	
@@ -648,7 +660,7 @@ if(isset($_POST["orderd_prd_count"]))
 if(isset($_POST["nav_list_total"]))
 {
 $customer_id = $_SESSION['cusid'] ;
-$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status='0'" ; //payment_status - 0 unpaid,1-online tra,2-bank,3-cash delivery
+$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status='0' &&  active=1" ; //payment_status - 0 unpaid,1-online tra,2-bank,3-cash delivery
 $check_query = mysqli_query($con,$sql);
 $count = mysqli_num_rows($check_query);
 	 
@@ -677,7 +689,7 @@ $count = mysqli_num_rows($check_query);
 
 if(isset($_POST["get_added_products_into_card"]) || isset($_POST["card_page_list"])){
 		$customer_id = $_SESSION['cusid'] ;
-$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status='0'" ; //payment_status - 0 unpaid,1-online tra,2-bank,3-cahone delivery
+$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status='0' && active=1" ; //payment_status - 0 unpaid,1-online tra,2-bank,3-cahone delivery
 	$check_query = mysqli_query($con,$sql);
 	$count = mysqli_num_rows($check_query);
 	$no=1;
@@ -775,7 +787,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 						if(isset($_POST["card_page_list"])){
 							
 							
-						$sql = "SELECT * FROM customer_tbl WHERE customer_id = '$customer_id'" ;
+						$sql = "SELECT * FROM customer_tbl WHERE customer_id = '$customer_id'  " ;
 						$check_query = mysqli_query($con,$sql);
 						while($row = mysqli_fetch_array($check_query))
 					{
@@ -788,7 +800,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 						$postal = $row["postal"];
 						
 						
-					$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status=0" ;
+					$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status=0 && active=1" ;
 						$check_query = mysqli_query($con,$sql);
 						while($row = mysqli_fetch_array($check_query))
 						{
@@ -863,7 +875,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 						 
 					//phone verify conform - agree button hide show 
 					
-					$sql_phn_veryfy ="SELECT * FROM customer_tbl WHERE customer_id = '$customer_id' && otp_verify = '1'"  ;
+					$sql_phn_veryfy ="SELECT * FROM customer_tbl WHERE customer_id = '$customer_id' && otp_verify = '1'  "  ;
 					$check_query_sql_phn_veryfy = mysqli_query($con,$sql_phn_veryfy);
 					 $count = mysqli_num_rows($check_query_sql_phn_veryfy);
 				 
@@ -951,7 +963,7 @@ $sql1 ="SELECT * FROM product_tbl WHERE product_id = '$remove_product_id'" ;
  $sql = "update product_tbl set product_total_qty= ($product_total_qty+$new_qty) WHERE product_id='$remove_product_id' AND active = 1" ;
  $check_query = mysqli_query($con,$sql);
 	
- $sql = "Delete FROM customer_ord_prds WHERE customer_id = '$customer_id' AND product_id='$remove_product_id' AND payment_status = 0" ;
+ $sql = "Delete FROM customer_ord_prds WHERE customer_id = '$customer_id' AND product_id='$remove_product_id' AND payment_status = 0 && active=1" ;
 	$check_query = mysqli_query($con,$sql);
  
 
@@ -1104,7 +1116,7 @@ if(isset($_POST["myorder"]) || isset($_POST["myorder_footer_num"])){
 	 //display the order panination number
 	if(isset($_POST["myorder_footer_num"]))
 	{
-		$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3) and !(order_status =3)" ;
+		$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3) and !(order_status =3) && active=1" ;
 		$check_query = mysqli_query($con,$sql);
  
 		$count = mysqli_num_rows($check_query);
@@ -1117,7 +1129,7 @@ if(isset($_POST["myorder"]) || isset($_POST["myorder_footer_num"])){
 	
 	$i=	$start;
 $customer_id = $_SESSION['cusid'] ;
-$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3) and !(order_status=3) limit $start,$page_number_limit" ;
+$sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=1 or  payment_status=2 or payment_status=3) and !(order_status=3) && active =1 limit $start,$page_number_limit" ;
 $check_query = mysqli_query($con,$sql);
 		if(isset($_POST["myorder"])){
 	

@@ -1130,17 +1130,7 @@ category_count();
 			
 			 
 		
-		//panding order cancel in padding order page
-			$('body').delegate('#order_cancel_panding_btn','click',function() {
-			 event.preventDefault();
-			 var ordid= $(this).attr('ordid');  
-				alert(ordid);
  
-					
-			});
-		
-		
-			
 		 
 		
 		//change panding order to process order
@@ -1342,5 +1332,32 @@ category_count();
 	 })
 		
 		
+	 
+ //remove the product from card
+$("body").delegate(".remove","click",function(){
+		event.preventDefault();
+		var cust_order_id= $(this).attr('cust_order_id'); //get the order id from our selected product
+	  
+			$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{remove_cus_order:1,remove_cust_order_id:cust_order_id}, // pass the arguments
+					success	:	function(data){
+					toastr.success("Order Cancelled");	 
+						all_customer_order();
+						all_customer_order_footer_num();
+						get_all_unpaid_orders();
+						get_all_panding_orders()	
+					}
+					})
 		
+	})
+
+
+
+
+
+
+
+	
 });

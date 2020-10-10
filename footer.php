@@ -113,4 +113,113 @@
   
   
   
+   
+    <link type="text/css" rel="stylesheet" href="//static.getbutton.io/widget-send-button/css/style.css?v=15906884005" />
+    <link type="text/css" rel="stylesheet" href="//static.getbutton.io/css/whatshelp-font.css?v=1587371361" media="none" onload="if(media!=&#39;all&#39;)media=&#39;all&#39;" />
+
+    <script type="text/javascript">
+        whWidgetInit = function() {
+            WidgetInitializer.widgetInitialize(
+                "desktop",
+                {"wrapperId":"wh-widget-send-button-wrapper","host":"widget.getbutton.io","proto":"https:","clientHostname":"www.selflearn.edu.lk","showHelloPopup":0,"parentWrapperId":"wh-widget-send-button","isMobile":0,"widgetType":"desktop"},
+                {"position":"right","button_color":"#E74342","order":"facebook,email","facebook":"1523507964536098","whatsapp":"+94 713718707   ","viber":"+94713718707","snapchat":null,"line":null,"telegram":"+94713718707","vkontakte":null,"email":"support@selflearn.edu.lk","sms":"+94713718707","call":"+94 713718707   ","company_logo_url":null,"greeting_message":null,"call_to_action":"Message us","ga":false,"branding":true,"mobile":true,"desktop":true,"shift_vertical":0,"shift_horizontal":0,"domain":null,"key":null});
+            if (window.parent) {
+                window.parent.postMessage(JSON.stringify({'name' : 'wh-widget-loaded'}), '*');
+            }
+            function listener(event) {
+                const payload = JSON.parse(event.data);
+                if (payload.name === 'parentWindow' && payload.data.width <= 370) {
+                    document.body.classList.add('wh-small-screen');
+                }
+                // else {
+                //     document.body.classList.remove('wh-small-screen');
+                // }
+            }
+            window.addEventListener('message', listener, false);
+        };
+    </script>
+    <script async src="https://res.cloudinary.com/dressline2020/raw/upload/v1591795277/desktop_gema6n.js" onload="whWidgetInit();"></script>
+
+
+    <div id="wh-widget-send-button-wrapper"
+         class="wh-widget-send-button-wrapper wh-widget-right" >
+
+        <div class="wh-widget-hello-popup-wrapper wh-popup-right wh-hide popup-slide popup-slide-in" id="wh-popup-hello">
+            <div class="wh-widget-hello-popup">
+                <div class="wh-widget-hello-popup-close" wh-click="closeHelloPopup">
+                    <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                </div>
+                <div class="wh-widget-hello-popup-content">
+                    <div class="wh-widget-hello-popup-content-logo">
+                        <img wh-src="logoUrl" alt=""/>
+                    </div>
+                    <div class="wh-widget-hello-popup-content-text" wh-click="showMessengers">
+                        <a wh-href="href" wh-target="target">
+                            <div wh-html-br="text"></div>
+                        </a>
+                    </div>
+                    <div class="wh-clear"></div>
+                </div>
+
+                <div class="wh-messengers wh-hide" wh-multi-class="{'wh-hide': '!showMessengersIcons'}"><ul wh-html-element="buttons"></ul></div>
+            </div>
+        </div>
+
+        <div id="popup-placement" class="popup-slide"></div>
+        <div id="wh-call-to-action" class="wh-hide" wh-click="clickOnCallToAction">
+            <a wh-href="href" wh-target="target">
+                <div class="wh-call-to-action-content" wh-html-unsafe="text"></div>
+            </a>
+        </div>
+    </div>
+
+    <!-- MessengerPopup template -->
+    <div id="template-popup-messenger" class="wh-widget-hello-popup-wrapper wh-popup wh-popup-right">
+        <div class="wh-popup-title-bar" wh-class="bgColorMessenger">
+            <div class="title-bar-icon-close" wh-click="closePopup">
+                <svg fill="#FFFFFF" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                </svg>
+            </div>
+            <div class="title-bar-icon-messenger" wh-html="icon">
+            </div>
+            <div class="title-bar-text" wh-html-unsafe="title"></div>
+            <div class="wh-clear"></div>
+        </div>
+        <div class="wh-popup-content">
+        </div>
+        <div class="wh-clear"></div>
+
+        <div class="wh-widget-a-popup-powered" wh-class="a">
+            <a href="//www.mamsolution.com" target="_blank">
+              <br>
+            </a>
+        </div>
+        <div class="wjeh-clear"></div>
+    </div>
+
+    <div id="template-popup-content-facebook" class="content-facebook">
+        <iframe wh-src="fbIframeURL" width="302" height="300" style="border:none; border-radius: 0 0 16px 16px; overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+    <div id="template-popup-content-snapchat">
+        <div class="content-snapchat-qrcode" wh-html="snapchatQRCode"></div>
+        <div class="content-snapchat-name" wh-html-unsafe="snapchatUser"></div>
+    </div>
+    <div id="template-popup-content-viber">
+        <div class="content-viber-qrcode" wh-html="viberQRCode"></div>
+    </div>
+    <div id="template-popup-content-line" class="content-line">
+        <iframe wh-src="lineIframeURL" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+    <div id="template-popup-content-call">
+        <div class="content-call-number" wh-html="callPhone"></div>
+    </div>
+    <!-- /MessengerPopup template -->
+
+ 
+  
   

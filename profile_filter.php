@@ -197,38 +197,117 @@
 					</li> -->
 
 	<!-- Category -->	
-<div class="col mb-2"> 
- <a href='#' class='list-group-item list-group-item-action ' style='color:white;background-color:#ffc107;' >
-	<h5><i class='fas fa-th-list' ></i>&nbspPrice</h5></a> 
-		<a id='category' class='list-group-item list-group-item-action' cid='$cid'>	
+  
 	
-	
-		<div class="container">
-  <div class="row">
+						<div id="get_category" class="mb-2"> </div>
+				
+		
+		
+ <div class="card mb-2">	
+   <div class="card-header">
+	<h5>&nbspPrice (Rs.)</h5></a> 
+  </div>
+  <div class="card-body" >
+		 
+  <div class="row ">
     <div class="col-sm">
-      	<input type="number" min="0" class="form-control" placeholder="Min" value="0" pattern="[0-9]*"   autocomplete="off">
+      	<input type="number"  class="form-control" placeholder="Min" value="min" pattern="[0-9]*"   autocomplete="off">
     </div>
-	to
+	
+	  <div class="text-center">
+      	-
+    </div>
     <div class="col-sm">
-     	<input type="number" min="0" class="form-control" placeholder="Min" value="0" pattern="[0-9]*"   autocomplete="off">
+     	<input type="number"   class="form-control" placeholder="Min" value="max" pattern="[0-9]*"   autocomplete="off">
     </div>
  
   </div>
-</div>
- </a>
-</div>
+  </div>
+  </div>
  
-	
-	
-						<div id="get_category"> </div>
-				
+ 
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	<!-- Brands -->		
 
 	
-						<div id="get_brand"> </div>
+						<div id="get_brand" class="mb-2"> </div>
 						
 						
+						
+						
+						
+						
+						
+						
+						
+	 
+
+ <div class="card">	
+   <div class="card-header">
+ 	<h5>Rating</h5></a>  
+  </div>
+  <div class="card-body" >
+  <div class="row" style="cursor: pointer;">
+   <i class="fa fa-star active" style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
+
+  </div>
+  
+ 
+    <div class="row " style="cursor: pointer;">
+   <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star" style="color:orange"aria-hidden="true"></i>
+   <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star" style="color:orange"aria-hidden="true"></i>
+   <i class="fa fa-star" aria-hidden="true"></i>&nbspAnd Up
+     
+	</div>
+	
+	    <div class="row " style="cursor: pointer;">
+   <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star" aria-hidden="true"></i>
+   <i class="fa fa-star" aria-hidden="true"></i>&nbspAnd Up
+ 
+     
+	</div>
+	
+	
+	    <div class="row " style="cursor: pointer;">
+   <i class="fa fa-star " style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star"  style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star" aria-hidden="true"></i>
+   <i class="fa fa-star" aria-hidden="true"></i>
+   <i class="fa fa-star" aria-hidden="true"></i>&nbspAnd Up
+     
+	</div>
+	
+	
+	
+	
+  <div class="row " style="cursor: pointer;">
+   <i class="fa fa-star" style="color:orange" aria-hidden="true"></i>
+   <i class="fa fa-star" aria-hidden="true"></i>
+   <i class="fa fa-star" aria-hidden="true"></i>
+   <i class="fa fa-star" aria-hidden="true"></i>
+   <i class="fa fa-star" aria-hidden="true"></i>&nbspAnd Up
+	</div>
+	</div>
+	</div>
+ 
+  
 
       </div>
 	  
@@ -237,42 +316,7 @@
 	  
       <div class="col-lg-9"  style="border-radius: 50px 50px;">
 				 
-				 	<!-- Slider -->
-			<div id="carouselExampleIndicators"  class="carousel slide pb-3" data-ride="carousel">
-			  <ol class="carousel-indicators"> 		<!-- Slider_Mark -->
-				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>  
-				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>  
-				<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>  
-			  </ol>
-			  <div class="carousel-inner"  style="border-radius: 50px 20px;" >
-				<div class="carousel-item ">  		<!-- Slider_image_1 -->
-				<img class="d-block w-100" src="admin/upload/slider3.jpg" alt="Third slide">
-				</div>
-				<div class="carousel-item active">
-				  <img class="d-block w-100" src="admin/upload/slider1.jpg"alt="Second slide">
-				</div>
-			
-				<div class="carousel-item">
-				  <img class="d-block w-100" src="admin/upload/slider3.jpg" alt="Third slide">
-				</div>
-				<div class="carousel-item">
-				  <img class="d-block w-100" src="admin/upload/slider4.jpg" alt="Third slide">
-				</div>
-				<div class="carousel-item">
-				  <img class="d-block w-100" src="admin/upload/slider5.jpg" alt="Third slide">
-				</div>
-			  </div>
-			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			  </a>
-			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			  </a>
-			</div>
+		 
 			
 		  
 		  	    <!--alert-->
@@ -282,27 +326,11 @@
 	<div class="card" >				<!-- filter option -->
 	<div class="card-header" style="background-color:rgba(255, 193, 7, 0.48);">
 	    <div class="form-row">
-		<label for="validationCustom05 "  class="p-1">Price :</label>
-		<div class="col-md-0">
-		<input type="text"  class="form-control"  id="pricemax" size="1" maxlength="8"  name="max" placeholder="Max" >
-		</div>
-		-
-		<div class="col-md-0">
-		<input type="text"  class="form-control" id="pricemin" size="1" maxlength="8"  name="max" placeholder="Min" >
-		</div>	
+		<h4 for="validationCustom05 "  class="p-1 "><i class="fa fa-shopping-basket"></i> Products</h4>
+		 
+		 
 		
-		
-		
-				<div class="btn-group justify-content-center col-md-0">
-			  <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				All Categories
-			  </button>
-			  <div  id='filter_category' class="dropdown-menu dropdown-menu-right">
-	
-			
-			  </div>
-			</div>
-			
+		 
 			
 			
 	  </div>

@@ -156,6 +156,7 @@
   <div class="dropdown-menu dropdown-menu-right">
      <button class="dropdown-item   btn btn-light " onclick="window.location='cart.php'" type="button">Cart List <span class="badge badge-primary"  id='badge_in_nave_manue'>0</span> </button>
     <button class="dropdown-item   btn btn-light " onclick="window.location='my_orders.php'" type="button">My orders  <span class="badge badge-primary"  id='orders_badge_in_nave_manue'>0</span> </button>
+    <button class="dropdown-item   btn btn-light " onclick="window.location='message.php'" type="button">Messages  <span class="badge badge-primary"  id='messages_badge_in_nave_manue'>0</span> </button>
     <button class="dropdown-item   btn btn-light" type="button"  data-toggle="modal" data-target="#chanepasswordModel" >Change Password</button>
 	<button class="dropdown-item btn btn-light" onclick="window.location='logout.php'"  type="button">Logout</button> <!-- login session reset-->
   </div>
@@ -261,28 +262,12 @@
 	    <!-- All Product-->
 	<div class="card" >				<!-- filter option -->
 	<div class="card-header" style="background-color:rgba(255, 193, 7, 0.48);">
-	    <div class="form-row">
-		<label for="validationCustom05 "  class="p-1">Price :</label>
-		<div class="col-md-0">
-		<input type="text"  class="form-control"  id="pricemax" size="1" maxlength="8"  name="max" placeholder="Max" >
-		</div>
-		-
-		<div class="col-md-0">
-		<input type="text"  class="form-control" id="pricemin" size="1" maxlength="8"  name="max" placeholder="Min" >
-		</div>	
+		    <div class="form-row">
+		<h4 for="validationCustom05 "  class="p-1 "><i class="fa fa-shopping-basket"></i> Products</h4>
+		 
+		 
 		
-		
-		
-				<div class="btn-group justify-content-center col-md-0">
-			  <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				All Categories
-			  </button>
-			  <div  id='filter_category' class="dropdown-menu dropdown-menu-right">
-	
-			
-			  </div>
-			</div>
-			
+		 
 			
 			
 	  </div>
