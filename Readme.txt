@@ -1,28 +1,6 @@
- -dashbaord design
- " Ver 0.6.3"
+ -Correctioness of spelling mistakes
+ " Ver 0.6.4"
  
 
 
  
-UI
-Dataflow diagram
-Datata type
-
-
-
-Alogorith
-Dynamic behavours
-Staic archtiecur of the system
-
-
-
-Asembsion
-chapter 1 lst point
-table type 
-
-
-  
-
-Complex to used
-
-

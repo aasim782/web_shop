@@ -284,7 +284,7 @@
             <a   class="nav-link">
               <i class="nav-icon fa fa-cogs"></i>
               <p >
-				Databse backup
+				Database backup
           
               </p>
             </a>

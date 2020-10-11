@@ -124,7 +124,7 @@
 		
 			 <form class="mt-4 ">
 			  <div class="form-group ">
-				<label for="exampleDropdownFormEmail2">Email address</label>
+				<label for="exampleDropdownFormEmail2">Email</label>
 				<input type="email" class="form-control" id="cori_email_txt" placeholder="email@example.com">
 			  </div>
 			  <div class="form-group">

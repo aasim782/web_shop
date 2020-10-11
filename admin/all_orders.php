@@ -79,7 +79,7 @@ include "bank_recipt_model.php";
             <div class="info-box shadow bg-gradient-info">
               <span class="info-box-icon"><i class="fa fa-spinner"></i></span>
               <div class="info-box-content" >
-                <span class="info-box-text"> Processing</span>
+                <span class="info-box-text"> Processing orders</span>
                 <span class="info-box-number"  id="count_total_process_order"> </span>
 
                 <div class="progress">
@@ -98,7 +98,7 @@ include "bank_recipt_model.php";
               <span class="info-box-icon"><i class="fa fa-truck"></i></span>
 
               <div class="info-box-content" >
-                <span class="info-box-text">Shipped</span>
+                <span class="info-box-text">Shipped orders</span>
                 <span class="info-box-number" id="count_total_shipped_order"></span>
 
                 <div class="progress">
@@ -116,7 +116,7 @@ include "bank_recipt_model.php";
               <span class="info-box-icon"><i class="fa fa-ban"></i></span>
 
               <div class="info-box-content" >
-                <span class="info-box-text">Unpaid Orders</span>
+                <span class="info-box-text">Unpaid orders</span>
                 <span class="info-box-number" id="count_total_unpaid_order"></span>
 
                 <div class="progress">

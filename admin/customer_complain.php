@@ -71,7 +71,7 @@
 					<div class="row mt-3 ">
 			 
 						<div class=" col-sm-16 col-md-9  text-left p-1   ">
-					 	 <h2><span class="info-box-icon"><i class="fa fa-thumbs-down"></i></span> Customers Complain</h2>
+					 	 <h2><span class="info-box-icon"><i class="fa fa-thumbs-down"></i></span> Customer's Complaint</h2>
 						</div>
 							<div class="col-sm-16 col-md-3 text-right mb-3 ">
 							<div class="col-sm-12">

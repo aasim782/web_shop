@@ -97,7 +97,7 @@
           <div class="col-lg-3 mt-4  " >
              <div class="card card-danger card-outline ">
               <div class="card-header  ">
-                <h5 class="m-0 text-danger justify-content-center text-center">TOTAL CATEGORY</h5>
+                <h5 class="m-0 text-danger justify-content-center text-center">TOTAL CATEGORIES</h5>
               </div>
               <div class="card-body bg-danger  ">
            

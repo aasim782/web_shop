@@ -20,7 +20,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header  bg-warning">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user"></i>&nbsp Bank Deposit Slip Upload</h5>
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user"></i>&nbsp Bank Deposit</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -33,13 +33,13 @@
 	 		<div id="bank_dep_alert_msg" > </div>
 		  <div class="form-row mb-2">
 			<div class="col-md-6">
-			  <label for="validationCustom01">Deposited date</label>
+			  <label for="validationCustom01">Deposit date</label>
 			  <input type="date" class="form-control" id="de_datetxt" name="de_datetxt" placeholder="Deposited Date">
 		
 			</div>		
 			
 			<div class="col-md-6">
-			  <label for="validationCustom01">Deposited Time</label>
+			  <label for="validationCustom01">Deposit Time</label>
 			  <input type="time" class="form-control" id="de_timetxt" name="de_timetxt" placeholder="">
 			</div>		
 			</div>

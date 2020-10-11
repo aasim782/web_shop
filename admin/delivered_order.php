@@ -93,8 +93,8 @@
                       <th>Customer Name</th>
 					  <th>Order Date</th>
                       <th>Product Name</th>
-                      <th>Delivered Date</th>
-                      <th>Recived Person Name</th>
+                      <th>Date</th>
+                      <th>Receiver Name</th>
                       <th>Action </th>
                     </tr>
                     </thead>

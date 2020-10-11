@@ -230,13 +230,13 @@
 	
 	<div class="form-row">
 	    <div class="col-md-6">
-      <label for="validationCustom02">New Paasword</label>
-      <input type="password" class="form-control" id="New_Paaswordtxt"  name="New_Paasword" placeholder="New Paasword" >
+      <label for="validationCustom02">New password</label>
+      <input type="password" class="form-control" id="New_Paaswordtxt"  name="New_Paasword" placeholder="New password" >
 
     </div>
 	<div class="col-6">
-      <label for="validationCustom04">Confirm Paasword</label>
-      <input type="password" class="form-control" id="Confirm_Paaswordtxt" name="Confirm_Paasword" placeholder="Confirm Paasword">
+      <label for="validationCustom04">Confirm password</label>
+      <input type="password" class="form-control" id="Confirm_Paaswordtxt" name="Confirm_Paasword" placeholder="Confirm password">
       </div>
     </div>
 

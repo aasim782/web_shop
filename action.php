@@ -870,7 +870,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					
 					<div class='collapse multi-collapse' id='cash_on_delivery_btn_click'>
 					  <div class='card card-body'>
-						Cash on delivery is only posible for the products under 50,000. For the prducts more than 50,000 it can be paid through online paymnet or bank deposit. 
+						Cash on delivery is only available for the products under 50,000. Otherwise use bank payment or online payement. 
 						 ";
 						 
 					//phone verify conform - agree button hide show 
@@ -883,7 +883,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					{
 				
 						
-						echo "<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Conform''></div>";
+						echo "<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Confirm''></div>";
 						
 					}
 					else
@@ -1182,7 +1182,7 @@ $check_query = mysqli_query($con,$sql);
 						//order status in myorder page panding/verified
 						if($order_status==0)
 						{
-							$payment_verify_status_veriable="<b class='text-danger'>Panding</b> ";
+							$payment_verify_status_veriable="<b class='text-danger'>Pending</b> ";
 							
 						}
 						else  
@@ -1203,7 +1203,7 @@ $check_query = mysqli_query($con,$sql);
 							</div>
 							
 							<div class='col-sm text-right'>
-							Ordered Date :<b> $order_date  </b> 
+							OrderDate :<b> $order_date  </b> 
 							</div>
 						  </div>
 				  </div>
@@ -1252,16 +1252,16 @@ $check_query = mysqli_query($con,$sql);
 								";
 										if(!($order_status==2))
 										{
-											echo"<button  class='btn btn-warning mr-2 rounded disabled'><i class='fa fa-check'></i> Conform goods Received </button>";
+											echo"<button  class='btn btn-warning mr-2 rounded disabled'><i class='fa fa-check'></i> Confirm goods Received </button>";
 										}
 										else
 										{
-											echo"<a href='' class='btn btn-warning mr-2 rounded  order_id='$order_id'    customer_ord_id='$customer_ord_id'  id='customer_prd_conform_btn'  data-toggle='modal'><i class='fa fa-check'></i> Conform goods Received </a>";
+											echo"<a href='' class='btn btn-warning mr-2 rounded  order_id='$order_id'    customer_ord_id='$customer_ord_id'  id='customer_prd_conform_btn'  data-toggle='modal'><i class='fa fa-check'></i> Confirm goods Received </a>";
 										}
 									  
 									  echo "
-										<a href='' class='btn btn-danger mr-2 rounded' order_id='$order_id'  customer_ord_id='$customer_ord_id'  id='trcking_btn' data-toggle='modal' data-target='#traking_model'><i class='fa fa-search'></i> Track Order </a>
-										<a href='message.php' class='btn btn-dark mr-2  rounded'><i class='fa fa-sms'></i> message</a>
+										<a href='' class='btn btn-danger mr-2 rounded' order_id='$order_id'  customer_ord_id='$customer_ord_id'  id='trcking_btn' data-toggle='modal' data-target='#traking_model'><i class='fa fa-search'></i> Tracking Order </a>
+										<a href='message.php' class='btn btn-dark mr-2  rounded'><i class='fa fa-sms'></i> Message</a>
 					
 										</div>
 						  </div>
@@ -2004,7 +2004,7 @@ $order_status = $row_data["order_status"];
 		{
 			 
 			echo " 
-                   <div class='col text-center '> <strong>Status</strong> <br> Panding for shipment</div>
+                   <div class='col text-center '> <strong>Status</strong> <br> Pending for shipment</div>
                     ";
 		}
 		else if($order_status==2)
@@ -2035,7 +2035,7 @@ $order_status = $row_data["order_status"];
 		
 		
 		
-		  echo "	   <div class='col'> <strong>Shipped :</strong> <br><label > $prd_send_date<label> </div>
+		  echo "	   <div class='col'> <strong>Shipped On :</strong> <br><label > $prd_send_date<label> </div>
 				   <div class='col text-center'> <strong>Tracking ID #:</strong> <br> $tracking_id  </div>
                    <div class='col'> <strong>Status:</strong> <br> On the way</div>
                    <div class='col'> <strong>Current District #:</strong> <br> <strong class='text-success'>$current_district <strong></div>";

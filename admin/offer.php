@@ -78,7 +78,7 @@
 			  
 			  <div class="form-row">
                <div class="col-md-12 pb-2">
-			  <label for="validationCustom01">Reason of sale </label>
+			  <label for="validationCustom01">Offer Description</label>
 			  <input type="text" class="form-control" id="title_txt" name="" placeholder="Reason of the sale it will appear on customer page">
 		
 			</div>
@@ -209,9 +209,9 @@
 			  
                 <table class="table table- table-striped">
                   <thead>
-                  <tr class="text-center">
+                  <tr >
 						<th>No</th>
-					  <th>Reason</th>
+					  <th>Offer Description</th>
                       <th>Offer start On</th>
                       <th>Offer End On</th>
                       <th>Discount Rate</th>

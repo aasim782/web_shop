@@ -93,7 +93,7 @@
                     <tr class='text-center  shadow-sm bg-dark'>
                       <th>No</th>
                       <th> </th>
-                      <th>Fistname</th>
+                      <th>Firstname</th>
                       <th>Lastname</th>
 					  <th>Email</th>
                       <th>Phone</th>

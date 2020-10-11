@@ -30,8 +30,8 @@
 	 <form class="needs-validation" novalidate>
 		  <div class="form-row">
 			<div class="col-md-6">
-			  <label for="validationCustom01">New Paasword</label>
-			  <input type="text" class="form-control" id="validationCustom01" placeholder="New Paasword" required>
+			  <label for="validationCustom01">New Password</label>
+			  <input type="text" class="form-control" id="validationCustom01" placeholder="New Password" required>
 				<div class="valid-feedback">
 				Looks good!
 			  </div>

@@ -71,7 +71,7 @@
 					<div class="row mt-3 ">
 			 
 						<div class=" col-sm-16 col-md-9  text-left p-1   ">
-					 	 <h2><span class="info-box-icon"><i class="fa fa-star"></i></span> Customers Feedback</h2>
+					 	 <h2><span class="info-box-icon"><i class="fa fa-star"></i></span> Customer's Feedbacks</h2>
 						</div>
 							<div class="col-sm-16 col-md-3 text-right mb-3 ">
 							<div class="col-sm-12">

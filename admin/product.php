@@ -106,7 +106,7 @@
 
             <div class="card card-danger card-outline">
               <div class="card-header">
-                <h5 class="m-0 text-danger">TOTAL CATEGORY</h5>
+                <h5 class="m-0 text-danger">TOTAL CATEGORIES</h5>
               </div>
               <div class="card-body text-center bg-danger">
                 <label class="card-title " id="count_catg" style="font-size:52pt"></label>
@@ -116,7 +116,7 @@
 			
 			         <div class="card card-success card-outline">
               <div class="card-header">
-                <h5 class="m-0 text-success">TOTAL BRAND</h5>
+                <h5 class="m-0 text-success">TOTAL BRANDS</h5>
               </div>
            <div class="card-body bg-success">
                 <label class="card-title text-center"  id="count_brand" style="font-size:52pt"></label>

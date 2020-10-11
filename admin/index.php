@@ -221,7 +221,7 @@
             <!-- PIE CHART -->
             <div class="card card-danger ">
               <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-users"></i> Customer Order Status</h3>
+                <h3 class="card-title"><i class="fas fa-users"></i> Order Status</h3>
               
               </div>
               <div class="card-body">
@@ -609,7 +609,7 @@
           'Process Orders',
           'Shipped Orders', 
           'Delivered Orders', 
-          'Un Paid Orders', 
+          'Unpaid Orders', 
           
       ],
       datasets: [
