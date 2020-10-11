@@ -107,7 +107,37 @@ echo "<div class='card card-warning card-outline'>
 			
 	</div>  	     
 	<div class='form-row mt-2  '>   
-	<div class='col-6 form-group'>    <label for='validationCustom03'>Total Quantity</label>	  		  <input type='number' min='1'  class='form-control' id='Total_qty' maxlength='10' name='Total_qty' placeholder='Total Quantity' autocomplete='off'></div> <div class='form-group col-6'> 	   <label for='exampleFormControlFile1' class='mt-1'>Select Product Image</label>  <div class='custom-file' >  <input     type='file' name='file' id='file' ></div> </div>    <div class='col-6 form-group mt-2 text-center'></label></div>  </div>      <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom05'>Product Description</label> <div class='col-md-12'>   <textarea class='textarea' id='product_desc_txt'  name='product_dec' placeholder='Place some text here'style='width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 30px;'></textarea>                            </div>           </div>        </div> <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom03'>Product Keywords</label>	<div class='col-md-12'>    <textarea class='form-control' id='product_keywords_txt'  name='ProductKeyword' rows='3'></textarea>   </div> <div class='modal-footer'> <button type='button' id='form_prd_add_btn' name='form_prd_add_btn' class='btn btn-danger'>Add</button><button type='button' class='btn btn-secondary'    data-card-widget='remove' >Close</button></div></form> </div></div><script>$(function () { $('.textarea').summernote() })</script></div></div> ";
+	<div class='col-3 form-group'>    
+	<label for='validationCustom03'>Total Quantity</label>	  		
+	<input type='number' min='1'  class='form-control' id='Total_qty' maxlength='10' name='Total_qty' placeholder='Total Quantity' autocomplete='off'>
+	</div>
+	
+ 
+	<div class='form-group col-3'>        
+	<label for='validationCustom02'>Choose the weight  (kg)</label>     
+	<select id='get_category' class='form-control '>
+	<option value='0' selected=''>Choose weight</option>
+	<option value='200'>< 1Kg</option> 
+	<option value='450'>2Kg - 3Kg</option> 
+	<option value='750'>4Kg  - 5Kg</option>
+	<option value='1200'>6Kg - 10Kg</option> 
+	<option value='1800'>11Kg - 20Kg</option>
+	<option value='2200'>21Kg - 30Kg</option>
+	<option value='3500'>31Kg - 50Kg</option>
+	<option value='5000'>51Kg < 100Kg </option>
+	</select>   
+	</div>
+	
+	
+	<div class='form-group col-6'> 	  
+	<label for='exampleFormControlFile1' class='mt-1'>Select Product Image</label>  <div class='custom-file' >
+	<input type='file' name='file' id='file' ></div> </div> 
+
+
+	<div class='col-6 form-group mt-2 text-center'></label></div>  </div>   
+	<div class='form-row mt-2'> <div class='col-12'><label for='validationCustom05'>Product Description</label> 
+	<div class='col-md-12'>   
+	<textarea class='textarea' id='product_desc_txt'  name='product_dec' placeholder='Place some text here'style='width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 30px;'></textarea>                            </div>           </div>        </div> <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom03'>Product Keywords</label>	<div class='col-md-12'>    <textarea class='form-control' id='product_keywords_txt'  name='ProductKeyword' rows='3'></textarea>   </div> <div class='modal-footer'> <button type='button' id='form_prd_add_btn' name='form_prd_add_btn' class='btn btn-danger'>Add</button><button type='button' class='btn btn-secondary'    data-card-widget='remove' >Close</button></div></form> </div></div><script>$(function () { $('.textarea').summernote() })</script></div></div> ";
 }
 
 

@@ -132,11 +132,36 @@ session_start();
 		</div>
 			 <form class="mt-4 ">
 			 <img src="upload/traking_info.webp" width="90%" height="50%">
-			  <div class="form-group ">
+			 
+				<div class="row">
+				 <div class="form-group col-6 ">
 				<label for="exampleDropdownFormEmail2">Tracking ID</label>
 				<input type="text" class="form-control" id="cori_tracking_id_txt" placeholder="125S521">
 			  </div>
+				 <div class="form-group col-6 ">
+				<label for="exampleDropdownFormEmail2">NIC</label>
+				<input type="text" class="form-control" id="" value="-" >
+			  </div>
+				
+				
+				</div>
+			
 			 
+			  
+				<div class="row">
+				 <div class="form-group col-6 ">
+				<label for="exampleDropdownFormEmail2">Name</label>
+				<input type="text" class="form-control" id="" value="-"  >
+			  </div>
+				 <div class="form-group col-6 ">
+				<label for="exampleDropdownFormEmail2">Phone</label>
+				<input type="text" class="form-control" id="" value="-"  >
+			  </div>
+				
+				
+				</div>
+			
+
  
 			  <button type="submit" id="courier_tracking_info_update_btn" class="btn btn-danger">Update</button>	 
   
