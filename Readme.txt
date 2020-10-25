@@ -1,6 +1,5 @@
--resetpassword completed
--outofstock module
- " Ver 0.6.5"
+-database backups
+ " Ver 0.6.6"
  
 
 Developemnt pending
@@ -15,7 +14,6 @@ Developemnt pending
 -message module customer
 -message module admin
 -filter module
--database module
 -cancel or unpaid something module (error also should solve)
 -feedback image upload option
 -get customer review on profile page

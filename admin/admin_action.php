@@ -1908,8 +1908,7 @@ if(isset($_POST["courier_login"])){
 
 //database manual backup
 if(isset($_POST["db_backup"])){
-	 
-  
+	 	  
   		echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 		data-auto-dismiss>Database<strong> successfully</strong> backuped<button type='button' 
 		class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";

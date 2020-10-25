@@ -1313,6 +1313,7 @@ category_count();
 					method	:	"POST",
 					data	:	{db_backup:1}, 
 					success	:	function(data){
+				 window.open("/Project37/admin/database_backup_code.php");
 				 	$('#db_backup_msg').html(data); 
 
 					}
