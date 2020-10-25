@@ -6,6 +6,8 @@
 	{
 		header("location:../admin/login.php");	
 	}
+	 
+ 
  ?>
  
 <html lang="en">
@@ -52,7 +54,17 @@
 <?php include "navbar.php" ?>
 
   <!-- Main Sidebar Container -->
-<?php  include "side_bar.php" ?>
+<?php  include "side_bar.php" ;
+
+
+
+	echo " 
+		<script type='text/javascript'>
+		out_of_stock();
+		</script> ";
+				
+				
+				?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

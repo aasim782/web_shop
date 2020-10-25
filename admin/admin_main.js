@@ -259,6 +259,7 @@ $(document).ready(function () {
         }, // get_search - req ,keywords passing
         success: function (data) {
           $("#admin_alert_msg_login").html(data); //from php userLogin method in action
+		
         },
       });
     }
@@ -327,7 +328,7 @@ product_count();
 
 
 
- //filter the category by the search box at admin category table
+ //filter the product by the search box at admin
  $("#product_filter").keyup(function () {
 	      var Serach_val = $("#product_filter").val();
 		  
@@ -346,6 +347,13 @@ product_count();
 	
 	
 	 }) 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	 
 //------------------------------------------------------------Category
 //get all catergory to the admin category table
@@ -797,7 +805,7 @@ category_count();
 					}
 					
 	
-					
+				
 				 //when the user click the particular page number it will be showup that page
 			  $('body').delegate('#brand_tbl_page_num','click',function() {
 			 event.preventDefault();
@@ -816,6 +824,8 @@ category_count();
 					
 					
 	
+	
+	
 	//get all ordered prd to order admin table 
 	all_customer_order()	
 		function all_customer_order(){
@@ -830,6 +840,8 @@ category_count();
 					})
 					
 		}
+		
+		
 		
 		
 		
@@ -1355,8 +1367,32 @@ $("body").delegate(".remove","click",function(){
 
 
 
+		 
+	
 
+//out of stock model
+var url = new URL(document.URL);
+var search_params = url.searchParams;
+var login_success = search_params.get('success');
+	
+if(login_success==1){
+	out_of_stock();
+}
 
+function out_of_stock(){
+	
+	   $.ajax({
+      url: "admin_action.php",
+      method: "POST",
+      data: { get_out_of_stock_product: 1 },
+      success: function (data) {
+	  	$('#out_of_stock_list').html(data); 
+	    $('#out_of_stock_Modal').modal('show');
+      },
+    });
+	
+	
+}
 
 
 	

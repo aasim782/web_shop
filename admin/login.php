@@ -3,7 +3,7 @@
  session_start();
 	if(isset($_SESSION['adminid']))
 	{
-		header("location:dashboard.php");	
+		header("location:index.php");	
 	}
  ?>
 
@@ -73,17 +73,17 @@
 				<form class="mt-4 ">
 			  <div class="form-group ">
 				<label for="exampleDropdownFormEmail2">Email address</label>
-				<input type="email" class="form-control" id="admin_email_txt" placeholder="email@example.com">
+				<input type="email" class="form-control"  id="admin_email_txt" placeholder="email@example.com">
 			  </div>
 			  <div class="form-group">
 				<label for="exampleDropdownFormPassword2">Password</label>
-				<input type="password" class="form-control" id="admin_password_txt" placeholder="Password">
+				<input type="password" class="form-control"   id="admin_password_txt" placeholder="Password">
 			  </div>
 
 			  <button type="submit" id="admin_login_page_login_btn" class="btn btn-danger">Login</button>	 
   
   	<div class="row mt-2 ">
-	<a class="nav-link"  href="#"  data-toggle="modal" data-target="#admin_forget_password_email" >Forgot password?</a>
+ 
 
 
 </div> 

@@ -157,7 +157,9 @@ if(isset($_POST["admin_userLogin"])){
 				echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 				data-auto-dismiss><strong>Successfully login</strong> <button type='button' 
 				class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
-				echo "<script> window.location.assign('index.php'); </script>";	
+				echo "<script> window.location.assign('index.php?success=1'); </script>
+				
+				";	
 		}
 		else
 		{
@@ -1960,9 +1962,59 @@ if(isset($_POST["remove_cus_order"])){
 
 
 
+//show outofstock list
+if(isset($_POST["get_out_of_stock_product"])){
 
-
-
+$start=0;
+ $product_query = "SELECT  product_tbl.product_id,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
+					 from product_tbl,category_tbl,brand_tbl
+					 where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1) and (product_tbl.product_total_qty<=5)  ORDER BY product_tbl.product_total_qty";
+	$run_query = mysqli_query($con,$product_query);
+ 
+ 
+	$i=$start+1;
+		if(mysqli_num_rows($run_query) > 0){
+			while($row = mysqli_fetch_array($run_query))
+			{
+				$product_id = $row["product_id"];
+				$product_category = $row["category_name"];
+				$product_brand = $row["brand_name"];
+				$product_name = $row["product_name"];
+				$product_price = $row["product_price"];
+				$product_desc = $row["product_desc"];
+				$product_img = $row["product_img"];
+				$product_total_qty = $row["product_total_qty"];
+				echo "
+				<tr class='text-center'>
+						<td>$i</td>
+						<td>$product_name</td>
+						<td> <img src='../admin/upload/Product_images/$product_img'  width='50px' height='40px'></td>
+						<td>$product_category</td>
+						<td>$product_brand</td>
+						<td>Rs.$product_price.00</td>
+						"; 
+						if($product_total_qty<=2)
+						{
+							echo "<td class='text-center bg-danger text-5'><h2>$product_total_qty</h2></td>";
+						}
+						else
+						{
+							echo "<td class='text-center bg-success  text-5'><h2>$product_total_qty</h2></td>";
+						}
+						
+						echo"
+						</tr>
+					  
+							";
+					  $i++;
+	 
+			}
+		
+		
+		
+		}
+ 
+}
 
 
 

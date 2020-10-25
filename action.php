@@ -382,10 +382,10 @@ if(isset($_POST["cus_reg"])){
 }
 
 
-//login through the login page normally it will use when the new user register
+//User login  
 if(isset($_POST["userLogin"])){
-		$login_email = $_POST["useremail"]; // mysql_real_escape_string used prevent from @ - sysmbol enter values
-		$login_password= md5($_POST["userpassword"]);// get password encryption
+		$login_email = $_POST["useremail"]; //getting the useremail from Jquery
+		$login_password= md5($_POST["userpassword"]);//getting the password from Jquery
 	
 		$sql = "SELECT * FROM customer_tbl WHERE email = '$login_email' and password='$login_password' " ;
 		$check_query = mysqli_query($con,$sql);
@@ -910,10 +910,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 		<input type='hidden' name='return_url' value='http://localhost/project37/payment_success.php'>
 		<input type='hidden' name='cancel_url' value='http://localhost/project37/payment_cancel.php'>
 		<input type='hidden' name='notify_url' value='http://localhost/project37/cart.php'>  
-	
-	
-
-			 
+				 
 		<input type='hidden' name='order_id' value='$order_id'>
 		<input type='hidden' name='items' value='Dressline'><br>
 		<input type='hidden' name='currency' value='LKR'>
@@ -1409,8 +1406,6 @@ echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 
 //bank deposit upoload process and place order
 if(isset($_POST["bank_dep"])){
-
-  
  //bank deposit code
 		$customer_id = $_SESSION['cusid'];
 		$dep_date = $_POST["dep_date"];
@@ -1492,6 +1487,10 @@ else
 			}	
  
 }
+
+
+
+
 
 
 
@@ -1795,9 +1794,6 @@ $product_desc = $row["product_desc"];
 		$OTP = $_POST["OTP_code"];
 		$pohne_no = $_POST["pohne_no"];
 		
-
-		//customerId_sholud mension here
- 
 		$customer_phone_query = "SELECT * from  customer_tbl where phone=$pohne_no && customer_id=$customer_id ";
 		$run_query = mysqli_query($con,$customer_phone_query);
 		$row = mysqli_num_rows($run_query);
@@ -1983,7 +1979,7 @@ $order_status = $row_data["order_status"];
 	}
 	
 	
-//shipment and tracking details at tracking model
+//getting the tracking details
  if(isset($_POST["tracking_model_details"]))
 	{
 		$order_id = $_POST['order_id'];
@@ -2149,9 +2145,88 @@ $order_status = $row_data["order_status"];
   
   
   
+   
+   //verify email and phone number for reset password
+       if(isset($_POST['reset_password_pohne_code_verify_fucn'])){
+ 
+		$phone_no = $_POST["phone_no"];
+		$email = $_POST["email_id"];
+		$OTP_code = $_POST["OTP_code"];
+			
+			
+		$sql = "select * from customer_tbl WHERE  email='$email' and phone='$phone_no'" ;
+		$result=mysqli_query($con,$sql);
+		$chk_availability=mysqli_num_rows($result);	
+
+		
+				if($chk_availability>0)
+				{
+					
+					
+					$sql = "update customer_tbl set otp_verify= $OTP_code  WHERE  (email='$email' and phone='$phone_no') " ;
+					$result=mysqli_query($con,$sql);
+					 echo "1";
+										
+					
+				}
+				else
+				{
+						echo "2";//no record found
+				}
+				  
+		   }
   
+   
   
-  
-  
+  //verify btn click --> reset password
+     if(isset($_POST['pohne_code_verify_btn'])){
+		$email = $_POST["email_id"];
+		$OTP = $_POST["OTP_code"];
+ 
+		$customer_phone_query = "SELECT * from  customer_tbl where (email='$email' and otp_verify='$OTP')";
+		$run_query = mysqli_query($con,$customer_phone_query);
+		$row = mysqli_num_rows($run_query);
+			if($row>0)
+				{
+				
+				$sql = "update customer_tbl set otp_verify= 1  WHERE  email=$email " ;
+				$check_query = mysqli_query($con,$sql);
+ 
+					echo "1";
+				}
+				else
+				{
+						echo "2";
+				}
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	   //verify btn click --> reset password
+     if(isset($_POST['reset_password_update_fun'])){
+		$pasword = md5($_POST["reset_new_pasword"]);
+		$email = $_POST["email_id"];
+		
+				$sql = "update customer_tbl set password='$pasword'  WHERE  email='$email' " ;
+				$check_query = mysqli_query($con,$sql);
+				echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss>Password sucessfully updated<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+					echo '<script type="text/javascript">
+								window.open("index.php","_self");
+							</script>';
+
+
+	}
+	 
+	 
+	 
+	 
+	 
+	 
+	 
   
 ?>

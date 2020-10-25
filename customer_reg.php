@@ -44,26 +44,18 @@
 				<label for="exampleDropdownFormPassword2">Password</label>
 				<input type="password" class="form-control" id="lg_password_txt" placeholder="Password">
 			  </div>
- 
-			
+ 			
   <div class="col-12">
 	<div class="col-sm">
     <a class="nav-link " href="#"  id="create_form_model" data-toggle="modal" data-target="#signupModel"  role="tab"> <i class="fas fa-man"></i> Create Account</a>
 	</div>
 		<div class="col-sm">
-    	   <a class="nav-link " href="#"   data-toggle="modal" data-target="#customer_forget_Password_model"  role="tab"> <i class="fas fa-man"></i>Forgot password </a>
+    	   <a class="nav-link " href="#"  id="forget_btn"  data-toggle="modal" data-target="#customer_forget_Password_model"  role="tab"> <i class="fas fa-man"></i>Forgot password </a>
 	</div>
-	
-	
-
+	 
 	</div>
 	</div>
-	
- 
-	
-	
- 
-
+	  
       </div>
       <div class="modal-footer">
           <button type="submit" id="login_page_login_btn" class="btn btn-danger">Login</button>	 
@@ -73,24 +65,7 @@
     </div>
   </div>
 </div> <!-- /Customer form model -->
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+ 
 <!-- signupModel -->
 <div class="modal fade" id="signupModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

@@ -135,25 +135,25 @@
       <div class="modal-body">
        
 		
-	   <!-- password change Form -->
+	   <!-- password change Form -->	
+	   <div id="customer_forget_Password_model_msg" ></div>
 	 <form id="customer_forget_Password_model_form" >
-	 		<div id="customer_forget_Password_model_msg" ></div>
  
 	<div class="form-row">
 	 
 	<div class="col-12">
       <label for="validationCustom04">Please enter your email </label>
-         <input type="text" class="form-control"  placeholder="Email">
+         <input type="text"  id="reset_email_txt"   class="form-control"  placeholder="Email">
 		</div>
 		
 			<div class="col-12">
-      <label for="validationCustom04">Please enter your phone </label>
-           <input type="text" class="form-control"  placeholder="Phone">
+		<label for="validationCustom04">Please enter your phone </label>
+           <input type="number" id="reset_phone_txt" class="form-control"  placeholder="94769051995">
 		</div>
     </div>
       </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-danger" id='complain_btn'>Verify</button>
+      <div id='password_reset_footer' class="modal-footer">
+        <button type="submit" class="btn btn-danger" id='verify_btn'>Verify</button>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
 	  </form> <!-- / form -->

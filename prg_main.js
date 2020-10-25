@@ -317,22 +317,23 @@ $(document).ready(function(){
 		
 	});
 
-	//customer login page login
+	//customer login verification code
 	$("#login_page_login_btn").click(function(){	
 	event.preventDefault(); //prevent from the submision
-		var lg_email_txt = $('#lg_email_txt').val();
-		var lg_password_txt = $('#lg_password_txt').val();
+		var lg_email_txt = $('#lg_email_txt').val(); //getting user enterted email id from login text box
+		var lg_password_txt = $('#lg_password_txt').val(); //getting user enterted password from login text box
 		var emailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 		
-			if(lg_email_txt == "" || lg_password_txt == "")
+			if(lg_email_txt == "" || lg_password_txt == "") //verification for empty textbox
 			{
-				
+				 //empty alert message
 			$('#cus_reg_alert_msg_login').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 			}
 			
-			else if(!emailformat.test(lg_email_txt))
+			else if(!emailformat.test(lg_email_txt))  //verification for email id formate
 			{
+				 
 				$('#cus_reg_alert_msg_login').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss>Incorrect <strong>Email!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 		
 			}
@@ -340,18 +341,16 @@ $(document).ready(function(){
 			else{	
 		
 				$.ajax({
-					url		:	"action.php",
-					method	:	"POST",
-					data	:	{userLogin:1,useremail:lg_email_txt,userpassword:lg_password_txt}, // get_search - req ,keywords passing
+					url		:	"action.php", //parsing the data to action PHP page
+					method	:	"POST", //using post method to parse
+					data	:	{userLogin:1,useremail:lg_email_txt,userpassword:lg_password_txt}, //parse the data with different param
 					success	:	function(data){
 				
-							$('#cus_reg_alert_msg_login').html(data); 	//from php userLogin method in action
+							$('#cus_reg_alert_msg_login').html(data); 	// output mmessage
 					}
 					})
-						
-				
-			}
-		})
+					
+			}})
 	
  
  
@@ -466,7 +465,7 @@ $('body').delegate('#create_form_model','click',function() {
 	
 	
 	card_container_btn();
-	//added product list container
+	//added product list container  also used for online payment
 	function card_container_btn(){
 				$.ajax({
 					url		:	"action.php",
@@ -480,6 +479,17 @@ $('body').delegate('#create_form_model','click',function() {
 	cart_nav_list_total();
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
  
@@ -1170,8 +1180,8 @@ $('body').delegate('#pohne_code_send_btn','click',function() {
 		{
  
  	
-	var userId=12282;
-	var ApiKey="suAX3Nb90O7FUcKldDi4"
+	var userId=12524;
+	var ApiKey="giZ3NGSE0P2E9Cr0agz9"
 	var digits = '0123456789'; 
     let OTP = ''; 
     for (let i = 0; i < 6; i++ ) 
@@ -1339,6 +1349,21 @@ $('body').delegate('#customer_prd_conform_btn','click',function() {
   })
 
 
+
+
+
+
+//hide the model
+$('body').delegate('#forget_btn','click',function() {
+	
+ $('#customer_login_model').modal('hide');
+  })
+
+
+ 
+
+ 
+
 //get customer order id/item id to confirm btn
 $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 	var customer_ord_id_val= $("#customer_prd_fedb_conform_btn").val();
@@ -1375,9 +1400,182 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 				
 			
 			
+	//reset password through the email		 
+  $('body').delegate('#verify_btn','click',function() {
+		event.preventDefault(); //prevent from the submision
+		var email= $("#reset_email_txt").val();
+		var phone= $("#reset_phone_txt").val();
+		var emailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	  
+	if( email == "" ||  phone=="")
+	{
+		
+		$("#customer_forget_Password_model_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+	
+	}
+	else if(!emailformat.test(email))
+	{
+			 $("#customer_forget_Password_model_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please enter correct email<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+
+	}
+	else if( phone.length < 11 || phone.length > 11 )
+	{
+		
+	 $("#customer_forget_Password_model_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please enter your correct number<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+	
+	}
+ 
+	else if(!phone.startsWith("94"))
+	{
+			 $("#customer_forget_Password_model_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Phone Number should start with '94' <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+	}
+ 
+	else
+		{
+ 
+	
+																				var userId=12526;
+																				var ApiKey="myqAHZdfT8X3tsxsrutg"
+																				var digits = '0123456789'; 
+																				let OTP = ''; 
+																				
+																				
+																				
+																				for (let i = 0; i < 6; i++ ) 
+																				{ 
+																					OTP += digits[Math.floor(Math.random() * 10)]; 
+																				}
+
+					
+							$.ajax({
+							url		:	"action.php",
+							method	:	"POST",
+							data	:	{reset_password_pohne_code_verify_fucn:1,phone_no:phone,OTP_code:OTP,email_id:email},
+							success	:	function(data){
+						
+						
+			if(data==1)
+			{
+					 $('#myHiddeOTP').load('https://app.notify.lk/api/v1/send?user_id='+userId+'&api_key='+ApiKey+'&sender_id=NotifyDEMO&to='+phone+'&message=Your-code-is:'+OTP+'.');
+					//timer label
+					
+					$("#customer_forget_Password_model_form").html('<div> Please enter your 6 digit OTP code  </div><br><div class="form-row col-md-12" id="otp_text_div"><input type="number" class="form-control" id="reset_user_otp_txt" placeholder="Enter your 6-digit OTP code"></div><div id="reset_otp_timer_div" class="text-left ml-3 mt-2"><div>');
+					$("#reset_otp_timer_div").html("<div>Time left = <span id='timer'></span></div>");		 
+
+					let timerOn = true;
+					function timer(remaining) {
+					  var m = Math.floor(remaining / 60);
+					  var s = remaining % 60;
+					  
+					  m = m < 10 ? '0' + m : m;
+					  s = s < 10 ? '0' + s : s;
+					  document.getElementById('timer').innerHTML = m + ':' + s;
+					  remaining -= 1;
+					  
+					  if(remaining >= 0 && timerOn) {
+						setTimeout(function() {
+							timer(remaining);
+						}, 1000);
+						return;
+					  }
+
+					  if(!timerOn) {
+						// Do validate stuff here
+						return;
+					  }
+					  
+					  // Do timeout stuff here
+					 $("#customer_forget_Password_model_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Verification timeout!</strong> Please try agian<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+					 window.open("index.php","_self");
+					}
+				timer(120);//60seconds
+				$("#password_reset_footer").html('<button type="submit" class="btn btn-danger" email='+email+' id="reset_verify_btn">Verify</button><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button')
+				$("#customer_forget_Password_model_msg").html("<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please enter your OTP CODE <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+			}
+			
+			
+			 else if(data==2)
+			 {
+				 
+				 
+				 
+				  $("#customer_forget_Password_model_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Your email or phone number is incorrect<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");	 
+		
+		
+		
+			 }
 			 
-		 			
+			 
+			 
+			 
+						
+							}
+						})
+
+
+
+	
+		}
+	
+	 
+	 
+  })
+			
+
 				
-  
+  			
+	//verify btn click --> reset password		
+   $('body').delegate('#reset_verify_btn','click',function() {
+ 	event.preventDefault(); //prevent from the submision
+	   	var reset_user_otp_txt= $("#reset_user_otp_txt").val(); 
+		var email= $(this).attr('email');   // get the email id
+  		
+
+						$.ajax({
+							url		:	"action.php",
+							method	:	"POST",
+							data	:	{pohne_code_verify_btn:1,OTP_code:reset_user_otp_txt,email_id:email},
+							success	:	function(data)
+							{
+								
+								if(data==1)
+								{
+									$("#customer_forget_Password_model_msg").html('');
+									$("#customer_forget_Password_model_form").html('<label>New Paasword</label><input type="text" class="form-control" id="reset_new_pasword_txt" placeholder="New password">');
+									$("#password_reset_footer").html('<button type="submit" class="btn btn-warning" id="reset_newpassword_verify_btn" reset_email='+email+' >Save</button><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button')
+							
+								}
+								else if(data==2)
+								{
+								   $("#customer_forget_Password_model_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Your OTP code is incorrect<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");	 
+								}
+							}
+				  
+				  
+			  })
+   })
+   
+   
+   //verify btn click --> new password save btn		
+   $('body').delegate('#reset_newpassword_verify_btn','click',function() {
+	    	event.preventDefault(); //prevent from the submision
+   	   	var reset_new_pasword_txt= $("#reset_new_pasword_txt").val();
+		var email= $(this).attr('reset_email');  
+ 
+ 
+				$.ajax({
+							url		:	"action.php",
+							method	:	"POST",
+							data	:	{reset_password_update_fun:1,reset_new_pasword:reset_new_pasword_txt,email_id:email},
+							success	:	function(data)
+							{
+							   $("#customer_forget_Password_model_msg").html(data);
+							   
+							}
+ 
+ 
+		  
+   })
+   })
 
 });
