@@ -1313,7 +1313,7 @@ category_count();
 					method	:	"POST",
 					data	:	{db_backup:1}, 
 					success	:	function(data){
-				 window.open("/Project37/admin/database_backup_code.php");
+					window.open("/Project37/admin/database_backup_code.php");
 				 	$('#db_backup_msg').html(data); 
 
 					}
@@ -1396,5 +1396,102 @@ function out_of_stock(){
 }
 
 
+
+//add the banner
+	  $("body").delegate("#banner_add_btn", "click", function () {
+		  event.preventDefault();
+		  	var banner_title_txt = $("#banner_title").val();
+			var file = $('#banner_file')[0].files[0];
+			
+			if (banner_title_txt == "" || typeof file == 'undefined') 
+			{
+				  toastr.error('Please fill all the fields');
+			}	
+			else
+			{
+				var fd_banner = new FormData();		 
+				fd_banner.append('add_banner', 1); //arguments
+				fd_banner.append('files',file);
+				fd_banner.append('banner_title', banner_title_txt); //arguments
+				
+						$.ajax({
+									url:'admin_action.php',
+									type:'post',
+									data:fd_banner,
+									contentType: false,
+									processData: false,
+									success:function(data){ 
+									toastr.success('Banner successfully added'); //successful msg
+											$('#banner_form')[0].reset();
+											 banner_count();
+											  get_banner();
+									  }
+							  });
+								
+			}
+		    
+	  })
+	  
+	  
+	  
+	  
+	  
+	  banner_count();
+//count the total banners
+	function banner_count(){
 	
+	  $.ajax({
+        url: "admin_action.php",
+        method: "POST",
+        data: { banner_count:1},
+        success: function (data) {
+   			$("#count_banner").html(data);
+			
+        },
+      });
+
+	}
+
+
+
+
+  get_banner();
+//get the banners
+	function get_banner(){
+	
+	  $.ajax({
+        url: "admin_action.php",
+        method: "POST",
+        data: { get_banner:1},
+        success: function (data) {
+   			$("#get_all_banners").html(data);
+			
+        },
+      });
+
+	}
+
+
+//delete the banner
+	  $("body").delegate(".btn_banner_delete", "click", function () {
+		   event.preventDefault();
+		  var banner_title_txt= $(this).attr("banner_title");
+ 
+		   $.ajax({
+			  url: "admin_action.php",
+			  method: "POST",
+			  data: { remove_admin_branner: 1, banner_title: banner_title_txt }, // pass the arguments
+			  success: function (data) {
+			 			  toastr.success('Successfully deleted');
+						   get_banner();
+						     banner_count();
+				   
+				 }
+				  
+	  });
+
+	  })
+
+
+
 });

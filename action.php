@@ -2227,6 +2227,88 @@ $order_status = $row_data["order_status"];
 	 
 	 
 	 
+	 //left side category list 
+if(isset($_POST["category_in_filter"])){
+	
+	$category_query = "SELECT * FROM category_tbl where active=1";
+	$run_query = mysqli_query($con,$category_query);
+	
+	echo "<a href='#' class='list-group-item list-group-item-action ' style='color:white;background-color:#FF4747;' >
+	<h5><i class='fas fa-th-list' ></i>&nbspAll Categories</h5></a>";
+
+	if(mysqli_num_rows($run_query) > 0){
+		while($row = mysqli_fetch_array($run_query))
+		{
+			$cid = $row["category_id"];
+			$cat_name = $row["category_name"];
+			echo "
+			<a href='#' class='list-group-item list-group-item-action' cid='$cid'>$cat_name</a>		
+			";
+		}
+		
+		@$customer_id = $_SESSION['cusid'] ;	
+		
+		if($customer_id=='')
+		{
+			
+		}
+		else
+		{
+			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customes_order'  >Customs Order</a>";
+		}
+			
+	}
+}
+
+
+
+//get the slider image 
+if(isset($_POST["get_slider_image"])){
 	 
+		$sql = "SELECT title,image FROM banner_tbl" ;
+		$check_query = mysqli_query($con,$sql);
+			
+	  $active='active';
+			if(mysqli_num_rows($check_query) > 0){
+			while($row = mysqli_fetch_array($check_query))
+			{ 
+			 $title = $row["title"];
+			 $image = $row["image"];
+			
+			 echo " 
+				 <div class='carousel-item $active'>  
+				<img class='d-block w-100' src='admin/upload/banners/$image' >
+				</div>
+				 
+				";
+			$active='';	//active class remove
+			}
+			
+			}
+			
+
+}
+
+
+//get the slider image footer
+if(isset($_POST["get_slider_image_footer"])){
+	 
+		$sql = "SELECT title,image FROM banner_tbl" ;
+		$check_query = mysqli_query($con,$sql);
+		$start=0;
+		$active='active';
+			if(mysqli_num_rows($check_query) > 0){
+			while($row = mysqli_fetch_array($check_query))
+			{ 
+		
+			$start++;
+			 echo "<li data-target='#carouselExampleIndicators' data-slide-to='$start' class='$active'></li>";
+			$active='';	//active class remove
+			}
+			
+			}
+			
+
+}
   
 ?>

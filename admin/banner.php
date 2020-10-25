@@ -78,20 +78,20 @@
 			  
                <div class="col-md-12 pb-2">
 			  <label for="validationCustom01">Title</label>
-			  <input type="text" class="form-control" id="title_txt" name="" placeholder="Title">
+			  <input type="text" class="form-control" id="banner_title" name="" placeholder="Title">
 		
 			</div>
 		
 		
 		<label for="exampleFormControlFile1" class="mt-1">Select Banner Image</label>
 			<div class="custom-file">  
-				<input type="file" name="file" id="file">
+				<input type="file"  id="banner_file">
 			</div> 
       
 
 	  </div>
      <div class="modal-footer " "="" id="category_add_footer">
-        <button class="btn btn-danger" id="category_add_btn_admin">Add</button>
+        <button class="btn btn-danger" id="banner_add_btn">Add</button>
  
       </div>
 			
@@ -111,7 +111,7 @@
               </div>
               <div class="card-body bg-danger  ">
            
-				   <div class="card-body text-center" id="count_banner" style="font-size:54pt">4</div>
+				   <div class="card-body text-center" id="count_banner" style="font-size:54pt"></div>
 				 
 				 
               </div>
@@ -172,54 +172,8 @@
                   <tbody id="get_all_banners" class="text-center">
             
  
-						  <tr class="text-center">
-							<td>1</td>
-							<td>Men Collection</td>
-							 <td><img src="../admin/upload/Slider2.jpg" width="500px" height="120px"></td>
-						  
-							<td>
-	
-							<div class="btn-group ">
-							 <a href="" category_delete_id="1" data-toggle="modal" data-target="#category_del_confirm_Modal" class="btn btn-danger btn_category_delete"><i class="fa fa-trash-alt"></i></a>
-							</div> 
-							</td>
-						</tr>
-					<tr class="text-center">
-							<td>2</td>
-							<td>Ramzan Special discount</td>
-							 <td><img src="../admin/upload/slider1.jpg" width="500px" height="120px"></td>
-						  
-							<td>
-	
-							<div class="btn-group ">
-							 <a href="" category_delete_id="1" data-toggle="modal" data-target="#category_del_confirm_Modal" class="btn btn-danger btn_category_delete"><i class="fa fa-trash-alt"></i></a>
-							</div> 
-							</td>
-						</tr>	
-						<tr class="text-center">
-							<td>3</td>
-							<td>Ramzan Special discount</td>
-							 <td><img src="../admin/upload/slider3.jpg" width="500px" height="120px"></td>
-						  
-							<td>
-	
-							<div class="btn-group ">
-							 <a href="" category_delete_id="1" data-toggle="modal" data-target="#category_del_confirm_Modal" class="btn btn-danger btn_category_delete"><i class="fa fa-trash-alt"></i></a>
-							</div> 
-							</td>
-						</tr>
-					<tr class="text-center">
-							<td>3</td>
-							<td>Charger Cable</td>
-							 <td><img src="../admin/upload/ctype.jpg" width="500px" height="120px"></td>
-						  
-							<td>
-	
-							<div class="btn-group ">
-							 <a href="" category_delete_id="1" data-toggle="modal" data-target="#category_del_confirm_Modal" class="btn btn-danger btn_category_delete"><i class="fa fa-trash-alt"></i></a>
-							</div> 
-							</td>
-						</tr>						
+			
+					 			
                   </tbody>
                 
                 </table>

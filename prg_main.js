@@ -21,6 +21,11 @@ $(document).ready(function(){
 		})
 	}
 	
+	
+	
+ 
+	
+	
 		//category list at filter 
 	function filter_category_list(){
 		$.ajax({
@@ -116,7 +121,7 @@ $(document).ready(function(){
 						}
 						else
 						{
-							window.open("profile.php?srch="+keywords+"","_self");
+							window.open("profile_filter.php?srch="+keywords+"&cat=12&brd=0&lprice=0&hprice=0&rate=0","_self");
 						} 
 	  
 				
@@ -155,7 +160,7 @@ $(document).ready(function(){
 						}
 						else
 						{
-							window.open("profile.php?srch="+keywords+"","_self");//when profile page
+							window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
 						}
         
 						}
@@ -1577,5 +1582,72 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		  
    })
    })
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   	category_in_filter();
+	//categor list for profile filter page
+	function category_in_filter(){
+		$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{category_in_filter:1},
+			success	:	function(data){
+			$("#get_category_in_filter").html(data);
+			
+			}
+		})
+	}
+	
+	
+   
+   
+      
+   	get_slider_image();
+	// get the slider image
+	function get_slider_image(){
+		$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{get_slider_image:1},
+			success	:	function(data){
+			$("#slider_images_index").html(data);
+			$("#slider_images_profile").html(data);
+ 
+			
+			}
+		})
+	}
+	
+	
+	 get_slider_image_footer();
+	// get the slider image footer
+	function get_slider_image_footer(){
+		$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{get_slider_image_footer:1},
+			success	:	function(data){
+			$("#slider_footer_profile").html(data); //profile page
+			$("#slider_footer_index").html(data); //index page
+ 
+			
+			}
+		})
+	}
+	
+	
+   
+   
+    
+   
+   
 
 });

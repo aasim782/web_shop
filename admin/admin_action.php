@@ -2015,6 +2015,119 @@ $start=0;
  
 }
 
+//adding the banner to admin  table
+if(isset($_POST["add_banner"])){
+ $banner_title = $_POST["banner_title"]; 
+ $filename = $_FILES['files']['name'];
+
+  
+			date_default_timezone_set('Asia/Kolkata');
+			//define date and time
+			$date = date('Y-m-d_H-i-s_', time());
+
+			/* Location */
+			$location = "./upload/"."banners."."/";
+			$uploadOk = 1;
+			$imageFileType = pathinfo($filename,PATHINFO_EXTENSION);
+
+
+			$new_file_name="banner"._.$date.".".$imageFileType;
+			$prd_img =$new_file_name;
+			/* Valid extensions */
+			$valid_extensions = array("jpg","jpeg","png");
+			 
+						 if($uploadOk == 0){
+								echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+						}
+						else{
+						   /* Upload file */
+						  if(move_uploaded_file($_FILES['files']['tmp_name'],$location.$new_file_name)){
+							 
+						   
+						   
+						   }else{
+							   
+								echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+						
+						   }
+						   
+						} 
+						
+
+			 
+ $sql = "insert into banner_tbl (title,image) values ('$banner_title','$new_file_name')" ;
+ $check_query = mysqli_query($con,$sql);
+ 
+	echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
+			data-auto-dismiss><strong> Banner</strong> successfully added<button type='button' 
+			class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+
+}
+
+
+
+  
+
+
+	//count the total banners
+	if(isset($_POST["banner_count"])){
+			
+	$query = "SELECT COUNT(title) as total_banner from banner_tbl";
+	$run_query = mysqli_query($con,$query);
+	$row = mysqli_fetch_array($run_query);
+	$total_banner = $row["total_banner"];
+	echo "$total_banner";
+}
+
+
+
+
+//get the banner to admin  table
+if(isset($_POST["get_banner"])){
+	 
+		$sql = "SELECT title,image FROM banner_tbl" ;
+		$check_query = mysqli_query($con,$sql);
+			
+		$start=0;
+			if(mysqli_num_rows($check_query) > 0){
+			while($row = mysqli_fetch_array($check_query))
+			{
+				 
+				$title = $row["title"];
+				$image = $row["image"];
+				
+					$start++;
+					echo "<tr class='text-center'>
+							<td>$start</td>
+							<td>$title</td>
+							 <td><img src='../admin/upload/banners/$image' class='rounded' 'width='500px' height='120px'></td>
+						  
+							<td>
+	
+							<div class='btn-group '>
+							 <a href='' banner_title='$title'   class='btn btn-danger btn_banner_delete'><i class='fa fa-trash-alt'></i></a>
+							</div> 
+							</td>
+						</tr>";
+						
+			}
+			
+	
+						
+						
+	}
+}
+
+
+
+//remove the banner from admin  table
+if(isset($_POST["remove_admin_branner"])){
+		$banner_title = $_POST["banner_title"]; 
+		$sql = "DELETE FROM `banner_tbl` WHERE title='$banner_title'" ;
+		$check_query = mysqli_query($con,$sql);
+ 
+
+}
 
 
 ?>

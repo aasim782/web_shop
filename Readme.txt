@@ -1,7 +1,6 @@
--database backups
- " Ver 0.6.6"
+-banner module
+ " Ver 0.6.7"
  
-
 Developemnt pending
 -service tracking info update (reciver details)
 -reciver details on deliver page
@@ -10,7 +9,6 @@ Developemnt pending
 -report
 -Bank Account details explaantion
 -offer module
--banner module
 -message module customer
 -message module admin
 -filter module
@@ -95,6 +93,32 @@ make customer reviree
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+problem doest not solwed
+-db insert have prb
+-index page does not have filter
 
 
 

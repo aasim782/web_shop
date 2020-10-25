@@ -199,7 +199,7 @@
 	<!-- Category -->	
   
 	
-						<div id="get_category" class="mb-2"> </div>
+						<div id="get_category_in_filter" class="mb-2"> </div>
 				
 		
 		

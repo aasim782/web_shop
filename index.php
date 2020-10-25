@@ -163,30 +163,10 @@
 <!-- /navbar -->
 			<!-- Slider -->
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-			  <ol class="carousel-indicators"> 		<!-- Slider_Mark -->
-				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>  
-				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>  
-				<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>  
+			  <ol class="carousel-indicators" id="slider_footer_index"> 	 
+		  
 			  </ol>
-			  <div class="carousel-inner">
-				<div class="carousel-item ">  		<!-- Slider_image_1 -->
-				<img class="d-block w-100" src="admin/upload/slider3.jpg" alt="Third slide">
-				</div>
-				<div class="carousel-item active">
-				  <img class="d-block w-100" src="admin/upload/slider1.jpg"alt="Second slide">
-				</div>
-			
-				<div class="carousel-item">
-				  <img class="d-block w-100" src="admin/upload/slider3.jpg" alt="Third slide">
-				</div>
-				<div class="carousel-item">
-				  <img class="d-block w-100" src="admin/upload/slider4.jpg" alt="Third slide">
-				</div>
-				<div class="carousel-item">
-				  <img class="d-block w-100" src="admin/upload/slider5.jpg" alt="Third slide">
-				</div>
+			  <div class="carousel-inner" id="slider_images_index">
 			  </div>
 			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
