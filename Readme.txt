@@ -1,4 +1,5 @@
 -banner module
+-filter module particil  completed
  " Ver 0.6.7"
  
 Developemnt pending
@@ -11,7 +12,7 @@ Developemnt pending
 -offer module
 -message module customer
 -message module admin
--filter module
+
 -cancel or unpaid something module (error also should solve)
 -feedback image upload option
 -get customer review on profile page
