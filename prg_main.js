@@ -168,24 +168,57 @@ $(document).ready(function(){
 	});
 
 
+			
+//category filter
+$('body').delegate('#filter_category_btn','click',function() {
+ 		var cid= $(this).attr('cid');
+		var keywords= $("#search_txt").val();
+		window.open("profile_filter.php?srch="+keywords+"&cat="+cid+"&brd=0&lprice=0&hprice=0&rate=0","_self");
+})
+	
+	
+//brand filter
+$('body').delegate('#filter_brand_btn','click',function() {
 
+		 var bid= $(this).attr('bid');
+		var keywords= $("#search_txt").val();
+ 
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var cat_val = search_params.get('cat'); //filter
+ 
+		var lprice_val= search_params.get('lprice');
+		var hprice_val = search_params.get('hprice');
+		var rate_val = search_params.get('rate');
+		
+	 
+		
+		window.open("profile_filter.php?srch="+keywords+"&cat="+cat_val+"&brd="+bid+"&lprice=0&hprice=0&rate=0","_self");
+})	
+  
 
-
-		search_prd_txt();
+search_prd_txt();
 		function search_prd_txt(){
 			
 	 	 var url = new URL(document.URL);
 		var search_params = url.searchParams;
-		var keywords = search_params.get('srch');
-
+		var keywords = search_params.get('srch');//search value
+		var cat_val = search_params.get('cat'); //filter
+		var brd_val = search_params.get('brd');
+		var lprice_val= search_params.get('lprice');
+		var hprice_val = search_params.get('hprice');
+		var rate_val = search_params.get('rate');
+ 
 	 
 	 if(keywords!='')
 			{
 	
+			  $('#search_txt').val(keywords);
+				
 			$.ajax({
 			url		:	"action.php",
 			method	:	"POST",
-			data	:	{get_search:1,keywords:keywords}, 
+			data	:	{get_search:1,keywords:keywords,cat_key:cat_val,brd_key:brd_val,lprice_key:lprice_val,hprice_key:hprice_val,rate_key:rate_val}, 
 			success	:	function(data){
 			$("#get_product").html(data);
 				
@@ -202,6 +235,19 @@ $(document).ready(function(){
 
 
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 	
 	//customer resgistration form
@@ -472,12 +518,16 @@ $('body').delegate('#create_form_model','click',function() {
 	card_container_btn();
 	//added product list container  also used for online payment
 	function card_container_btn(){
+		
+		var offer_txt = $("#offer_msg_at_profile").html();
+ 
 				$.ajax({
 					url		:	"action.php",
 					method	:	"POST",
-					data	:	{get_added_products_into_card:1}, // get the added product into cart
+					data	:	{get_added_products_into_card:1,offer:offer_txt}, // get the added product into cart
 					success	:	function(data){
 						$('#all_product_list').html(data);
+						 
 					}
 					})
 	cart_prd_count(); 	
@@ -968,6 +1018,8 @@ complain_item_list();
 //cash on delivery payment
 	$('body').delegate('#cash_on_agree_btn','click',function() {
 	event.preventDefault(); //prevent from the submision
+	
+  
 		 		$.ajax({
 					url		:	"action.php",
 					method	:	"POST",
@@ -1609,6 +1661,26 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 	
    
    
+   
+      	brand_in_filter();
+	//brand list for profile filter page
+	function brand_in_filter(){
+		$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{brand_in_filter:1},
+			success	:	function(data){
+			$("#get_brand_in_filter").html(data);
+			
+			}
+		})
+	}
+	
+	
+	
+	
+	
+	
       
    	get_slider_image();
 	// get the slider image
@@ -1618,8 +1690,8 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 			method	:	"POST",
 			data	:	{get_slider_image:1},
 			success	:	function(data){
-			$("#slider_images_index").html(data);
-			$("#slider_images_profile").html(data);
+			$("#slider_images_index").html(data);//index page
+			$("#slider_images_profile").html(data);//profile page
  
 			
 			}
@@ -1646,7 +1718,36 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 	
    
    
-    
+   
+ get_ongoing_offer();
+//get offer to admin banner and home page
+	function get_ongoing_offer(){
+		  $.ajax({
+        url: "action.php",
+        method: "POST",
+        data: { get_ongoing_offer:1},
+        success: function (data) {
+		 
+			if(data=="")
+			{
+				$("#offer_msg_at_index").html("");
+				$("#offer_msg_at_profile").html("");
+				$("#offer_msg_at_profile_filter").html("");
+				$("#offer_msg_at_card").html("");
+			 }
+		else{
+			$("#offer_msg_at_index").html("<div class='alert p-0 alert-danger alert-dismissible m-0 fade show rounded-0' role='alert' id='offet_div'><center> "+data+"</center> <button type='button' class='close p-0 m-0' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div> ");
+			$("#offer_msg_at_profile").html("<div class='alert p-0 alert-danger alert-dismissible m-0 fade show rounded-0' role='alert' id='offet_div'><center> "+data+"</center> <button type='button' class='close p-0 m-0' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div> ");
+			$("#offer_msg_at_profile_filter").html("<div class='alert p-0 alert-danger alert-dismissible m-0 fade show rounded-0' role='alert' id='offet_div'><center> "+data+"</center> <button type='button' class='close p-0 m-0' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div> ");
+			$("#offer_msg_at_card").html("<div class='alert p-0 alert-danger alert-dismissible m-0 fade show rounded-0' role='alert' id='offet_div'><center> "+data+"</center> <button type='button' class='close p-0 m-0' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div> ");
+			 }
+		
+			
+			
+        },
+      });
+	
+	} 
    
    
 

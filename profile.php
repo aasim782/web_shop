@@ -40,7 +40,9 @@
   <body>
   
 
-
+  	    <!-- alert -->
+			<div id="offer_msg_at_profile" > </div>
+	    <!-- /alert -->
   
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-info" >

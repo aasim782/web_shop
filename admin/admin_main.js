@@ -101,6 +101,7 @@ $(document).ready(function () {
 //file upload extension and size check  
    $(document).on('change', '#file', function(){
   var name = document.getElementById("file").files[0].name;
+  
   var form_data = new FormData();
   var ext = name.split('.').pop().toLowerCase();
   if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) 
@@ -222,6 +223,8 @@ $(document).ready(function () {
 	var product_price_txt = ((product_profit_txt /100)*get_item_price) +parseInt(get_item_price) ;
 	  $("#product_price_with_rate_txt").val(product_price_txt);
   })
+  
+  
   //calculate current price with profit increase rate
    $("body").delegate("#product_profit_txt", "input", function () {
 	var get_item_price= $("#product_price_txt").val();
@@ -278,7 +281,21 @@ $(document).ready(function () {
     });
   }
 
-
+get_last_five_prd_dashbord();
+   function get_last_five_prd_dashbord() {
+	   
+	       $.ajax({
+      url: "admin_action.php",
+      method: "POST",
+      data: { get_last_five_prd_dashbord: 1 },
+      success: function (data) {
+        $("#get_five_product").html(data);
+      },
+    });
+	
+ 
+   }
+ 
  
 
 
@@ -300,7 +317,55 @@ product_count();
 
 
 
-  // change the category id to category confirm model
+
+
+
+
+
+  $("body").delegate(".product_edit", "click", function () 
+  { 
+  event.preventDefault();
+	  var product_edit_id_txt = $(this).attr("product_edit_id"); //get the value from our selected product id
+	 
+		$("#prd_footer").html("<button type='button' id='form_prd_update_btn' name='form_prd_update_btn' class='btn btn-success'>Update</button>");
+	  
+	 	 $.ajax({
+				url: "admin_action.php",
+				method: "POST",
+				data: { edit_admin_product:1,product_edit_id:product_edit_id_txt},
+				success: function (data) { 
+				  if(data!=""){
+					var array = data.split('*/*');
+				
+					
+					 $("#Product_id_txt").val(array[0]);
+					 $("#prd_add_date_txt").val(array[1]);
+					 $("#product_name_txt").val(array[4]);
+					$("#product_price_txt").val(array[5]-(array[6]/100)*array[5]);
+					$("#product_profit_txt").val(array[6]);
+					$("#product_price_with_rate_txt").val((array[6]/100)*array[5]);
+					$("#Total_qty").val(array[10]);
+					$("#product_keywords_txt").val(array[11]); 
+					$(".note-editable").html(array[8]);	
+					$('#get_category').val(1).change();
+					$('#get_brand').val(1).change();
+					$('#get_weight').val(200).change();
+				  }	
+				  else
+				{
+					
+					
+				}
+				  
+				},
+	  });
+	  
+	  
+  })
+
+
+
+ // product delete model
   $("body").delegate(".btn_product_delete", "click", function () {
     var product_delete_id = $(this).attr("product_delete_id"); //get the value from our selected product id
     var product_id 	= $("#product_delete_id_btn").val(product_delete_id); 
@@ -1394,6 +1459,62 @@ function out_of_stock(){
 	
 	
 }
+ 
+
+
+//file upload extension,size,width and height
+   $(document).on('change', '#file_banner', function(e){
+  var name = document.getElementById("file_banner").files[0].name;
+  var _URL = window.URL || window.webkitURL;
+ var file, img;
+	 
+	   
+ // image width and height validation	
+
+    if ((file = this.files[0])) {
+        img = new Image();
+        img.onload = function () {
+        var width=this.width;
+         var height=this.height;
+	
+         if((width < 1520 || height < 400) || (width > 1550 || height > 400))
+         {
+		 
+           	toastr.error('Image width and height is not match');
+			$("#file_banner").val("");
+         }
+       
+         
+        };
+        img.src = _URL.createObjectURL(file);
+    }
+	
+  var form_data = new FormData();
+  var ext = name.split('.').pop().toLowerCase();
+  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) 
+  {
+ toastr.error('Invalid file format !');
+ $("#file_banner").val("");
+  
+	  
+  }
+  var oFReader = new FileReader();
+  oFReader.readAsDataURL(document.getElementById("file").files[0]);
+  var f = document.getElementById("file").files[0];
+  var fsize = f.size||f.fileSize;
+  if(fsize > 2000000)
+  {
+	toastr.error('Image File Size is very big !');
+	$("#file_banner").val("");
+ 
+  }
+ 
+ 
+
+	
+ });
+ 
+
 
 
 
@@ -1401,7 +1522,7 @@ function out_of_stock(){
 	  $("body").delegate("#banner_add_btn", "click", function () {
 		  event.preventDefault();
 		  	var banner_title_txt = $("#banner_title").val();
-			var file = $('#banner_file')[0].files[0];
+			var file = $('#file_banner')[0].files[0];
 			
 			if (banner_title_txt == "" || typeof file == 'undefined') 
 			{
@@ -1436,7 +1557,7 @@ function out_of_stock(){
 	  
 	  
 	  
-	  banner_count();
+  banner_count();
 //count the total banners
 	function banner_count(){
 	
@@ -1493,5 +1614,258 @@ function out_of_stock(){
 	  })
 
 
+
+
+
+
+  //offer image date picker validation
+	$('#Offer_end_txt').change(function(event){
+				var Offer_str_txt = $("#Offer_str_txt").val();
+				var Offer_end_txt = $("#Offer_end_txt").val();
+		
+		if(Offer_str_txt=="")
+		{
+			  toastr.error('Please select starting date');
+			    $("#Offer_end_txt").val("");
+		}
+		else if( Offer_str_txt> Offer_end_txt)
+		{
+			toastr.error('Incorrect date selection');
+			    $("#Offer_end_txt").val("");
+		}
+})
+
+
+//offer add
+	  $("body").delegate("#offer_add_btn_admin", "click", function () {
+		   event.preventDefault();		 
+		   
+		     	var Offer_desc_txt = $("#Offer_desc_txt").val();
+				var Offer_str_txt = $("#Offer_str_txt").val();
+				var Offer_end_txt = $("#Offer_end_txt").val();
+				var Offer_rate_txt = $("#Offer_rate_txt").val();
+				
+			if (Offer_desc_txt == "" ||  Offer_str_txt == "" || Offer_end_txt == "" || Offer_rate_txt == "" ) 
+			{
+				  toastr.error('Please fill all the fields');
+			}	
+			else if( Offer_str_txt> Offer_end_txt)
+			{
+				  toastr.error('Incorrect date selection');
+				   $("#Offer_str_txt").val("");
+				   $("#Offer_end_txt").val("");
+			}
+			else
+			{
+				
+				$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{Offer_add:1,Offer_desc:Offer_desc_txt,Offer_str:Offer_str_txt,Offer_end:Offer_end_txt,Offer_rate:Offer_rate_txt}, 
+					success	:	function(data){
+								toastr.success('Successfully added');
+								 get_offer();
+								$('#offer_form')[0].reset();
+					}
+					})
+				
+			}
+				
+						 
+						
+		  
+	  })
+		  
+		  
+ get_offer();
+//get offer
+	function get_offer(){
+		
+	  $.ajax({
+        url: "admin_action.php",
+        method: "POST",
+        data: { get_offer:1},
+        success: function (data) {
+   			$("#get_all_offer").html(data);
+			
+        },
+      });
+	}
+	
+	
+ get_ongoing_offer();
+//get offer to admin banner and home page
+	function get_ongoing_offer(){
+		
+		  $.ajax({
+        url: "admin_action.php",
+        method: "POST",
+        data: { get_ongoing_offer:1},
+        success: function (data) {
+   			
+				if(data==""){
+					$("#current_offer_at_admin").html("No offer being selected");
+				}
+				else
+				{
+					$("#current_offer_at_admin").html(data);
+					$("#current_offer_at_index").html(data);
+				}
+        },
+      });
+	
+	}
+	
+	
+	
+	
+	
+	//delete the offer
+	  $("body").delegate(".btn_offer_delete", "click", function () {
+	  event.preventDefault();	
+		var offer_id_txt = $(this).attr("offer_id");
+		 
+	 $.ajax({
+        url: "admin_action.php",
+        method: "POST",
+        data: { delete_offer:1,offer_id:offer_id_txt},
+        success: function (data) {
+   				toastr.success('Successfully deleted');
+				 get_offer();
+   		  
+        },
+      });
+	  
+	  
+	  
+	  })
+	
+	
+		//edit the offer
+	  $("body").delegate(".btn_offer_edit", "click", function () {
+		 event.preventDefault();	 
+		 var offer_id_txt = $(this).attr("offer_id");
+		$("#offfer_footer").html("<button type='submit' class='btn btn-success'  offter_edit_btn_val='"+offer_id_txt+"' id='offer_update_btn_admin'>Update</button>");
+	  
+	 	 $.ajax({
+				url: "admin_action.php",
+				method: "POST",
+				data: { edit_offer:1,offer_id:offer_id_txt},
+				success: function (data) {
+	  
+				  if(data!=""){
+					toastr.warning('You can edit now');
+					var array = data.split('*/*');
+					var Offer_desc_txt = $("#Offer_desc_txt").val(array[0]);
+					var Offer_str_txt = $("#Offer_str_txt").val(array[1]);
+					var Offer_end_txt = $("#Offer_end_txt").val(array[2]);
+					var Offer_rate_txt = $("#Offer_rate_txt").val(array[3]);
+
+				  }
+				},
+	  });
+			  
+	  })
+	  
+	  	//update the offer
+	  $("body").delegate("#offer_update_btn_admin", "click", function () {	
+		  event.preventDefault();
+	
+				var offer_id_txt = $(this).attr("offter_edit_btn_val");
+				var Offer_desc_txt = $("#Offer_desc_txt").val();
+				var Offer_str_txt = $("#Offer_str_txt").val();
+				var Offer_end_txt = $("#Offer_end_txt").val();
+				var Offer_rate_txt = $("#Offer_rate_txt").val();
+				 
+			if (Offer_desc_txt == "" ||  Offer_str_txt == "" || Offer_end_txt == "" || Offer_rate_txt == "" ) 
+			{
+				  toastr.error('Please fill all the fields');
+			}
+			else if( Offer_str_txt> Offer_end_txt)
+			{
+				  toastr.error('Incorrect date selection');
+				   $("#Offer_str_txt").val("");
+				   $("#Offer_end_txt").val("");
+			}			
+			else
+			{
+				
+				$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{Offer_update:1,Offer_desc:Offer_desc_txt,Offer_str:Offer_str_txt,Offer_end:Offer_end_txt,Offer_rate:Offer_rate_txt,offer_id:offer_id_txt}, 
+					success	:	function(data){
+								toastr.success('Successfully updated');
+								$('#offer_form')[0].reset();
+								get_offer();
+								 get_ongoing_offer();
+							 $("#offfer_footer").html("<button type='submit' class='btn btn-danger'  id='offer_add_btn_admin'>Add</button>");
+					}
+					})
+			 
+			}
+				
+	 
+	  })
+	
+	
+		  	//deactive the offer
+	  $("body").delegate("#deactive_btn", "click", function () {	
+	   event.preventDefault();
+	   	var offer_id_txt = $(this).attr("offer_dactive_id");
+ 
+	 			$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{offer_deactive:1,offer_inactive_id:offer_id_txt}, 
+					success	:	function(data){
+								toastr.success('Successfully diactivated');
+								get_offer();
+								get_ongoing_offer();
+					}
+					})
+					
+					
+					
+	  })
+	  
+	  
+	  
+	   //active the offer
+	  $("body").delegate("#btn_offer_active", "click", function () {	
+	   event.preventDefault();
+			var offer_id_txt = $(this).attr("offer_active_id");
+ 
+			var offer_id_txt = $(this).attr("offer_active_id");
+			var st_date = $(this).attr("st_date");
+			var end_date = $(this).attr("end_date");
+			var today = new Date().toISOString().split('T')[0]
+		 
+		 
+				if(today>end_date){
+					
+						toastr.error('Offer expired');
+				}
+				else
+				{
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{offer_active:1,offer_active_id:offer_id_txt}, 
+					success	:	function(data){
+								toastr.success('Successfully activated');
+								get_offer();
+								get_ongoing_offer();
+								
+								
+					}
+					})			
+					
+				}
+		 
+	 
+					
+	  })
+	  
 
 });

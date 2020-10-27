@@ -73,11 +73,11 @@
 				<form class="mt-4 ">
 			  <div class="form-group ">
 				<label for="exampleDropdownFormEmail2">Email address</label>
-				<input type="email" class="form-control"  id="admin_email_txt" placeholder="email@example.com">
+				<input type="email" class="form-control" value="admin@gmail.com" id="admin_email_txt" placeholder="email@example.com">
 			  </div>
 			  <div class="form-group">
 				<label for="exampleDropdownFormPassword2">Password</label>
-				<input type="password" class="form-control"   id="admin_password_txt" placeholder="Password">
+				<input type="password" class="form-control"  value="admin123*"  id="admin_password_txt" placeholder="Password">
 			  </div>
 
 			  <button type="submit" id="admin_login_page_login_btn" class="btn btn-danger">Login</button>	 

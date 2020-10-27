@@ -39,6 +39,10 @@
   
 
 
+    	    <!-- alert -->
+			<div id="offer_msg_at_card" > </div>
+	    <!-- /alert -->
+
   
   
 <!-- Navigation Bar -->

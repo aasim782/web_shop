@@ -263,12 +263,51 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 	
 	}
 	
-	else    //when we search through the brand
+	else    // get search
 	{ 
 		$selected_keywords = $_POST["keywords"];
+		$cat_key = $_POST["cat_key"];
+		$brd_key = $_POST["brd_key"];
+		$lprice_key = $_POST["lprice_key"];
+		$hprice_key = $_POST["hprice_key"];
+		$rate_key = $_POST["rate_key"];
+	
+	if($cat_key==0 && $brd_key==0  && $lprice_key==0 && $hprice_key==0 && $rate_key==0  )
+	{	
 		$query = "SELECT * FROM product_tbl where active=1 and product_keywords LIKE '%$selected_keywords%' LIMIT $start,$page_number_limit ";
 	}
+	else if($cat_key !=0 && $brd_key==0   && $lprice_key==0 && $hprice_key==0 && $rate_key==0 	)
+	{
+ 
+		$query = "SELECT * FROM product_tbl where (active=1 and product_category=$cat_key) and product_keywords LIKE '%$selected_keywords%' LIMIT $start,$page_number_limit ";
+	 
+	}
+	else if( $cat_key ==0 )
+	{
+		
+			$query = "SELECT * FROM product_tbl where (active=1 and product_category=$cat_key) and product_keywords LIKE '%$selected_keywords%' LIMIT $start,$page_number_limit ";
+	 
+	
+	}
+	else if($brd_key !=0 && $cat_key !=0  && $lprice_key==0 && $hprice_key==0 && $rate_key==0 )
+	{
+		$query = "SELECT * FROM product_tbl where (active=1 and product_brand=$brd_key and product_category=$cat_key) and product_keywords LIKE '%$selected_keywords%' LIMIT $start,$page_number_limit ";
+	
+	}
+	else
+	{
+		
+			$query = "SELECT * FROM product_tbl where active=1 and product_keywords LIKE '%$selected_keywords%' LIMIT $start,$page_number_limit ";
+	
+		
+	}
+ 
+	
+	
+	}
 
+
+//get search
 	$run_query = mysqli_query($con,$query);
 	while($row = mysqli_fetch_array($run_query))
 		{
@@ -571,10 +610,19 @@ if(isset($_POST["add_to_card"])){
 							$sql = "SELECT * FROM  order_tbl where order_id= $order_id" ;
 							$check_query1 = mysqli_query($con,$sql);
 							$rows = mysqli_num_rows($check_query1);
+					
+					
+						//get the ongoing discount rate
+						$sql_discount = "SELECT  discount_rate  FROM offer_tbl where active=1" ;
+						$qry_discount = mysqli_query($con,$sql_discount);
+						$row = mysqli_fetch_array($qry_discount);
+					 	$discount_rate = $row["discount_rate"];
+						
+						
 						
 							if($rows == 0)
 							{
-								$sql = "INSERT INTO `order_tbl` (`order_id`,`customer_id`) VALUES ($order_id,$customer_id)";
+								$sql = "INSERT INTO `order_tbl` (`order_id`,`customer_id`,discount_rate) VALUES ($order_id,$customer_id,$discount_rate)";
 								$check_query = mysqli_query($con,$sql);
 							}
  
@@ -688,9 +736,12 @@ $count = mysqli_num_rows($check_query);
 
 
 if(isset($_POST["get_added_products_into_card"]) || isset($_POST["card_page_list"])){
-		$customer_id = $_SESSION['cusid'] ;
+$customer_id = $_SESSION['cusid'] ;
 $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and payment_status='0' && active=1" ; //payment_status - 0 unpaid,1-online tra,2-bank,3-cahone delivery
 	$check_query = mysqli_query($con,$sql);
+	 
+	//get the offer deatils
+	 
 	$count = mysqli_num_rows($check_query);
 	$no=1;
 	$total=0;
@@ -711,10 +762,37 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 						$check_query1 = mysqli_query($con,$sql);
 					
 						$Courier=300; 
-						$discount=0;
+						
+						
+						//get the ongoing discount rate
+						$sql_discount = "SELECT  offer_start_date,offer_end_date,discount_rate  FROM offer_tbl where active=1" ;
+						$qry_discount = mysqli_query($con,$sql_discount);
+						$row = mysqli_fetch_array($qry_discount);
+					 	$discount_rate = $row["discount_rate"];
+					 	$offer_end_date = $row["offer_end_date"];
+					 	$offer_start_date = $row["offer_start_date"];
+					  
+		
+						$today= date('Y-m-d'); //get system dates
+						 
+						  
 						$total=$total+$current_total_price ;
 								//used to get the product details
-						$final_total=($total+$Courier)-$discount;
+								
+								
+								
+						//validate discount is available or not
+						if($offer_start_date<=$today and $today <=$offer_end_date)
+						{
+							$discount = ($discount_rate*0.01)*$total;
+						}
+						else
+						{
+							$discount=0;
+						}
+			 
+						
+						$final_total= round(($total+$Courier)-$discount);
 						
 						while($row = mysqli_fetch_array($check_query1))
 							{
@@ -754,6 +832,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 														<input type='number'   min='1' class='form-control text-center qty ' id='qty-$product_id' pid='$product_id'  value='$order_qtry'>
 														
 														</div>	
+														
 														<div class='col-md-2 text-center'><b> Rs&nbsp<label pid='$product_id' id='price-$product_id' class='price'>$current_price_per_prd</label>.00</b></div>
 														
 														<div class='col-md-2 text-center total'><b> Rs&nbsp<label id='total-$product_id' pid='$product_id' class='total'>$current_total_price</label>.00</b></div>
@@ -881,9 +960,15 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 				 
 					if($count==1)
 					{
-				
-						
-						echo "<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Confirm''></div>";
+							if($final_total<=50000) 
+							{
+								echo "<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Confirm'></div>";
+					
+							}
+							else
+							{
+									echo "<div class='text-center m-2'><input type='button' class='btn btn-warning' id='cash_on_agree_btn' value='Confirm'' disabled></div>";
+							}
 						
 					}
 					else
@@ -2227,38 +2312,6 @@ $order_status = $row_data["order_status"];
 	 
 	 
 	 
-	 //left side category list 
-if(isset($_POST["category_in_filter"])){
-	
-	$category_query = "SELECT * FROM category_tbl where active=1";
-	$run_query = mysqli_query($con,$category_query);
-	
-	echo "<a href='#' class='list-group-item list-group-item-action ' style='color:white;background-color:#FF4747;' >
-	<h5><i class='fas fa-th-list' ></i>&nbspAll Categories</h5></a>";
-
-	if(mysqli_num_rows($run_query) > 0){
-		while($row = mysqli_fetch_array($run_query))
-		{
-			$cid = $row["category_id"];
-			$cat_name = $row["category_name"];
-			echo "
-			<a href='#' class='list-group-item list-group-item-action' cid='$cid'>$cat_name</a>		
-			";
-		}
-		
-		@$customer_id = $_SESSION['cusid'] ;	
-		
-		if($customer_id=='')
-		{
-			
-		}
-		else
-		{
-			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customes_order'  >Customs Order</a>";
-		}
-			
-	}
-}
 
 
 
@@ -2310,5 +2363,124 @@ if(isset($_POST["get_slider_image_footer"])){
 			
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//left side category list for filter
+if(isset($_POST["category_in_filter"])){
+	
+	$category_query = "SELECT * FROM category_tbl where active=1";
+	$run_query = mysqli_query($con,$category_query);
+	
+	echo "<a href='#' class='list-group-item list-group-item-action ' style='color:white;background-color:#FF4747;' >
+	<h5><i class='fas fa-th-list' ></i>&nbspAll Categories</h5></a>";
+
+	if(mysqli_num_rows($run_query) > 0){
+		while($row = mysqli_fetch_array($run_query))
+		{
+			$cid = $row["category_id"];
+			$cat_name = $row["category_name"];
+			echo "
+			<a href='#' id='filter_category_btn' class='list-group-item list-group-item-action' cid='$cid'>$cat_name</a>		
+			";
+		}
+		
+		@$customer_id = $_SESSION['cusid'] ;	
+		
+		if($customer_id=='')
+		{
+			
+		}
+		else
+		{
+			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customes_order'  >Customs Order</a>";
+		}
+			
+	}
+}
+
+
+
+
+
+
+
+
+
+
+//left side brand list for filter
+if(isset($_POST["brand_in_filter"])){
+	$brand_query = "SELECT * FROM brand_tbl where active=1 ";
+	$run_query = mysqli_query($con,$brand_query);
+	
+	echo "<a href='#' class='list-group-item list-group-item-action ' style='color:white;background-color:#FF4747;'>
+	<h5><i class='fas fa-tags' ></i>&nbspAll Brands</h5>
+	</a>";
+
+	if(mysqli_num_rows($run_query) > 0){
+		while($row = mysqli_fetch_array($run_query))
+		{
+			$brand_id = $row["brand_id"];
+			$brand_name = $row["brand_name"];
+			echo "
+			<a href='#' id='filter_brand_btn' class='list-group-item list-group-item-action' bid='$brand_id'>$brand_name</a>
+			";
+		}
+	}
+}
   
+  
+  
+   
+  // get the onging offer
+  if(isset($_POST["get_ongoing_offer"])){
+	   
+		date_default_timezone_set('Asia/Kolkata');
+		//define date and time
+		$today = date("Y-m-d"); // get the date
+					
+	  
+		$sql = "SELECT reason,active,offer_start_date,offer_end_date  FROM offer_tbl where active=1" ;
+		$check_query = mysqli_query($con,$sql);
+		$row = mysqli_fetch_array($check_query);
+		$offer_start_date = $row["offer_start_date"];
+		$offer_end_date = $row["offer_end_date"];
+		$reason = $row["reason"];
+		
+		
+		if($offer_start_date<=$today and $today <=$offer_end_date)
+		{
+			echo "$reason";
+			
+		}
+		
+ 
+
+}
+
+  
+  
+  
+  
+
 ?>

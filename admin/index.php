@@ -313,27 +313,13 @@
 					<th>Date</th>	
                     <th>Product</th>
                      
+                    <th>Category</th>
                     <th>Brand</th>
                     <th>Price</th>
                   </tr>
                   </thead>
-                  <tbody>
-                  <tr>
-				   <td>
-                       12/02/2020
-                    </td>
-                    <td>
-                      <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                       Galaxy A50
-                    </td>
-                     
-                                        <td>
-                    Electronics
-                    </td>
-                    <td>
-                      Rs.22500.00
-                    </td>
-                  </tr>
+                  <tbody id="get_five_product">
+        
                  <tr>
 				   <td>
                        10/02/2020

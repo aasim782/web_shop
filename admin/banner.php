@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+  <?php 
+ session_start();
+	if(!isset($_SESSION['adminid']))
+	{
+		header("location:../admin/login.php");	
+	}
+	 
+ 
+ ?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -69,23 +78,24 @@
 		<form id="banner_form">
          	<div class="card card-danger  mb-3">		  
                 <div class="card-header">
+				 
                 <h3 class="card-title text-center">Add Banner</h3>
 		 
               </div>
               <!-- /.card-header -->
               <div class="card-body">
 			  
-			  
+			  <p><b>Note :</b> Image size shoud be <b class="text-success">Width: 1520px , Height: 400px</b></P>
                <div class="col-md-12 pb-2">
 			  <label for="validationCustom01">Title</label>
 			  <input type="text" class="form-control" id="banner_title" name="" placeholder="Title">
-		
 			</div>
 		
-		
+		 <div class="col-md-12 pb-2">
 		<label for="exampleFormControlFile1" class="mt-1">Select Banner Image</label>
 			<div class="custom-file">  
-				<input type="file"  id="banner_file">
+			<input type="file"  id="file_banner" name="file_banner">
+			</div> 
 			</div> 
       
 

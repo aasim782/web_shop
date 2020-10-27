@@ -39,6 +39,9 @@
   <body>
   
 
+  	    <!-- alert -->
+			<div id="offer_msg_at_profile_filter" > </div>
+	    <!-- /alert -->
 
   
 <!-- Navigation Bar -->
@@ -238,7 +241,7 @@
 	<!-- Brands -->		
 
 	
-						<div id="get_brand" class="mb-2"> </div>
+						<div id="get_brand_in_filter" class="mb-2"> </div>
 						
 						
 						

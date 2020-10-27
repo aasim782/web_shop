@@ -37,18 +37,7 @@
   <body>
       
   
-  
-  
-
-  	    <!-- alert -->
-				<div class="alert p-0 alert-danger alert-dismissible m-0 fade show rounded-0" role="alert">
-				  <center>Ramzan Sale Offer <strong>50%</strong> the Cart..!</center>
-				  <button type="button" class="close p-0 m-0" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				  </button>
-				</div> 
-	    <!-- /alert -->
-
+   
   
   
 <!-- Navigation Bar -->

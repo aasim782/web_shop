@@ -72,17 +72,16 @@ $check_query = mysqli_query($con,$sql);
 
 //get product add form
 if(isset($_POST["get_product_add_form"])){
-echo "<div class='card card-warning card-outline'>   
+echo "
+	<div class='card card-warning card-outline'>   
 	<div class='card-header text-center'  >
 	<div class='card-tools'>
 	<button type='button' class='btn btn-tool' data-card-widget='collapse'>
-	<i class='fas fa-minus'></i></button><button type='button' class='btn btn-tool' data-card-widget='remove'><i class='fas fa-times'></i></button></div>				<h2>Add Product</h2>              </div>			            <div class='card-body'>            <form id='product_reg_form' >	 		<div id='product_reg_msg' > </div>		  <div class='form-row'>			<div class='col-md-6'>			  <label for='validationCustom01'>Product ID</label>			  <input type='text' class='form-control text-center' id='Product_id_txt' name=''    disabled>					</div>						<div class='col-md-6'>			  <label for='validationCustom02'>Date</label>			  <input type='date' class='form-control text-center' id='prd_add_date_txt'  name=''  >					</div>			</div>							<div class='form-row mt-2'>     <div class='form-group col-6'>           <label for='validationCustom02'>Category</label>     <select id='get_category' class='form-control'></select>    </div>   
+	<i class='fas fa-minus'></i></button><button type='button' class='btn btn-tool' data-card-widget='remove'><i class='fas fa-times'></i></button></div>				<h2>Add Product</h2>              </div>			            <div class='card-body'>            <form id='product_reg_form' >	 		<div id='product_reg_msg' > </div>		  <div class='form-row'>			<div class='col-md-6'>			  <label for='validationCustom01'>Product ID</label>			  <input type='text' class='form-control text-center' id='Product_id_txt' name='Product_id_txt'    disabled>					</div>						<div class='col-md-6'>			  <label for='validationCustom02'>Date</label>			  <input type='date' class='form-control text-center' id='prd_add_date_txt'  name=''  >					</div>			</div>							<div class='form-row mt-2'>     <div class='form-group col-6'>           <label for='validationCustom02'>Category</label>     <select id='get_category' class='form-control'></select>    </div>   
 	<div class='form-group col-6'>   
 	<label for='validationCustom02'>Brand</label>     
 	<select id='get_brand' class='form-control'></select>   
 	</div>   </div>		
-
- 
   
 	<div class='form-row '>		
 	<div class='col-6'>		 
@@ -115,7 +114,7 @@ echo "<div class='card card-warning card-outline'>
  
 	<div class='form-group col-3'>        
 	<label for='validationCustom02'>Choose the weight  (kg)</label>     
-	<select id='get_category' class='form-control '>
+	<select id='get_weight' class='form-control '>
 	<option value='0' selected=''>Choose weight</option>
 	<option value='200'>< 1Kg</option> 
 	<option value='450'>2Kg - 3Kg</option> 
@@ -137,7 +136,9 @@ echo "<div class='card card-warning card-outline'>
 	<div class='col-6 form-group mt-2 text-center'></label></div>  </div>   
 	<div class='form-row mt-2'> <div class='col-12'><label for='validationCustom05'>Product Description</label> 
 	<div class='col-md-12'>   
-	<textarea class='textarea' id='product_desc_txt'  name='product_dec' placeholder='Place some text here'style='width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 30px;'></textarea>                            </div>           </div>        </div> <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom03'>Product Keywords</label>	<div class='col-md-12'>    <textarea class='form-control' id='product_keywords_txt'  name='ProductKeyword' rows='3'></textarea>   </div> <div class='modal-footer'> <button type='button' id='form_prd_add_btn' name='form_prd_add_btn' class='btn btn-danger'>Add</button><button type='button' class='btn btn-secondary'    data-card-widget='remove' >Close</button></div></form> </div></div><script>$(function () { $('.textarea').summernote() })</script></div></div> ";
+	<textarea class='textarea' id='product_desc_txt'  name='product_dec' placeholder='Place some text here'style='width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 30px;'></textarea>                            </div>           </div>        </div> <div class='form-row mt-2'> <div class='col-12'><label for='validationCustom03'>Product Keywords</label>	<div class='col-md-12'>    <textarea class='form-control' id='product_keywords_txt'  name='ProductKeyword' rows='3'></textarea>   </div> 
+	<div class='modal-footer'  id='prd_footer'> 
+	<button type='button' id='form_prd_add_btn' name='form_prd_add_btn' class='btn btn-danger'>Add</button><button type='button' class='btn btn-secondary'    data-card-widget='remove' >Close</button></div></form> </div></div><script>$(function () { $('.textarea').summernote() })</script></div></div> ";
 }
 
 
@@ -182,7 +183,7 @@ if(isset($_POST["admin_userLogin"])){
 
 
 //Prduct Related Codes
-if(isset($_POST['add_to_prd_tbl']) || isset($_FILES["file"]["name"] ) || isset($_POST["get_admin_product"]) || isset($_POST["edit_admin_product"])  || isset($_POST["delete_admin_product"]) || isset($_POST["product_count"]) || isset($_POST["get_admin_product_filter"]) || isset($_POST["Prduct_table_footer_num"])){
+if(isset($_POST['add_to_prd_tbl']) || isset($_POST['get_last_five_prd_dashbord']) || isset($_FILES["file"]["name"] ) || isset($_POST["get_admin_product"]) || isset($_POST["edit_admin_product"])  || isset($_POST["delete_admin_product"]) || isset($_POST["product_count"]) || isset($_POST["get_admin_product_filter"]) || isset($_POST["Prduct_table_footer_num"])){
 	
 	$page_number_limit=10; //per page have 10 products
 	if(isset($_POST["setpagenumber"])){
@@ -211,7 +212,7 @@ if(isset($_POST["Prduct_table_footer_num"])){
 }
 
 	 
-	$product_query = "SELECT  product_tbl.product_id,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
+	$product_query = "SELECT  product_tbl.product_id,product_tbl.created_date,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
 					 from product_tbl,category_tbl,brand_tbl
 					 where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1) ORDER BY product_tbl.product_id ASC   LIMIT $start,$page_number_limit";
 	$run_query = mysqli_query($con,$product_query);
@@ -296,7 +297,7 @@ if(isset($_POST["Prduct_table_footer_num"])){
 						} 
 							
 			
-				$sql1= "INSERT INTO `product_tbl`(`product_id`, `product_category`, `product_brand`, `product_name`, `product_desc`, `product_img`, `profit_rate` , `product_price`,`product_total_qty`,`product_keywords`) VALUES ($Product_id,'	$get_category','$get_brand','$product_name','$product_desc','$prd_img','$product_profit_rate', $product_price,'$prd_total_qty','$product_keywords')";
+				$sql1= "INSERT INTO `product_tbl`(`product_id`,`created_date`, `product_category`, `product_brand`, `product_name`, `product_desc`, `product_img`, `profit_rate` , `product_price`,`product_total_qty`,`product_keywords`) VALUES ($Product_id,'$prd_add_date','$get_category','$get_brand','$product_name','$product_desc','$prd_img','$product_profit_rate', $product_price,'$prd_total_qty','$product_keywords')";
 	
 							if(mysqli_query($con,$sql1))
 							{
@@ -323,6 +324,7 @@ if(isset($_POST["Prduct_table_footer_num"])){
 				$product_desc = $row["product_desc"];
 				$product_img = $row["product_img"];
 				$product_total_qty = $row["product_total_qty"];
+				
 				echo "	
 	 
 					<tr  class='text-center'>
@@ -347,7 +349,66 @@ if(isset($_POST["Prduct_table_footer_num"])){
 		
 		
 		}
+	} // get the last 5 product to admin dashboard
+	else if(isset($_POST["get_last_five_prd_dashbord"]))
+	{	 
+
+ 	$prd_last_five_sql = "SELECT  product_tbl.product_id,product_tbl.created_date,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
+					 from product_tbl,category_tbl,brand_tbl
+					 where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1)    order by product_tbl.product_id desc LIMIT 5 ";
+					 
+				 
+			 $prd_last_five_qry = mysqli_query($con,$prd_last_five_sql);
+	  
+		$i=$start+1;
+		if(mysqli_num_rows($prd_last_five_qry) > 0){
+			while($row = mysqli_fetch_array($prd_last_five_qry))
+			{
+				$product_id = $row["product_id"];
+				$product_id = $row["product_id"];
+				$product_category = $row["category_name"];
+				$product_brand = $row["brand_name"];
+				$product_name = $row["product_name"];
+				$product_price = $row["product_price"];
+				$product_desc = $row["product_desc"];
+				$product_img = $row["product_img"];
+				$product_total_qty = $row["product_total_qty"];
+				$created_date = $row["created_date"];
+				echo "	
+	           <tr>
+				   <td>
+                      $created_date
+                    </td>
+                    <td>
+                      <img src='../admin/upload/Product_images/$product_img'  class='img-circle img-size-32 mr-2'>
+                       $product_name
+		 
+                    </td>
+                     
+					<td>
+						$product_category
+                    </td>
+						<td>
+                    $product_brand
+                    </td>
+                    <td>
+                      Rs.$product_price.00
+                    </td>
+                  </tr>
+					 ";
+					  $i++;
+	 
+			}
+		
+		
+		
+		}
+		else
+		{
+			
+		}
 	}
+		
 	else if(isset($_POST["get_admin_product_filter"]))
 	{
 		
@@ -407,10 +468,32 @@ if(isset($_POST["Prduct_table_footer_num"])){
 			}
 		
 	}
-	elseif( isset($_POST["edit_admin_product"])){
-
+	else if( isset($_POST["edit_admin_product"])){
+	$product_edit_id = $_POST["product_edit_id"];
+	$prd_edit_sql = "SELECT  product_tbl.product_id,product_tbl.product_keywords,product_tbl.profit_rate,product_tbl.product_weight,product_tbl.created_date,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
+					 from product_tbl,category_tbl,brand_tbl
+					 where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and ((product_tbl.active=1) and (product_tbl.product_id='$product_edit_id') )";
+	$run_query = mysqli_query($con,$prd_edit_sql);
+	$row = mysqli_fetch_array($run_query);
+				$product_id = $row["product_id"];
+				$created_date = $row["created_date"];
+				$product_category = $row["category_name"];
+				$product_brand = $row["brand_name"];
+				$product_name = $row["product_name"];
+				$product_price = $row["product_price"];
+				$profit_rate = $row["profit_rate"];
+				$product_weight = $row["product_weight"];
+				$product_desc = $row["product_desc"];
+				$product_img = $row["product_img"];
+				$product_total_qty = $row["product_total_qty"];
+				$product_keywords = $row["product_keywords"];
+			 
+			 
+			 
+ echo "$product_id*/*$created_date*/*$product_category*/*$product_brand*/*$product_name*/*$product_price*/*$profit_rate*/*$product_weight*/*$product_desc*/*$product_img*/*$product_total_qty*/*$product_keywords*/*";	
+				
 	}
-	elseif( isset($_POST["delete_admin_product"]))
+	else if( isset($_POST["delete_admin_product"]))
 	{
 
 	$delete_id = $_POST["product_delete_id"];
@@ -2036,6 +2119,10 @@ if(isset($_POST["add_banner"])){
 			/* Valid extensions */
 			$valid_extensions = array("jpg","jpeg","png");
 			 
+			 
+			 
+			 
+			 
 						 if($uploadOk == 0){
 								echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
 						}
@@ -2125,9 +2212,158 @@ if(isset($_POST["remove_admin_branner"])){
 		$banner_title = $_POST["banner_title"]; 
 		$sql = "DELETE FROM `banner_tbl` WHERE title='$banner_title'" ;
 		$check_query = mysqli_query($con,$sql);
- 
 
 }
 
+
+//add the offer to admin  table
+if(isset($_POST["Offer_add"])){
+	 
+	  	$Offer_desc = $_POST["Offer_desc"];
+	  	$Offer_str = $_POST["Offer_str"];
+	  	$Offer_end = $_POST["Offer_end"];
+	  	$Offer_rate = $_POST["Offer_rate"];
+		
+		$sql = "insert into offer_tbl (offer_start_date,offer_end_date,discount_rate,reason) values ('$Offer_str','$Offer_end','$Offer_rate','$Offer_desc')" ;
+		$check_query = mysqli_query($con,$sql);
+	 
+}
+
+
+if(isset($_POST["get_offer"])){
+		$sql = "SELECT offer_id,offer_start_date,offer_end_date,discount_rate,reason,active  FROM offer_tbl" ;
+		$check_query = mysqli_query($con,$sql);
+		$start=0;
+			if(mysqli_num_rows($check_query) > 0){
+			while($row = mysqli_fetch_array($check_query))
+			{
+				$offer_start_date = $row["offer_start_date"];
+				$offer_end_date = $row["offer_end_date"];
+				$discount_rate = $row["discount_rate"];
+				$offer_id = $row["offer_id"];
+				$reason = $row["reason"];
+				$active = $row["active"];
+			$start++;
+			echo "  <tr > 
+							<td>$start</td>
+							<td>$reason</td>
+							<td>$offer_start_date</td>
+							<td>$offer_end_date</td>
+							<td class='text-center'>$discount_rate%</td>
+							<td>
+	
+							<div class='btn-group '>
+							<a href='' offer_id='$offer_id'  class='btn btn-info btn_offer_edit'><i class='fa fa-edit'></i></a>
+							<a href='' offer_id='$offer_id'  class='btn btn-danger btn_offer_delete'><i class='fa fa-trash-alt'></i></a>
+				  ";
+							
+							if($active==1)
+							{ 
+								echo "<a href='' id='deactive_btn' alt='Deactive' st_date='$offer_start_date' end_date='$offer_end_date' offer_dactive_id='$offer_id' class='btn btn-success  '><i class='fas fa-check-circle'></i></i></a>"; 
+							 
+							}
+							else
+							{
+								echo "<a href='' id='btn_offer_active' st_date='$offer_start_date' end_date='$offer_end_date' class='btn btn-warning '  offer_active_id='$offer_id' ><i class='fas fa-check-double'></i></a>"; 
+							}
+						
+						echo "  </div> 
+							</td>
+						  </tr> 
+					
+						  "; 
+			}
+		 }
+}
+
+//get ongoing offer
+if(isset($_POST["get_ongoing_offer"])){
+	$sql = "SELECT reason,active  FROM offer_tbl where active=1" ;
+	$check_query = mysqli_query($con,$sql);
+	$row = mysqli_fetch_array($check_query);
+	$reason = $row["reason"];
+	echo "$reason";
+	
+}
+
+
+//delete the offer
+if(isset($_POST["delete_offer"])){
+	$offer_id = $_POST["offer_id"];
+	$sql = "DELETE FROM `offer_tbl` WHERE offer_id=$offer_id" ;
+	$check_query = mysqli_query($con,$sql);
+}
+
+ 
+
+//edit the offer
+if(isset($_POST["edit_offer"]))
+{   
+	$offer_id = $_POST["offer_id"];
+	$offer_query = "SELECT * FROM offer_tbl where offer_id =  $offer_id ";
+	$run_query = mysqli_query($con,$offer_query);
+	$row = mysqli_fetch_array($run_query);
+ 	 
+				$offer_start_date = $row["offer_start_date"];
+				$offer_end_date = $row["offer_end_date"];
+				$discount_rate = $row["discount_rate"];
+				$offer_id = $row["offer_id"];
+				$reason = $row["reason"];
+				$active = $row["active"];
+				 
+		echo "$reason*/*$offer_start_date*/*$offer_end_date*/*$discount_rate*/*";
+			
+			
+  
+		
+}
+
+
+
+
+
+
+//update the offer
+if(isset($_POST["Offer_update"]))
+{   
+
+		$offer_id = $_POST["offer_id"];
+		$Offer_desc = $_POST["Offer_desc"];
+	  	$Offer_str = $_POST["Offer_str"];
+	  	$Offer_end = $_POST["Offer_end"];
+	  	$Offer_rate = $_POST["Offer_rate"];
+		 
+	$offer_id = $_POST["offer_id"];
+	$offer_query = "UPDATE `offer_tbl` SET `offer_start_date`='$Offer_str',`offer_end_date`='$Offer_end',`discount_rate`='$Offer_rate',`reason`='$Offer_desc' WHERE offer_id='$offer_id'";
+	$run_query = mysqli_query($con,$offer_query);
+ 
+ 	 
+}
+ 
+ 
+ 
+if(isset($_POST["offer_deactive"]))
+{   
+	$offer_id = $_POST["offer_inactive_id"];
+	$offer_query = "UPDATE `offer_tbl` SET `active`=0 WHERE offer_id='$offer_id'";
+	$run_query = mysqli_query($con,$offer_query);
+ 
+
+	}
+
+
+if(isset($_POST["offer_active"]))
+{   
+	$offer_id = $_POST["offer_active_id"];
+	
+	$offer_query = "UPDATE `offer_tbl` SET `active`=1 WHERE offer_id='$offer_id'";
+	$run_query = mysqli_query($con,$offer_query);
+	
+	$offer_query = "UPDATE `offer_tbl` SET `active`=0 WHERE !(offer_id='$offer_id')";
+	$run_query = mysqli_query($con,$offer_query);
+
+	}
+
+ 
 
 ?>

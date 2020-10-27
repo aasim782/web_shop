@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+
+  <?php 
+ session_start();
+	if(!isset($_SESSION['adminid']))
+	{
+		header("location:../admin/login.php");	
+	}
+	 
+ 
+ ?>
 <html>
 <head>
   <meta charset="utf-8">
