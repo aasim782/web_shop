@@ -143,10 +143,11 @@ $(document).ready(function () {
 	var product_price_txt = ((product_profit_txt /100)*get_item_price) +parseInt(get_item_price) ;
     var product_desc_txt = $("#product_desc_txt").val();
     var Total_qty = $("#Total_qty").val();
+    var get_weight_txt = $("#get_weight").val() ;
     var product_keywords_txt =   $("#product_keywords_txt").val() ;
     var product_keywords_name_plus_keywords =   $("#product_name_txt").val()+ " " +product_keywords_txt ;
 	var files = $('#file')[0].files[0];
-        if (Product_id_txt == "" || prd_add_date_txt == "" || get_category_txt == "0" || get_brand_txt == "0" || product_name_txt == "" || product_price_txt == "" || typeof files == 'undefined'|| product_desc_txt == "" || Total_qty =="" || product_keywords_txt == "" || product_profit_txt=="") 
+        if (Product_id_txt == ""  || get_weight_txt=="0" || prd_add_date_txt == "" || get_category_txt == "0" || get_brand_txt == "0" || product_name_txt == "" || product_price_txt == "" || typeof files == 'undefined'|| product_desc_txt == "" || Total_qty =="" || product_keywords_txt == "" || product_profit_txt=="") 
 			{
 				  toastr.error('Please fill all the fields');
 			}	
@@ -165,6 +166,7 @@ $(document).ready(function () {
 				fd.append('product_desc',product_desc_txt); //arguments
 				fd.append('product_keywords',product_keywords_name_plus_keywords); //arguments
 				fd.append('prd_total_qty',Total_qty); //arguments
+				fd.append('get_weight',get_weight_txt); //arguments
 				
 				    $.ajax({
                     url:'admin_action.php',
@@ -195,7 +197,7 @@ $(document).ready(function () {
 									date();
 									get_category_admin();
 									get_brand_admin();
-									product_tbl_get_product;
+									 
 									product_add_form();
 									$('#product_reg_form')[0].reset();
 									
@@ -326,7 +328,7 @@ product_count();
   { 
   event.preventDefault();
 	  var product_edit_id_txt = $(this).attr("product_edit_id"); //get the value from our selected product id
-	 
+
 		$("#prd_footer").html("<button type='button' id='form_prd_update_btn' name='form_prd_update_btn' class='btn btn-success'>Update</button>");
 	  
 	 	 $.ajax({
@@ -336,32 +338,109 @@ product_count();
 				success: function (data) { 
 				  if(data!=""){
 					var array = data.split('*/*');
-				
-					
-					 $("#Product_id_txt").val(array[0]);
-					 $("#prd_add_date_txt").val(array[1]);
-					 $("#product_name_txt").val(array[4]);
-					$("#product_price_txt").val(array[5]-(array[6]/100)*array[5]);
+				 
+					var pricewithprofit = parseInt(array[5]) ; //text to int
+					var rate = parseInt(array[6]);; //text to int
+				   
+					$("#Product_id_txt").val(array[0]);
+					$("#prd_add_date_txt").val(array[1]);
+					$("#product_name_txt").val(array[4]);
+					$("#product_price_txt").val(pricewithprofit-(((rate/(rate+100))*pricewithprofit)));
 					$("#product_profit_txt").val(array[6]);
-					$("#product_price_with_rate_txt").val((array[6]/100)*array[5]);
+					$("#product_price_with_rate_txt").val(array[5]);
 					$("#Total_qty").val(array[10]);
 					$("#product_keywords_txt").val(array[11]); 
 					$(".note-editable").html(array[8]);	
-					$('#get_category').val(1).change();
-					$('#get_brand').val(1).change();
-					$('#get_weight').val(200).change();
+					$('#get_category').val(array[2]).change();
+					$('#get_brand').val(array[3]).change();
+					$('#get_weight').val(array[7]).change();
+
 				  }	
-				  else
-				{
-					
-					
-				}
+				 
 				  
 				},
 	  });
 	  
 	  
   })
+  
+  //update button
+  $("body").delegate("#form_prd_update_btn", "click", function () 
+  { 
+   
+    //get the value from form using post method
+    var Product_id_txt = $("#Product_id_txt").val();
+    var prd_add_date_txt = $("#prd_add_date_txt").val();
+    var get_category_txt = $("#get_category").val();
+    var get_brand_txt = $("#get_brand").val();
+    var product_name_txt = $("#product_name_txt").val();
+    var product_profit_txt = $("#product_profit_txt").val();
+	var get_item_price= $("#product_price_txt").val();
+	var product_price_txt = ((product_profit_txt /100)*get_item_price) +parseInt(get_item_price) ;
+    var product_desc_txt =  $(".note-editable").html();	
+    var Total_qty = $("#Total_qty").val();
+    var get_weight_txt = $("#get_weight").val() ;
+    var product_keywords_txt =   $("#product_keywords_txt").val() ;
+    var product_keywords_name_plus_keywords = product_keywords_txt ;
+	var files = $('#file')[0].files[0];
+ 
+ 
+		if (Product_id_txt == ""  || get_weight_txt=="0" || prd_add_date_txt == "" || get_category_txt == "0" || get_brand_txt == "0" || product_name_txt == "" || product_price_txt == ""  || product_desc_txt == "" || Total_qty =="" || product_keywords_txt == "" || product_profit_txt=="") 
+			{
+				  toastr.error('Please fill all the fields');
+			}	
+			else
+			{
+				var fd = new FormData();		 
+				fd.append('update_prd', 1); //arguments
+				fd.append('file',files);
+				fd.append('Product_id',Product_id_txt); //arguments
+				fd.append('prd_add_date', prd_add_date_txt); //arguments
+				fd.append('get_category',get_category_txt); //arguments
+				fd.append('get_brand',get_brand_txt); //arguments
+				fd.append('product_name',product_name_txt); //arguments
+				fd.append('product_price',product_price_txt); //arguments
+				fd.append('product_profit_rate',product_profit_txt); //arguments
+				fd.append('product_desc',product_desc_txt); //arguments
+				fd.append('product_keywords',product_keywords_name_plus_keywords); //arguments
+				fd.append('prd_total_qty',Total_qty); //arguments
+				fd.append('get_weight',get_weight_txt); //arguments
+				
+				  
+				    $.ajax({
+                    url:'admin_action.php',
+                    type:'post',
+                    data:fd,
+                    contentType: false,
+                    processData: false,
+                    success:function(data){
+						 
+							 if(data==1)
+								 {
+									toastr.success('Successfully updated');//prd update 
+								 
+									product_tbl_get_product();
+									get_product_id();
+									date(); 
+									product_add_form();
+									$('#product_reg_form')[0].reset();
+									
+								 } 
+					
+					}
+					})
+				
+				
+				
+				
+				
+				
+				
+			}
+  
+  })
+
+
 
 
 
@@ -1867,5 +1946,23 @@ function out_of_stock(){
 					
 	  })
 	  
+
+
+//top fast moving products
+fast_moving_prd()
+function fast_moving_prd(){
+	 
+				$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{topfast_moving:1}, 
+					success	:	function(data){
+							 	
+								
+					}
+					})			
+					
+	
+}
 
 });

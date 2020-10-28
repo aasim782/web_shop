@@ -1,7 +1,5 @@
--image widht height problem solved
--offer module
--product edit and update particially completed
-" Ver 0.6.8"
+-product edit and update
+" Ver 0.6.9"
 
  
 

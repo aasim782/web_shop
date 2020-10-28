@@ -33,13 +33,13 @@ if(isset($_POST["get_category_admin"])){
 
 $sql = "SELECT  * from category_tbl where active=1";
 $check_query = mysqli_query($con,$sql);
-		echo "<option value='0' selected>Choose Category...</option>";
+		echo "<option value='0' cat_name='assa' selected>Choose Category...</option>";
 			while($row = mysqli_fetch_array($check_query))
 						{	$category_id = $row["category_id"];
 							$category_name = $row["category_name"];
 						 
 								//option list output	
-								echo "<option value='$category_id'>$category_name</option> ";
+								echo "<option value='$category_name' cat_name='$category_name'>$category_name</option> ";
 								
 							
 						}
@@ -61,7 +61,7 @@ $check_query = mysqli_query($con,$sql);
 							$brand_name = $row["brand_name"];
 						 
 								//option list output	
-								echo "<option value='$brand_id'>$brand_name</option> ";
+								echo "<option value='$brand_name'>$brand_name</option> ";
 								
 							
 						}
@@ -77,10 +77,10 @@ echo "
 	<div class='card-header text-center'  >
 	<div class='card-tools'>
 	<button type='button' class='btn btn-tool' data-card-widget='collapse'>
-	<i class='fas fa-minus'></i></button><button type='button' class='btn btn-tool' data-card-widget='remove'><i class='fas fa-times'></i></button></div>				<h2>Add Product</h2>              </div>			            <div class='card-body'>            <form id='product_reg_form' >	 		<div id='product_reg_msg' > </div>		  <div class='form-row'>			<div class='col-md-6'>			  <label for='validationCustom01'>Product ID</label>			  <input type='text' class='form-control text-center' id='Product_id_txt' name='Product_id_txt'    disabled>					</div>						<div class='col-md-6'>			  <label for='validationCustom02'>Date</label>			  <input type='date' class='form-control text-center' id='prd_add_date_txt'  name=''  >					</div>			</div>							<div class='form-row mt-2'>     <div class='form-group col-6'>           <label for='validationCustom02'>Category</label>     <select id='get_category' class='form-control'></select>    </div>   
+	<i class='fas fa-minus'></i></button><button type='button' class='btn btn-tool' data-card-widget='remove'><i class='fas fa-times'></i></button></div>				<h2>Add Product</h2>              </div>			            <div class='card-body'>            <form id='product_reg_form' >	 		<div id='product_reg_msg' > </div>		  <div class='form-row'>			<div class='col-md-6'>			  <label for='validationCustom01'>Product ID</label>			  <input type='text' class='form-control text-center' id='Product_id_txt' name='Product_id_txt'    disabled>					</div>						<div class='col-md-6'>			  <label for='validationCustom02'>Date</label>			  <input type='date' class='form-control text-center' id='prd_add_date_txt'  name=''  >					</div>			</div>							<div class='form-row mt-2'>     <div class='form-group col-6'>           <label for='validationCustom02'>Category</label>     <select id='get_category' class='form-control category_class'></select>    </div>   
 	<div class='form-group col-6'>   
 	<label for='validationCustom02'>Brand</label>     
-	<select id='get_brand' class='form-control'></select>   
+	<select id='get_brand' class='form-control brand_class'></select>   
 	</div>   </div>		
   
 	<div class='form-row '>		
@@ -115,15 +115,16 @@ echo "
 	<div class='form-group col-3'>        
 	<label for='validationCustom02'>Choose the weight  (kg)</label>     
 	<select id='get_weight' class='form-control '>
-	<option value='0' selected=''>Choose weight</option>
-	<option value='200'>< 1Kg</option> 
-	<option value='450'>2Kg - 3Kg</option> 
-	<option value='750'>4Kg  - 5Kg</option>
-	<option value='1200'>6Kg - 10Kg</option> 
-	<option value='1800'>11Kg - 20Kg</option>
-	<option value='2200'>21Kg - 30Kg</option>
-	<option value='3500'>31Kg - 50Kg</option>
-	<option value='5000'>51Kg < 100Kg </option>
+		<option value='0' weight_val='0' selected=''>Choose weight</option>
+		<option value='< 1Kg'>< 1Kg</option> 
+		<option value='2Kg - 3Kg'>2Kg - 3Kg</option> 
+		<option value='4Kg  - 5Kg'>4Kg  - 5Kg</option>
+		<option value='6Kg - 10Kg'>6Kg - 10Kg</option> 
+		<option value='11Kg - 20Kg'>11Kg - 20Kg</option>
+		<option value='21Kg - 30Kg'>21Kg - 30Kg</option>
+		<option value='31Kg - 50Kg'>31Kg - 50Kg</option>
+		<option value='51Kg < 100Kg'>51Kg < 100Kg </option>
+		<option value='101Kg < Up'>101Kg< Up</option>
 	</select>   
 	</div>
 	
@@ -183,7 +184,7 @@ if(isset($_POST["admin_userLogin"])){
 
 
 //Prduct Related Codes
-if(isset($_POST['add_to_prd_tbl']) || isset($_POST['get_last_five_prd_dashbord']) || isset($_FILES["file"]["name"] ) || isset($_POST["get_admin_product"]) || isset($_POST["edit_admin_product"])  || isset($_POST["delete_admin_product"]) || isset($_POST["product_count"]) || isset($_POST["get_admin_product_filter"]) || isset($_POST["Prduct_table_footer_num"])){
+if(isset($_POST['add_to_prd_tbl']) || isset($_POST['update_prd'])|| isset($_POST['get_last_five_prd_dashbord']) || isset($_FILES["file"]["name"] ) || isset($_POST["get_admin_product"]) || isset($_POST["edit_admin_product"])  || isset($_POST["delete_admin_product"]) || isset($_POST["product_count"]) || isset($_POST["get_admin_product_filter"]) || isset($_POST["Prduct_table_footer_num"])){
 	
 	$page_number_limit=10; //per page have 10 products
 	if(isset($_POST["setpagenumber"])){
@@ -224,17 +225,31 @@ if(isset($_POST["Prduct_table_footer_num"])){
 		   
 			$Product_id= $_POST['Product_id'];
 			$prd_add_date= $_POST['prd_add_date'];
-			$get_category= $_POST['get_category'];
-			$get_brand= $_POST['get_brand'];
-			$product_name= $_POST['product_name'];
+			$get_category_name= $_POST['get_category'];//from text
+			$get_brand_name= $_POST['get_brand']; //from text
+			$product_name= $_POST['product_name'];//
 			$product_price= $_POST['product_price'];
 			$product_desc= $_POST['product_desc'];
 			$product_keywords= $_POST['product_keywords'];
 			$prd_total_qty= $_POST['prd_total_qty'];
 			$product_profit_rate= $_POST['product_profit_rate'];
+			$get_weight= $_POST['get_weight'];
 			  
 			$orderid="Pid_".$Product_id.".";	
 					
+		//change category name to category id			
+		$get_category_id_sql = "SELECT  category_id FROM category_tbl WHERE active=1 and category_name = '$get_category_name'" ;
+		$get_category_id_check_query = mysqli_query($con,$get_category_id_sql);	
+		$get_category_row = mysqli_fetch_array($get_category_id_check_query);	
+		$get_category = $get_category_row["category_id"];			
+				
+		//change brand name to brand id		
+		$get_brand_id_sql = "SELECT  brand_id FROM brand_tbl WHERE active=1 and brand_name = '$get_brand_name'" ;
+		$get_brand_id_check_query = mysqli_query($con,$get_brand_id_sql);	
+		$get_brand_row = mysqli_fetch_array($get_brand_id_check_query);	
+		$get_brand = $get_brand_row["brand_id"];			
+					
+		  
 			/* Getting file name */
 			$filename = $_FILES['file']['name'];
 			  
@@ -272,13 +287,15 @@ if(isset($_POST["Prduct_table_footer_num"])){
 		$check_query1 = mysqli_query($con,$sql1);
 		$chk_ext_product_inactive = mysqli_num_rows($check_query1);
 
-		if($chk_ext_product_active > 0){
-			echo "1";
+		if($chk_ext_product_active > 0)
+{
+			echo "1"; //existing 
 			 
 		} 
-		elseif($chk_ext_product_inactive>0){
+		elseif($chk_ext_product_inactive>0)
+		{
 			
-			 echo "2";
+			 echo "2"; 
 		}
 		else
 		{ 
@@ -297,7 +314,7 @@ if(isset($_POST["Prduct_table_footer_num"])){
 						} 
 							
 			
-				$sql1= "INSERT INTO `product_tbl`(`product_id`,`created_date`, `product_category`, `product_brand`, `product_name`, `product_desc`, `product_img`, `profit_rate` , `product_price`,`product_total_qty`,`product_keywords`) VALUES ($Product_id,'$prd_add_date','$get_category','$get_brand','$product_name','$product_desc','$prd_img','$product_profit_rate', $product_price,'$prd_total_qty','$product_keywords')";
+				$sql1= "INSERT INTO `product_tbl`(`product_id`,`created_date`, `product_category`, `product_brand`, `product_name`, `product_desc`, `product_img`, `profit_rate` , `product_price`,`product_total_qty`,`product_keywords`,`product_weight`) VALUES ($Product_id,'$prd_add_date','$get_category','$get_brand','$product_name','$product_desc','$prd_img','$product_profit_rate', $product_price,'$prd_total_qty','$product_keywords','$get_weight')";
 	
 							if(mysqli_query($con,$sql1))
 							{
@@ -307,7 +324,103 @@ if(isset($_POST["Prduct_table_footer_num"])){
 							}
 		}
 	
+				}
 	}
+	else if(isset($_POST['update_prd']) )
+	{
+		
+		 
+			$Product_id= $_POST['Product_id'];
+			$prd_add_date= $_POST['prd_add_date'];
+			$get_category_name= $_POST['get_category'];//from text
+			$get_brand_name= $_POST['get_brand']; //from text
+			$product_name= $_POST['product_name'];//
+			$product_price= $_POST['product_price'];
+			$product_desc= $_POST['product_desc'];
+			$product_keywords= $_POST['product_keywords'];
+			$prd_total_qty= $_POST['prd_total_qty'];
+			$product_profit_rate= $_POST['product_profit_rate'];
+			$get_weight= $_POST['get_weight'];
+			@$file= $_POST['file'];//undefined as create a error in php that's why used @
+			
+			$orderid="Pid_".$Product_id.".";	
+			
+			  
+		  
+		//change category name to category id			
+		$get_category_id_sql = "SELECT  category_id FROM category_tbl WHERE active=1 and category_name = '$get_category_name'" ;
+		$get_category_id_check_query = mysqli_query($con,$get_category_id_sql);	
+		$get_category_row = mysqli_fetch_array($get_category_id_check_query);	
+		$get_category = $get_category_row["category_id"];			
+				
+		//change brand name to brand id		
+		$get_brand_id_sql = "SELECT  brand_id FROM brand_tbl WHERE active=1 and brand_name = '$get_brand_name'" ;
+		$get_brand_id_check_query = mysqli_query($con,$get_brand_id_sql);	
+		$get_brand_row = mysqli_fetch_array($get_brand_id_check_query);	
+		$get_brand = $get_brand_row["brand_id"];			
+					
+		 		  
+		
+			date_default_timezone_set('Asia/Kolkata');
+			//define date and time
+			$date = date('Y-m-d_H-i-s_', time());
+
+		  	 if($file=='undefined')
+			  {
+				 $sql2= "update product_tbl set created_date='$prd_add_date', product_category=$get_category, product_brand=$get_brand, product_name='$product_name',product_desc='$product_desc',profit_rate ='$product_profit_rate' , product_price=$product_price,product_total_qty=$prd_total_qty,product_keywords ='$product_keywords',product_weight='$get_weight' where product_id='$Product_id'";
+			 
+			  }	
+			  else
+			  {
+				  	  
+				 /* Getting file name */
+				 $filename = $_FILES['file']['name'];
+				 
+				 /* Location */
+				$location = "./upload/"."Product_images."."/";
+				$uploadOk = 1;
+				$imageFileType = pathinfo($filename,PATHINFO_EXTENSION);
+				 
+				$new_file_name=$date.$orderid.$imageFileType;
+				$prd_img =$new_file_name;
+				 
+				 
+				 /* Valid extensions */
+				$valid_extensions = array("jpg","jpeg","png");
+			
+				if(!in_array(strtolower($imageFileType), $valid_extensions))
+					{
+					echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File extension not suppoted!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+					}
+				else
+					{
+							 if($uploadOk == 0)
+								{
+										echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+								}
+								else
+								{
+								   /* Upload file */
+								  if(move_uploaded_file($_FILES['file']['tmp_name'],$location.$new_file_name))
+								  {
+									 
+								   }
+								   else
+								   {
+										echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded !</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+								
+								   }
+								} 
+				
+
+						$sql2= "update product_tbl set created_date='$prd_add_date',product_img='', product_category=$get_category, product_brand=$get_brand, product_name='$product_name', product_desc='$product_desc',product_img='$prd_img', profit_rate ='$product_profit_rate' , product_price=$product_price,product_total_qty=$prd_total_qty,product_keywords ='$product_keywords',product_weight='$get_weight' where product_id='$Product_id'";
+			  
+					}
+			}
+			  
+		 $check_query2 = mysqli_query($con,$sql2);  
+		 echo 1;
+		 
 	}
 	else if(isset($_POST["get_admin_product"]))
 	{	
