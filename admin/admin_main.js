@@ -1948,21 +1948,87 @@ function out_of_stock(){
 	  
 
 
-//top fast moving products
-fast_moving_prd()
-function fast_moving_prd(){
-	 
+
+//total Sales
+ total_number_of_sale();
+function total_number_of_sale(){
+
+	 	$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{total_number_of_sale:1}, 
+					success	:	function(data){
+					 
+					 if(data!="")
+						{
+							var array = data.split('*/*');
+						  
+								$("#count_total").html(array[0]);
+								$("#count_total_Revenue").html("Rs."+ array[1] +".00");
+								$("#count_total_Profit").html("Rs."+ array[2] +".00");
+								$("#count_total_Cost").html("Rs."+ array[3] +".00");
+								
+						}
+						 
+		 }
+ })	
+
+}
+
+
+
+
+//count customer
+count_total_customers();
+function count_total_customers(){
+	
 				$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
-					data	:	{topfast_moving:1}, 
+					data	:	{count_total_customers:1}, 
 					success	:	function(data){
-							 	
-								
+						 
+							$("#total_customers").html(data);
 					}
 					})			
 					
 	
 }
+
+
+var bar_jan_val;
+//customer order month wise for dashboard
+customer_order_month();
+ function customer_order_month(){
+
+	 				$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{customer_order_month:1}, 
+					success	:	function(data){
+						  
+					 if(data!="")
+						{
+							var month_array = data.split('*/*');
+							bar_jan_val = month_array[0];							 
+							 
+								alert(bar_jan_val);
+						}
+						
+						
+					}
+					})			
+ }
+ 
+ 
+fast_moving_prd();
+//top fast moving products
+fast_moving_prd()
+function fast_moving_prd(){
+	   
+}
+
+
+
 
 });

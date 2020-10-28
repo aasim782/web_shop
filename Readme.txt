@@ -1,6 +1,6 @@
--product edit and update
--recent produt 
-" Ver 0.6.9"
+-total customer count
+-dashboard partielly completed
+" Ver 0.6.10"
 
  
 
@@ -37,7 +37,7 @@ Report doc
 newprice in offer tabele ---->active
 order table --> discount rate
 date at product table
-
+delivery table small changes image and recived date filed miss
 
 
 

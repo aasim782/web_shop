@@ -98,11 +98,12 @@
                   <table class="table m-0">
                     <thead >
                     <tr class='text-center  shadow-sm bg-dark'>
+                      <th>No</th>
                       <th>Order ID</th>
                       <th>Customer Name</th>
 					  <th>Order Date</th>
                       <th>Product Name</th>
-                      <th>Date</th>
+                      <th>Received Date</th>
                       <th>Receiver Name</th>
                       <th>Action </th>
                     </tr>

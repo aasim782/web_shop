@@ -77,8 +77,7 @@
             <!-- small box -->
             <div class="small-box shadow bg-info">
               <div class="inner">
-                <h3>150</h3>
-
+                <h3 id="count_total"> </h3> 
                 <p>Number of Sales</p>
               </div>
               <div class="icon">
@@ -92,7 +91,7 @@
             <!-- small box -->
             <div class="small-box shadow bg-success">
               <div class="inner">
-                <h3>Rs. 540000.00</h3>
+                <h3 id="count_total_Revenue"> </h3>
 
                 <p>Revenue</p>
               </div>
@@ -107,7 +106,7 @@
             <!-- small box -->
             <div class="small-box shadow bg-warning">
               <div class="inner">
-                <h3>Rs. 44000.00</h3>
+                <h3 id="count_total_Profit"></h3>
 
                 <p>Profit</p>
               </div>
@@ -122,7 +121,7 @@
             <!-- small box -->
             <div class="small-box shadow bg-secondary ">
               <div class="inner">
-                <h3>Rs. 496000.00 </h3>
+                <h3 id="count_total_Cost"></h3>
 
                 <p>Cost</p>
               </div>
@@ -186,7 +185,7 @@
             <!-- small box -->
             <div class="small-box shadow bg-purple">
               <div class="inner">
-                <h3>65</h3>
+                <h3 id="total_customers"></h3>
 
                 <p>Total Customers</p>
               </div>
@@ -452,22 +451,13 @@
 <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
 <script src="plugins/flot-old/jquery.flot.pie.min.js"></script>
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-   
- 
- 
+  <script src="admin_main.js?i=135" ></script>
  <script>
+ 
+  
+ 
   $(function () {
+
     /* ChartJS
      * -------
      * Here we will create a few charts using ChartJS
@@ -483,8 +473,10 @@
     // Get context with jQuery - using jQuery's .get() method.
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
+
+//for probit graph
     var areaChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','Aug','Sep','Oct','Nov','December'],
       datasets: [
         {
           label               : 'Digital Goods',
@@ -495,7 +487,7 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90]
+          data                : [28, 48, 40, 19, 86, 27, 90,10,10,10,10,10]
         },
         {
           label               : 'Electronics',
@@ -506,7 +498,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
+          data                : [65, 59, 80, 81, 56, 55, 40,10,10,10,10,52]
         },
       ]
     }
@@ -691,22 +683,17 @@
   
   
   
-  
- 
-  
-  
-  
-  
+   
     $(function () {
     
-
+ 	
     /*
      * BAR CHART
      * ---------
      */
 
     var bar_data = {
-      data : [[1,10], [2,8], [3,4], [4,13], [5,17], [6,9]],
+      data : [[1,100], [2,8], [3,4], [4,13], [5,17], [6,9],[7,9],[8,9],[9,9],[10,9],[11,9],[12,200]],
       bars: { show: true }
     }
     $.plot('#bar-chart', [bar_data], {
@@ -722,7 +709,7 @@
       },
       colors: ['#3c8dbc'],
       xaxis : {
-        ticks: [[1,'January'], [2,'February'], [3,'March'], [4,'April'], [5,'May'], [6,'June']]
+        ticks: [[1,'JAN'], [2,'FEB'], [3,'MAR'], [4,'APR'], [5,'MAY'], [6,'JUN'],[7,'JUL'],[8,'AUG'],[9,'SEP'],[10,'OCT'],[11,'NOV'],[12,'DEC'],]
       }
     })
     /* END BAR CHART */

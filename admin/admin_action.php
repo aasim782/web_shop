@@ -1717,10 +1717,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
  $check_query = mysqli_query($con,$sql);
  $count_deliver_order = mysqli_num_rows($check_query);
  
- 
- 
- 
- 
+   
 		$i=1;
 		while($row = mysqli_fetch_array($check_query))
 			{
@@ -1736,15 +1733,16 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 		
 		echo " <tr class='text-center' >	
 					 <td><b>$i </b></td>
-                      <td >   $order_id  </td>
+                      <td>$order_id  </td>
+                      <td> $last_name </td>
                       <td> $order_date</td>
-                      <td> $last_name</td>
+                      <td> $product_name</td>
                  
-                      <td   >
+                      <td>
 					   10/12/2020
 					  </td>
-                  <td   >
-					   
+					<td>
+					   MAM.AASIM
 					  </td>
                  
 					   <td>
@@ -2454,7 +2452,7 @@ if(isset($_POST["Offer_update"]))
 }
  
  
- 
+ //offer deactive
 if(isset($_POST["offer_deactive"]))
 {   
 	$offer_id = $_POST["offer_inactive_id"];
@@ -2464,7 +2462,7 @@ if(isset($_POST["offer_deactive"]))
 
 	}
 
-
+//offer active
 if(isset($_POST["offer_active"]))
 {   
 	$offer_id = $_POST["offer_active_id"];
@@ -2477,6 +2475,168 @@ if(isset($_POST["offer_active"]))
 
 	}
 
+
+ if(isset($_POST["count_total_customers"]))
+{ 
+
+	$total_customers_sql = "SELECT COUNT(customer_id) as total_customer from customer_tbl where 1";
+	$run_query = mysqli_query($con,$total_customers_sql);
+	$row = mysqli_fetch_array($run_query);
+	$count_total_customer = $row["total_customer"];
+	echo "$count_total_customer";
+ 
+}
+
+
+
  
 
+
+ if(isset($_POST["total_number_of_sale"]))
+{ 
+
+			date_default_timezone_set('Asia/Kolkata');
+			//define date and time
+			$year = date('Y');
+			$month = date('m');
+			 
+	$total_sale_query = "SELECT customer_ord_prds.order_date,customer_ord_prds.current_price_per_prd,customer_ord_prds.order_qtry,product_tbl.profit_rate from customer_ord_prds,product_tbl 
+	where (customer_ord_prds.product_id=product_tbl.product_id) and  (customer_ord_prds.order_status=3 and  (MONTH(order_date) = $month AND YEAR(order_date) = $year))";
+	$run_query = mysqli_query($con,$total_sale_query);
+	 $count=mysqli_num_rows($run_query);
+		 
+			
+		if(	$count>0)
+		{
+						$total_sales_count=0;
+						$total_revenue=0;
+						$total_cost=0;
+						$total_profit=0;
+				while($row = mysqli_fetch_array($run_query))
+				{  
+					$total_sales_count++; //total delivered orders
+					$order_qtry = $row["order_qtry"]; //total qty orders
+					$profit_rate = $row["profit_rate"] ; // profit rate
+					$current_price_per_prd = $row["current_price_per_prd"]; //price per product
+					$total_without_profit_price= round(($current_price_per_prd-($profit_rate/($profit_rate+100))*$current_price_per_prd));
+					$total_cost=$total_cost+($total_without_profit_price*$order_qtry);
+					$total_revenue_a_prd = $order_qtry * $current_price_per_prd; //total revenue for a prd model
+					$total_revenue = $total_revenue+$total_revenue_a_prd;  //total revenue calculate
+			 
+				 }
+		
+					$total_profit=$total_revenue-$total_cost;
+		
+				echo "$total_sales_count*/*$total_revenue*/*$total_profit*/*$total_cost*/*";
+		
+		
+		
+		}
+		else
+		{
+			 echo "0*/*0*/*0*/*0*/*";
+		}
+		
+ 
+
+}
+
+
+
+//customer order month wise for dashboar
+ if(isset($_POST["customer_order_month"]))
+{ 	
+		date_default_timezone_set('Asia/Kolkata');
+			//define date and time
+		$year = date('Y');
+			
+			$jan_count=0;
+			$feb_count=0;
+			$march_count=0;
+			$april_count=0;
+			$may_count=0;
+			$jun_count=0;
+			$july_count=0;
+			$aug_count=0;
+			$sep_count=0;
+			$october_count=0;
+			$november_count=0;
+			$december=0;
+			
+			
+	$order_month_query = "SELECT MONTH(order_date),COUNT(*) FROM customer_ord_prds WHERE YEAR(order_date) ='$year' GROUP BY MONTH(order_date)";  
+	$run_query = mysqli_query($con,$order_month_query);
+	$count=mysqli_num_rows($run_query);
+ 
+ 
+
+				while($row = mysqli_fetch_array($run_query))
+				{  
+					$month=$row["MONTH(order_date)"]; 
+					$total=$row["COUNT(*)"]; 
+				   
+					if($month == 1)
+					{
+						$jan_count= $total;
+					
+					}
+					else if($month == 2)
+					{
+						$feb_count=$feb_count+1;
+					}
+					else if($month == 3)
+					{
+						$march_count=$march_count+1;
+					}
+					else if($month == 4)
+					{
+						$april_count=$april_count+1;
+					}
+					else if($month == 5)
+					{
+						$may_count=$may_count+1;
+					}
+					else if($month == 6)
+					{
+						$jun_count=$jun_count+1;
+					}
+					else if($month == 7)
+					{
+						$july_count=$july_count+1;
+					}
+					else if($month == 8)
+					{
+						$aug_count=$aug_count+1;
+					}
+					 
+					else if($month == 9)
+					{
+						$sep_count=$sep_count+1;
+					}
+					else if($month == 10)
+					{
+						$october_count=$total;
+					}
+					else if($month == 11)
+					{
+						$november_count=$total;
+					}
+					else if($month == 12)
+					{
+						$december =$december+1;
+					}
+						
+						
+				}
+				
+				echo "$jan_count*/*$feb_count*/*$march_count*/*$april_count*/*$may_count*/*$jun_count*/*$july_count*/*$aug_count*/*$sep_count*/*$october_count*/*$november_count*/*$december*/*";
+		 
+		
+} 
+
+
+ if(isset($_POST["topfast_moving"]))
+{ 
+
+}
 ?>
