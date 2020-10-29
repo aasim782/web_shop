@@ -408,18 +408,17 @@
       <p>Sidebar content</p>
     </div>
   </aside>
+  
+  
+		
   <!-- /.control-sidebar -->
-
-
-
-
-
-
-
-
-
-
  
+
+
+
+
+
+ bar_chart_val
 
 
 
@@ -451,183 +450,18 @@
 <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
 <script src="plugins/flot-old/jquery.flot.pie.min.js"></script>
  
-  <script src="admin_main.js?i=135" ></script>
- <script>
- 
   
- 
+ <script >  
+  	 
+	 
+	  
+	 
+	 
+	 
+	 
+	 
   $(function () {
-
-    /* ChartJS
-     * -------
-     * Here we will create a few charts using ChartJS
-     */
-
-    //--------------
-    //- AREA CHART -
-    //--------------
-    //--------------
-    //- AREA CHART -
-    //--------------
-
-    // Get context with jQuery - using jQuery's .get() method.
-    var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-
-
-//for probit graph
-    var areaChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','Aug','Sep','Oct','Nov','December'],
-      datasets: [
-        {
-          label               : 'Digital Goods',
-          backgroundColor     : 'rgba(60,141,188,0.9)',
-          borderColor         : 'rgba(60,141,188,0.8)',
-          pointRadius          : false,
-          pointColor          : '#3b8bba',
-          pointStrokeColor    : 'rgba(60,141,188,1)',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90,10,10,10,10,10]
-        },
-        {
-          label               : 'Electronics',
-          backgroundColor     : 'rgba(210, 214, 222, 1)',
-          borderColor         : 'rgba(210, 214, 222, 1)',
-          pointRadius         : false,
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40,10,10,10,10,52]
-        },
-      ]
-    }
-
-    var areaChartOptions = {
-      maintainAspectRatio : false,
-      responsive : true,
-      legend: {
-        display: false
-      },
-      scales: {
-        xAxes: [{
-          gridLines : {
-            display : false,
-          }
-        }],
-        yAxes: [{
-          gridLines : {
-            display : false,
-          }
-        }]
-      }
-    }
-
-    // This will get the first returned node in the jQuery collection.
-    var areaChart       = new Chart(areaChartCanvas, { 
-      type: 'line',
-      data: areaChartData, 
-      options: areaChartOptions
-    })
- 
-    //-------------
-    //- DONUT CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var donutChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var donutData        = {
-      labels: [
-          'Galaxy A50', 
-          'Women Watches',
-          'Hp Laptop', 
-          'Headphone', 
-          'Mouse', 
-          
-      ],
-      datasets: [
-        {
-          data: [10,60,4,200,100],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc' ],
-        }
-      ]
-    }
-    var donutOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    var donutChart = new Chart(donutChartCanvas, {
-      type: 'doughnut',
-      data: donutData,
-      options: donutOptions      
-    })
-
-
-  //-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieData        = donutData;
-    var pieOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    var pieChart = new Chart(pieChartCanvas, {
-      type: 'pie',
-      data: pieData,
-      options: pieOptions      
-    })
-
-
-
-
-
-
-
-
-
-
-
-    var donutChartCanvas = $('#pieCharts').get(0).getContext('2d')
-    var donutData        = {
-      labels: [
-          'Pending Orders', 
-          'Process Orders',
-          'Shipped Orders', 
-          'Delivered Orders', 
-          'Unpaid Orders', 
-          
-      ],
-      datasets: [
-        {
-          data: [10,60,4,200,100],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc' ],
-        }
-      ]
-    }
-    var donutOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    var donutChart = new Chart(donutChartCanvas, {
-      type: 'doughnut',
-      data: donutData,
-      options: donutOptions      
-    })
-
-
-
-
- 
- 
- 
-
+  
     //-------------
     //- BAR CHART -
     //-------------
@@ -680,43 +514,7 @@
 	
   })
   
-  
-  
-  
-   
-    $(function () {
     
- 	
-    /*
-     * BAR CHART
-     * ---------
-     */
-
-    var bar_data = {
-      data : [[1,100], [2,8], [3,4], [4,13], [5,17], [6,9],[7,9],[8,9],[9,9],[10,9],[11,9],[12,200]],
-      bars: { show: true }
-    }
-    $.plot('#bar-chart', [bar_data], {
-      grid  : {
-        borderWidth: 1,
-        borderColor: '#f3f3f3',
-        tickColor  : '#f3f3f3'
-      },
-      series: {
-         bars: {
-          show: true, barWidth: 0.5, align: 'center',
-        },
-      },
-      colors: ['#3c8dbc'],
-      xaxis : {
-        ticks: [[1,'JAN'], [2,'FEB'], [3,'MAR'], [4,'APR'], [5,'MAY'], [6,'JUN'],[7,'JUL'],[8,'AUG'],[9,'SEP'],[10,'OCT'],[11,'NOV'],[12,'DEC'],]
-      }
-    })
-    /* END BAR CHART */
-
-     
-
-  })
 
   /*
    * Custom Label formatter

@@ -1,8 +1,10 @@
 $(document).ready(function () {
+  
   product_tbl_get_product();
   category_tbl_get_category();
   brand_tbl_get_brand();
 
+	
   //used for admin panel product adding model
   get_product_id();
 
@@ -1104,15 +1106,20 @@ category_count();
 					success	:	function(data){
 						$("#count_total_panding_order").html(data);
 						$("#count_total_panding_order_noti").html(data);
+						
+						
+						
+						
+						
+						
+						
 					}
 					})
 					
 		}
 		
 
-	 
-	 
-		
+	  
 		
   
   	//get all process order  to admin processing table 
@@ -1130,32 +1137,28 @@ category_count();
 					
 		}
 		
-		
+			var data_val=0;
 		 //count shpped orders
 		count_total_process_order()	
 		function count_total_process_order(){
-
+		
 					$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
 					data	:	{count_total_process_order:1},
 					success	:	function(data){
+				 
 						$("#count_total_process_order").html(data);
 						$("#count_total_process_order_noti").html(data);
-						
-						
+ 
 					}
 					})
-					
+				
+	
 		}
 		
 		
-		
-		
-		
-		
-		
-				
+	  
   
   	//get all shipped order  to admin processing table 
 	get_all_shipped_orders()	
@@ -1888,7 +1891,7 @@ function out_of_stock(){
 	  })
 	
 	
-		  	//deactive the offer
+	 //deactive the offer
 	  $("body").delegate("#deactive_btn", "click", function () {	
 	   event.preventDefault();
 	   	var offer_id_txt = $(this).attr("offer_dactive_id");
@@ -1996,12 +1999,11 @@ function count_total_customers(){
 }
 
 
-var bar_jan_val;
+ 
 //customer order month wise for dashboard
 customer_order_month();
  function customer_order_month(){
-
-	 				$.ajax({
+			$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
 					data	:	{customer_order_month:1}, 
@@ -2010,25 +2012,274 @@ customer_order_month();
 					 if(data!="")
 						{
 							var month_array = data.split('*/*');
-							bar_jan_val = month_array[0];							 
-							 
-								alert(bar_jan_val);
+						 	  
+						//bar chart html part (passing the data)
+									var bar_data = {
+									  data : [[1,month_array[0]], [2,month_array[1]], [3,month_array[2]], [4,month_array[3]], [5,month_array[4]], [6,month_array[5]],[7,month_array[6]],[8,month_array[7]],[9,month_array[8]],[10,month_array[9]],[11,month_array[10]],[12,month_array[11]]],
+									  bars: { show: true }
+									}
+									$.plot('#bar-chart', [bar_data], {
+									  grid  : {
+										borderWidth: 1,
+										borderColor: '#f3f3f3',
+										tickColor  : '#f3f3f3'
+									  },
+									  series: {
+										 bars: {
+										  show: true, barWidth: 0.5, align: 'center',
+										},
+									  },
+									  colors: ['#3c8dbc'],
+									  xaxis : {
+										ticks: [[1,'JAN'], [2,'FEB'], [3,'MAR'], [4,'APR'], [5,'MAY'], [6,'JUN'],[7,'JUL'],[8,'AUG'],[9,'SEP'],[10,'OCT'],[11,'NOV'],[12,'DEC'],]
+									  }
+									})
+									/* END BAR CHART */
+
+     
+
+   
 						}
 						
 						
 					}
-					})			
+	})			
+ 
+ 		
  }
  
  
-fast_moving_prd();
-//top fast moving products
-fast_moving_prd()
-function fast_moving_prd(){
-	   
-}
+
+ 
+		data_for_dashboard_fast_moving_prd();
+				//dashboard data for pie
+		function data_for_dashboard_fast_moving_prd()
+		{
+ 
+ 
+ 
+				$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{data_for_dashboard_fast_moving_prd:1}, 
+					success	:	function(data){
+					
+					var array = data.split('*/*'); 
+						   
+				  var donutData   = {
+					  
+							  labels: [
+									array[0], 
+									array[2], 
+									array[4], 
+									array[6], 
+									array[8], 
+								   
+							  ],
+							  datasets: [
+								{
+								  data: [array[1],array[3],array[5],array[7],array[9]],
+								  backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc' ],
+								}
+							  ]
+							}
+										
+ 
+							var donutChartCanvas = $('#pieChart').get(0).getContext('2d')
+  
+							var donutOptions     = {
+							  maintainAspectRatio : false,
+							  responsive : true,
+							}
+					 
+					 
+							var donutChart = new Chart(donutChartCanvas, {
+							  type: 'doughnut',
+							  data: donutData,
+							  options: donutOptions      
+							})
 
 
+						  //-------------
+							//- PIE CHART -
+							//-------------
+							// Get context with jQuery - using jQuery's .get() method.
+							var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+							var pieData        = donutData;
+							var pieOptions     = {
+							  maintainAspectRatio : false,
+							  responsive : true,
+							}
+							
+							
 
+							//Create pie or douhnut chart
+							// You can switch between pie and douhnut using the method below.
+							var pieChart = new Chart(pieChartCanvas, {
+							  type: 'pie',
+							  data: pieData,
+							  options: pieOptions      
+							})
+
+
+						 
+					}
+					})			
+ 
+ 
+ 
+ 
+		}
+		
+		
+		
+		
+			data_for_dashboard_order_status();
+				//dashboard data for pie
+		function data_for_dashboard_order_status()
+		{
+			
+			
+			
+				$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{data_for_dashboard_order_status:1}, 
+					success	:	function(data){
+				 
+						if(data!="")
+						{
+							var array = data.split('*/*'); 
+						    
+							
+							var donutChartCanvas = $('#pieCharts').get(0).getContext('2d')
+							var donutData        = {
+							  labels: [
+								  'Pending Orders', 
+								  'Process Orders',
+								  'Shipped Orders', 
+								  'Unpaid Orders', 
+								  
+							  ],
+							  datasets: [
+								{
+								  data: [ array[0], array[1], array[2], array[3]],
+								  backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc' ],
+								}
+							  ]
+							}
+							var donutOptions     = {
+							  maintainAspectRatio : false,
+							  responsive : true,
+							}
+							//Create pie or douhnut chart
+							// You can switch between pie and douhnut using the method below.
+							var donutChart = new Chart(donutChartCanvas, {
+							  type: 'doughnut',
+							  data: donutData,
+							  options: donutOptions      
+							})
+								
+						 } }})
+		
+		}
+		
+		
+		 	
+			
+			 
+			
+			
+			
+			data_for_dashboard_revenue_cost();
+		 // revenue_cost_dashboard
+		function data_for_dashboard_revenue_cost()
+		{
+				
+						$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{data_for_dashboard_revenue_cost:1}, 
+					success	:	function(data){
+					
+					 
+										
+										// Get context with jQuery - using jQuery's .get() method.
+						var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+
+
+					//for probit graph
+						var areaChartData = {
+						  labels  : ['Jan', 'Frb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'],
+						  datasets: [
+							{
+							  label               : 'Digital Goods',
+							  backgroundColor     : 'rgba(60,141,188,0.9)',
+							  borderColor         : 'rgba(60,141,188,0.8)',
+							  pointRadius          : false,
+							  pointColor          : '#3b8bba',
+							  pointStrokeColor    : 'rgba(60,141,188,1)',
+							  pointHighlightFill  : '#fff',
+							  pointHighlightStroke: 'rgba(60,141,188,1)',
+							  data                : [28, 48, 40, 19, 86, 27, 90,10,10,10,10,10]
+							},
+							{
+							  label               : 'Electronics',
+							  backgroundColor     : 'rgba(210, 214, 222, 1)',
+							  borderColor         : 'rgba(210, 214, 222, 1)',
+							  pointRadius         : false,
+							  pointColor          : 'rgba(210, 214, 222, 1)',
+							  pointStrokeColor    : '#c1c7d1',
+							  pointHighlightFill  : '#fff',
+							  pointHighlightStroke: 'rgba(220,220,220,1)',
+							  data                : [65, 59, 80, 81, 56, 55, 40,10,10,10,10,52]
+							},
+						  ]
+						}
+
+						var areaChartOptions = {
+						  maintainAspectRatio : false,
+						  responsive : true,
+						  legend: {
+							display: false
+						  },
+						  scales: {
+							xAxes: [{
+							  gridLines : {
+								display : false,
+							  }
+							}],
+							yAxes: [{
+							  gridLines : {
+								display : false,
+							  }
+							}]
+						  }
+						}
+
+						// This will get the first returned node in the jQuery collection.
+						var areaChart       = new Chart(areaChartCanvas, { 
+						  type: 'line',
+						  data: areaChartData, 
+						  options: areaChartOptions
+						})
+ 
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+						}})
+				
+		}
+		
+		
+		
 
 });

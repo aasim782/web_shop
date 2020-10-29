@@ -1,6 +1,5 @@
--total customer count
 -dashboard partielly completed
-" Ver 0.6.10"
+" Ver 0.6.11"
 
  
 
@@ -13,7 +12,7 @@ Developemnt pending
 -report module
 -message module customer
 -message module admin
-
+ 
 
 -service tracking info update (reciver details)
 -reciver details on deliver page
@@ -23,7 +22,7 @@ Developemnt pending
 -Bank Account details explaantion
  
 -cancel or unpaid something module (error also should solve)
--feedback image upload option
+-feedback image upload option and feedback count to product
 -get customer review on profile page
 -active roles
   

@@ -2546,10 +2546,11 @@ if(isset($_POST["offer_active"]))
 //customer order month wise for dashboar
  if(isset($_POST["customer_order_month"]))
 { 	
+
 		date_default_timezone_set('Asia/Kolkata');
 			//define date and time
 		$year = date('Y');
-			
+		
 			$jan_count=0;
 			$feb_count=0;
 			$march_count=0;
@@ -2562,81 +2563,163 @@ if(isset($_POST["offer_active"]))
 			$october_count=0;
 			$november_count=0;
 			$december=0;
-			
-			
+			$month=0;
 	$order_month_query = "SELECT MONTH(order_date),COUNT(*) FROM customer_ord_prds WHERE YEAR(order_date) ='$year' GROUP BY MONTH(order_date)";  
 	$run_query = mysqli_query($con,$order_month_query);
 	$count=mysqli_num_rows($run_query);
- 
- 
-
+	
 				while($row = mysqli_fetch_array($run_query))
 				{  
 					$month=$row["MONTH(order_date)"]; 
-					$total=$row["COUNT(*)"]; 
-				   
-					if($month == 1)
+					$count=$row["COUNT(*)"]; 
+				  
+					if($month == "1")
 					{
-						$jan_count= $total;
+						$jan_count=$count;
 					
 					}
 					else if($month == 2)
 					{
-						$feb_count=$feb_count+1;
+						$feb_count=$count;
 					}
 					else if($month == 3)
 					{
-						$march_count=$march_count+1;
+						$march_count=$count;
 					}
 					else if($month == 4)
 					{
-						$april_count=$april_count+1;
+						$april_count=$count;
 					}
-					else if($month == 5)
+					else if($month ==5)
 					{
-						$may_count=$may_count+1;
+						$may_count=$count;
 					}
 					else if($month == 6)
 					{
-						$jun_count=$jun_count+1;
+						$jun_count=$count;
 					}
 					else if($month == 7)
 					{
-						$july_count=$july_count+1;
+						$july_count=$count;
 					}
 					else if($month == 8)
 					{
-						$aug_count=$aug_count+1;
+						$aug_count=$count;
 					}
 					 
 					else if($month == 9)
 					{
-						$sep_count=$sep_count+1;
+						$sep_count=$count;
 					}
-					else if($month == 10)
+					else if($month ==10)
 					{
-						$october_count=$total;
+						$october_count=$count;
 					}
 					else if($month == 11)
 					{
-						$november_count=$total;
+						$november_count=$count;
 					}
 					else if($month == 12)
 					{
-						$december =$december+1;
-					}
-						
-						
-				}
-				
-				echo "$jan_count*/*$feb_count*/*$march_count*/*$april_count*/*$may_count*/*$jun_count*/*$july_count*/*$aug_count*/*$sep_count*/*$october_count*/*$november_count*/*$december*/*";
-		 
+						$december =$count;
+					} 
 		
+				
+				}
+					 
+								
+ 		echo "$jan_count*/*$feb_count*/*$march_count*/*$april_count*/*$may_count*/*$jun_count*/*$july_count*/*$aug_count*/*$sep_count*/*$october_count*/*$november_count*/*$december*/*";
+		
+
 } 
 
+ 
 
- if(isset($_POST["topfast_moving"]))
+
+ if(isset($_POST["data_for_dashboard_fast_moving_prd"]))
 { 
+	 
+	 
+	  date_default_timezone_set('Asia/Kolkata');
+			//define date and time
+		$year = date('Y');
+		$month = date('m');
+		 
+	$sql="SELECT  product_id,count(*) AS count_product from customer_ord_prds WHERE YEAR(order_date) ='$year' and MONTH(order_date) ='$month' and order_status=3 GROUP BY product_id ORDER BY count_product DESC LIMIT 5";
+	$run_query = mysqli_query($con,$sql);
+ 				
+				while($row = mysqli_fetch_array($run_query))
+				{  
+					$product_id=$row["product_id"]; 
+					$count_fast_move_product=$row["count_product"];
+
+
+						$sql1="SELECT  product_name,product_id from product_tbl WHERE product_id='$product_id'";
+						$run_query1 = mysqli_query($con,$sql1);
+						$row = mysqli_fetch_array($run_query1);
+						$product_name=$row["product_name"]; 
+						
+				echo "$product_name*/*$count_fast_move_product*/*" ;	
+				}
+	 						
+	 
+}
+
+
+
+
+
+ if(isset($_POST["data_for_dashboard_order_status"]))
+{ 
+	  
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_qtry,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.current_price_per_prd,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=0) ) && customer_ord_prds.active=1 ORDER BY order_id ASC" ;
+ $check_query = mysqli_query($con,$sql);
+ $count_panding_order = mysqli_num_rows($check_query);
+ 
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=1) ) && customer_ord_prds.active=1 order by order_id" ;
+ $check_query = mysqli_query($con,$sql);
+ $count_process_order = mysqli_num_rows($check_query);
+
+ 
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=2) ) order by order_id" ;
+ $check_query = mysqli_query($con,$sql);
+ $count_shipped_order = mysqli_num_rows($check_query);
+	
+ 
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date,customer_ord_prds.order_qtry,customer_ord_prds.current_price_per_prd, customer_ord_prds.product_id 
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=0)) && customer_ord_prds.active=1 order by order_id" ;
+  $check_query = mysqli_query($con,$sql);
+  $count_unpaid_order = mysqli_num_rows($check_query);
+ 
+ 
+
+	 echo "$count_panding_order*/*$count_process_order*/*$count_shipped_order*/*$count_unpaid_order*/*";
+
 
 }
+
+
+
+
+ if(isset($_POST["data_for_dashboard_revenue_cost"]))
+{ 
+	$sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
+		 ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+		 FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=2) ) order by order_id" ;
+		 $check_query = mysqli_query($con,$sql);
+		 $count_shipped_order = mysqli_num_rows($check_query);
+		 echo "$count_shipped_order";
+
+
+}
+	
+	
+	
 ?>
