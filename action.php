@@ -499,6 +499,24 @@ if(isset($_POST["add_to_card"])){
 				$sql ="SELECT * FROM product_tbl WHERE product_id = '$product_id' and active=1" ;
 				$check_query = mysqli_query($con,$sql);
 				$count_product=mysqli_num_rows($check_query);
+				
+							//get the ongoing discount rate  
+							$sql_discount = "SELECT  discount_rate  FROM offer_tbl where active=1" ;
+							$qry_discount = mysqli_query($con,$sql_discount);
+							$count_discount = mysqli_num_rows($qry_discount);		
+							$discount_row = mysqli_fetch_array($qry_discount);
+							
+								if($count_discount>0)
+								{
+									$discount_rate = $discount_row["discount_rate"];
+								}
+								else
+								{
+									$discount_rate = 0;
+								}
+								
+								
+				
 				if($count_product>0)
 				 {
 					$row = mysqli_fetch_array($check_query);
@@ -535,6 +553,10 @@ if(isset($_POST["add_to_card"])){
 									while( $row2 = mysqli_fetch_array($check_query))
 										{
 												$order_id = $row2["order_id"];
+												$sql = "UPDATE `order_tbl` SET `discount_rate`= $discount_rate WHERE order_id= $order_id";
+												$check_query_discount = mysqli_query($con,$sql);
+											
+										
 										}
 									
 							}
@@ -612,13 +634,7 @@ if(isset($_POST["add_to_card"])){
 							$rows = mysqli_num_rows($check_query1);
 					
 					
-						//get the ongoing discount rate
-						$sql_discount = "SELECT  discount_rate  FROM offer_tbl where active=1" ;
-						$qry_discount = mysqli_query($con,$sql_discount);
-						$row = mysqli_fetch_array($qry_discount);
-					 	$discount_rate = $row["discount_rate"];
-						
-						
+							
 						
 							if($rows == 0)
 							{
@@ -781,7 +797,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 								
 								
 								
-						//validate discount is available or not
+						//validate discount is avaiable or not
 						if($offer_start_date<=$today and $today <=$offer_end_date)
 						{
 							$discount = ($discount_rate*0.01)*$total;

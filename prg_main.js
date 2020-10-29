@@ -424,6 +424,7 @@ $('body').delegate('#create_form_model','click',function() {
 		event.preventDefault();
 		var pid= $(this).attr('pid'); //get the value from our self pid attribute pid 
 		var product_qty_txt = $("#qty-"+pid).val(); 
+		
 				$.ajax({
 					url		:	"action.php",
 					method	:	"POST",

@@ -1,5 +1,6 @@
 -dashboard partielly completed
-" Ver 0.6.11"
+-add card prb solve during offer not found
+" Ver 0.6.12"
 
  
 
@@ -37,6 +38,15 @@ newprice in offer tabele ---->active
 order table --> discount rate
 date at product table
 delivery table small changes image and recived date filed miss
+
+
+//get the ongoing discount rate  
+//$sql_discount = "SELECT  discount_rate  FROM offer_tbl where active=1" ;
+//$qry_discount = mysqli_query($con,$sql_discount);
+//$row = mysqli_fetch_array($qry_discount);
+//$discount_rate = $row["discount_rate"];
+
+
 
 
 
