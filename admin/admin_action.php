@@ -2562,7 +2562,7 @@ if(isset($_POST["offer_active"]))
 			$sep_count=0;
 			$october_count=0;
 			$november_count=0;
-			$december=0;
+			$december_count=0;
 			$month=0;
 	$order_month_query = "SELECT MONTH(order_date),COUNT(*) FROM customer_ord_prds WHERE YEAR(order_date) ='$year' GROUP BY MONTH(order_date)";  
 	$run_query = mysqli_query($con,$order_month_query);
@@ -2573,7 +2573,7 @@ if(isset($_POST["offer_active"]))
 					$month=$row["MONTH(order_date)"]; 
 					$count=$row["COUNT(*)"]; 
 				  
-					if($month == "1")
+					if($month == 1)
 					{
 						$jan_count=$count;
 					
@@ -2621,14 +2621,14 @@ if(isset($_POST["offer_active"]))
 					}
 					else if($month == 12)
 					{
-						$december =$count;
+						$december_count=$count;
 					} 
 		
 				
 				}
 					 
 								
- 		echo "$jan_count*/*$feb_count*/*$march_count*/*$april_count*/*$may_count*/*$jun_count*/*$july_count*/*$aug_count*/*$sep_count*/*$october_count*/*$november_count*/*$december*/*";
+ 		echo "$jan_count*/*$feb_count*/*$march_count*/*$april_count*/*$may_count*/*$jun_count*/*$july_count*/*$aug_count*/*$sep_count*/*$october_count*/*$november_count*/*$december_count*/*";
 		
 
 } 
@@ -2710,14 +2710,181 @@ if(isset($_POST["offer_active"]))
 
  if(isset($_POST["data_for_dashboard_revenue_cost"]))
 { 
-	$sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
-		 ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
-		 FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=2) ) order by order_id" ;
-		 $check_query = mysqli_query($con,$sql);
-		 $count_shipped_order = mysqli_num_rows($check_query);
-		 echo "$count_shipped_order";
+ 
+ 
+  	date_default_timezone_set('Asia/Kolkata');
+			//define date and time
+		$year = date('Y');
+		 
+	$monthly_revenue_query = "SELECT  sum(current_price_per_prd*order_qtry) AS Monthly_total_revenue ,MONTH(order_date) AS Month FROM customer_ord_prds WHERE order_status=3 and  YEAR(order_date) ='$year' GROUP BY MONTH(order_date), YEAR(order_date)";
+	$run_query = mysqli_query($con,$monthly_revenue_query);
+	$count=mysqli_num_rows($run_query);
+ 	
+    $monthly_cost_query ="SELECT MONTH(order_date) AS cost_month,CEILING(sum((customer_ord_prds.current_price_per_prd - (product_tbl.profit_rate/(product_tbl.profit_rate+100))*customer_ord_prds.current_price_per_prd)*customer_ord_prds.order_qtry )) AS Monthly_total_cost FROM customer_ord_prds,product_tbl WHERE (customer_ord_prds.product_id=product_tbl.product_id) and order_status=3 and YEAR(order_date) ='2020' GROUP BY MONTH(order_date), YEAR(order_date)";
+	$run_query_cost = mysqli_query($con,$monthly_cost_query);
+    		 
+			$jan_count=0;
+			$feb_count=0;
+			$march_count=0;
+			$april_count=0;
+			$may_count=0;
+			$jun_count=0;
+			$july_count=0;
+			$aug_count=0;
+			$sep_count=0;
+			$october_count=0;
+			$november_count=0;
+			$december_count=0;
+			$month=0;	
+				
+				
+			$jan_cost_count=0;
+			$feb_cost_count=0;
+			$march_cost_count=0;
+			$april_cost_count=0;
+			$may_cost_count=0;
+			$jun_cost_count=0;
+			$july_cost_count=0;
+			$aug_cost_count=0;
+			$sep_cost_count=0;
+			$october_cost_count=0;
+			$november_cost_count=0;
+			$december_cost_count=0;
+			$Monthly_total_cost=0;
+			
+				  
+				
+				while($row = mysqli_fetch_array($run_query))
+				{  
+						$monthly_total_revenue=$row["Monthly_total_revenue"]; 
+						$month=$row["Month"]; 
+						 
+								if($month == 1 )
+								{
+									$jan_count=$monthly_total_revenue;
+								
+								
+								}
+								else if($month == 2 )
+								{
+									$feb_count=$monthly_total_revenue;
+							
+								}
+								else if($month == 3)
+								{
+									$march_count=$monthly_total_revenue;
+								
+								}
+								else if($month == 4 )
+								{
+									$april_count=$monthly_total_revenue;
+									
+								}
+								else if($month ==5)
+								{
+									$may_count=$monthly_total_revenue;
+									
+								}
+								else if($month == 6)
+								{
+									$jun_count=$monthly_total_revenue;
+								
+								}
+								else if($month == 7 )
+								{
+									$july_count=$monthly_total_revenue;
+									
+								}
+								else if($month == 8)
+								{
+									$aug_count=$monthly_total_revenue;
 
+								}
+								 
+								else if($month == 9 )
+								{
+									$sep_count=$monthly_total_revenue;
+									
+								}
+								else if($month ==10 )
+								{
+									$october_count=$monthly_total_revenue;
 
+								}
+								else if($month == 11 )
+								{
+									$november_count=$monthly_total_revenue;
+									
+								}
+								else if($month == 12 )
+								{
+									$december_count =$monthly_total_revenue;
+								
+								} 
+								
+						while($row_cost = mysqli_fetch_array($run_query_cost))
+						{
+							$cost_month=$row_cost["cost_month"]; 
+							$Monthly_total_cost=$row_cost["Monthly_total_cost"]; 
+							  
+								if($cost_month==1 )
+								{	
+									$jan_cost_count=$Monthly_total_cost;
+								}
+								else if($cost_month==2)
+								{
+									
+									$feb_cost_count=$Monthly_total_cost;
+								}
+								else if($cost_month==3)
+								{
+									$march_cost_count=$Monthly_total_cost;
+								}
+								else if($cost_month==4)
+								{
+									$april_cost_count=$Monthly_total_cost;
+								}
+								else if($cost_month==5)
+								{
+									$may_cost_count=$Monthly_total_cost;
+								}
+								else if($cost_month==6)
+								{
+									$jun_cost_count=$Monthly_total_cost;
+								}
+								else if($cost_month==7)
+								{
+									$july_cost_count=$Monthly_total_cost;
+								}
+								else if($cost_month==8)
+								{
+									$aug_cost_count=$Monthly_total_cost;
+								}
+								else if($cost_month==9)
+								{
+									$sep_cost_count=$Monthly_total_cost;
+								}
+								else if($cost_month==10)
+								{
+									$october_cost_count=$Monthly_total_cost;
+								}
+								else if($cost_month==11)
+								{
+									$november_cost_count=$Monthly_total_cost;
+								}
+								else if($cost_month==12)
+								{
+									$december_cost_count =$Monthly_total_cost;
+								}
+										 
+							 
+					}
+					
+					
+				}
+	 
+ 		echo "$jan_count*/*$feb_count*/*$march_count*/*$april_count*/*$may_count*/*$jun_count*/*$july_count*/*$aug_count*/*$sep_count*/*$october_count*/*$november_count*/*$december_count*/*$jan_cost_count*/*$feb_cost_count*/*$march_cost_count*/*$april_cost_count*/*$may_cost_count*/*$jun_cost_count*/*$july_cost_count*/*$aug_cost_count*/*$sep_cost_count*/*$october_cost_count*/*$november_cost_count*/*$december_cost_count";
+		
 }
 	
 	

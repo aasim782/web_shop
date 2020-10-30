@@ -2009,6 +2009,7 @@ customer_order_month();
 					data	:	{customer_order_month:1}, 
 					success	:	function(data){
 						  
+					
 					 if(data!="")
 						{
 							var month_array = data.split('*/*');
@@ -2201,9 +2202,13 @@ customer_order_month();
 					method	:	"POST",
 					data	:	{data_for_dashboard_revenue_cost:1}, 
 					success	:	function(data){
+				  
 					
-					 
-										
+						if(data!="")
+						{
+							var revenue_cost_array = data.split('*/*'); 
+						 
+								  
 										// Get context with jQuery - using jQuery's .get() method.
 						var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
@@ -2221,7 +2226,7 @@ customer_order_month();
 							  pointStrokeColor    : 'rgba(60,141,188,1)',
 							  pointHighlightFill  : '#fff',
 							  pointHighlightStroke: 'rgba(60,141,188,1)',
-							  data                : [28, 48, 40, 19, 86, 27, 90,10,10,10,10,10]
+							  data                : [revenue_cost_array[0], revenue_cost_array[1], revenue_cost_array[2], revenue_cost_array[3], revenue_cost_array[4], revenue_cost_array[5], revenue_cost_array[6],revenue_cost_array[7],revenue_cost_array[8],revenue_cost_array[9],revenue_cost_array[10],revenue_cost_array[11]]
 							},
 							{
 							  label               : 'Electronics',
@@ -2232,7 +2237,7 @@ customer_order_month();
 							  pointStrokeColor    : '#c1c7d1',
 							  pointHighlightFill  : '#fff',
 							  pointHighlightStroke: 'rgba(220,220,220,1)',
-							  data                : [65, 59, 80, 81, 56, 55, 40,10,10,10,10,52]
+							  data                : [revenue_cost_array[12], revenue_cost_array[13], revenue_cost_array[14], revenue_cost_array[15], revenue_cost_array[16], revenue_cost_array[17], revenue_cost_array[18],revenue_cost_array[19],revenue_cost_array[20],revenue_cost_array[21],revenue_cost_array[22],revenue_cost_array[23]]
 							},
 						  ]
 						}
@@ -2268,6 +2273,7 @@ customer_order_month();
 					
 					
 					
+						}
 					
 					
 					
