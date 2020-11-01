@@ -132,11 +132,44 @@ if(isset($_POST["product"])){
 			
 		<button type='button' id='particular_product_search_btn' session_val='$customer_id'  pid='$product_id' style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
 					<div style='padding-top:1px;' >
-					<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-					<i class='fas fa-star'></i>
+					
+					";
+						//getting rating values
+					$rating_sql="SELECT  max(comments_tbl.rating) AS max_rate FROM product_tbl,comments_tbl where comments_tbl.product_id=$product_id";
+							 $run_query_rating = mysqli_query($con,$rating_sql);
+							 $count_prd=mysqli_num_rows($run_query_rating);
+							 $row_rating = mysqli_fetch_array($run_query_rating);
+						
+
+							if($count_prd>0)
+							{
+								$max_rate=$row_rating["max_rate"];
+							}
+							else
+							{
+								$max_rate=0;
+							}
+							
+							
+							
+							
+					for($x=1;$x<=$max_rate;$x++)
+					{
+						 echo "<i class='fas fa-star ' style='color:orange'></i>";
+						 if($x ==$max_rate)
+							{ 
+									for($y=$x;$y<5;$y++)
+									{
+										 echo "<i class='fas fa-star ' ></i>";
+											 
+									}
+								
+							}
+							 
+					}  
+					
+					echo "  
+					
 					</div>
 			</div>
 			
@@ -290,11 +323,51 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 			
 		<button type='button' id='particular_product_search_btn' pid='$product_id' session_val='$customer_id'  style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
 					<div style='padding-top:1px;' >
-					<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-					<i class='fas fa-star'></i>
+					
+					
+					
+					";
+						//getting rating values
+					$rating_sql="SELECT  max(comments_tbl.rating) AS max_rate FROM product_tbl,comments_tbl where comments_tbl.product_id=$product_id";
+							 $run_query_rating = mysqli_query($con,$rating_sql);
+							 $count_prd=mysqli_num_rows($run_query_rating);
+							 $row_rating = mysqli_fetch_array($run_query_rating);
+						
+
+							if($count_prd>0)
+							{
+								$max_rate=$row_rating["max_rate"];
+							}
+							else
+							{
+								$max_rate=0;
+							}
+							
+							
+							
+							
+					for($x=1;$x<=$max_rate;$x++)
+					{
+						 echo "<i class='fas fa-star ' style='color:orange'></i>";
+						 if($x ==$max_rate)
+							{ 
+									for($y=$x;$y<5;$y++)
+									{
+										 echo "<i class='fas fa-star ' ></i>";
+											 
+									}
+								
+							}
+							 
+					}  
+					
+					echo "  
+					
+					
+					
+					
+					
+					
 					</div>
 			</div>
 			
@@ -1658,11 +1731,47 @@ $product_desc = $row["product_desc"];
    	  <div class=' col-sm row  rounded ml-1 mb-2'>
 			  		  <div class='col-sm mt-3 mb-2'>	
 					  <b>$product_name</b><div class='justify-content-center'>
-					<i class='' style='color:orange' data-fa-i2svg=''><svg class='svg-inline--fa fa-star fa-w-18' aria-hidden='true' focusable='false' data-prefix='fas' data-icon='star' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z'></path></svg></i>
-                	<i class='' style='color:orange' data-fa-i2svg=''><svg class='svg-inline--fa fa-star fa-w-18' aria-hidden='true' focusable='false' data-prefix='fas' data-icon='star' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z'></path></svg></i>
-                	<i class='' style='color:orange' data-fa-i2svg=''><svg class='svg-inline--fa fa-star fa-w-18' aria-hidden='true' focusable='false' data-prefix='fas' data-icon='star' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z'></path></svg></i>
-                	<i class='' style='color:orange' data-fa-i2svg=''><svg class='svg-inline--fa fa-star fa-w-18' aria-hidden='true' focusable='false' data-prefix='fas' data-icon='star' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z'></path></svg></i>
-					<i class='' data-fa-i2svg=''><svg class='svg-inline--fa fa-star fa-w-18' aria-hidden='true' focusable='false' data-prefix='fas' data-icon='star' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z'></path></svg></i> (120)
+					  
+					  
+					  
+			";
+						//getting rating values
+					$rating_sql="SELECT  max(comments_tbl.rating) AS max_rate FROM product_tbl,comments_tbl where comments_tbl.product_id=$product_id";
+							 $run_query_rating = mysqli_query($con,$rating_sql);
+							 $count_prd=mysqli_num_rows($run_query_rating);
+							 $row_rating = mysqli_fetch_array($run_query_rating);
+						
+
+							if($count_prd>0)
+							{
+								$max_rate=$row_rating["max_rate"];
+							}
+							else
+							{
+								$max_rate=0;
+							}
+							
+							
+							
+							
+					for($x=1;$x<=$max_rate;$x++)
+					{
+						 echo "<i class='fas fa-star ' style='color:orange'></i>";
+						 if($x ==$max_rate)
+							{ 
+									for($y=$x;$y<5;$y++)
+									{
+										 echo "<i class='fas fa-star ' ></i>";
+											 
+									}
+								
+							}
+							 
+					}  
+					
+					echo "  
+					
+					
 					</div>	   <hr>
  
   <div class='row'>
@@ -2640,7 +2749,7 @@ $product_h_price=0;
 	
 	}
 	 
-			   
+   
   
 	if($count_prd>0)
 	{	
@@ -2656,8 +2765,6 @@ $product_h_price=0;
 			$product_total_qty = $row["product_total_qty"];
 			
 			 
-				
-				
 			echo "
 			<div class=' col-4 mb-3' >
             <div class='  card shadow-sm'> 
@@ -2665,11 +2772,43 @@ $product_h_price=0;
 			
 		<button type='button' id='particular_product_search_btn' pid='$product_id' session_val='$customer_id'  style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
 					<div style='padding-top:1px;' >
-					<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-					<i class='fas fa-star'></i>
+					
+					
+					";
+					  
+					//getting rating values
+							$rating_sql="SELECT  max(comments_tbl.rating) AS max_rate FROM product_tbl,comments_tbl where comments_tbl.product_id=$product_id";
+							 $run_query_rating = mysqli_query($con,$rating_sql);
+							 $count_prd=mysqli_num_rows($run_query_rating);
+							 $row_rating = mysqli_fetch_array($run_query_rating);
+						
+
+							if($count_prd>0)
+							{
+								$max_rate=$row_rating["max_rate"];
+							}
+							else
+							{
+								$max_rate=0;
+							}
+							 
+							 
+					for($x=1;$x<=$max_rate;$x++)
+					{
+						 echo "<i class='fas fa-star ' style='color:orange'></i>";
+						 if($x ==$max_rate)
+							{ 
+									for($y=$x;$y<5;$y++)
+									{
+										 echo "<i class='fas fa-star ' ></i>";
+											 
+									}
+								
+							}
+							 
+					}  
+					
+					echo " 
 					</div>
 			</div>
 			

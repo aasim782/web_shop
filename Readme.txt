@@ -1,5 +1,6 @@
--filter option completed - (testing is pandding)
-" Ver 0.6.16"
+-customer rating stars appy to the products
+
+" Ver 0.6.17"
 
  
 
@@ -25,6 +26,10 @@ Developemnt pending
 -active roles
 -dashboard monthly summary
    
+
+
+
+
 "problem doest not solwed"
 -db insert have prb
 -index page does not have filter
