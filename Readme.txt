@@ -21,7 +21,7 @@ Developemnt pending
 -Bank Account details explaantion
  
 -cancel or unpaid something module (error also should solve)
--feedback image upload option and feedback count to product
+-feedback image upload option 
 -get customer review on profile page
 -active roles
 -dashboard monthly summary
