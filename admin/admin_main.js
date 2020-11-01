@@ -347,7 +347,7 @@ product_count();
 					$("#Product_id_txt").val(array[0]);
 					$("#prd_add_date_txt").val(array[1]);
 					$("#product_name_txt").val(array[4]);
-					$("#product_price_txt").val(pricewithprofit-(((rate/(rate+100))*pricewithprofit)));
+					$("#product_price_txt").val(parseInt(pricewithprofit-(((rate/(rate+100))*pricewithprofit))));
 					$("#product_profit_txt").val(array[6]);
 					$("#product_price_with_rate_txt").val(array[5]);
 					$("#Total_qty").val(array[10]);

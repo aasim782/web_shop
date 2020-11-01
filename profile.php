@@ -35,6 +35,7 @@
 	
 	 <!-- All icons -->
 	<link rel="stylesheet" href="css/all.css?i=93">
+	 <link rel="stylesheet" href="css/paetheme.css?i=93">
     <title>Dress Line</title>
   </head>
   <body>

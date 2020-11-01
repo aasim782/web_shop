@@ -183,7 +183,7 @@
 
   <!-- Page Content -->
 				<div class="card ">
-				  <div class="card-header " style="background-color:#ff4747;"><i class="fa fa-shopping-cart"></i> My orders</div>
+				  <div class="card-header text-light " style="background-color:#ff4747;"><i class="fa fa-shopping-cart"></i> My orders</div>
 				  <div class="card-body">
 				
 

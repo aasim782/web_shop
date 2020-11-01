@@ -77,7 +77,7 @@ echo "
 	<div class='card-header text-center'  >
 	<div class='card-tools'>
 	<button type='button' class='btn btn-tool' data-card-widget='collapse'>
-	<i class='fas fa-minus'></i></button><button type='button' class='btn btn-tool' data-card-widget='remove'><i class='fas fa-times'></i></button></div>				<h2>Add Product</h2>              </div>			            <div class='card-body'>            <form id='product_reg_form' >	 		<div id='product_reg_msg' > </div>		  <div class='form-row'>			<div class='col-md-6'>			  <label for='validationCustom01'>Product ID</label>			  <input type='text' class='form-control text-center' id='Product_id_txt' name='Product_id_txt'    disabled>					</div>						<div class='col-md-6'>			  <label for='validationCustom02'>Date</label>			  <input type='date' class='form-control text-center' id='prd_add_date_txt'  name=''  >					</div>			</div>							<div class='form-row mt-2'>     <div class='form-group col-6'>           <label for='validationCustom02'>Category</label>     <select id='get_category' class='form-control category_class'></select>    </div>   
+	<i class='fas fa-minus'></i></button><button type='button' class='btn btn-tool' data-card-widget='remove'><i class='fas fa-times'></i></button></div>				<h2>Add Product</h2>              </div>			            <div class='card-body'>            <form id='product_reg_form' >	 		<div id='product_reg_msg' > </div>		  <div class='form-row'>			<div class='col-md-6'>			  <label for='validationCustom01'>Product ID</label>			  <input type='text' class='form-control text-center' id='Product_id_txt' name='Product_id_txt'    disabled>					</div>						<div class='col-md-6'>			  <label for='validationCustom02'>Date</label>			  <input type='date' class='form-control text-center' id='prd_add_date_txt'  name='' disabled >					</div>			</div>							<div class='form-row mt-2'>     <div class='form-group col-6'>           <label for='validationCustom02'>Category</label>     <select id='get_category' class='form-control category_class'></select>    </div>   
 	<div class='form-group col-6'>   
 	<label for='validationCustom02'>Brand</label>     
 	<select id='get_brand' class='form-control brand_class'></select>   
@@ -2720,7 +2720,7 @@ if(isset($_POST["offer_active"]))
 	$run_query = mysqli_query($con,$monthly_revenue_query);
 	$count=mysqli_num_rows($run_query);
  	
-    $monthly_cost_query ="SELECT MONTH(order_date) AS cost_month,CEILING(sum((customer_ord_prds.current_price_per_prd - (product_tbl.profit_rate/(product_tbl.profit_rate+100))*customer_ord_prds.current_price_per_prd)*customer_ord_prds.order_qtry )) AS Monthly_total_cost FROM customer_ord_prds,product_tbl WHERE (customer_ord_prds.product_id=product_tbl.product_id) and order_status=3 and YEAR(order_date) ='2020' GROUP BY MONTH(order_date), YEAR(order_date)";
+    $monthly_cost_query ="SELECT MONTH(order_date) AS cost_month,CEILING(sum((customer_ord_prds.current_price_per_prd - (product_tbl.profit_rate/(product_tbl.profit_rate+100))*customer_ord_prds.current_price_per_prd)*customer_ord_prds.order_qtry )) AS Monthly_total_cost FROM customer_ord_prds,product_tbl WHERE (customer_ord_prds.product_id=product_tbl.product_id) and order_status=3 and YEAR(order_date) ='$year' GROUP BY MONTH(order_date), YEAR(order_date)";
 	$run_query_cost = mysqli_query($con,$monthly_cost_query);
     		 
 			$jan_count=0;

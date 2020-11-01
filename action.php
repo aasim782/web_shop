@@ -266,44 +266,8 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 	else    // get search
 	{ 
 		$selected_keywords = $_POST["keywords"];
-		$cat_key = $_POST["cat_key"];
-		$brd_key = $_POST["brd_key"];
-		$lprice_key = $_POST["lprice_key"];
-		$hprice_key = $_POST["hprice_key"];
-		$rate_key = $_POST["rate_key"];
-	
-	if($cat_key==0 && $brd_key==0  && $lprice_key==0 && $hprice_key==0 && $rate_key==0  )
-	{	
 		$query = "SELECT * FROM product_tbl where active=1 and product_keywords LIKE '%$selected_keywords%' LIMIT $start,$page_number_limit ";
-	}
-	else if($cat_key !=0 && $brd_key==0   && $lprice_key==0 && $hprice_key==0 && $rate_key==0 	)
-	{
- 
-		$query = "SELECT * FROM product_tbl where (active=1 and product_category=$cat_key) and product_keywords LIKE '%$selected_keywords%' LIMIT $start,$page_number_limit ";
 	 
-	}
-	else if( $cat_key ==0 )
-	{
-		
-			$query = "SELECT * FROM product_tbl where (active=1 and product_category=$cat_key) and product_keywords LIKE '%$selected_keywords%' LIMIT $start,$page_number_limit ";
-	 
-	
-	}
-	else if($brd_key !=0 && $cat_key !=0  && $lprice_key==0 && $hprice_key==0 && $rate_key==0 )
-	{
-		$query = "SELECT * FROM product_tbl where (active=1 and product_brand=$brd_key and product_category=$cat_key) and product_keywords LIKE '%$selected_keywords%' LIMIT $start,$page_number_limit ";
-	
-	}
-	else
-	{
-		
-			$query = "SELECT * FROM product_tbl where active=1 and product_keywords LIKE '%$selected_keywords%' LIMIT $start,$page_number_limit ";
-	
-		
-	}
- 
-	
-	
 	}
 
 
@@ -371,8 +335,9 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 	
 	}
 	
-	
-
+	 
+	 
+	 
 	
 		
 if(isset($_POST["cus_reg"])){
@@ -2166,16 +2131,22 @@ $order_status = $row_data["order_status"];
 		//define date and time
 	 $date = date("Y-m-d"); // get the date
  
- 	$sql = "INSERT INTO `comments_tbl`(`customer_id`,`date`,`comment_type`,`customer_ord_id`,`description`,`feedback_img_1`,`feedback_img_2`,`feedback_img_3`,`rating`) VALUES ($customer_id,'$date',3,$customer_ord_id,'$customer_item_feedback_description','image1','image2','image3',$g_rating)";
-	mysqli_query($con,$sql);
-		
-	 
-	// used to get the order id through customer order id
-	$sql = "SELECT * FROM customer_ord_prds WHERE customer_ord_id=$customer_ord_id " ;
+ 
+ 
+ 	// used to get the order id through customer order id
+	$sql = "SELECT order_id,product_id FROM customer_ord_prds WHERE customer_ord_id=$customer_ord_id " ;
 		$check_query = mysqli_query($con,$sql);
 		$row_data = mysqli_fetch_array($check_query);
 		$order_id = $row_data["order_id"];
+		$product_id = $row_data["product_id"];
 
+ 
+ 
+ 
+ 	$sql2 = "INSERT INTO `comments_tbl`(`customer_id`,`date`,`product_id`,`comment_type`,`customer_ord_id`,`description`,`feedback_img_1`,`feedback_img_2`,`feedback_img_3`,`rating`) VALUES ($customer_id,'$date','$product_id',3,$customer_ord_id,'$customer_item_feedback_description','image1','image2','image3',$g_rating)";
+	mysqli_query($con,$sql2);
+		
+	  
  	 
 	// update parcel recived date
 	$sql = "update delivery_tbl set prd_received_date='$date' where order_id=$order_id" ;
@@ -2359,6 +2330,10 @@ if(isset($_POST["get_slider_image"])){
 }
 
 
+
+
+
+
 //get the slider image footer
 if(isset($_POST["get_slider_image_footer"])){
 	 
@@ -2385,20 +2360,36 @@ if(isset($_POST["get_slider_image_footer"])){
 
 
 
+ 
+  // get the onging offer
+  if(isset($_POST["get_ongoing_offer"])){
+	   
+		date_default_timezone_set('Asia/Kolkata');
+		//define date and time
+		$today = date("Y-m-d"); // get the date
+					
+	  
+		$sql = "SELECT reason,active,offer_start_date,offer_end_date  FROM offer_tbl where active=1" ;
+		$check_query = mysqli_query($con,$sql);
+		$row = mysqli_fetch_array($check_query);
+		$offer_start_date = $row["offer_start_date"];
+		$offer_end_date = $row["offer_end_date"];
+		$reason = $row["reason"];
+		
+		
+		if($offer_start_date<=$today and $today <=$offer_end_date)
+		{
+			echo "$reason";
+			
+		}
+		
+ 
+
+}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 
@@ -2467,33 +2458,289 @@ if(isset($_POST["brand_in_filter"])){
   
   
   
-   
-  // get the onging offer
-  if(isset($_POST["get_ongoing_offer"])){
-	   
-		date_default_timezone_set('Asia/Kolkata');
-		//define date and time
-		$today = date("Y-m-d"); // get the date
+  
+if(isset($_POST["prodcuct_multiple_filter"]))
+	{	
+	$count_prd=0;
+	@$customer_id = $_SESSION['cusid'] ;
+						
+
+$product_l_price=0;
+$product_h_price=0;
+
+		$search_txt = $_POST["search_txt"];
+		$cid_txt = $_POST["cid_txt"];
+		$brd_txt = $_POST["brd_txt"];
+		$lprice_txt = $_POST["lprice_txt"];
+		$hprice_txt = $_POST["hprice_txt"];
+		$rate_txt = $_POST["rate_txt"];
+		
+		
+		$selected_keywords = $search_txt;
+		
+		
+		 if($cid_txt == 0 && $brd_txt == 0 && $lprice_txt == 0 &&  $hprice_txt == 0 && $rate_txt == 0 )
+		 {
+		 
+				$query = "SELECT * FROM product_tbl where active=1 and product_keywords LIKE '%$selected_keywords%' ";
+				$run_query = mysqli_query($con,$query);
+				$count_prd=mysqli_num_rows($run_query);
+		 }
+		 else
+		 {
+			 
+			 if($cid_txt == 0 )
+				{
+					$product_category_sql="";
+				}
+			else
+				{
+					$product_category_sql="product_category=$cid_txt and";
+				}
+				 
+			 
+			 if($lprice_txt == 0 &&  $hprice_txt==0)
+				{
+				 
+					 $product_filter_price="";
+				}
+			else
+				{
+					 $product_l_price=$lprice_txt;
+					 $product_h_price=$hprice_txt;	
+					 $product_filter_price="and product_tbl.product_price BETWEEN $product_l_price AND $product_h_price";
 					
-	  
-		$sql = "SELECT reason,active,offer_start_date,offer_end_date  FROM offer_tbl where active=1" ;
-		$check_query = mysqli_query($con,$sql);
-		$row = mysqli_fetch_array($check_query);
-		$offer_start_date = $row["offer_start_date"];
-		$offer_end_date = $row["offer_end_date"];
-		$reason = $row["reason"];
-		
-		
-		if($offer_start_date<=$today and $today <=$offer_end_date)
+				}
+				 
+				
+				
+			if($brd_txt == 0 )
+				{
+					$product_brand_sql="";
+				}
+			else
+				{
+					$product_brand_sql="product_brand=$brd_txt and";
+				}
+				
+		 	if($rate_txt == 0)
+				{ 
+					$query = "SELECT * FROM product_tbl where $product_category_sql $product_brand_sql  active=1 and product_keywords LIKE '%$selected_keywords%' $product_filter_price ";
+					$run_query = mysqli_query($con,$query);
+					$count_prd=mysqli_num_rows($run_query);
+				}
+				else
+				{
+					
+					
+						if($cid_txt == 0 && $brd_txt == 0 && $lprice_txt == 0 &&  $hprice_txt == 0)
+						{
+								$rate_txt_val="$rate_txt";
+								$rate_sql="SELECT product_tbl.product_category,product_tbl.product_brand,comments_tbl.product_id,comments_tbl.rating FROM comments_tbl,product_tbl where comments_tbl.rating=$rate_txt_val and (product_tbl.product_id = comments_tbl.product_id) and  product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' $product_filter_price";
+								$run_query_rating = mysqli_query($con,$rate_sql);
+								$count_rating_record=mysqli_num_rows($run_query_rating);
+				
+								while($row = mysqli_fetch_array($run_query_rating))
+									{		
+									$product_id = $row["product_id"];
+									$product_brand = $row["product_brand"];
+									$product_category = $row["product_category"];
+										
+										if($count_rating_record>0)
+										{
+												$query = "SELECT * FROM product_tbl where (product_brand=$product_brand and product_category=$product_category) and product_id=$product_id $product_filter_price";
+												$run_query = mysqli_query($con,$query);
+												$count_prd=mysqli_num_rows($run_query);
+										}
+ 
+						 
+				 	
+										}
+							
+						}
+						else
+						{
+							
+							
+							
+							if($cid_txt != 0 && $brd_txt != 0 && $lprice_txt != 0 &&  $hprice_txt != 0) 
+							{
+								$rate_txt_val="$rate_txt";
+								$rate_sql="SELECT product_tbl.product_category,product_tbl.product_brand,comments_tbl.product_id,comments_tbl.rating FROM comments_tbl,product_tbl where comments_tbl.rating=$rate_txt_val and (product_tbl.product_id = comments_tbl.product_id) and  product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' $product_filter_price";
+								$run_query_rating = mysqli_query($con,$rate_sql);
+								$count_rating_record=mysqli_num_rows($run_query_rating);
+				
+								while($row = mysqli_fetch_array($run_query_rating))
+									{		
+									$product_id = $row["product_id"];
+									$product_brand = $row["product_brand"];
+									$product_category = $row["product_category"];
+										
+										if($count_rating_record>0)
+										{
+												$query = "SELECT * FROM product_tbl where (product_brand=$product_id and product_category=$product_brand) and product_id=$product_id $product_filter_price";
+												$run_query = mysqli_query($con,$query);
+												$count_prd=mysqli_num_rows($run_query);
+										}
+ 
+						 
+				 	
+										}
+							}
+							else
+							{
+								$rate_txt_val="$rate_txt";
+								$rate_sql="SELECT product_tbl.product_category,product_tbl.product_brand,comments_tbl.product_id,comments_tbl.rating FROM comments_tbl,product_tbl where comments_tbl.rating=$rate_txt_val and (product_tbl.product_id = comments_tbl.product_id) and  product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%'";
+								$run_query_rating = mysqli_query($con,$rate_sql);
+								$count_rating_record=mysqli_num_rows($run_query_rating);
+				
+								while($row = mysqli_fetch_array($run_query_rating))
+									{		
+									$product_id = $row["product_id"];
+									$product_brand = $row["product_brand"];
+									$product_category = $row["product_category"];
+										
+										if($count_rating_record>0)
+										{
+												$query = "SELECT * FROM product_tbl where (product_brand=$product_brand and product_category=$product_category) and product_id=$product_id $product_filter_price";
+												$run_query = mysqli_query($con,$query);
+												$count_prd=mysqli_num_rows($run_query);
+										}
+ 
+						 
+				 	
+										}
+							}
+							
+						}
+							 
+				 
+				}
+		 
+	 
+	
+	}
+	 
+			   
+  
+	if($count_prd>0)
+	{	
+		while($row = mysqli_fetch_array($run_query))
 		{
-			echo "$reason";
+			$product_id = $row["product_id"];
+			$product_category = $row["product_category"];
+			$product_brand = $row["product_brand"];
+			$product_name = $row["product_name"];
+			$product_price = $row["product_price"];
+			$product_desc = $row["product_desc"];
+			$product_img = $row["product_img"];
+			$product_total_qty = $row["product_total_qty"];
 			
+			 
+				
+				
+			echo "
+			<div class=' col-4 mb-3' >
+            <div class='  card shadow-sm'> 
+			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b style='cursor: pointer;' id='particular_product_search_btn' session_val='$customer_id'  pid='$product_id'>$product_name</b>
+			
+		<button type='button' id='particular_product_search_btn' pid='$product_id' session_val='$customer_id'  style='float:right;' class='btn btn-warning'><i class='fas fa-search' ></i></button>
+					<div style='padding-top:1px;' >
+					<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+                	<i class='fas fa-star ' style='color:orange'></i>
+					<i class='fas fa-star'></i>
+					</div>
+			</div>
+			
+		   <div class='text-center' >
+			<img  class='card-img-bottom text-center ' pid='$product_id' session_val='$customer_id'  id='particular_product_search_btn' src='admin/upload/Product_images/$product_img' align='center' style='cursor: pointer;padding-top:10px;padding-bottom:10px;width:120px;height:160px'/><br>		
+			</div>
+         
+    <div class='form-group row justify-content-center'>
+
+        <label for='inputPassword' class='p-1'>QTY :</label>
+        <div class='col-sm-4'>
+            <input type='number' class='form-control text-center' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
+		</div>
+		</div>
+	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
+	<div class='text-center pt-1' style='background-color:#fffff;'><label for='class_type' ><h4><span class=' label label-primary' align='center'>&nbsp Rs.$product_price.00 &nbsp </span></h4></label>	</div>
+		</div>
+            </div>
+          </div>
+			";
 		}
 		
- 
+	}
+	else
+	{ 
+		echo "
+		<div class='container text-center'>
+			<div class='alert alert-info '  role='alert' >
+			  <h4 class='alert-heading'>We don't have such kind of a product right now.!</h4>
+			  <p>We are sorry to say that we don't have such a product.!</p>
+			  <p  >You can make a request here for your need </p>
+			 <button class='btn btn-danger mt-2'  data-toggle='modal' data-target='#customes_order' ><i class='fa fa-shopping-cart'></i> CLICK HERE</button>  </p>
+			</div> 
+			</div> 
+			";
+		
+	 }
+	
+		
+		    
+		  
+	}
 
-}
 
+if(isset($_POST["get_cat_brd_names_tag"]))
+	{	
+
+		$cid_id = $_POST["cid_id"];
+		$brd_id = $_POST["brd_id"];
+		
+		
+		$sql="SELECT category_name FROM category_tbl where category_id=$cid_id";
+		$run_query = mysqli_query($con,$sql);
+		$count_cat=mysqli_num_rows($run_query);
+
+		  
+		
+			if($count_cat>0)
+			{
+				$row = mysqli_fetch_array($run_query);
+				$category_name = $row["category_name"];
+			 }
+			else
+			{		
+				$category_name = 0;
+				
+			}
+	
+		
+		$sql1="SELECT brand_name FROM brand_tbl where brand_id=$brd_id";
+		$run_query1 = mysqli_query($con,$sql1);
+		$count_brd=mysqli_num_rows($run_query1);
+			
+				if($count_brd>0)
+				{
+					$row1 = mysqli_fetch_array($run_query1);
+					$brand_name = $row1["brand_name"];
+				}
+				else
+				{
+				 $brand_name =0;
+				}
+	 
+				
+				
+ 	echo "$category_name*/*$brand_name";
+			
+	 	 
+
+	}
   
   
   

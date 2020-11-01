@@ -1,5 +1,4 @@
--dashboard completed
--add card prb solve during offer not found
+-filter in profile have completed but index is pending
 " Ver 0.6.13"
 
  
@@ -37,7 +36,7 @@ newprice in offer tabele ---->active
 order table --> discount rate
 date at product table
 delivery table small changes image and recived date filed miss
-
+commets table product id added
 
 
 

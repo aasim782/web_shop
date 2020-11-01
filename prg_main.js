@@ -108,6 +108,8 @@ $(document).ready(function(){
 	
 	//filter by search keywords using search btn
 	$("#search_btn").click(function(){
+	
+		
 	var keywords= $("#search_txt").val();
 	var currentURL = window.location.pathname;
 	var check_page_name =currentURL.includes("index.php");
@@ -117,11 +119,11 @@ $(document).ready(function(){
 				//identify the page . no page found in url that is index
 					if(check_page_name==true ||currentURL== "/project37/")
 						{
-							window.open("index.php?srch="+keywords+"","_self");
+						 window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
 						}
 						else
 						{
-							window.open("profile_filter.php?srch="+keywords+"&cat=12&brd=0&lprice=0&hprice=0&rate=0","_self");
+						 window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
 						} 
 	  
 				
@@ -138,7 +140,10 @@ $(document).ready(function(){
 		}
 	)
 	
-	
+
+		 
+		
+		
 	
 	//filter by search keywords with press enter key in txt box
 	$('#search_txt').keypress(function(event){
@@ -156,7 +161,7 @@ $(document).ready(function(){
 				if(keycode == '13'){
 					
 						if(check_page_name==true ||currentURL== "/project37/"){
-							window.open("index.php?srch="+keywords+"","_self");//when index page
+							window.open("index_filter.php?srch="+keywords+"","_self");//when index page
 						}
 						else
 						{
@@ -171,54 +176,149 @@ $(document).ready(function(){
 			
 //category filter
 $('body').delegate('#filter_category_btn','click',function() {
- 		var cid= $(this).attr('cid');
-		var keywords= $("#search_txt").val();
-		window.open("profile_filter.php?srch="+keywords+"&cat="+cid+"&brd=0&lprice=0&hprice=0&rate=0","_self");
-})
-	
-	
-//brand filter
-$('body').delegate('#filter_brand_btn','click',function() {
-
-		 var bid= $(this).attr('bid');
-		var keywords= $("#search_txt").val();
- 
+ 		 
 		var url = new URL(document.URL);
 		var search_params = url.searchParams;
-		var cat_val = search_params.get('cat'); //filter
- 
-		var lprice_val= search_params.get('lprice');
-		var hprice_val = search_params.get('hprice');
-		var rate_val = search_params.get('rate');
-		
-	 
-		
-		window.open("profile_filter.php?srch="+keywords+"&cat="+cat_val+"&brd="+bid+"&lprice=0&hprice=0&rate=0","_self");
-})	
-  
-
-search_prd_txt();
-		function search_prd_txt(){
-			
-	 	 var url = new URL(document.URL);
-		var search_params = url.searchParams;
-		var keywords = search_params.get('srch');//search value
-		var cat_val = search_params.get('cat'); //filter
+		var search_val = search_params.get('srch');
+		var cid= $(this).attr('cid');
 		var brd_val = search_params.get('brd');
 		var lprice_val= search_params.get('lprice');
 		var hprice_val = search_params.get('hprice');
 		var rate_val = search_params.get('rate');
- 
+		  
+		  
+		var currentURL = window.location.pathname;
+		var check_page_name =currentURL.includes("index.php");
+		
+		if(check_page_name == true)
+		{
+			
+			page_filter="index_filter";
+		}
+		else
+		{
+		
+			page_filter="profile_filter";
+			
+		}
+		 
 	 
-	 if(keywords!='')
+		window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+		prodcuct_multiple_filter();
+  
+	
+	//  window.open;
+		 
+   //	window.location.href = ("");
+		
+})
+
+
+
+
+
+	
+	
+//brand filter
+$('body').delegate('#filter_brand_btn','click',function() {
+ 
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var search_val = search_params.get('srch');
+		var cid = search_params.get('cat');
+		var brd_val = $(this).attr('bid');
+		var lprice_val= search_params.get('lprice');
+		var hprice_val = search_params.get('hprice');
+		var rate_val = search_params.get('rate');
+		 
+	
+		var currentURL = window.location.pathname;
+		var check_page_name =currentURL.includes("index.php");
+		
+		if(check_page_name == true)
+		{
+			
+			page_filter="index_filter";
+		}
+		else
+		{
+		
+			page_filter="profile_filter";
+			
+		}
+		 
+ 
+		 
+	window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+ prodcuct_multiple_filter(); 
+   
+    
+})	
+  
+  
+  
+  	$('body').delegate('#feedbackstrs','click',function() {
+	 
+	 
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var search_val = search_params.get('srch');
+		var cid = search_params.get('cat');
+		var brd_val = search_params.get('brd');
+		var lprice_val= search_params.get('lprice');
+		var hprice_val = search_params.get('hprice');
+		var rate_val = $(this).attr('startval');
+		 
+window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+ prodcuct_multiple_filter();
+		
+		
+		})
+		 
+		 
+		 
+		 
+		 
+	 	$('body').delegate('#price_val_btn','click',function() {
+			
+				
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var search_val = search_params.get('srch');
+		var cid = search_params.get('cat');
+		var brd_val = search_params.get('brd');
+		var lprice_val  =  $('#lpriceid').val(); 
+		var hprice_val  = $('#hpriceid').val();
+		var rate_val = search_params.get('rate');
+	 
+		 
+	window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+ prodcuct_multiple_filter();
+		 })
+		 
+		 
+		 
+		 
+
+search_prd_txt();
+ function search_prd_txt(){
+			
+	 	 var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var keywords = search_params.get('srch');//search value
+ 
+	 	var currentURL = window.location.pathname;
+	var check_page_name =currentURL.includes("profile.php");
+ 
+			 if(keywords!='')
 			{
 	
-			  $('#search_txt').val(keywords);
+			  $('#search_txt').val(keywords); //URL Search to serach text box
 				
 			$.ajax({
 			url		:	"action.php",
 			method	:	"POST",
-			data	:	{get_search:1,keywords:keywords,cat_key:cat_val,brd_key:brd_val,lprice_key:lprice_val,hprice_key:hprice_val,rate_key:rate_val}, 
+			data	:	{get_search:1,keywords:keywords}, 
 			success	:	function(data){
 			$("#get_product").html(data);
 				
@@ -230,8 +330,12 @@ search_prd_txt();
 			}
 			else
 			{	
-				window.open("index.php","_self");
+				window.open("index_filter.php","_self");
 			}
+
+		
+	
+	
 
 
 		}
@@ -241,10 +345,7 @@ search_prd_txt();
 		
 		
 		
-		
-		
-		
-		
+	
 		
 		
 		
@@ -1751,5 +1852,300 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 	} 
    
    
+   
+   
+   
+   
+   
+   
+   
+   
+  prodcuct_multiple_filter();
+ function prodcuct_multiple_filter(){
+	 
+	 filter_tag_present();// fiter tag calling
+	 
+	   
+	 
+	var currentURL = window.location.pathname;
+	var check_page_name =currentURL.includes("profile_filter.php");
+	
+ 		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var search_val = search_params.get('srch');
+		var cid = search_params.get('cat');
+		var brd_val = search_params.get('brd');
+		var lprice_val= search_params.get('lprice');
+		var hprice_val = search_params.get('hprice');
+		var rate_val = search_params.get('rate');
+ 
+ 
+		 $("#lpriceid").val(lprice_val); 
+		 $("#hpriceid").val(hprice_val);
+
+
+		$('#search_txt').val(search_val); //URL Search to serach text box
+		
+				if(check_page_name == true)
+				{
+					 		
+					$.ajax({
+					url: "action.php",
+					method: "POST",
+					data: { prodcuct_multiple_filter:1,search_txt:search_val,cid_txt:cid,brd_txt:brd_val,lprice_txt:lprice_val,hprice_txt:hprice_val,rate_txt:rate_val},
+					success: function (data) {
+						
+						//alert(cid + '/' + brd_val+ '/' + brd_val   + '/' + lprice_val   + '/' + hprice_val   + '/' + rate_val);
+				 
+					   $("#get_product_filter").html(data);
+					 }}) 
+					  
+				}
+	
+				
+				 
+		 
+		 
+
+ }
+ 
+ 
+  
+ 	filter_tag_present();
+	function filter_tag_present(){
+		 
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var search_val = search_params.get('srch');
+		var cid= search_params.get('cat'); 
+		var brd_val = search_params.get('brd');
+		var lprice_val= search_params.get('lprice');
+		var hprice_val = search_params.get('hprice');
+		var rate_val = search_params.get('rate');
+	   
+		if(cid== null)
+		{
+			cid=0;
+		}
+		
+		if(brd_val== null)
+		{
+			brd_val=0;
+		}
+		
+			 
+					$.ajax({
+					url: "action.php",
+					method: "POST",
+					data: { get_cat_brd_names_tag:1,cid_id:cid,brd_id:brd_val},
+					success: function (data) {
+					
+					var names_array = data.split('*/*');
+				 
+					var categor_name = names_array[0]; 
+					var brand_name = names_array[1]; 
+				 
+					
+					
+				
+				if(cid == 0 &&  brd_val ==0 && lprice_val == 0 &&  hprice_val == 0 &&  rate_val == 0)
+				{
+					$("#Filter_title_tag").html("");
+				}
+				else
+				{
+					$("#Filter_title_tag").html("<b>Filtered by </b> <i class='fas fa-caret-down' aria-hidden='false'></i>");
+					
+				}
+		  
+				
+				
+				if( cid != 0 )
+				{
+					 $("#Category_tag").html("<span class='badge badge-pill pl-3 ml-2 mb-2 p-2 text-center' id='Category_tag' style='background-color:#e3e3e3;'>Category: "+categor_name+"<button type='button'  id='category_close' class='close ml-2' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
+				}
+				 else
+				{
+					 $("#Category_tag").html("");
+				}
+				
+				
+				
+				
+				if(brd_val != 0)
+				{
+					
+					 $("#brand_tag").html("<span class='badge badge-pill pl-3 ml-2 mb-2 p-2 text-center'  style='background-color:#e3e3e3;'>Brand: "+brand_name+"  <button type='button'  id='brand_close'  class='close ml-2' style='line-height:1rem;font-size:1rem'   aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
+			 	}
+					else
+				{
+					 $("#brand_tag").html("");
+				}
+				
+				
+				
+				if(lprice_val !=0)
+				{
+					
+				 $("#Lower_tag").html("<span class='badge badge-pill pl-3 ml-2 mb-2 p-2 text-center'  style='background-color:#e3e3e3;'>Lowest: Rs."+lprice_val+".00 <button type='button' class='close ml-2'   id='lowest_close' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");	 
+				 
+			 	
+				}
+				else
+				{
+					 $("#Lower_tag").html("");
+				}
+				
+				
+				
+				
+				if(hprice_val!=0)
+				{
+					 $("#Highest_tag").html("<span class='badge badge-pill pl-3 ml-2 mb-2 p-2 text-center'  style='background-color:#e3e3e3;'>Highest :Rs."+hprice_val+".00<button type='button' class='close ml-2' id='highest_close' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
+				  
+				
+	
+				}
+				else
+				{
+					 $("#Highest_tag").html("");
+				}
+				
+				
+				
+				if(rate_val !=0)
+				{
+					
+					 $("#Rating_tag").html("<span class='badge badge-pill pl-3 ml-2 mb-2 p-2 text-center' style='background-color:#e3e3e3;'>Rating: "+rate_val+"<button type='button' class='close ml-2'   id='rating_close' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
+						 
+					
+				}
+				else
+				{
+					 $("#Rating_tag").html("");
+				}
+				
+				
+
+
+				}}) 
+		
+		}
+		
+		
+		
+		
+ $('body').delegate('#category_close','click',function() {
+			 
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var search_val = search_params.get('srch');
+		var brd_val = search_params.get('brd');
+		var lprice_val= search_params.get('lprice');
+		var hprice_val = search_params.get('hprice');
+		var rate_val = search_params.get('rate');
+		  
+		  
+		$("#Category_tag").html("");
+		
+		window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+0+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+		prodcuct_multiple_filter();
+		filter_tag_present(); 
+			 
+		   })
+		
+		
+		
+		
+		
+		
+	 $('body').delegate('#brand_close','click',function() {
+			 
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var search_val = search_params.get('srch');
+		var cid= search_params.get('cat'); 
+		var lprice_val= search_params.get('lprice');
+		var hprice_val = search_params.get('hprice');
+		var rate_val = search_params.get('rate');
+		  
+		  
+		$("#brand_tag").html("");
+		
+		window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+0+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+		prodcuct_multiple_filter();
+		filter_tag_present(); 
+			 
+		   })	
+		
+		
+		
+		
+	 $('body').delegate('#lowest_close','click',function() {
+			 
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var search_val = search_params.get('srch');
+		var cid= search_params.get('cat'); 
+		var brd_val = search_params.get('brd');
+		var hprice_val = search_params.get('hprice');
+		var rate_val = search_params.get('rate');
+		  
+
+		$("#Lower_tag").html("");
+		window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+0+"&hprice="+hprice_val+"&rate="+rate_val+"");
+		prodcuct_multiple_filter();
+		filter_tag_present(); 
+			 
+		   })	
+		
+	
+
+	 $('body').delegate('#highest_close','click',function() {
+			 
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var search_val = search_params.get('srch');
+		var cid= search_params.get('cat'); 
+		var brd_val = search_params.get('brd');
+		var lprice_val= search_params.get('lprice');
+		var rate_val = search_params.get('rate');
+		  
+		  
+		$("#Highest_tag").html("");
+		
+		window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+0+"&rate="+rate_val+"");
+		prodcuct_multiple_filter();
+		filter_tag_present(); 
+			 
+		   })		
+		
+		
+		
+		
+		
+		
+	  $('body').delegate('#Rating_tag','click',function() {
+			 
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var search_val = search_params.get('srch');
+		var cid= search_params.get('cat'); 
+		var brd_val = search_params.get('brd');
+		var lprice_val= search_params.get('lprice');
+		var hprice_val = search_params.get('hprice');
+		var rate_val = search_params.get('rate');
+		  
+		  
+		$("#Rating_tag").html("");
+		
+		window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+0+"");
+		prodcuct_multiple_filter();
+		filter_tag_present(); 
+			 
+		   })		
+		
+		
+		
 
 });
