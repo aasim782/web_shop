@@ -1,13 +1,12 @@
--filter in profile have completed but index is pending
-" Ver 0.6.13"
+-filter option completed - (testing is pandding)
+" Ver 0.6.16"
 
  
 
 Developemnt pending
 -weight matters for travelling charge
 -order module full chekup
-
--filter module
+ 
 -report module
 -message module customer
 -message module admin

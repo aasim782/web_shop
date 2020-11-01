@@ -108,8 +108,7 @@ $(document).ready(function(){
 	
 	//filter by search keywords using search btn
 	$("#search_btn").click(function(){
-	
-		
+			
 	var keywords= $("#search_txt").val();
 	var currentURL = window.location.pathname;
 	var check_page_name =currentURL.includes("index.php");
@@ -156,19 +155,35 @@ $(document).ready(function(){
 		
 		var currentURL = window.location.pathname;
 		var check_page_name =currentURL.includes("index.php");
+	
+		var check_page_name_2 =currentURL.includes("index_filter.php");
 		
+			var keywords = search_params.get('srch');
+			
+ 
 		var keywords= $("#search_txt").val();
-				if(keycode == '13'){
+				if(keycode == '13')
+				{
 					
-						if(check_page_name==true ||currentURL== "/project37/"){
-							window.open("index_filter.php?srch="+keywords+"","_self");//when index page
-						}
-						else
-						{
-							window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
-						}
-        
-						}
+									if(check_page_name==true)
+									{
+										 window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+									}
+									else
+									{
+										
+										if(check_page_name==false && check_page_name_2==true)
+										{
+											 window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+										}
+										else
+										{
+											window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+										}
+										
+									}
+					
+				}
 	
 	});
 
@@ -188,7 +203,7 @@ $('body').delegate('#filter_category_btn','click',function() {
 		  
 		  
 		var currentURL = window.location.pathname;
-		var check_page_name =currentURL.includes("index.php");
+		var check_page_name =currentURL.includes("index_filter.php");
 		
 		if(check_page_name == true)
 		{
@@ -233,7 +248,7 @@ $('body').delegate('#filter_brand_btn','click',function() {
 		 
 	
 		var currentURL = window.location.pathname;
-		var check_page_name =currentURL.includes("index.php");
+		var check_page_name =currentURL.includes("index_filter.php");
 		
 		if(check_page_name == true)
 		{
@@ -249,7 +264,7 @@ $('body').delegate('#filter_brand_btn','click',function() {
 		 
  
 		 
-	window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
  prodcuct_multiple_filter(); 
    
     
@@ -269,8 +284,28 @@ $('body').delegate('#filter_brand_btn','click',function() {
 		var hprice_val = search_params.get('hprice');
 		var rate_val = $(this).attr('startval');
 		 
-window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
- prodcuct_multiple_filter();
+		 
+		 
+		var currentURL = window.location.pathname;
+		var check_page_name =currentURL.includes("index_filter.php");
+		
+		if(check_page_name == true)
+		{
+			
+			page_filter="index_filter";
+		}
+		else
+		{
+		
+			page_filter="profile_filter";
+			
+		}
+		 
+		  
+		 
+		 
+		window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+		 prodcuct_multiple_filter();
 		
 		
 		})
@@ -292,8 +327,26 @@ window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="
 		var rate_val = search_params.get('rate');
 	 
 		 
-	window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
- prodcuct_multiple_filter();
+		var currentURL = window.location.pathname;
+		var check_page_name =currentURL.includes("index_filter.php");
+		
+		if(check_page_name == true)
+		{
+			
+			page_filter="index_filter";
+		}
+		else
+		{
+		
+			page_filter="profile_filter";
+			
+		}
+		 
+		 
+		 
+		 
+		window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+		 prodcuct_multiple_filter();
 		 })
 		 
 		 
@@ -308,7 +361,7 @@ search_prd_txt();
 		var keywords = search_params.get('srch');//search value
  
 	 	var currentURL = window.location.pathname;
-	var check_page_name =currentURL.includes("profile.php");
+		var check_page_name =currentURL.includes("profile.php");
  
 			 if(keywords!='')
 			{
@@ -1865,11 +1918,7 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 	 
 	 filter_tag_present();// fiter tag calling
 	 
-	   
-	 
-	var currentURL = window.location.pathname;
-	var check_page_name =currentURL.includes("profile_filter.php");
-	
+	    
  		var url = new URL(document.URL);
 		var search_params = url.searchParams;
 		var search_val = search_params.get('srch');
@@ -1886,8 +1935,7 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 
 		$('#search_txt').val(search_val); //URL Search to serach text box
 		
-				if(check_page_name == true)
-				{
+			 
 					 		
 					$.ajax({
 					url: "action.php",
@@ -1900,7 +1948,7 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 					   $("#get_product_filter").html(data);
 					 }}) 
 					  
-				}
+			 
 	
 				
 				 
@@ -1962,7 +2010,7 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 				
 				if( cid != 0 )
 				{
-					 $("#Category_tag").html("<span class='badge badge-pill pl-3 ml-2 mb-2 p-2 text-center' id='Category_tag' style='background-color:#e3e3e3;'>Category: "+categor_name+"<button type='button'  id='category_close' class='close ml-2' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
+					 $("#Category_tag").html("<span class='badge shadow-sm  badge-pill pl-3 ml-2 mb-2 p-2 text-center' id='Category_tag' style='background-color:#e3e3e3;'>Category: "+categor_name+"<button type='button'  id='category_close' class='close ml-2' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
 				}
 				 else
 				{
@@ -1975,7 +2023,7 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 				if(brd_val != 0)
 				{
 					
-					 $("#brand_tag").html("<span class='badge badge-pill pl-3 ml-2 mb-2 p-2 text-center'  style='background-color:#e3e3e3;'>Brand: "+brand_name+"  <button type='button'  id='brand_close'  class='close ml-2' style='line-height:1rem;font-size:1rem'   aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
+					 $("#brand_tag").html("<span class='badge shadow-sm  badge-pill pl-3 ml-2 mb-2 p-2 text-center'  style='background-color:#e3e3e3;'>Brand: "+brand_name+"  <button type='button'  id='brand_close'  class='close ml-2' style='line-height:1rem;font-size:1rem'   aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
 			 	}
 					else
 				{
@@ -1987,7 +2035,7 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 				if(lprice_val !=0)
 				{
 					
-				 $("#Lower_tag").html("<span class='badge badge-pill pl-3 ml-2 mb-2 p-2 text-center'  style='background-color:#e3e3e3;'>Lowest: Rs."+lprice_val+".00 <button type='button' class='close ml-2'   id='lowest_close' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");	 
+				 $("#Lower_tag").html("<span class='badge shadow-sm  badge-pill pl-3 ml-2 mb-2 p-2 text-center'  style='background-color:#e3e3e3;'>Lowest: Rs."+lprice_val+".00 <button type='button' class='close ml-2'   id='lowest_close' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");	 
 				 
 			 	
 				}
@@ -2001,7 +2049,7 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 				
 				if(hprice_val!=0)
 				{
-					 $("#Highest_tag").html("<span class='badge badge-pill pl-3 ml-2 mb-2 p-2 text-center'  style='background-color:#e3e3e3;'>Highest :Rs."+hprice_val+".00<button type='button' class='close ml-2' id='highest_close' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
+					 $("#Highest_tag").html("<span class='badge shadow-sm  badge-pill pl-3 ml-2 mb-2 p-2 text-center'  style='background-color:#e3e3e3;'>Highest :Rs."+hprice_val+".00<button type='button' class='close ml-2' id='highest_close' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
 				  
 				
 	
@@ -2016,7 +2064,7 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 				if(rate_val !=0)
 				{
 					
-					 $("#Rating_tag").html("<span class='badge badge-pill pl-3 ml-2 mb-2 p-2 text-center' style='background-color:#e3e3e3;'>Rating: "+rate_val+"<button type='button' class='close ml-2'   id='rating_close' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
+					 $("#Rating_tag").html("<span class='badge shadow-sm  badge-pill pl-3 ml-2 mb-2 p-2 text-center' style='background-color:#e3e3e3;'>Rating: "+rate_val+"<button type='button' class='close ml-2'   id='rating_close' style='line-height:1rem;font-size:1rem' aria-label='Close'><span aria-hidden='true'>&times;</span></button></span>");
 						 
 					
 				}
@@ -2048,7 +2096,26 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		  
 		$("#Category_tag").html("");
 		
-		window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+0+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+		
+		
+		var currentURL = window.location.pathname;
+		var check_page_name =currentURL.includes("index_filter.php");
+		
+		if(check_page_name == true)
+		{
+			
+			page_filter="index_filter";
+		}
+		else
+		{
+		
+			page_filter="profile_filter";
+			
+		}
+		  
+		
+		
+		window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+0+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
 		prodcuct_multiple_filter();
 		filter_tag_present(); 
 			 
@@ -2072,7 +2139,24 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		  
 		$("#brand_tag").html("");
 		
-		window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+0+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+		var currentURL = window.location.pathname;
+		var check_page_name =currentURL.includes("index_filter.php");
+		
+		if(check_page_name == true)
+		{
+			
+			page_filter="index_filter";
+		}
+		else
+		{
+		
+			page_filter="profile_filter";
+			
+		}
+		
+		
+		
+		window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+cid+"&brd="+0+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
 		prodcuct_multiple_filter();
 		filter_tag_present(); 
 			 
@@ -2090,10 +2174,28 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		var brd_val = search_params.get('brd');
 		var hprice_val = search_params.get('hprice');
 		var rate_val = search_params.get('rate');
+		
+		
 		  
-
+		var currentURL = window.location.pathname;
+		var check_page_name =currentURL.includes("index_filter.php");
+		
+		if(check_page_name == true)
+		{
+			
+			page_filter="index_filter";
+		}
+		else
+		{
+		
+			page_filter="profile_filter";
+			
+		}
+		
+		
+		
 		$("#Lower_tag").html("");
-		window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+0+"&hprice="+hprice_val+"&rate="+rate_val+"");
+		window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+0+"&hprice="+hprice_val+"&rate="+rate_val+"");
 		prodcuct_multiple_filter();
 		filter_tag_present(); 
 			 
@@ -2114,7 +2216,23 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		  
 		$("#Highest_tag").html("");
 		
-		window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+0+"&rate="+rate_val+"");
+		
+		var currentURL = window.location.pathname;
+		var check_page_name =currentURL.includes("index_filter.php");
+		
+		if(check_page_name == true)
+		{
+			
+			page_filter="index_filter";
+		}
+		else
+		{
+		
+			page_filter="profile_filter";
+			
+		}
+		
+		window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+0+"&rate="+rate_val+"");
 		prodcuct_multiple_filter();
 		filter_tag_present(); 
 			 
@@ -2139,7 +2257,26 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		  
 		$("#Rating_tag").html("");
 		
-		window.history.pushState('page2', 'Title', "/project37/profile_filter.php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+0+"");
+		
+			
+		var currentURL = window.location.pathname;
+		var check_page_name =currentURL.includes("index_filter.php");
+		
+		if(check_page_name == true)
+		{
+			
+			page_filter="index_filter";
+		}
+		else
+		{
+		
+			page_filter="profile_filter";
+			
+		}
+		
+		
+		
+		window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+0+"");
 		prodcuct_multiple_filter();
 		filter_tag_present(); 
 			 
