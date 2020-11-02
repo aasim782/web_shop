@@ -323,111 +323,55 @@
    <nav class="mt-3">
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">OverView</a>
-    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Customer Reviews</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Customer Reviews <span id="customer_review_count"></span></a>
    </div>
 </nav>
+
+
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
     <div id="prd_dec_details" class="m-3"> </div> 
   </div>
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <div class="tab-pane fade  mt-4  " id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <a  class="list-group-item list-group-item-action flex-column align-items-start ">
-    <div class="d-flex w-100 justify-content-between">
-      <div class="row "><h5 class="mb-1 ml-3 mr-2"> Farhana Musthafa</h5>
-	  
-	  <div class="justify-content-center">
-					<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-					<i class='fas fa-star'></i>
-					</div>
-	</div>
-
-      <small>01/02/2020</small>
-    </div>
-    <p class="mb-1 mt-1">
-	Very nice product. Very good packaging. </p>
-    
-  </a>
-  
-  
-  
-    <a  class="list-group-item list-group-item-action flex-column align-items-start ">
-    <div class="d-flex w-100 justify-content-between">
-      <div class="row "><h5 class="mb-1 ml-3 mr-2">Mohamed Aasim</h5>
-	  
-	  <div class="justify-content-center">
-					<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-					<i class='fas fa-star'></i>
-					</div>
-	</div>
-
-      <small>07/05/2020</small>
-    </div>
-    <p class="mb-1 mt-1">
-	Very fast. Shipment completed in 5 days. Everything </p>
-    
-  </a>
-  
-  
-  
-    
-  
   
  
- 
- 
-  
-     <a  class="list-group-item list-group-item-action flex-column align-items-start  ">
-       <div class="d-flex w-100 justify-content-between">
-	  <div class="row "><h5 class="mb-1 ml-3 mr-2">  Kumuthini Ashokkumar</h5>
-	  <div class="justify-content-center">
-					<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-					<i class='fas fa-star'></i>
-					</div>
-					
-	</div>
-	 <small>01/02/2020</small>
-	 </div>
-    <p class="mb-1">
-		Good seller, the printer is the same from the description. The shipping time is short and the packet is good</p>
-    <img  class='card-img-bottom text-center border mt-2' src='prg_img/feedback/F_05_03_2020_05_02_122.jpg'   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
- <img  class='card-img-bottom text-center border mt-2' src='prg_img/feedback/F_01_2020_05_02_122.jpg'    style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
- <img  class='card-img-bottom text-center border mt-2' src='prg_img/feedback/F_05_03_2020_05_02_122.jpg'   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>
- 
-  </a>
-  
- 
-  
-     <a  class="list-group-item list-group-item-action flex-column align-items-start  ">
-	        <div class="d-flex w-100 justify-content-between">
-      <div class="row "><h5 class="mb-1 ml-3 mr-2">  Niyas Muhaideen</h5>
-	  
-	  <div class="justify-content-center">
-					<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-					<i class='fas fa-star'></i>
-					</div>
-	</div>
-		 <small>01/02/2020</small>
-	 </div>
-    <p class="mb-1">
-Very fast shipment. Very good quality product. I'm very happy with this printer. In my opinion, best quality/price printer. Very good communication with seller. Thanks for this service.</p>
-    <small>Donec id elit non mi porta.</small>
-  </a> 
-  
  
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 </div>
 		 

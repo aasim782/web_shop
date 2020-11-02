@@ -179,9 +179,9 @@ if(isset($_POST["product"])){
          
     <div class='form-group row justify-content-center'>
 
-        <label for='inputPassword' class='p-1'>QTY :</label>
+        <label   class='p-1'>QTY :</label>
         <div class='col-sm-4'>
-            <input type='number' class='form-control ' min='1' size='2' session_val='$customer_id'  pid='$product_id' value='1'  id='qty-$product_id' >
+            <input type='number' class='form-control ' min='1' size='2' step='1' oninput='validity.valid||(value = '' );' session_val='$customer_id'  pid='$product_id' value='1'  id='qty-$product_id' >
 		</div>
 		</div>
 	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' session_val='$customer_id'  pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
@@ -379,7 +379,7 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 
         <label for='inputPassword' class='p-1'>QTY :</label>
         <div class='col-sm-4'>
-            <input type='number' class='form-control text-center' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
+            <input type='number' class='form-control text-center' min='1' step='1' oninput=validity.valid||(value='1'); size='2' pid='$product_id' value='1'  id='qty-$product_id' >
 		</div>
 		</div>
 	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
@@ -883,7 +883,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 												 
 														<div class='col-md-1  '>	
 												
-														<input type='number'   min='1' class='form-control text-center qty ' id='qty-$product_id' pid='$product_id'  value='$order_qtry'>
+														<input type='number'  min='1' step='1' oninput=validity.valid||(value='1');   class='form-control text-center qty ' id='qty-$product_id' pid='$product_id'  value='$order_qtry'>
 														
 														</div>	
 														
@@ -1392,7 +1392,7 @@ $check_query = mysqli_query($con,$sql);
 										}
 										else
 										{
-											echo"<a href='' class='btn btn-warning mr-2 rounded  order_id='$order_id'    customer_ord_id='$customer_ord_id'  id='customer_prd_conform_btn'  data-toggle='modal'><i class='fa fa-check'></i> Confirm goods Received </a>";
+											echo"<a href='' class='btn btn-warning mr-2 rounded  order_id='$order_id'  product_id='$product_id'  customer_ord_id='$customer_ord_id'  id='customer_prd_conform_btn'  data-toggle='modal'><i class='fa fa-check'></i> Confirm goods Received </a>";
 										}
 									  
 									  echo "
@@ -1799,7 +1799,7 @@ $product_desc = $row["product_desc"];
     </div>
 
   <div class='col-3 text-left'> 
-		   <input type='number' class='form-control text-center' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
+		   <input type='number' class='form-control text-center' min='1' step='1' oninput=validity.valid||(value='1'); size='2' pid='$product_id' value='1'  id='qty-$product_id' >
     </div>
   </div>
   
@@ -2227,36 +2227,124 @@ $order_status = $row_data["order_status"];
 	
 	
 	
-	//shipment and tracking details at tracking model
+	//custermer give product review
  if(isset($_POST["customer_order_item_feedback"]))
 	{
  	$customer_id = $_SESSION['cusid'] ;
 	$customer_ord_id = $_POST['customer_ord_id'];
 	$customer_item_feedback_description = $_POST['customer_item_feedback_description'];
 	$g_rating = $_POST['g_rating'];
-	
-			
-	 date_default_timezone_set('Asia/Kolkata');
+	$product_id = $_POST['product_id'];
+ 
+  
+date_default_timezone_set('Asia/Kolkata');
 		//define date and time
-	 $date = date("Y-m-d"); // get the date
+$date = date("Y-m-d"); // get the date
+  
+  
+date_default_timezone_set('Asia/Kolkata');
+//define date and time
+$date_image = date('Y-m-d_H-i-s', time());
+
+/* Location */
+$location = "./prg_img/"."feedback."."/";
+ 
+		
+
+ if(!empty($_FILES['files_1']) && $customer_item_feedback_description != "" && $g_rating != "" )
+	{
+	 
+				 $filename[0] = $_FILES['files_1']['name'];
+	   
+				$imageFileType = pathinfo($filename[0],PATHINFO_EXTENSION);
+				$new_file_name_1="1_".$customer_id."_"."$product_id"."_".$date_image.".".$imageFileType;
+				/* Upload file */
+				
+			 
+					  if(move_uploaded_file($_FILES['files_1']['tmp_name'],$location.$new_file_name_1))
+							   {
+								 
+							   }
+							   else
+							   {
+									echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+							   }
+	 }
+	 
+	 else
+	 {
+		$new_file_name_1 = 0;
+	
+	}   
+	 
  
  
+			 
+
+			   
  
+ if(!empty($_FILES['files_2']) && $customer_item_feedback_description != "" && $g_rating != "")
+ { 
+ 	   
+		
+		    $filename[1] = $_FILES['files_2']['name'];
+			$imageFileType = pathinfo($filename[1],PATHINFO_EXTENSION);
+			$new_file_name_2="2_".$customer_id."_"."$product_id"."_".$date_image.".".$imageFileType;
+				
+			if(move_uploaded_file($_FILES['files_2']['tmp_name'],$location.$new_file_name_2))
+			   {
+				 
+			   }
+			   else
+			   {
+			     	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+			   }	   
+		
+ }
+ else
+ {
+	 		$new_file_name_2 = 0;
+ }
+  
+   
+
+ if(!empty($_FILES['files_3']) && $customer_item_feedback_description != "" && $g_rating != "")
+ {
+	 
+ $filename[2] = $_FILES['files_3']['name'];
+	  		$imageFileType = pathinfo($filename[2],PATHINFO_EXTENSION);
+			$new_file_name_3="3_".$customer_id."_"."$product_id"."_".$date_image.".".$imageFileType;
+			   
+			if(move_uploaded_file($_FILES['files_3']['tmp_name'],$location.$new_file_name_3))
+			   {
+				 
+			   }
+			   else
+			   {
+			     	echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> File not uploded!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";	
+			   }
+ }
+ else
+ {
+	 $new_file_name_3= 0;
+ }
+	   
+ 
+	 
+	 
+	 
  	// used to get the order id through customer order id
-	$sql = "SELECT order_id,product_id FROM customer_ord_prds WHERE customer_ord_id=$customer_ord_id " ;
+		$sql = "SELECT order_id,product_id FROM customer_ord_prds WHERE customer_ord_id=$customer_ord_id " ;
 		$check_query = mysqli_query($con,$sql);
 		$row_data = mysqli_fetch_array($check_query);
 		$order_id = $row_data["order_id"];
 		$product_id = $row_data["product_id"];
-
  
  
- 
- 	$sql2 = "INSERT INTO `comments_tbl`(`customer_id`,`date`,`product_id`,`comment_type`,`customer_ord_id`,`description`,`feedback_img_1`,`feedback_img_2`,`feedback_img_3`,`rating`) VALUES ($customer_id,'$date','$product_id',3,$customer_ord_id,'$customer_item_feedback_description','image1','image2','image3',$g_rating)";
+ 	$sql2 = "INSERT INTO `comments_tbl`(`customer_id`,`date`,`product_id`,`comment_type`,`customer_ord_id`,`description`,`feedback_img_1`,`feedback_img_2`,`feedback_img_3`,`rating`) VALUES ($customer_id,'$date',$product_id,3,$customer_ord_id,'$customer_item_feedback_description','$new_file_name_1','$new_file_name_2','$new_file_name_3',$g_rating)";
 	mysqli_query($con,$sql2);
 		
-	  
- 	 
+	   
 	// update parcel recived date
 	$sql = "update delivery_tbl set prd_received_date='$date' where order_id=$order_id" ;
 	$check_query = mysqli_query($con,$sql);	
@@ -2267,31 +2355,164 @@ $order_status = $row_data["order_status"];
 	
 	echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong>  Thank you for your feedback!</strong>  </div>";
   
-		  
-
+ 
+	
+	
+	 
 	}
-	
-	
-	
-//get customer ordered item feedback
- if(isset($_POST["get_customer_order_item_feedback"]))
-	{
+  
+   
+   
+  
+   
+  //get customer ordered item feedback
+ if(isset($_POST["get_customer_orders_reviews"]))
+	{ 
+$product_id = $_POST["product_id"];
+
+	$sql= "SELECT comments_tbl.product_id,comments_tbl.date,customer_tbl.first_name,customer_tbl.last_name,comments_tbl.description,comments_tbl.feedback_img_1,comments_tbl.feedback_img_2,comments_tbl.feedback_img_3,comments_tbl.rating FROM comments_tbl,customer_tbl WHERE (customer_tbl.customer_id = comments_tbl.customer_id) and product_id=$product_id  ORDER BY comments_tbl.date DESC";
+	$run_query = mysqli_query($con,$sql);
+	$count=mysqli_num_rows($run_query);
 		
-	$product_id = $_POST['product_id'];
-	$sql = "SELECT comments_tbl.date,comments_tbl.customer_id,comments_tbl.description,comments_tbl.feedback_img_1,comments_tbl.feedback_img_2,comments_tbl.feedback_img_3 FROM comments_tbl
-	WHERE customer_ord_prds.customer_ord_id= " ;
-	$check_query = mysqli_query($con,$sql);
 		
+				 echo "<script type='text/javascript'>
+						$(document).ready(function(){
+						
+							if($count != 0)
+							{
+								 $('#customer_review_count').html('('+$count+')'); 
+							}
+						
+						}
+						  
+						);
+						 
+						</script>
+						";
+						
+						
+		if($count>0)
+		{
+			
+		  while($row = mysqli_fetch_array($run_query))
+			{
+				$date = $row["date"];
+				$first_name = $row["first_name"];
+				$last_name = $row["last_name"];
+				$rating = $row["rating"];
+				$description = $row["description"];
+				$feedback_img_1 = $row["feedback_img_1"];
+				$feedback_img_2 = $row["feedback_img_2"];
+				$feedback_img_3 = $row["feedback_img_3"];
+		 
 		 
 		
-	 if(mysqli_num_rows($check_query) > 0){
-		while($row = mysqli_fetch_array($check_query))
-		{ 
-			echo "";
+
+		//if image empty dontn't show error image. Otherwise show
+		
+		if($feedback_img_1 ==0)
+		 {
+			 $image1="";
+		 }
+		 else
+		 {
+			  $image1="<img  class='thumbnail zoom card-img-bottom text-center  card-img-bottom text-center  mt-2' src='prg_img/feedback/$feedback_img_1'   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>";
+	
+		 }
+	 
+	 
+	 
+		 if($feedback_img_2 ==0)
+		 {
+			  $image2="";
+		 }
+		 	 else
+		 {
+			 $image2="<img  class='thumbnail zoom card-img-bottom text-center  card-img-bottom text-center  mt-2' src='prg_img/feedback/$feedback_img_2'    style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>";
+		 }
+	 
+	 
+	 
+		 if($feedback_img_3 ==0)
+		 {
+			  $image3="";
+		 }
+		 	 else
+		 {
+			  $image3="<img  class='thumbnail zoom card-img-bottom text-center  card-img-bottom text-center  mt-2' src='prg_img/feedback/$feedback_img_3'   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/> ";
+		 }
+				
+				
+		  
+		 
+		 
+		  echo "   <a  class='list-group-item list-group-item-action flex-column align-items-start  '>
+					   <div class='d-flex w-100 justify-content-between'>
+					  <div class='row '><h5 class='mb-1 ml-3 mr-2'>  $first_name $last_name </h5>
+					  <div class='justify-content-center'>
+					   
+					   
+					   ";
+				 
+						
+
+							if($count>0)
+							{
+								$max_rate=$rating;
+							}
+							else
+							{
+								$max_rate=0;
+							}
+							
+							
+							
+							
+					for($x=1;$x<=$max_rate;$x++)
+					{
+						 echo "<i class='fas fa-star ' style='color:orange'></i>";
+						 if($x ==$max_rate)
+							{ 
+									for($y=$x;$y<5;$y++)
+									{
+										 echo "<i class='fas fa-star ' ></i>";
+											 
+									}
+								
+							}
+							 
+					}  
+					
+					echo "   
+									
+									</div>
+									
+					</div>
+					 <small>$date</small>
+					 </div>
+					<p class='mb-1'>
+						 $description </p>
+				 
+				 $image1 $image2 $image3
+			
+				  </a>
+				  ";
+		
+		
+		
 		}
 		
+		
+		}
+	
+	
 	}
-	}
+  
+  
+  
+  
+  
+  
   
   
   
@@ -2820,7 +3041,7 @@ $product_h_price=0;
 
         <label for='inputPassword' class='p-1'>QTY :</label>
         <div class='col-sm-4'>
-            <input type='number' class='form-control text-center' min='1' size='2' pid='$product_id' value='1'  id='qty-$product_id' >
+            <input type='number' class='form-control text-center' min='1'   step='1' oninput=validity.valid||(value='1');  size='2' pid='$product_id' value='1'  id='qty-$product_id' >
 		</div>
 		</div>
 	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
@@ -2901,6 +3122,9 @@ if(isset($_POST["get_cat_brd_names_tag"]))
 	}
   
   
+  
+  
+ 
   
   
 

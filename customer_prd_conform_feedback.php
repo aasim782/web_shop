@@ -92,21 +92,21 @@ span.active a:after,
 					<div class="col-sm">
 					  	<div class="custom-file ">
 							<div> 
-								<input type="file" id="file" name="file" />
+								<input type="file" id="file_1" name="file_1_1" />
 							</div>
 					 </div>
 					</div>
 					<div class="col-sm">
 						<div class="custom-file ">
 							<div> 
-								<input type="file" id="file_2" name="file">
+						<input type="file" id="file_2" name="file_1_2" />
 							</div>
 					 </div>
 					</div>
 					<div class="col-sm">
 					 	<div class="custom-file ">
 							<div> 
-								<input type="file" id="file_3" name="file">
+							<input type="file" id="file_3" name="file_1_3" />
 							</div>
 					 </div>
 					</div>
@@ -120,7 +120,7 @@ span.active a:after,
 		</form>			 
       </div>
       <div class="modal-footer" id="customer_prd_fedb_conform_footer">
-	   <button type="button" class="btn btn-danger"   id="customer_prd_fedb_conform_btn">Confirm</button>
+	   <button type="button" class="btn btn-danger"  feedback_product_id="0" id="customer_prd_fedb_conform_btn">Confirm</button>
         <button type="button" class="btn btn-secondary" id='feedback_close_button' >Close</button>
 
       </div>

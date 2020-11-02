@@ -1,31 +1,28 @@
--customer rating stars appy to the products
-
-" Ver 0.6.17"
+-customer review option compeleted
+-customer review count
+" Ver 0.6.18"
 
  
 
-Developemnt pending
+Developemnt pending.
 -weight matters for travelling charge
--order module full chekup
- 
+
 -report module
 -message module customer
 -message module admin
- 
+-customes order
 
 -service tracking info update (reciver details)
 -reciver details on deliver page
 -transacrion id 12345 save to database 
 -transaction date also save to database
-
+-home page price ok button
 -Bank Account details explaantion
  
 -cancel or unpaid something module (error also should solve)
--feedback image upload option 
--get customer review on profile page
 -active roles
 -dashboard monthly summary
-   
+-five star filter option 
 
 
 
@@ -43,6 +40,6 @@ delivery table small changes image and recived date filed miss
 commets table product id added
 
 
-
+-order module full chekup
 
  window.print(data);

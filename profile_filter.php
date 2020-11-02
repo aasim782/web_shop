@@ -208,26 +208,24 @@
 				
 		
 		
- <div class="card mb-2">	
+ <div class="card mb-2" id="price_div">	
    <div class="card-header">
 	<h5>&nbspPrice (Rs.)</h5></a> 
   </div>
-  <div class="card-body" >
+  <div class="card-body"  >
 		 
-  <div class="row ">
+  <div class="row" >
     <div class="col-sm">
-      	<input type="number"  class="form-control" id="lpriceid" placeholder="Min" value="0" pattern="[0-9]*"   autocomplete="off">
+      	<input type="number"  class="form-control text-center" id="lpriceid" placeholder="Min" value="0" min="0" step="1" oninput="validity.valid||(value='');"    autocomplete="off">
     </div>
 	
 	  <div class="text-center">
       	-
     </div>
     <div class="col-sm">
-     	<input type="number"   class="form-control"  id="hpriceid" placeholder="Min" value="0" pattern="[0-9]*"   autocomplete="off">
+     	<input type="number"   class="form-control text-center"  id="hpriceid" placeholder="Min" value="0"  min="0" step="1" oninput="validity.valid||(value='');"   autocomplete="off">
     </div>
- <div class="col-sm">
-      	<input type="button" class="form-control btn-success" value="OK"  id="price_val_btn" autocomplete="off">
-    </div>
+ 	<span href="#" id="price_ok_btn"></span>
   </div>
   </div>
   </div>

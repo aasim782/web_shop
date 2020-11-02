@@ -1220,27 +1220,7 @@ complain_item_list();
  
   
   
- //prd feedbacks
-get_customer_order_item_feedback();
-function get_customer_order_item_feedback(){
-	
-		var url = new URL(document.URL);
-		var search_params = url.searchParams;
-		var product_id_txt = search_params.get('pid');
-		
-	 	$.ajax({
-			url		:	"action.php",
-			method	:	"POST",
-			data	:	{get_customer_order_item_feedback:1,product_id:product_id_txt},
-			success	:	function(data){
-		 
-			  $("#trk_model_order_id").html(get_order_id);
-		 
-			}
-	
-})
-	
-}
+
 
 
  
@@ -1554,9 +1534,12 @@ $('.stars a').on('mouseover', function(){
 //pass the customer order id/item id to customer prd fedback cofirm btn
 $('body').delegate('#customer_prd_conform_btn','click',function() {
 	 var customer_ord_id= $(this).attr('customer_ord_id');  
+	 var product_id= $(this).attr('product_id');  
+	 
 	$("#customer_prd_fedb_conform_btn").val(customer_ord_id);
+	$("#customer_prd_fedb_conform_btn").attr("feedback_product_id",product_id); // these producd id used for feedback image name
 	
- 		$('#customer_prd_conform_feedback').modal('show');
+	$('#customer_prd_conform_feedback').modal('show');
 	
   })
 
@@ -1574,22 +1557,165 @@ $('body').delegate('#forget_btn','click',function() {
 
  
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Feedback image validation
+
+//file upload extension,size,width and height
+   $(document).on('change', '#file_1', function(e){
+  var name = document.getElementById("file_1").files[0].name;
+  var _URL = window.URL || window.webkitURL;
+ var file, img;
+	  
+  var form_data = new FormData();
+  var ext = name.split('.').pop().toLowerCase();
+  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) 
+  {
+ 
+ 	$("#cus_order_feedback_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Invalid </strong>file format !  <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+	$("#file_1").val("");
+   
+  }
+  var oFReader = new FileReader();
+  oFReader.readAsDataURL(document.getElementById("file").files[0]);
+  var f = document.getElementById("file").files[0];
+  var fsize = f.size||f.fileSize;
+  
+  if(fsize > 2000000)
+  {
+	$("#file_1").val("");
+	$("#cus_order_feedback_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Image File Size is </strong>very big ! <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+  }
+ 
+ 
+	
+ });
+ 
+  
+ 
+ 
+ //file upload extension,size,width and height
+   $(document).on('change', '#file_2', function(e){
+  var name = document.getElementById("file_2").files[0].name;
+  var _URL = window.URL || window.webkitURL;
+ var file, img;
+	  
+  var form_data = new FormData();
+  var ext = name.split('.').pop().toLowerCase();
+  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) 
+  {
+ 
+ 	$("#cus_order_feedback_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Invalid </strong>file format !  <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+	$("#file_2").val("");
+   
+  }
+  var oFReader = new FileReader();
+  oFReader.readAsDataURL(document.getElementById("file").files[0]);
+  var f = document.getElementById("file").files[0];
+  var fsize = f.size||f.fileSize;
+  
+  if(fsize > 2000000)
+  {
+	$("#file_2").val("");
+	$("#cus_order_feedback_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Image File Size is </strong>very big ! <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+  }
+ 
+ 
+	
+ });
+ 
+  
+ 
+ 
+  
+ //file upload extension,size,width and height
+   $(document).on('change', '#file_3', function(e){
+  var name = document.getElementById("file_3").files[0].name;
+  var _URL = window.URL || window.webkitURL;
+ var file, img;
+	  
+  var form_data = new FormData();
+  var ext = name.split('.').pop().toLowerCase();
+  if(jQuery.inArray(ext, ['gif','png','jpg','jpeg']) == -1) 
+  {
+ 
+ 	$("#cus_order_feedback_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Invalid </strong>file format !  <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+	$("#file_3").val("");
+   
+  }
+  var oFReader = new FileReader();
+  oFReader.readAsDataURL(document.getElementById("file").files[0]);
+  var f = document.getElementById("file").files[0];
+  var fsize = f.size||f.fileSize;
+  
+  if(fsize > 2000000)
+  {
+	$("#file_3").val("");
+	$("#cus_order_feedback_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Image File Size is </strong>very big ! <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+  }
+ 
+ 
+	
+ });
+ 
+ 
  
 
-//get customer order id/item id to confirm btn
+//custermer give product review
 $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 	var customer_ord_id_val= $("#customer_prd_fedb_conform_btn").val();
 	var customer_item_beedback_txt= $("#customer_item_beedback_txt").val();
+	var product_id_txt= $(this).attr('feedback_product_id');  
+	
+	
 	var g_rating_val= $("#g_rating_val").val();
-	var files = $('#file')[0].files[0];
+	var files_name_1 =  $('#file_1').prop('files')[0];
+	var files_name_2 = $('#file_2').prop('files')[0];
+	var files_name_3 = $('#file_3').prop('files')[0];
+	
+
  
+	if(g_rating_val != "" && customer_item_beedback_txt=="")
+	{
+	
+	$("#cus_order_feedback_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please give your honer review<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+
+	}
+	else if(customer_item_beedback_txt != "" && g_rating_val=="")
+	{
+ 	$("#cus_order_feedback_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please give your rate <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
+
+	}
+	else 
+	{
 				var fd = new FormData();
+				
 				//image upload	
 			 			
                 fd.append('customer_order_item_feedback',1);
 				fd.append('customer_ord_id', customer_ord_id_val); //arguments
 				fd.append('customer_item_feedback_description', customer_item_beedback_txt); //arguments
 				fd.append('g_rating', g_rating_val); //arguments
+				fd.append('files_1', files_name_1); //arguments
+				fd.append('files_2', files_name_2); //arguments
+				fd.append('files_3', files_name_3); //arguments
+				fd.append('product_id', product_id_txt); //arguments
 			  
                 $.ajax({
                     url:'action.php',
@@ -1606,6 +1732,8 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 							complain_item_list();//compline list shot at the select menue
                     }
                 });
+	}
+		
 				
 				})
 				
@@ -2280,7 +2408,64 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		prodcuct_multiple_filter();
 		filter_tag_present(); 
 			 
-		   })		
+		   })	
+
+
+ 
+
+
+$( "#lpriceid" ).mousemove(function( event ) {
+   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
+
+})
+
+ 
+ 
+
+
+$( "#hpriceid" ).mousemove(function( event ) {
+   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
+
+})
+
+
+
+	$( "#price_div" ).mousemove(function( event ) {
+   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
+
+})
+	
+ $( "#price_div" ).mouseout(function( event ) {
+   $("#price_ok_btn").html("");
+
+})
+	
+	
+	
+	
+	
+ //get_customer orders reviews
+get_customer_orders_reviews();
+function get_customer_orders_reviews(){
+	
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var product_id_txt = search_params.get('pid');
+		
+	 	$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{get_customer_orders_reviews:1,product_id:product_id_txt},
+			success	:	function(data){
+		 
+			  $("#nav-profile").html(data);
+		 
+			}
+	
+})
+	
+}
+		   
 		
 		
 		
