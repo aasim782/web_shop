@@ -186,8 +186,12 @@
 		
 		
  <div class="card mb-2">	
-   <div class="card-header">
-	<h5>&nbspPrice (Rs.)</h5></a> 
+     <div class="card-header">
+     <div class="row" ><h5>&nbspPrice (Rs.)</h5>
+	   <div class="col-sm"> </div>
+	     <div class="col-sm">  <span href="#" id="price_ok_btn"></span> </div>
+	   </div>
+  
   </div>
   <div class="card-body" >
 		 
@@ -202,9 +206,7 @@
     <div class="col-sm">
      	<input type="number"   class="form-control"  id="hpriceid" placeholder="Min" value="0" pattern="[0-9]*"   autocomplete="off">
     </div>
- <div class="col-sm">
-      	<input type="button" class="form-control btn-success" value="OK"  id="price_val_btn" autocomplete="off">
-    </div>
+ 
   </div>
   </div>
   </div>

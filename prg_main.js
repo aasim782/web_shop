@@ -2127,6 +2127,7 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 				if(cid == 0 &&  brd_val ==0 && lprice_val == 0 &&  hprice_val == 0 &&  rate_val == 0)
 				{
 					$("#Filter_title_tag").html("");
+					$("#price_ok_btn").html("");
 				}
 				else
 				{
@@ -2413,34 +2414,32 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 
  
 
-
-$( "#lpriceid" ).mousemove(function( event ) {
-   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
-
-})
-
- 
  
 
 
-$( "#hpriceid" ).mousemove(function( event ) {
+
+	$( "#lpriceid" ).keypress(function( event ) {
+   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
+
+})
+	
+	$( "#hpriceid" ).keypress(function( event ) {
+   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
+
+})
+ 
+	
+		$( "#hpriceid" ).change(function( event ) {
+   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
+
+})
+
+	$( "#lpriceid" ).change(function( event ) {
    $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
 
 })
 
 
-
-	$( "#price_div" ).mousemove(function( event ) {
-   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
-
-})
-	
- $( "#price_div" ).mouseout(function( event ) {
-   $("#price_ok_btn").html("");
-
-})
-	
-	
 	
 	
 	

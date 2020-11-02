@@ -1,6 +1,5 @@
--customer review option compeleted
--customer review count
-" Ver 0.6.18"
+-home page price ok button
+" Ver 0.6.20"
 
  
 
@@ -16,7 +15,7 @@ Developemnt pending.
 -reciver details on deliver page
 -transacrion id 12345 save to database 
 -transaction date also save to database
--home page price ok button
+
 -Bank Account details explaantion
  
 -cancel or unpaid something module (error also should solve)
