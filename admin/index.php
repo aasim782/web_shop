@@ -1,13 +1,18 @@
 <!DOCTYPE html>
- 
+
   <?php 
  session_start();
-	if(!isset($_SESSION['adminid']))
+	if(!isset($_SESSION['adminid']) )
 	{
 		header("location:../admin/login.php");	
 	}
+	else if( $_SESSION['user_role'] == "operator"  )
+	 {
+	 header("location:../admin/product.php?success=1");
 	 
- 
+	 }
+
+	  
  ?>
  
 <html lang="en">
@@ -51,18 +56,13 @@
 
 
 <!--navbar-->
-<?php include "navbar.php" ?>
+<?php include "navbar.php" ;
+ 
+						?>
 
   <!-- Main Sidebar Container -->
 <?php  include "side_bar.php" ;
-
-
-
-	echo " 
-		<script type='text/javascript'>
-		out_of_stock();
-		</script> ";
-				
+ 
 				
 				?>
 

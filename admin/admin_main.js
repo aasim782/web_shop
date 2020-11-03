@@ -238,6 +238,8 @@ $(document).ready(function () {
    })
 
  
+  
+			  
  
 
   //admin login verification
@@ -246,7 +248,9 @@ $(document).ready(function () {
     var admin_email_txt = $("#admin_email_txt").val();
     var admin_password_txt = $("#admin_password_txt").val();
     var emailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
+				
+				
+				 
     if (admin_email_txt == "" || admin_password_txt == "") {
       $("#admin_alert_msg_login").html(
         "<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
@@ -266,6 +270,7 @@ $(document).ready(function () {
         }, // get_search - req ,keywords passing
         success: function (data) {
           $("#admin_alert_msg_login").html(data); //from php userLogin method in action
+		  
 		
         },
       });
@@ -1529,6 +1534,8 @@ if(login_success==1){
 	out_of_stock();
 }
 
+
+//get out of stock
 function out_of_stock(){
 	
 	   $.ajax({
@@ -1543,8 +1550,31 @@ function out_of_stock(){
 	
 	
 }
+
+
+//close success reset on URL
+ $("body").delegate("#outofstock_close_btn", "click", function () {
+  
+ 	var currentURL = window.location.pathname;
+	var check_page_name =currentURL.includes("index.php");
+		
+		if(check_page_name==true)
+		{
+			pagename="index";
+		}else
+		{
+			pagename="product";
+		}
+		
+		
+ window.history.pushState('page2', 'Title', "/project37/admin/"+pagename+".php");
+		
+	
+});
  
   
+  
+ 
 
 //file upload extension,size,width and height
    $(document).on('change', '#file_banner', function(e){
@@ -2288,6 +2318,12 @@ customer_order_month();
 		}
 		
 		
-		
+			  
+ 
+	
+	
+	
+	
+	
 
 });

@@ -77,12 +77,12 @@
 
 
 <!-- out of stock Modal -->
-<div class="modal fade bd-example-modal-lg" id="out_of_stock_Modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg"  data-backdrop="static" data-keyboard="false" id="out_of_stock_Modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header bg-warning">
         <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-shopping-basket"></i> Out of stock summary</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="outofstock_close_btn">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -115,7 +115,7 @@
  </div>
       <div class="modal-footer">
 	  
-	  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	  <button type="button" class="btn btn-danger" data-dismiss="modal" id="outofstock_close_btn">Close</button>
        
       </div>
     </div>

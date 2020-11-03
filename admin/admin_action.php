@@ -155,6 +155,7 @@ if(isset($_POST["admin_userLogin"])){
 		{
 				$row = mysqli_fetch_array($check_query);
 				$_SESSION['adminid'] = $row['email'];
+				$_SESSION['user_role'] = $row['user_role'];
 				$_SESSION['password'] = $row['password'];
 				echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 				data-auto-dismiss><strong>Successfully login</strong> <button type='button' 

@@ -2598,9 +2598,8 @@ function get_customer_orders_reviews(){
 })
 	
 }
-		   
-		
-		
+ 
+	
 		
 
 });

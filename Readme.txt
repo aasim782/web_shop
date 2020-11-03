@@ -1,14 +1,12 @@
--bank slip deatils appear
--weight matters for travelling charge
-" Ver 0.6.22"
-
+-active roles
+" Ver 0.6.23"
  
 
 Developemnt pending.
   
 -report module
--message module customer
 
+-message module customer
 -message module admin
 
 -customes order
@@ -19,7 +17,8 @@ Developemnt pending.
 
 -Bank Account details explaantion
 -cancel or unpaid something module (error also should solve)
--active roles
+
+
  
 
 
