@@ -185,7 +185,7 @@
 				
 		
 		
- <div class="card mb-2">	
+ <div class="card mb-2"  id="price_div">	
      <div class="card-header">
      <div class="row" ><h5>&nbspPrice (Rs.)</h5>
 	   <div class="col-sm"> </div>
@@ -197,14 +197,14 @@
 		 
   <div class="row ">
     <div class="col-sm">
-      	<input type="number"  class="form-control" id="lpriceid" placeholder="Min" value="0" pattern="[0-9]*"   autocomplete="off">
+      	<input type="number"  class="form-control text-center" id="lpriceid"  min="0" step="1" oninput="validity.valid||(value='');"   placeholder="Min" value="0" pattern="[0-9]*"   autocomplete="off">
     </div>
 	
 	  <div class="text-center">
       	-
     </div>
     <div class="col-sm">
-     	<input type="number"   class="form-control"  id="hpriceid" placeholder="Min" value="0" pattern="[0-9]*"   autocomplete="off">
+     	<input type="number"   class="form-control text-center"  min="0" step="1" oninput="validity.valid||(value='');"    id="hpriceid" placeholder="Min" value="0" pattern="[0-9]*"   autocomplete="off">
     </div>
  
   </div>

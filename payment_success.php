@@ -204,7 +204,7 @@
 						
 						$order_id =$_GET['order_id'];
 						$today= date('Y-m-d'); //get system dates
-						
+					 
 						 
 							$sql = "update customer_ord_prds set payment_status=1 where customer_id= '$customer_id' && order_id = '$order_id' ";
 							mysqli_query($con,$sql);
@@ -220,7 +220,7 @@
 										$row = mysqli_fetch_array($check_query);
 											$payment_id = $row["payment_id"];
 	
-									$sql = "INSERT INTO `online_tran_tbl`(`payment_id`) VALUES ($payment_id)";
+									$sql = "INSERT INTO `online_tran_tbl`(`payment_id`,transaction_id,transaction_date) VALUES ($payment_id,12345,'$today')";
 									mysqli_query($con,$sql);
 										
 								}

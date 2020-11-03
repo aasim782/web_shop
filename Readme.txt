@@ -1,22 +1,22 @@
--five star filter option problem solved 
--filter
--page loading problem sovled
--feedback deatils doest not showing problem sovled
-" Ver 0.6.21"
+-bank slip deatils appear
+-weight matters for travelling charge
+" Ver 0.6.22"
 
  
 
 Developemnt pending.
--weight matters for travelling charge
-
+  
 -report module
 -message module customer
+
 -message module admin
+
 -customes order
+
 -service tracking info update (reciver details)
+
 -reciver details on deliver page
--transacrion id 12345 save to database 
--transaction date also save to database
+
 -Bank Account details explaantion
 -cancel or unpaid something module (error also should solve)
 -active roles

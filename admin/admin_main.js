@@ -1325,7 +1325,9 @@ category_count();
 					method	:	"POST",
 					data	:	{bankslip_image_view:1,order_id:ordid},
 					success	:	function(data){
-				 
+					
+						
+						
 								$("#bankslip_image_View").html(data);
 					}
 					})

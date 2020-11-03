@@ -10,6 +10,9 @@
         </button>
             </div>
               <div class="modal-body">
+			  
+		
+			  
         <form>
           <div class="form-group">
 				<div id="bankslip_image_View"></div>

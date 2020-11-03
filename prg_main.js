@@ -109,10 +109,12 @@ $(document).ready(function(){
 	//filter by search keywords using search btn
 	$("#search_btn").click(function(){
 			 
+			 
+			 
 		var url = new URL(document.URL);
 		var search_params = url.searchParams;
 		var keywords = search_params.get('srch');
-		
+ 
 		
 		var currentURL = window.location.pathname;
 		var check_page_name =currentURL.includes("index.php");
@@ -126,14 +128,14 @@ $(document).ready(function(){
 		
 		var keywords = search_params.get('srch');
 		
+	 
 				if(keywords != '')
 				{
 					  keywords= $("#search_txt").val();
 						
-						
-						
+			 
 									// index  - index filter 
-									if(check_page_name==true && keywords!="")
+									if((check_page_name==true && keywords!="" ) || ( currentURL == "/project37/" && keywords!=""))
 									{	
 									
 									  window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
@@ -185,7 +187,7 @@ $(document).ready(function(){
 													
 										
 										// index  - index filter 
-									if(check_page_name ==false &&  check_page_name_2==false  && check_page_name_3 ==false && check_page_name_4 ==false  && check_page_name_5 ==false && keywords !="" )
+									if(check_page_name ==false &&  check_page_name_2==false  && check_page_name_3 ==false && check_page_name_4 ==false  && check_page_name_5 ==false &&  currentURL != "/project37/"  && keywords !="" )
 									{	
 									
 										window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
@@ -210,19 +212,7 @@ $(document).ready(function(){
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		 
 		
 		
 		}
@@ -230,31 +220,15 @@ $(document).ready(function(){
 	
 
 		 
-		
-		
+	 
+
+	
 	
 	//filter by search keywords with press enter key in txt box
 	$('#search_txt').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
 	
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 	 
+		  
 		var url = new URL(document.URL);
 		var search_params = url.searchParams;
 		var keywords = search_params.get('srch');
@@ -279,7 +253,7 @@ $(document).ready(function(){
 						
 						
 									// index  - index filter 
-									if(check_page_name==true && keywords!="")
+									if((check_page_name==true && keywords!="" ) || ( currentURL == "/project37/" && keywords!=""))
 									{	
 									
 									  window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
@@ -331,7 +305,7 @@ $(document).ready(function(){
 													
 										
 										// index  - index filter 
-									if(check_page_name ==false &&  check_page_name_2==false  && check_page_name_3 ==false && check_page_name_4 ==false  && check_page_name_5 ==false && keywords !="" )
+									if(check_page_name ==false &&  check_page_name_2==false  && check_page_name_3 ==false && check_page_name_4 ==false  && check_page_name_5 ==false  &&  currentURL != "/project37/" && keywords !="" )
 									{	
 									
 										window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
@@ -346,41 +320,9 @@ $(document).ready(function(){
 									 
 									}
 									
-									
-							  
-									
-									
-								
+									 
 					
 				}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
 		 
 		 
 		 
@@ -388,7 +330,9 @@ $(document).ready(function(){
 	});
 
 
-			
+
+
+ 
 //category filter
 $('body').delegate('#filter_category_btn','click',function() {
  		 
@@ -2613,35 +2557,25 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 
 
  
+ 
+
+	
+	$( "#price_div" ).mousemove(function( event ) {
+		
+		   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
+ 
+	});
+
+
+
+$( "#price_div" ).mouseleave(function() {
+  $("#price_ok_btn").html("");
+ 
+});
 
  
 
 
-
-	$( "#lpriceid" ).keypress(function( event ) {
-   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
-
-})
-	
-	$( "#hpriceid" ).keypress(function( event ) {
-   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
-
-})
- 
-	
-		$( "#hpriceid" ).change(function( event ) {
-   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
-
-})
-
-	$( "#lpriceid" ).change(function( event ) {
-   $("#price_ok_btn").html("<a href='#'  id='price_val_btn' class='text-1 btn btn-info '><i class='fas fa-arrow-right'></i></a>");
-
-})
-
-
-	
-	
 	
  //get_customer orders reviews
 get_customer_orders_reviews();

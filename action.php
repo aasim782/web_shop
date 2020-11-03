@@ -799,6 +799,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 	$count = mysqli_num_rows($check_query);
 	$no=1;
 	$total=0;
+	$Courier=0;
 		if($count>0)
 		{	//used to get the customer orderd details
 				while($row = mysqli_fetch_array($check_query))
@@ -809,13 +810,14 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 						$customer_note = $row["customer_note"];
 						$product_id = $row["product_id"];
 						$current_price_per_prd = $row["current_price_per_prd"];
+					
 						
 						$current_total_price = $current_price_per_prd* $order_qtry;
 						
 						$sql = "SELECT * FROM product_tbl where product_id='$product_id'" ;
 						$check_query1 = mysqli_query($con,$sql);
-					
-						$Courier=300; 
+					 
+						
 						
 						
 						//get the ongoing discount rate
@@ -852,6 +854,56 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 							{
 								$product_name = $row["product_name"];
 								$product_img = $row["product_img"];
+								$product_weight = $row["product_weight"];
+								
+								
+								if($product_weight =="< 1Kg")
+								{
+									$courier_price=300;
+									$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight =="2Kg - 3Kg")
+								{
+										$courier_price=500;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight == "4Kg  - 5Kg ")
+								{
+										$courier_price=700;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight == "6Kg - 10Kg")
+								{
+										$courier_price=900;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight == "11Kg - 20Kg" )
+								{
+										$courier_price=1200;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight == "21Kg - 30Kg" )
+								{
+										$courier_price=1500;
+										$Courier=$Courier+$courier_price; 
+									
+								}else if($product_weight ==" 31Kg - 50Kg ")
+								{
+										$courier_price=2500;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight == "51Kg < 100Kg" )
+								{
+										$courier_price=3500;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight ==" 101Kg < Up" )
+								{
+										$courier_price=5000;
+										$Courier=$Courier+$courier_price; 
+								}
+								 
+								
 								
 									if(isset($_POST["get_added_products_into_card"]))
 								{
@@ -862,10 +914,10 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 																<td style='width: 30%'><label style='cursor: pointer;'  >$product_name</label></td>
 															<td class='col-sm-1 col-md-1 text-center'><strong>$order_qtry</strong></td>
 															<td class='col-sm-1 col-md-1 text-center'><strong>Rs.$current_total_price.00</strong></td>
-															</tr>
+															</tr> 
+															";
 								
-								
-								";}			
+								}			
 															
 								
 								
@@ -960,7 +1012,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					<div class='col-sm-3'> </div>
 					<div class='col-sm-4'> </div>
 					<div class='col-sm-2 pt-1 text-right'style='background:orange;'> Courier chrage :  </div>
-					<div class='col-sm-2 pt-1  text-left' style='background:orange;'><b>Rs.300.00</b></div>
+					<div class='col-sm-2 pt-1  text-left' style='background:orange;'><b>Rs.$Courier.00</b></div>
 				  </div>
 	
 				<div class='row  ml-5'>
@@ -2416,7 +2468,7 @@ $product_id = $_POST["product_id"];
 		 }
 		 else
 		 {
-			  $image1="<img  class='thumbnail zoom card-img-bottom text-center  card-img-bottom text-center  mt-2' src='prg_img/feedback/$feedback_img_1'   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>";
+			  $image1="<img  class='thumbnail zoom card-img-bottom text-center  card-img-bottom text-center  mt-2 rouded' src='prg_img/feedback/$feedback_img_1'   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/>";
 	
 		 }
 	 

@@ -2060,13 +2060,39 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 	
 	 	$order_id = $_POST["order_id"];
 		
-$sql ="SELECT payment_tbl.payment_id,payment_tbl.order_id,bank_dep_tbl.upolod_slip_img,bank_dep_tbl.payment_id FROM payment_tbl,bank_dep_tbl
+$sql ="SELECT payment_tbl.payment_id,payment_tbl.order_id,bank_dep_tbl.dep_date,bank_dep_tbl.dep_time,bank_dep_tbl.branch_name,bank_dep_tbl.upolod_slip_img,bank_dep_tbl.payment_id FROM payment_tbl,bank_dep_tbl
  where (payment_tbl.payment_id = bank_dep_tbl.payment_id)  && (payment_tbl.order_id=$order_id)" ;
 $check_query = mysqli_query($con,$sql);
 $row = mysqli_fetch_array($check_query);
-$image_name = $row["upolod_slip_img"];
+	$image_name = $row["upolod_slip_img"];
+	$dep_date = $row["dep_date"];
+	$dep_time = $row["dep_time"];
+	$branch_name = $row["branch_name"];
+	
+ 
+
 	  
-	  	 echo " <img src='../prg_img/bank_slip/$image_name' width='100%' height='50%'>";
+	  	 echo "    
+	  <div class='row'>
+			  
+			  <table class='table table-bordered'>
+					  <thead>
+						<tr>
+						  <th scope='col' id='Deposited_date'>Deposited Date:  &nbsp $dep_date </th>
+						  <th scope='col'  id='Deposited_time'>Deposited Time:  &nbsp$dep_time</th>
+						  <th scope='col'  id='Deposited_branch'>Branch Name: &nbsp $branch_name </th>
+						</tr>
+					  </thead>
+					  
+			 
+  
+			  </table>
+			  
+			  
+			  </div>
+ 
+
+		 <img src='../prg_img/bank_slip/$image_name' width='100%' height='50%'>";
  
   }
  
