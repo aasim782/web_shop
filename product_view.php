@@ -105,23 +105,7 @@
 												
 													<tbody id="all_product_list" class=""  >			
 											
-													<!--					
-														<tr>
-															<td class="col-md-2"><h5 class="media-heading">01.</h5></td>
-																<td class="col-md-6">
-															<div class="media">
-																<div class="media-body">
-																	<h5 class="media-heading">Shoes</h5>
-																</div>
-															</div></td>
-															<td class="col-sm-1 col-md-1" style="text-align: center">
-															  <img class="d-block w-100" height="50px" width="10px" src="admin/upload/man_Shirt.jpg" alt="Third slide">
-															</td>
-															<td class="col-sm-1 col-md-1 text-center"><strong>Rs.400.87</strong></td>
-														</tr>
-
-													-->
-														
+									 
 													
 													</tbody>
 										
@@ -187,134 +171,21 @@
 		
 			<div id="indivitual_prd_view"></div>
 		
-	<!--
-	<div class="card">
-  <div class="card-body shadow-sm ">
-  
-  
-  <div class="container">
-  <div class="row">
-    <div class="col-4">
-       <img  class='thumbnail zoom card-img-bottom text-center  ' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:190px;height:250px'/><br>		
- 
- 		
-    </div>
-    <div class="col-sm">
-   	  <div class=" col-sm row  rounded ml-1 mb-2">
-			  		  <div class="col-sm mt-3 mb-2">	
-					  <b>Man's Shirt</b> <p id="product_ID"></p>	<div class="justify-content-center">
-					<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-                	<i class='fas fa-star ' style='color:orange'></i>
-					<i class='fas fa-star'></i> (120)
-					</div>	   <hr>
- 
-  <div class="row">
-    <div class="col-sm">
-     <p  ><b> Category </b> : sdasdsadasdada </p> 
-    </div>
-    <div class="col-sm">
-	<p ><b> Brand  </b>: asdsadassdav</p> 
-    </div>
-  </div>
- 
-					
-	 <div class="row">
-    <div class="col-sm">
-		<p >  <b>Price </b> : Rs.20000.00</p>
-
-    </div>
-  </div>		
-  
-  					
-	 <div class="row ">	 
-   <div class=" ml-3 pt-1 ">
-		 <b> Qty :</b> 
- 
-    </div>
-
-  <div class="col-3 text-left"> 
-	 	 <input type='number'  class='form-control text-center qty '  maxlength="4" size="4"  > 
-    </div>
-  </div>
-  
-  
-  	 <div class="row mt-3">	 
- 
-	 <div class="col-sm"> 
-	  <p class="text-success"  >In Stock</p>   
-    </div>
- 
-  </div>
-					
-			  <div class="col-sm">
-
-
-    </div>		
-					
-				  
-			
-				  
-				   
-				 
-		<div class="col-4">
-
-		</div>
-				   <p><b>Delivery within 24 hours</b></p> 
-				   
-		 <button class='btn btn-danger btn-sm mt-2 mb-2'  style='padding-bottom:10px;padding-top:10px' pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
-			 
 	 
- 
-				</div>
-	
-			</div>
-    </div>
- 
-  </div>
-</div>
-
-
-     
-  
-		</div>
- 
-				  </div>
-				  -->
 				 </div>
 				</div>	
 				
 				
 					 <div class="col justify-content-center text-center" id="recomended_prd_list_right"></div>
 
-	<!--  recomended_prd_list_right ">
-	<div class="col justify-content-center text-center">
- <b align="center" >Recomended</b>
-   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b></label><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/samsung_a50.jpg '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
- 		
  
-    </div>-->
-	
 	
     </div>
 	<div class="row mt-3">
 	
 	  <div class="col ">
   <div class="col justify-content-center text-center" id="recomended_prd_list_left"></div>
-		 <!--
-    <div class="col justify-content-center text-center ">
- <b align="center" >Recomended</b>
-   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
-   <img  class='card-img-bottom text-center border mt-2' src='admin/upload/asuslap.png '   style='padding-top:10px;padding-bottom:10px;width:100px;height:100px'/><label style="color:brown;"> <b>Rs.1500.00</b> </label><br>		
  
-    </div>
-	
-	-->
 		 
 		</div>
 	

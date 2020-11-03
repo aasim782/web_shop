@@ -2901,7 +2901,7 @@ $product_h_price=0;
 							if($cid_txt != 0 && $brd_txt != 0 && $lprice_txt != 0 &&  $hprice_txt != 0) 
 							{
 								$rate_txt_val="$rate_txt";
-								$rate_sql="SELECT product_tbl.product_category,product_tbl.product_brand,comments_tbl.product_id,comments_tbl.rating FROM comments_tbl,product_tbl where comments_tbl.rating=$rate_txt_val and (product_tbl.product_id = comments_tbl.product_id) and  product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' $product_filter_price";
+								$rate_sql="SELECT product_tbl.product_category,product_tbl.product_brand,comments_tbl.product_id,comments_tbl.rating FROM comments_tbl,product_tbl where comments_tbl.rating=$rate_txt_val and  $product_category_sql $product_brand_sql (product_tbl.product_id = comments_tbl.product_id) and  product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' $product_filter_price";
 								$run_query_rating = mysqli_query($con,$rate_sql);
 								$count_rating_record=mysqli_num_rows($run_query_rating);
 				
@@ -2927,37 +2927,100 @@ $product_h_price=0;
 								if($cid_txt == 0 && $brd_txt == 0 && $lprice_txt == 0 &&  $hprice_txt == 0  && $rate_txt != 0) 
 								{
 									$rate_txt_val="$rate_txt";
-									$rate_sql="SELECT * FROM comments_tbl,product_tbl where comments_tbl.rating=$rate_txt_val and (product_tbl.product_id = comments_tbl.product_id) and  product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%'";
-									$run_query = mysqli_query($con,$rate_sql);
-									$count_prd=mysqli_num_rows($run_query);
+									//filter the prduct in specially rating plus other filter option
+									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING MAX(comments_tbl.rating)=$rate_txt_val";
+									$max_run_query = mysqli_query($con,$max_rate_sql);
+									$max_run_query_row = mysqli_num_rows($max_run_query);
+	 			
+										while($row = mysqli_fetch_array($max_run_query))
+										{	
+										 
+											$product_id = $row["product_id"];
+											 
+											  		
+														$run_query = mysqli_query($con,$max_rate_sql);
+														$count_prd=mysqli_num_rows($max_run_query);
+									 
+										
+										}
+
+									
+									
 					
- 
+								
+								}
+								else if ($cid_txt!= 0 && $brd_txt == 0 && $lprice_txt == 0 &&  $hprice_txt == 0  && $rate_txt != 0)
+								{
+									
+										$rate_txt_val="$rate_txt";
+									//filter the prduct in specially rating plus other filter option
+									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where   $product_category_sql $product_brand_sql (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING MAX(comments_tbl.rating)=$rate_txt_val";
+									$max_run_query = mysqli_query($con,$max_rate_sql);
+									$max_run_query_row = mysqli_num_rows($max_run_query);
+	 			
+										while($row = mysqli_fetch_array($max_run_query))
+										{	
+										 
+											$product_id = $row["product_id"];
+											 
+											  		
+														$run_query = mysqli_query($con,$max_rate_sql);
+														$count_prd=mysqli_num_rows($max_run_query);
+									 
+										
+										}
+
+										
+								}
+								else if ($cid_txt!= 0 && $brd_txt == 0 && ($lprice_txt != 0 ||  $hprice_txt != 0)  && $rate_txt != 0)
+								{
+									
+									
+										
+										$rate_txt_val="$rate_txt";
+									//filter the prduct in specially rating plus other filter option
+									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where   $product_category_sql $product_brand_sql (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING MAX(comments_tbl.rating)=$rate_txt_val $product_filter_price";
+									$max_run_query = mysqli_query($con,$max_rate_sql);
+									$max_run_query_row = mysqli_num_rows($max_run_query);
+	 			
+										while($row = mysqli_fetch_array($max_run_query))
+										{	
+										 
+											$product_id = $row["product_id"];
+											 
+											  		
+														$run_query = mysqli_query($con,$max_rate_sql);
+														$count_prd=mysqli_num_rows($max_run_query);
+									 
+										
+										}
+									
+									
+									
 								}
 								else
 								{
 									
-									$rate_txt_val="$rate_txt";
-									$rate_sql="SELECT product_tbl.product_category,product_tbl.product_brand,comments_tbl.product_id,comments_tbl.rating FROM comments_tbl,product_tbl where $product_category_sql $product_brand_sql comments_tbl.rating=$rate_txt_val and (product_tbl.product_id = comments_tbl.product_id) and  product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%'";
-									$run_query_rating = mysqli_query($con,$rate_sql);
-									$count_rating_record=mysqli_num_rows($run_query_rating);
-					
-									while($row = mysqli_fetch_array($run_query_rating))
-										{		
-										$product_id = $row["product_id"];
-										$product_brand = $row["product_brand"];
-										$product_category = $row["product_category"];
-											
-											if($count_rating_record>0)
-											{
-													$query = "SELECT * FROM product_tbl where (product_brand=$product_brand and product_category=$product_category) and product_id=$product_id $product_filter_price";
-													$run_query = mysqli_query($con,$query);
-													$count_prd=mysqli_num_rows($run_query);
-											}
-	 
-							 
-						
-											}
+												
+										$rate_txt_val="$rate_txt";
+									//filter the prduct in specially rating plus other filter option
+									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where   $product_category_sql $product_brand_sql (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING MAX(comments_tbl.rating)=$rate_txt_val $product_filter_price";
+									$max_run_query = mysqli_query($con,$max_rate_sql);
+									$max_run_query_row = mysqli_num_rows($max_run_query);
+	 			
+										while($row = mysqli_fetch_array($max_run_query))
+										{	
+										 
+											$product_id = $row["product_id"];
+											 
+											  		
+														$run_query = mysqli_query($con,$max_rate_sql);
+														$count_prd=mysqli_num_rows($max_run_query);
+									 
 										
+										}
+									
+									
 								}
 							}
 							

@@ -1,5 +1,8 @@
--home page price ok button
-" Ver 0.6.20"
+-five star filter option problem solved 
+-filter
+-page loading problem sovled
+-feedback deatils doest not showing problem sovled
+" Ver 0.6.21"
 
  
 
@@ -10,20 +13,14 @@ Developemnt pending.
 -message module customer
 -message module admin
 -customes order
-
 -service tracking info update (reciver details)
 -reciver details on deliver page
 -transacrion id 12345 save to database 
 -transaction date also save to database
-
 -Bank Account details explaantion
- 
 -cancel or unpaid something module (error also should solve)
 -active roles
--dashboard monthly summary
--five star filter option 
-
-
+ 
 
 
 "problem doest not solwed"

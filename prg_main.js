@@ -108,31 +108,120 @@ $(document).ready(function(){
 	
 	//filter by search keywords using search btn
 	$("#search_btn").click(function(){
-			
-	var keywords= $("#search_txt").val();
-	var currentURL = window.location.pathname;
-	var check_page_name =currentURL.includes("index.php");
+			 
+		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var keywords = search_params.get('srch');
+		
+		
+		var currentURL = window.location.pathname;
+		var check_page_name =currentURL.includes("index.php");
 	
-		if(keywords!='')
-			{
-				//identify the page . no page found in url that is index
-					if(check_page_name==true ||currentURL== "/project37/")
-						{
-						 window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
-						}
-						else
-						{
-						 window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
-						} 
-	  
-				
-				
-			}
-			else
-			{
-						window.open("index.php","_self");
-				
-			}
+		var check_page_name_2 =currentURL.includes("index_filter.php");
+		
+		var check_page_name_3 =currentURL.includes("profile.php");
+		var check_page_name_4 =currentURL.includes("profile_filter.php");
+		 	
+		var check_page_name_5 =currentURL.includes("unreg_product_view.php"); 
+		
+		var keywords = search_params.get('srch');
+		
+				if(keywords != '')
+				{
+					  keywords= $("#search_txt").val();
+						
+						
+						
+									// index  - index filter 
+									if(check_page_name==true && keywords!="")
+									{	
+									
+									  window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+									 
+									}
+								 		
+									
+
+												 
+									// index filter - index  
+									if(check_page_name_2==true && keywords=="")
+									{
+									   window.open("index.php","_self");
+									}
+									else if(check_page_name_2==true && keywords!="")
+									{		
+									  window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+									}
+							 
+											
+										 
+									 
+									//profile  - profile filter
+									 if(check_page_name_3==true && keywords!="")
+									 {	
+													
+										window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+												
+									 }
+									 
+									
+									
+									
+									
+									
+									//profile filter - profile
+									if(check_page_name_4==true & keywords=="")
+										 
+									{
+										 window.open("profile.php","_self");
+												 
+									}
+										
+								 	else if(check_page_name_4==true && keywords!="")
+									{		
+									  window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+									}
+										
+													
+										
+										// index  - index filter 
+									if(check_page_name ==false &&  check_page_name_2==false  && check_page_name_3 ==false && check_page_name_4 ==false  && check_page_name_5 ==false && keywords !="" )
+									{	
+									
+										window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+									 
+									}
+									
+									
+									if(check_page_name_5 ==true && keywords!="")
+									{ 
+									 
+										window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+									 
+									}
+									
+									
+							  
+									
+									
+								
+					
+				}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -148,6 +237,24 @@ $(document).ready(function(){
 	$('#search_txt').keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
 	
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 	 
 		var url = new URL(document.URL);
 		var search_params = url.searchParams;
 		var keywords = search_params.get('srch');
@@ -158,32 +265,125 @@ $(document).ready(function(){
 	
 		var check_page_name_2 =currentURL.includes("index_filter.php");
 		
-			var keywords = search_params.get('srch');
-			
- 
-		var keywords= $("#search_txt").val();
-				if(keycode == '13')
+		var check_page_name_3 =currentURL.includes("profile.php");
+		var check_page_name_4 =currentURL.includes("profile_filter.php");
+		 	
+		var check_page_name_5 =currentURL.includes("unreg_product_view.php"); 
+		
+		var keywords = search_params.get('srch');
+		
+				if(keycode == 13) //enter
 				{
-					
-									if(check_page_name==true)
-									{
-										 window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+					  keywords= $("#search_txt").val();
+						
+						
+						
+									// index  - index filter 
+									if(check_page_name==true && keywords!="")
+									{	
+									
+									  window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+									 
 									}
-									else
+								 		
+									
+
+												 
+									// index filter - index  
+									if(check_page_name_2==true && keywords=="")
 									{
-										
-										if(check_page_name==false && check_page_name_2==true)
-										{
-											 window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
-										}
-										else
-										{
-											window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
-										}
-										
+									   window.open("index.php","_self");
 									}
+									else if(check_page_name_2==true && keywords!="")
+									{		
+									  window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+									}
+							 
+											
+										 
+									 
+									//profile  - profile filter
+									 if(check_page_name_3==true && keywords!="")
+									 {	
+													
+										window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+												
+									 }
+									 
+									
+									
+									
+									
+									
+									//profile filter - profile
+									if(check_page_name_4==true & keywords=="")
+										 
+									{
+										 window.open("profile.php","_self");
+												 
+									}
+										
+								 	else if(check_page_name_4==true && keywords!="")
+									{		
+									  window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+									}
+										
+													
+										
+										// index  - index filter 
+									if(check_page_name ==false &&  check_page_name_2==false  && check_page_name_3 ==false && check_page_name_4 ==false  && check_page_name_5 ==false && keywords !="" )
+									{	
+									
+										window.open("profile_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+									 
+									}
+									
+									
+									if(check_page_name_5 ==true && keywords!="")
+									{ 
+									 
+										window.open("index_filter.php?srch="+keywords+"&cat=0&brd=0&lprice=0&hprice=0&rate=0","_self");
+									 
+									}
+									
+									
+							  
+									
+									
+								
 					
 				}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 	
 	});
 

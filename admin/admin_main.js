@@ -1542,7 +1542,7 @@ function out_of_stock(){
 	
 }
  
-
+  
 
 //file upload extension,size,width and height
    $(document).on('change', '#file_banner', function(e){
