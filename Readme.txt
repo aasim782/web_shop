@@ -1,5 +1,5 @@
--report module completed 
-" Ver 0.6.24"
+-qty* problem in sales report solved
+" Ver 0.6.25"
  
 
 Developemnt pending.
@@ -7,7 +7,6 @@ Developemnt pending.
 -message module customer
 -message module admin
 
-qty*
 
 
 -customes order

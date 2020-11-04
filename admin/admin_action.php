@@ -2946,7 +2946,7 @@ if(isset($_POST["get_sales_report"]))
 			 
 			 
 					
-					$profit = round(($profit_rate/(100+$profit_rate))*$current_price_per_prd) ;
+					$profit = round(($profit_rate/(100+$profit_rate))*$current_price_per_prd)*$order_qtry;
 					$cost_of_product= ($current_price_per_prd-$profit);
 					
 						 echo 	"	
@@ -2959,7 +2959,7 @@ if(isset($_POST["get_sales_report"]))
 									<td>$brand_name</td>
 									<td>Rs.$current_price_per_prd.00</td>
 									<td>Rs.$cost_of_product.00</td>
-									<td>$order_qtry</td>
+								 	<td><b>$order_qtry</b></td>
 									<td>Rs.$profit.00</td>
 						 
 								  </tr>	";
@@ -3021,7 +3021,7 @@ $sales_report_to = $_POST["sales_report_to"];
 			 
 			 
 					
-					$profit = round(($profit_rate/(100+$profit_rate))*$current_price_per_prd) ;
+					$profit = round(($profit_rate/(100+$profit_rate))*$current_price_per_prd)*$order_qtry;
 					$cost_of_product= ($current_price_per_prd-$profit);
 					
 						 echo 	"	
@@ -3034,7 +3034,7 @@ $sales_report_to = $_POST["sales_report_to"];
 									<td>$brand_name</td>
 									<td>Rs.$current_price_per_prd.00</td>
 									<td>Rs.$cost_of_product.00</td>
-									<td>$order_qtry</td>
+									<td><b>$order_qtry</b></td>
 									<td>Rs.$profit.00</td>
 						 
 								  </tr>	";
@@ -3111,7 +3111,7 @@ else
 			 
 			 
 					
-					$profit = round(($profit_rate/(100+$profit_rate))*$current_price_per_prd) ;
+				 $profit = round(($profit_rate/(100+$profit_rate))*$current_price_per_prd)*$order_qtry;
 					$cost_of_product= ($current_price_per_prd-$profit);
 					
 						 echo 	"	
@@ -3124,7 +3124,7 @@ else
 									<td>$brand_name</td>
 									<td>Rs.$current_price_per_prd.00</td>
 									<td>Rs.$cost_of_product.00</td>
-									<td>$order_qtry</td>
+									<td><b>$order_qtry</b></td>
 									<td>Rs.$profit.00</td>
 						 
 								  </tr>	";
