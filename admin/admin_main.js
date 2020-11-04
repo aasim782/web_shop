@@ -2322,8 +2322,271 @@ customer_order_month();
  
 	
 	
+  get_sales_report();
 	
-	
-	
+function get_sales_report()
+{	
+ 
+	  
+				$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_sales_report:1}, 
+					success	:	function(data){
+						 
+							 
+							if(data=="")
+							{
+									$("#get_sales_report_data").html(" <tr class='text-center'><td colspan='10'>No matching records found</td> </tr>");
+							}
+							else
+							{
+									$("#get_sales_report_data").html(data);
+							}
+					}
+					})	
+}
 
+
+
+
+
+
+
+  //offer image date picker validation
+	$('#sales_report_from').change(function(event){
+  
+	var sales_report_from_txt = $("#sales_report_from").val();
+	var sales_report_to_txt = $("#sales_report_to").val();
+  
+	 $.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_sales_report_date_wise_filter:1,sales_report_from:sales_report_from_txt,sales_report_to:sales_report_to_txt}, 
+					success	:	function(data){
+							if(data=="")
+							{
+									$("#get_sales_report_data").html(" <tr class='text-center'><td colspan='10'>No matching records found</td> </tr>");
+							}
+							else
+							{
+									$("#get_sales_report_data").html(data);
+							}
+							
+					}
+					})	
+
+
+	})
+
+
+
+
+ //sale report start date select
+	$('#sales_report_to').change(function(event){
+  
+	var sales_report_from_txt = $("#sales_report_from").val();
+	var sales_report_to_txt = $("#sales_report_to").val();
+  
+	 $.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_sales_report_date_wise_filter:1,sales_report_from:sales_report_from_txt,sales_report_to:sales_report_to_txt}, 
+					success	:	function(data){
+						 
+							if(data=="")
+							{
+									$("#get_sales_report_data").html(" <tr class='text-center'><td colspan='10'>No matching records found</td> </tr>");
+							}
+							else
+							{
+									$("#get_sales_report_data").html(data);
+							}
+							
+							
+							
+					}
+					})	
+
+
+	})
+
+
+
+
+
+
+
+
+ 
+ 
+   // 
+	$('#sales_report_search').keyup(function(event){
+ 	var sales_report_from_txt = $("#sales_report_from").val();
+	var sales_report_to_txt = $("#sales_report_to").val();
+	var sales_report_search_txt = $("#sales_report_search").val();
+ 
+	 $.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_sales_report_search_filter:1,sales_report_from:sales_report_from_txt,sales_report_to:sales_report_to_txt,sales_report_search:sales_report_search_txt}, 
+					success	:	function(data){
+						 
+						 
+									$("#get_sales_report_data").html(data);
+						 
+							
+							
+					}
+					})	
+ 
+	});
+ 
+ 
+ 
+ 
+ 
+ //print module general code
+ function printData()
+{
+   var divToPrint=document.getElementById("printTable");
+   newWin= window.open("");
+   var y =newWin.document.write(divToPrint.outerHTML);
+   newWin.print();
+   newWin.close();
+ 
+}
+
+
+
+  // sales report print button
+	  $("body").delegate("#sales_print_btn", "click", function () {	
+		
+			$("#sales_report_heading").html("<H2 class='text-center'>SALES REPORT </H2>");
+
+		printData();
+
+	  
+	  })
+ 
+ 
+	 
+	 
+	 
+	  // customer  report print button
+	  $("body").delegate("#customer_report_btn", "click", function () {	
+		
+	 
+	$("#customer_report_heading").html("<H2 class='text-center'>Customer's Details</H2>");
+		printData();
+
+	  
+	  })
+	  
+	  
+	  
+		
+	//get customer details
+	  get_customer_details_for_report();
+	  function get_customer_details_for_report(){
+		   
+		   
+			$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_customer_report:1}, 
+					success	:	function(data){
+						 
+						 
+									$("#get_customer_details_report").html(data);
+						 
+							
+							
+					}
+					})	
+ 
+	  }
+	   
+	 
+	 
+  //filter customer details using search
+	$('#customer_filter_report_search').keyup(function(event){
+		
+	var customer_filter_report_search_txt = $("#customer_filter_report_search").val();
+		
+ 			$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_customer_report_search_filter:1,customer_filter_report_search:customer_filter_report_search_txt}, 
+					success	:	function(data){
+						 
+						 
+									$("#get_customer_details_report").html(data);
+						 
+							
+							
+					}
+					})	
+ 
+	})
+	
+	
+	
+		//get stock
+	  get_stock_details_for_report();
+	  function get_stock_details_for_report(){
+		  
+		  
+	  			$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_stock_details_for_report:1}, 
+					success	:	function(data){
+						  
+									$("#stock_report_data").html(data);
+						  
+					}
+					})	
+		
+	  }
+	  
+	  
+	  
+  //stock report print button
+	  $("body").delegate("#stock_report_btn", "click", function () {	
+		
+	 
+	$("#stock_report_heading").html("<H2 class='text-center'>Stock Details</H2>");
+		printData();
+
+	  
+	  })
+	  
+	 
+	 
+	 
+	 //filter stock details using search
+	$('#get_stock_details_search').keyup(function(event){
+		
+			var get_stock_details_search_txt = $("#get_stock_details_search").val();
+			
+			
+		 			$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_stock_details_filter_for_report:1,get_stock_details_search:get_stock_details_search_txt}, 
+					success	:	function(data){
+						  
+									$("#stock_report_data").html(data);
+						  
+					}
+					})	
+		
+		
+		
+	})
+	
+	
+	
+	
 });

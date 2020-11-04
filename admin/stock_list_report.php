@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+  <?php 
+ session_start();
+	if(!isset($_SESSION['adminid']))
+	{
+		header("location:../admin/login.php");	
+	}
+	  
+ ?>
 <html>
 <head>
  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dressline | Brand</title>
+  <title>Dressline | Stock</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -79,11 +87,11 @@
 							<div class="col-sm-16 col-md-3 text-right mb-3 ">
 							<div class="col-sm-12">
 							
-							<button type="button" id="form_prd_add_btn" name="form_prd_add_btn" class="btn btn-success mb-2"><i class="fas fa-file-pdf text-center"></i> Generate PDF</button>
+							<button type="button" id="stock_report_btn"  class="btn btn-success mb-2"><i class="fas fa-file-pdf text-center"></i> Generate PDF</button>
 							
 							
 					 <div class="input-group input-group-sm">
-					 <input class="form-control form-control-navbar" type="search" id="all_order_filter" placeholder="Search" aria-label="Search" autocomplete="off">
+					 <input class="form-control form-control-navbar" type="search" id="get_stock_details_search" placeholder="Search" aria-label="Search" autocomplete="off">
 					<div class="input-group-append">
 					
 					<button class="btn btn-navbar border" type="submit">
@@ -99,65 +107,43 @@
 
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
+              <div class="card-body p-0" id="printTable">
+			  
+			  
+			<div id="sale_report_title" class="text-center">
+			 
+			 <table style="border-collapse:collapse; margin:20px; padding:0; width:100%;">
+			   
+			<tr style="margin-top:2px;text-align:center;">
+			  <td style="" colspan="2" id="stock_report_heading"></td>
+			</tr>
+			
+			  </div>
+			  
+			  
+			  
+			  
                 <div class="table-responsive">
-                  <table class="table m-0">
+                  <table class="table m-0"  border="1" style=" border-collapse: collapse; margin-bottom:2px;">
                     <thead>
                     <tr class="text-center  shadow-sm bg-dark">
                       <th>No</th>
+                      <th>Date </th>
                       <th>Product </th>
                       <th>Category</th>
                       <th>Brand</th>
                       <th>Weight (kg)</th>
-					  <th>Price</th>
+				 
+					  <th>Buying Price</th>
+					  <th>Selling Price</th>
                       <th>Qty</th>
                   
              
                     </tr>
                     </thead>
-                   <tbody id=""> <tr class="text-center">	
+                   <tbody id="stock_report_data">  
 				 
-	 
-					<tr class="text-center">
-						<td>1</td>
-						<td>Galaxy A50</td>
-			
-						<td>Electronics</td>
-						<td>Samsung</td>
-						<td><1</td>
-						<td>Rs.20000.00</td>
-						<td>1</td>
-			 
-					  </tr>	
-	 
-					<tr class="text-center">
-						<td>2</td>
-						<td>Mens Shirt</td>
- 
-						<td>Mens Wears</td>
-						<td>Signature</td>
-						<td><1</td>
-						<td>Rs.1750.00</td>
-						<td>29</td>
-				 
-					  </tr>	
-	 
-					<tr class="text-center">
-						<td>3</td>
-						<td>kids Car</td>
-			 
-						<td>Kids wears</td>
-						<td>General</td>
-						<td><1</td>
-						<td>Rs.5000.00</td>
-						<td>0</td>
-				 
-					  </tr>	
-	  
-	 
-					 
-	 
-					  
+	   
 					  
 					  </tbody>
 				  

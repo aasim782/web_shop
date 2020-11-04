@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+  <?php 
+ session_start();
+	if(!isset($_SESSION['adminid']))
+	{
+		header("location:../admin/login.php");	
+	}
+	  
+ ?>
 <html>
 <head>
  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dressline | Brand</title>
+  <title>Dressline | Sales</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -80,11 +88,11 @@
 							<div class="col-sm-12">
 							
 							
-							<button type="button" id="form_prd_add_btn" name="form_prd_add_btn" class="btn btn-success mb-2"><i class="fas fa-file-pdf text-center"></i> Generate PDF</button>
+							<button type="button" id="sales_print_btn"  class="btn btn-success mb-2"><i class="fas fa-file-pdf text-center"></i> Generate PDF</button>
 							
 						
 					 <div class="input-group input-group-sm">
-					 <input class="form-control form-control-navbar" type="search" id="all_order_filter" placeholder="Search" aria-label="Search" autocomplete="off">
+					 <input class="form-control form-control-navbar" type="search" id="sales_report_search" placeholder="Search" aria-label="Search" autocomplete="off">
 					<div class="input-group-append">
 					
 					<button class="btn btn-navbar border" type="submit">
@@ -103,11 +111,11 @@
 							
 							<div class="col-4">
 							<label for="validationCustom02">From</label>
-							<input type="date" class="form-control text-center"  name="">
+							<input type="date" class="form-control text-center" id="sales_report_from"  name="">
 							</div>
 							<div class="col-4">
 							<label for="validationCustom02">To</label>
-							<input type="date" class="form-control text-center"  name="">
+							<input type="date" class="form-control text-center" id="sales_report_to"  name="">
 						
 							</div>
 							
@@ -117,14 +125,31 @@
 
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
+              <div class="card-body p-0" id="printTable" >
+			  
+			
+			  <div id="sale_report_title" class="text-center">
+			 
+			 <table style="    border-collapse:collapse; margin:20px; padding:0; width:100%;">
+			 <tr>
+			 <td> </td>
+			 <td></td>
+			</tr>	
+			
+			
+			<tr style="margin-top:2px;text-align:center;">
+			  <td style="" colspan="2" id="sales_report_heading"></td>
+			</tr>
+			
+			  </div>
+			  
                 <div class="table-responsive">
-                  <table class="table m-0">
+                  <table border="1" style=" border-collapse: collapse; margin-bottom:2px;" class="table  ">
                     <thead>
                     <tr class="text-center  shadow-sm bg-dark">
                       <th>No</th>
                       <th>Date</th>
-                      <td>Customer</th>
+                      <th>Customer</th>
                       <th>Product</th>
                       <th>Category</th>
                       <th>Brand</th>
@@ -136,45 +161,8 @@
              
                     </tr>
                     </thead>
-                   <tbody id=""> <tr class="text-center">	
-				 
-	 
-					<tr class="text-center">
-						<td>1</td>
-						<td>20/02/2020</td>
-						<td>Mohamed Aasim</td>
-						<td >Galaxy A50</td>
-						<td>Electronics</td>
-						<td>Samsung</td>
-						<td>20000.00</td>
-						<td>20000.00</td>
-						<td>1</td>
-						<td>1000.00</td>
-			 
-					  </tr>	
-	 
-					<tr class="text-center">
-						<td>2</td>
-						 <td>10/07/2020</td>
-						<td>Aaquil Mohamed</td>
-						<td>Mens Shirt</td>
-						<td>Mens Wears</td>
-						<td>Signature</td>
-						<td>1750.00</td>
-						<td>1550.00</td>
-						<td>1</td>
-						<td>100.00</td>
-				 
-					  </tr>	
-	 
-
-					 
-	  
-	 
-					 
-	 
-					  
-					  
+                   <tbody id="get_sales_report_data">
+				   
 					  </tbody>
 				  
 					
@@ -279,5 +267,8 @@
     });
   });
 </script>
+
+
+
 </body>
 </html>

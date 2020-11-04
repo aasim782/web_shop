@@ -6,8 +6,7 @@
 	{
 		header("location:../admin/login.php");	
 	}
-	 
- 
+	  
  ?>
 <html>
 <head>

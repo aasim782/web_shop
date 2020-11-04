@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-  <?php 
+   <?php 
  session_start();
 	if(!isset($_SESSION['adminid']))
 	{
 		header("location:../admin/login.php");	
 	}
-	 
- 
+	  
  ?>
 <html>
 <head>
  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dressline | Brand</title>
+  <title>Dressline | Customer</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -80,19 +79,19 @@
                   </button>
                 </div>
 			
-				<div class="row mt-3 ">
+				<div class="row mt-3 " >
 			 
-						<div class=" col-sm-16 col-md-9  text-left p-1   ">
+						<div class=" col-sm-16 col-md-9  text-left p-1 " >
 					 	 <h2><span class="info-box-icon"><i class="fas fa-file-pdf"></i> Customer's Details</h2>
 						</div>
 							<div class="col-sm-16 col-md-3 text-right mb-3 ">
 							<div class="col-sm-12">
 							
-							<button type="button" id="form_prd_add_btn" name="form_prd_add_btn" class="btn btn-success mb-2"><i class="fas fa-file-pdf text-center"></i> Generate PDF</button>
+							<button type="button" id="customer_report_btn"  class="btn btn-success mb-2"><i class="fas fa-file-pdf text-center"></i> Generate PDF</button>
 							
 							
 					 <div class="input-group input-group-sm">
-					 <input class="form-control form-control-navbar" type="search" id="all_order_filter" placeholder="Search" aria-label="Search" autocomplete="off">
+					 <input class="form-control form-control-navbar" type="search" id="customer_filter_report_search" placeholder="Search" aria-label="Search" autocomplete="off">
 					<div class="input-group-append">
 					
 					<button class="btn btn-navbar border" type="submit">
@@ -108,15 +107,29 @@
 
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
+              <div class="card-body p-0"  id="printTable">
+			  
+			  
+			   
+			<div id="sale_report_title" class="text-center">
+			 
+			 <table style="    border-collapse:collapse; margin:20px; padding:0; width:100%;">
+			   
+			<tr style="margin-top:2px;text-align:center;">
+			  <td style="" colspan="2" id="customer_report_heading"></td>
+			</tr>
+			
+			  </div>
+			  
+			  
+			  
                 <div class="table-responsive">
-                  <table class="table m-0">
+                  <table class="table m-0"  border="1" style=" border-collapse: collapse; margin-bottom:2px;">
                     <thead>
                     <tr class="text-center  shadow-sm bg-dark">
                       <th>No</th>
-                      <th> </th>
-                      <th>Firstname</th>
-                      <th>Lastname</th>
+                      <th > Firstname</th>
+					  <th>Lastname</th>
 					  <th>Email</th>
                       <th>Phone</th>
                       <th>Address</th>
@@ -125,262 +138,8 @@
              
                     </tr>
                     </thead>
-                   <tbody id="get_all_customers"> <tr class="text-center">	
-					 <td><b>1 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>Mohamed</b></td>
-                      <td> <b>Aasim</b></td>
-                      <td><b>aasim782@gmail.com</b></td>
-                      <td><b>94756881134</b></td>
-                      <td><b>155,Meeranagar Road, Nintavur</b></td>
-					  <td><b>Nintavur </b></td>
-					  <td><b>32340 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>2 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>mohamed</b></td>
-                      <td> <b>aaqil</b></td>
-                      <td><b>aasim1@gmail.com</b></td>
-                      <td><b>94769051995</b></td>
-                      <td><b>155,
-Meera oda val</b></td>
-					  <td><b>nintvaur </b></td>
-					  <td><b>32310 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>3 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>mohamed</b></td>
-                      <td> <b>aaqil</b></td>
-                      <td><b>aasim789@gmail.com</b></td>
-                      <td><b>94756881123</b></td>
-                      <td><b>155,
-Meera oda val</b></td>
-					  <td><b>nintvaur </b></td>
-					  <td><b>32310 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>4 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>fsdf</b></td>
-                      <td> <b>sfsdf</b></td>
-                      <td><b>sfsdfs@asda.lk</b></td>
-                      <td><b></b></td>
-                      <td><b>dfsd</b></td>
-					  <td><b>df </b></td>
-					  <td><b>12345 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>5 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>fsdf</b></td>
-                      <td> <b>sfsdf</b></td>
-                      <td><b>sfsdfsasd@asda.lk</b></td>
-                      <td><b></b></td>
-                      <td><b>dfsd</b></td>
-					  <td><b>df </b></td>
-					  <td><b>12345 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>6 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>ad</b></td>
-                      <td> <b>asda</b></td>
-                      <td><b>sdasd@sadsa.lkl</b></td>
-                      <td><b></b></td>
-                      <td><b>sadasd</b></td>
-					  <td><b>dasdsa </b></td>
-					  <td><b>12321 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>7 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>sddfcsdf</b></td>
-                      <td> <b>sdfdsf</b></td>
-                      <td><b>aasim2@gmail.com</b></td>
-                      <td><b></b></td>
-                      <td><b>Srilanak
-asdas</b></td>
-					  <td><b>dasdsa </b></td>
-					  <td><b>23123 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>8 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>sdfsfdsf</b></td>
-                      <td> <b>sdfdsfdsf</b></td>
-                      <td><b>aasim3@gmail.com</b></td>
-                      <td><b></b></td>
-                      <td><b>1231231</b></td>
-					  <td><b>1231 </b></td>
-					  <td><b>12312 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>9 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>asd</b></td>
-                      <td> <b>asdasdsa</b></td>
-                      <td><b>dasd@sadasda.ks</b></td>
-                      <td><b></b></td>
-                      <td><b>asdad</b></td>
-					  <td><b>asd </b></td>
-					  <td><b>12345 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>10 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>sad</b></td>
-                      <td> <b>dasd</b></td>
-                      <td><b>aasdasd@sadsada.kl</b></td>
-                      <td><b></b></td>
-                      <td><b>sdasdasd</b></td>
-					  <td><b>dasdasda </b></td>
-					  <td><b>04544 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>11 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>asdasdasdas</b></td>
-                      <td> <b>dasdasdsadaad</b></td>
-                      <td><b>dadsadasdasd@asdasd.ll</b></td>
-                      <td><b>94777200778</b></td>
-                      <td><b>SRILANKA
-SRILANKA</b></td>
-					  <td><b>SRILANKA </b></td>
-					  <td><b>32323 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>12 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>Mohamed</b></td>
-                      <td> <b>Rislin</b></td>
-                      <td><b>rislin2020@gmail.com</b></td>
-                      <td><b>0756998884</b></td>
-                      <td><b>155,Meeranagar Road, Nintavur</b></td>
-					  <td><b>NINTAVUR </b></td>
-					  <td><b>32340 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>13 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>mohmaed</b></td>
-                      <td> <b>rasik</b></td>
-                      <td><b>rasik@gmail.com</b></td>
-                      <td><b>94756881134</b></td>
-                      <td><b>155, meeranagae Road, nintavyr</b></td>
-					  <td><b>nintavur </b></td>
-					  <td><b>32340 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>14 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>asdad</b></td>
-                      <td> <b>adsad</b></td>
-                      <td><b>asda@sadasdl.lk</b></td>
-                      <td><b>0756881134</b></td>
-                      <td><b>asd</b></td>
-					  <td><b>asdas </b></td>
-					  <td><b>32340 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>15 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>ada</b></td>
-                      <td> <b>sdsada</b></td>
-                      <td><b>dadaaq@sadds.lk</b></td>
-                      <td><b>0756881134</b></td>
-                      <td><b>asdaasdada</b></td>
-					  <td><b>sadas </b></td>
-					  <td><b>32340 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>16 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>Mohamed</b></td>
-                      <td> <b>Aasim</b></td>
-                      <td><b>aasiqmam@gmail.com</b></td>
-                      <td><b>94756881134</b></td>
-                      <td><b>155, Nintavur</b></td>
-					  <td><b>nintavur </b></td>
-					  <td><b>32340 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>17 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>aaso</b></td>
-                      <td> <b>mam</b></td>
-                      <td><b>mam@gmail.com</b></td>
-                      <td><b>94756881134</b></td>
-                      <td><b>155,Srilanka</b></td>
-					  <td><b>nintavur </b></td>
-					  <td><b>32340 </b></td>
-                   </tr>
-				  
-					
-					
-					 <tr class="text-center">	
-					 <td><b>18 </b></td>
-                      <td> <img src="upload/432_abc.png" width="70px" class="rounded-circle" height="70px">  </td>
-                      <td> <b>asda</b></td>
-                      <td> <b>asadas</b></td>
-                      <td><b>asd@sadas.lk</b></td>
-                      <td><b>94756881134</b></td>
-                      <td><b>asdadas</b></td>
-					  <td><b>adsada </b></td>
-					  <td><b>23122 </b></td>
-                   </tr>
-				  
-					
-					
+                   <tbody id="get_customer_details_report">  
+	 
 					</tbody>
                   
                   </table>

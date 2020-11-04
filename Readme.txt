@@ -1,13 +1,14 @@
--active roles
-" Ver 0.6.23"
+-report module completed 
+" Ver 0.6.24"
  
 
 Developemnt pending.
   
--report module
-
 -message module customer
 -message module admin
+
+qty*
+
 
 -customes order
 

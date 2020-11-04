@@ -248,30 +248,24 @@
             </a>
             <ul class='nav nav-treeview'>
               <li class='nav-item'>
-                <a href='#' class='nav-link'>
+                <a href='sales_report.php' class='nav-link'>
                   <i class='far fa-circle nav-icon'></i>
                   <p>Sales Report</p>
                 </a>
               </li>
 				<li class='nav-item'>
-                <a href='#' class='nav-link'>
+                <a href='stock_list_report.php' class='nav-link'>
                   <i class='far fa-circle nav-icon'></i>
                   <p>Stock Report</p>
                 </a>
               </li>
               	<li class='nav-item'>
-                <a href='#' class='nav-link'>
+                <a href='customer_list_report.php' class='nav-link'>
                   <i class='far fa-circle nav-icon'></i>
                   <p>Customer's Details Report</p>
                 </a>
               </li>
-			 <li class='nav-item'>
-                <a href='#' class='nav-link'>
-                  <i class='far fa-circle nav-icon'></i>
-                  <p>Feedback Report</p>
-                </a>
-              </li>
-			   
+		 
             </ul>
           </li>
 		  

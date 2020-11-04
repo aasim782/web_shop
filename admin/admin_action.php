@@ -2916,4 +2916,463 @@ if(isset($_POST["offer_active"]))
 	
 	
 	
+ // get all sales data without any filter
+if(isset($_POST["get_sales_report"]))
+{ 
+ 
+	 
+	$total_sale_query = "SELECT category_tbl.category_name,brand_tbl.brand_name,customer_tbl.first_name,customer_tbl.last_name,customer_ord_prds.order_date,customer_ord_prds.current_price_per_prd,customer_ord_prds.order_qtry,product_tbl.profit_rate,product_tbl.product_name from customer_ord_prds,product_tbl,customer_tbl,brand_tbl,category_tbl
+	where   (category_tbl.category_id=product_tbl.product_category) and (brand_tbl.brand_id=product_tbl.product_brand) and (customer_ord_prds.customer_id=customer_tbl.customer_id) and  (customer_ord_prds.product_id=product_tbl.product_id) and  (customer_ord_prds.order_status=3 ) order by customer_ord_prds.order_date asc ";
+	$run_query = mysqli_query($con,$total_sale_query);
+	 $count=mysqli_num_rows($run_query);
+		 
+		$i=0;
+		
+		if(	$count>0)
+		{ 
+				while($row = mysqli_fetch_array($run_query))
+				{  
+				
+				 $i++;
+					$order_date=$row["order_date"]; 
+					$current_price_per_prd=$row["current_price_per_prd"]; 
+					$last_name=$row["last_name"]; 
+					$first_name=$row["first_name"]; 
+					$product_name=$row["product_name"]; 
+					$order_qtry=$row["order_qtry"]; 
+					$brand_name=$row["brand_name"]; 
+					$category_name=$row["category_name"]; 
+					$profit_rate=$row["profit_rate"]; 
+			 
+			 
+					
+					$profit = round(($profit_rate/(100+$profit_rate))*$current_price_per_prd) ;
+					$cost_of_product= ($current_price_per_prd-$profit);
+					
+						 echo 	"	
+									<tr class='text-center'>
+									<td>$i</td>
+									<td>$order_date</td>
+									<td>$first_name $last_name</td>
+									<td >$product_name</td>
+									<td>$category_name</td>
+									<td>$brand_name</td>
+									<td>Rs.$current_price_per_prd.00</td>
+									<td>Rs.$cost_of_product.00</td>
+									<td>$order_qtry</td>
+									<td>Rs.$profit.00</td>
+						 
+								  </tr>	";
+						 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+				 }
+				 
+				 
+		 
+		}
+
+
+
+
+
+}
+	
+	
+// get sales report data using date start and end
+if(isset($_POST["get_sales_report_date_wise_filter"]))
+{ 
+$sales_report_from = $_POST["sales_report_from"];
+$sales_report_to = $_POST["sales_report_to"];
+  
+
+	date_default_timezone_set('Asia/Kolkata');
+			//define date and time
+			$year = date('Y');
+			$month = date('m');
+			 
+	$total_sale_query = "SELECT category_tbl.category_name,brand_tbl.brand_name,customer_tbl.first_name,customer_tbl.last_name,customer_ord_prds.order_date,customer_ord_prds.current_price_per_prd,customer_ord_prds.order_qtry,product_tbl.profit_rate,product_tbl.product_name from customer_ord_prds,product_tbl,customer_tbl,brand_tbl,category_tbl
+	where   (category_tbl.category_id=product_tbl.product_category) and (brand_tbl.brand_id=product_tbl.product_brand) and (customer_ord_prds.customer_id=customer_tbl.customer_id) and  (customer_ord_prds.product_id=product_tbl.product_id) and  (customer_ord_prds.order_status=3 ) and customer_ord_prds.order_date BETWEEN '$sales_report_from' and '$sales_report_to' order by customer_ord_prds.order_date asc";
+	$run_query = mysqli_query($con,$total_sale_query);
+	 $count=mysqli_num_rows($run_query);
+		 
+		$i=0;
+		
+		if(	$count>0)
+		{ 
+				while($row = mysqli_fetch_array($run_query))
+				{  
+				
+				 $i++;
+					$order_date=$row["order_date"]; 
+					$current_price_per_prd=$row["current_price_per_prd"]; 
+					$last_name=$row["last_name"]; 
+					$first_name=$row["first_name"]; 
+					$product_name=$row["product_name"]; 
+					$order_qtry=$row["order_qtry"]; 
+					$brand_name=$row["brand_name"]; 
+					$category_name=$row["category_name"]; 
+					$profit_rate=$row["profit_rate"]; 
+			 
+			 
+					
+					$profit = round(($profit_rate/(100+$profit_rate))*$current_price_per_prd) ;
+					$cost_of_product= ($current_price_per_prd-$profit);
+					
+						 echo 	"	
+									<tr class='text-center'>
+									<td>$i</td>
+									<td>$order_date</td>
+									<td>$first_name $last_name</td>
+									<td >$product_name</td>
+									<td>$category_name</td>
+									<td>$brand_name</td>
+									<td>Rs.$current_price_per_prd.00</td>
+									<td>Rs.$cost_of_product.00</td>
+									<td>$order_qtry</td>
+									<td>Rs.$profit.00</td>
+						 
+								  </tr>	";
+						 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+				 }
+				 
+				 
+		 
+		}
+
+
+}
+
+	 
+	
+	
+	
+// get sales report data using search filter
+	
+if(isset($_POST["get_sales_report_search_filter"]))
+{ 
+$sales_report_from = $_POST["sales_report_from"];
+$sales_report_to = $_POST["sales_report_to"];
+$sales_report_search = $_POST["sales_report_search"];
+ 
+
+if($sales_report_from != "" || $sales_report_to !="" )
+{
+	$order_date_selected ="and customer_ord_prds.order_date BETWEEN '$sales_report_from' and '$sales_report_to'";
+}
+else
+{
+	
+	$order_date_selected ="";
+}
+
+
+
+
+ date_default_timezone_set('Asia/Kolkata');
+			//define date and time
+			$year = date('Y');
+			$month = date('m');
+			 
+	$total_sale_query = "SELECT category_tbl.category_name,brand_tbl.brand_name,customer_tbl.first_name,customer_tbl.last_name,customer_ord_prds.order_date,customer_ord_prds.current_price_per_prd,customer_ord_prds.order_qtry,product_tbl.profit_rate,product_tbl.product_name from customer_ord_prds,product_tbl,customer_tbl,brand_tbl,category_tbl
+	where   (category_tbl.category_id=product_tbl.product_category) and (brand_tbl.brand_id=product_tbl.product_brand) and (customer_ord_prds.customer_id=customer_tbl.customer_id) and  (customer_ord_prds.product_id=product_tbl.product_id) and  (customer_ord_prds.order_status=3 ) $order_date_selected and (customer_ord_prds.order_date  like '%".$sales_report_search."%' OR customer_ord_prds.current_price_per_prd like '%".$sales_report_search."%' OR customer_tbl.first_name like '%".$sales_report_search."%' OR customer_tbl.last_name like '%".$sales_report_search."%' OR product_tbl.product_name like '%".$sales_report_search."%' OR  customer_ord_prds.order_qtry like '%".$sales_report_search."%' OR  brand_tbl.brand_name like '%".$sales_report_search."%' OR category_tbl.category_name like '%".$sales_report_search."%') order by customer_ord_prds.order_date asc";
+	$run_query = mysqli_query($con,$total_sale_query);
+	 $count=mysqli_num_rows($run_query);
+		 
+		$i=0;
+		
+		if(	$count>0)
+		{ 
+				while($row = mysqli_fetch_array($run_query))
+				{  
+				
+				 $i++;
+					$order_date=$row["order_date"]; 
+					$current_price_per_prd=$row["current_price_per_prd"]; 
+					$last_name=$row["last_name"]; 
+					$first_name=$row["first_name"]; 
+					$product_name=$row["product_name"]; //
+					$order_qtry=$row["order_qtry"]; //
+					$brand_name=$row["brand_name"]; //
+					$category_name=$row["category_name"]; //
+					$profit_rate=$row["profit_rate"]; 
+			 
+			 
+					
+					$profit = round(($profit_rate/(100+$profit_rate))*$current_price_per_prd) ;
+					$cost_of_product= ($current_price_per_prd-$profit);
+					
+						 echo 	"	
+									<tr class='text-center'>
+									<td>$i</td>
+									<td>$order_date</td>
+									<td>$first_name $last_name</td>
+									<td >$product_name</td>
+									<td>$category_name</td>
+									<td>$brand_name</td>
+									<td>Rs.$current_price_per_prd.00</td>
+									<td>Rs.$cost_of_product.00</td>
+									<td>$order_qtry</td>
+									<td>Rs.$profit.00</td>
+						 
+								  </tr>	";
+						 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+				 }
+				 
+				 
+		 
+		}
+
+
+}
+
+
+
+
+
+
+
+
+//customer details  for report
+if(isset($_POST["get_customer_report"]))
+{  
+
+ $sql ="SELECT * from customer_tbl" ;
+ $check_query = mysqli_query($con,$sql);
+ 
+		$i=1;
+		while($row = mysqli_fetch_array($check_query))
+			{
+				$customer_id = $row["customer_id"];
+				$first_name = $row["first_name"];
+				$last_name = $row["last_name"];
+				$email = $row["email"];
+				$phone=$row["phone"];
+				$address=$row["address"];
+				$city=$row["city"];
+				$postal=$row["postal"];
+			  
+		
+		echo " <tr class='text-center' >	
+					 <td><b>$i </b></td>
+               
+                      <td> <b>$first_name</b></td>
+                      <td> <b>$last_name</b></td>
+                      <td><b>$email</b></td>
+                      <td ><b>$phone</b></td>
+                      <td ><b>$address</b></td>
+					  <td><b>$city </b></td>
+					  <td><b>$postal </b></td>
+                   </tr>
+				  
+					
+					
+					";
+					
+				$i++	;
+			}
+}
+	
+	
+	
+//customer details filter by search in report
+if(isset($_POST["get_customer_report_search_filter"]))
+{ 
+$customer_filter_report_search = $_POST["customer_filter_report_search"];
+
+$sql ="SELECT * from customer_tbl where (customer_tbl.first_name  like '%".$customer_filter_report_search."%' || customer_tbl.last_name  like '%".$customer_filter_report_search."%' || customer_tbl.first_name  like '%".$customer_filter_report_search."%' || customer_tbl.email  like '%".$customer_filter_report_search."%' || customer_tbl.phone  like '%".$customer_filter_report_search."%' || customer_tbl.postal  like '%".$customer_filter_report_search."%' || customer_tbl.city  like '%".$customer_filter_report_search."%' ) " ;
+ $check_query = mysqli_query($con,$sql);
+ 
+		$i=1;
+		while($row = mysqli_fetch_array($check_query))
+			{
+				$customer_id = $row["customer_id"];
+				$first_name = $row["first_name"];
+				$last_name = $row["last_name"];
+				$email = $row["email"];
+				$phone=$row["phone"];
+				$address=$row["address"];
+				$city=$row["city"];
+				$postal=$row["postal"];
+			  
+		
+		echo " <tr class='text-center' >	
+					 <td><b>$i </b></td>
+                      <td> <b>$first_name</b></td>
+                      <td> <b>$last_name</b></td>
+                      <td><b>$email</b></td>
+                      <td ><b>$phone</b></td>
+                      <td ><b>$address</b></td>
+					  <td><b>$city </b></td>
+					  <td><b>$postal </b></td>
+                   </tr>
+				  
+					
+					
+					";
+					
+				$i++	;
+			}
+}
+
+
+
+
+
+
+
+ 
+
+ 
+ 
+
+if(isset($_POST["get_stock_details_for_report"]))
+{ 
+  
+	  
+			$prd_filter_sql = "SELECT  product_tbl.product_id,product_tbl.profit_rate,product_tbl.created_date,product_tbl.product_weight,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
+					 from product_tbl,category_tbl,brand_tbl
+					where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1)";
+					$prd_filter_qry = mysqli_query($con,$prd_filter_sql);
+					$get_filter_output = mysqli_num_rows($prd_filter_qry);
+
+		$i=1;
+		 
+					
+		if(mysqli_num_rows($prd_filter_qry) > 0){
+			while($row = mysqli_fetch_array($prd_filter_qry))
+			{
+				$product_id = $row["product_id"];
+				$created_date = $row["created_date"];
+				$product_category = $row["category_name"];
+				$product_brand = $row["brand_name"];
+				$product_name = $row["product_name"];
+				$current_price_per_prd = $row["product_price"];
+				$product_desc = $row["product_desc"];
+				$profit_rate = $row["profit_rate"];
+				$product_weight = $row["product_weight"];
+				$product_img = $row["product_img"];
+				$product_total_qty = $row["product_total_qty"];
+				
+				
+				
+		$profit = round(($profit_rate/(100+$profit_rate))*$current_price_per_prd) ;
+		 $cost_of_product= ($current_price_per_prd-$profit);
+		 
+		 
+		 
+		 
+				echo "	
+	 
+					<tr  class='text-center'>
+						<td>$i</td>
+						<td>$created_date</td>
+						<td>$product_name</td>
+						<td>$product_category</td>
+						<td>$product_brand</td>
+						<td>$product_weight</td>
+						<td>Rs.$cost_of_product.00</td>
+						<td>Rs.$current_price_per_prd.00</td>
+						<td>$product_total_qty</td>
+				 
+					  </tr>";
+					  $i++;
+	 
+			}
+ 
+		}
+ 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+if(isset($_POST["get_stock_details_filter_for_report"]))
+{ 
+
+$get_stock_details_search = $_POST["get_stock_details_search"];
+
+
+			$prd_filter_sql = "SELECT  product_tbl.product_id,product_tbl.profit_rate,product_tbl.created_date,product_tbl.product_weight,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
+					 from product_tbl,category_tbl,brand_tbl 
+					 where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1) and( (product_tbl.created_date  like '%".$get_stock_details_search."%') ||  (category_tbl.category_name  like '%".$get_stock_details_search."%') ||  (brand_tbl.brand_name  like '%".$get_stock_details_search."%')  || (product_tbl.product_name  like '%".$get_stock_details_search."%') ||(product_tbl.product_price  like '%".$get_stock_details_search."%') || (product_tbl.product_weight  like '%".$get_stock_details_search."%') || (product_tbl.product_total_qty  like '%".$get_stock_details_search."%') )";
+					$prd_filter_qry = mysqli_query($con,$prd_filter_sql);
+					$get_filter_output = mysqli_num_rows($prd_filter_qry);
+
+		$i=1; 			
+		if(mysqli_num_rows($prd_filter_qry) > 0){
+			while($row = mysqli_fetch_array($prd_filter_qry))
+			{
+				$product_id = $row["product_id"];
+				$created_date = $row["created_date"];
+				$product_category = $row["category_name"];
+				$product_brand = $row["brand_name"];
+				$product_name = $row["product_name"];
+				$current_price_per_prd = $row["product_price"];
+				$profit_rate = $row["profit_rate"];
+				$product_weight = $row["product_weight"];
+				$product_total_qty = $row["product_total_qty"];
+				
+				
+				
+		$profit = round(($profit_rate/(100+$profit_rate))*$current_price_per_prd) ;
+		 $cost_of_product= ($current_price_per_prd-$profit);
+		 
+		 
+		 
+		 
+				echo "	
+	 
+					<tr  class='text-center'>
+						<td>$i</td>
+						<td>$created_date</td>
+						<td>$product_name</td>
+						<td>$product_category</td>
+						<td>$product_brand</td>
+						<td>$product_weight</td>
+						<td>Rs.$cost_of_product.00</td>
+						<td>Rs.$current_price_per_prd.00</td>
+						<td>$product_total_qty</td>
+				 
+					  </tr>";
+					  $i++;
+	 
+			}
+ 
+		}
+}
+
+
+
+
+
+	
+	
 ?>
