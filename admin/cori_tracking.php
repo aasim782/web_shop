@@ -136,26 +136,25 @@ session_start();
 				<div class="row">
 				 <div class="form-group col-6 ">
 				<label for="exampleDropdownFormEmail2">Tracking ID</label>
-				<input type="text" class="form-control" id="cori_tracking_id_txt" placeholder="125S521">
+				<input type="number" class="form-control" id="cori_tracking_id_txt" placeholder="125S521">
 			  </div>
 				 <div class="form-group col-6 ">
 				<label for="exampleDropdownFormEmail2">NIC</label>
-				<input type="text" class="form-control" id="" value="-" >
+				<input type="text" class="form-control" id="cori_nic_txt"   value="-" >
 			  </div>
 				
 				
 				</div>
-			
 			 
 			  
 				<div class="row">
 				 <div class="form-group col-6 ">
 				<label for="exampleDropdownFormEmail2">Name</label>
-				<input type="text" class="form-control" id="" value="-"  >
+				<input type="text" class="form-control" id="cori_name_txt"  value="-"  >
 			  </div>
 				 <div class="form-group col-6 ">
 				<label for="exampleDropdownFormEmail2">Phone</label>
-				<input type="text" class="form-control" id="" value="-"  >
+				<input type="text" class="form-control" id="cori_phone_txt" value="-"  >
 			  </div>
 				
 				

@@ -220,14 +220,14 @@
 		 
   <div class="row" >
     <div class="col-sm">
-      	<input type="number"  class="form-control text-center"   id="lpriceid" placeholder="Min" value="0" min="0" step="1" oninput="validity.valid||(value='');"    autocomplete="off">
+      	<input type="number"  class="form-control text-center"   id="lpriceid" placeholder="Min" value="" min="0" step="1" oninput="validity.valid||(value='');"    autocomplete="off">
     </div>
 	
 	  <div class="text-center">
       	-
     </div>
     <div class="col-sm">
-     	<input type="number"   class="form-control text-center"   id="hpriceid" placeholder="Min" value="0"  min="0" step="1" oninput="validity.valid||(value='');"   autocomplete="off">
+     	<input type="number"   class="form-control text-center"   id="hpriceid" placeholder="Max" value=""  min="0" step="1" oninput="validity.valid||(value='');"   autocomplete="off">
     </div>
  	
   </div>
@@ -235,12 +235,7 @@
   </div>
  
  
-		
-		
-		
-		
-		
-		
+		 
 		
 		
 		

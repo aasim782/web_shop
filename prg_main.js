@@ -470,6 +470,21 @@ window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch=
 		var hprice_val  = $('#hpriceid').val();
 		var rate_val = search_params.get('rate');
 	 
+		  
+		
+		if(hprice_val=="")
+		{
+			hprice_val=0;
+
+		}
+		 
+		
+		if(lprice_val=="")
+		{
+			lprice_val=0;
+		}
+ 
+	    
 		 
 		var currentURL = window.location.pathname;
 		var check_page_name =currentURL.includes("index_filter.php");
@@ -486,10 +501,8 @@ window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch=
 			
 		}
 		 
-		 
-		 
-		 
-		window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
+	  
+		 window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+lprice_val+"&hprice="+hprice_val+"&rate="+rate_val+"");
 		 prodcuct_multiple_filter();
 		 })
 		 
@@ -2200,10 +2213,28 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		var hprice_val = search_params.get('hprice');
 		var rate_val = search_params.get('rate');
  
- 
-		 $("#lpriceid").val(lprice_val); 
-		 $("#hpriceid").val(hprice_val);
-
+  
+		if(hprice_val==0)
+		{
+		 $("#hpriceid").val();
+ 			
+		}
+		else
+		{
+	 	 $("#hpriceid").val(hprice_val);
+		}
+		
+		
+		if(lprice_val==0)
+		{
+			$("#lpriceid").val(); 
+		}
+		else
+		{
+			$("#lpriceid").val(lprice_val); 
+		}
+		 
+	
 
 		$('#search_txt').val(search_val); //URL Search to serach text box
 		
@@ -2234,8 +2265,19 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
  	filter_tag_present();
 	function filter_tag_present(){
 		 
+		  
 		var url = new URL(document.URL);
 		var search_params = url.searchParams;
+		var login = search_params.get('login');
+		 
+		//after register login model show
+		 if(login==0)
+		  {
+				$('#customer_login_model').modal('show');
+		  }
+	 
+	   
+	 
 		var search_val = search_params.get('srch');
 		var cid= search_params.get('cat'); 
 		var brd_val = search_params.get('brd');
@@ -2468,6 +2510,10 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		
 		
 		$("#Lower_tag").html("");
+		$("#lpriceid").val("");
+			
+			
+			
 		window.history.pushState('page2', 'Title', "/project37/"+page_filter+".php?srch="+search_val+"&cat="+cid+"&brd="+brd_val+"&lprice="+0+"&hprice="+hprice_val+"&rate="+rate_val+"");
 		prodcuct_multiple_filter();
 		filter_tag_present(); 
@@ -2488,7 +2534,8 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		  
 		  
 		$("#Highest_tag").html("");
-		
+		$("#hpriceid").val("");
+	
 		
 		var currentURL = window.location.pathname;
 		var check_page_name =currentURL.includes("index_filter.php");

@@ -451,7 +451,15 @@ if(isset($_POST["cus_reg"])){
 		echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 		data-auto-dismiss><strong>Registered Successfully</strong> <button type='button' 
 		class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
-		echo "<script> window.location.assign('login.php'); </script>";		
+		
+		
+		echo "<script type='text/javascript'>
+			$(document).ready(function(){
+			
+			window.location.assign('index.php?login=0');
+  		 
+			});
+				";		
 		exit();
 		}
 	}
@@ -1046,7 +1054,13 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 				  <div class='col-12 justify-content-center'>
 					<div class='collapse multi-collapse' id='bank_btn_clk'>
 					  <div class='card card-body'>
-						Please upload a picture of your money deposited slip. Click here to upload it (Please inclued the date, time and branch). 
+					<div class='row ml-3 text-center  justify-content-center'><div class='sm'> Bank : </div><div class='sm'> <b> &nbsp&nbspPeoples Bank </b></div> </div>
+						<div class='row ml-3  justify-content-center'><div class='sm'> Account No: </div><div class='sm'> <b>&nbsp&nbsp204200100091326 </b> </div>
+					</div><br>
+					Please upload a picture of your money deposited slip. Click here to upload it (Please inclued the date, time and branch). 
+					<br>
+					<div class='row ml-3'><b><i class='fas fa-info'></i>&nbspNote : </b><span> &nbsp&nbspYou can upload a slip for an order</span>
+					</div>
 						<div class='text-center m-2'><button class='btn btn-warning ' type='button'  data-toggle='modal' data-target='#bankdepModel'  >Upload</button></div>
 					  </div>
 					</div>
@@ -1055,8 +1069,8 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					
 					<div class='collapse multi-collapse' id='cash_on_delivery_btn_click'>
 					  <div class='card card-body'>
-						Cash on delivery is only available for the products under 50,000. Otherwise use bank payment or online payement. 
-						 ";
+						<div>Cash on delivery is only available for the products under <b>Rs.50,000.00 </b>&nbspOtherwise use bank payment or online payement. 
+						</div> ";
 						 
 					//phone verify conform - agree button hide show 
 					
@@ -2881,7 +2895,10 @@ $product_h_price=0;
 				}
 				 
 			 
-			 if($lprice_txt == 0 &&  $hprice_txt==0)
+			
+			
+			
+			if($lprice_txt == 0 &&  $hprice_txt==0)
 				{
 				 
 					 $product_filter_price="";
@@ -2890,7 +2907,21 @@ $product_h_price=0;
 				{
 					 $product_l_price=$lprice_txt;
 					 $product_h_price=$hprice_txt;	
-					 $product_filter_price="and product_tbl.product_price BETWEEN $product_l_price AND $product_h_price";
+					  
+					if($lprice_txt != 0 && $hprice_txt == 0)
+					{
+						 $product_filter_price="and product_tbl.product_price >= $product_l_price";
+					}
+					else if($hprice_txt != 0 &&$lprice_txt==0)
+					{
+						 $product_filter_price="and product_tbl.product_price <= $product_h_price";
+					}
+					else if($hprice_txt != 0 && $lprice_txt!=0)
+					{
+						 $product_filter_price="and product_tbl.product_price BETWEEN $product_l_price AND $product_h_price";
+					}
+					 
+					 
 					
 				}
 				 
@@ -2980,7 +3011,7 @@ $product_h_price=0;
 								{
 									$rate_txt_val="$rate_txt";
 									//filter the prduct in specially rating plus other filter option
-									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING MAX(comments_tbl.rating)=$rate_txt_val";
+									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING (MAX(comments_tbl.rating)=$rate_txt_val or MAX(comments_tbl.rating)>=$rate_txt_val)";
 									$max_run_query = mysqli_query($con,$max_rate_sql);
 									$max_run_query_row = mysqli_num_rows($max_run_query);
 	 			
@@ -2995,18 +3026,14 @@ $product_h_price=0;
 									 
 										
 										}
-
-									
-									
-					
-								
+  
 								}
 								else if ($cid_txt!= 0 && $brd_txt == 0 && $lprice_txt == 0 &&  $hprice_txt == 0  && $rate_txt != 0)
 								{
 									
 										$rate_txt_val="$rate_txt";
 									//filter the prduct in specially rating plus other filter option
-									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where   $product_category_sql $product_brand_sql (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING MAX(comments_tbl.rating)=$rate_txt_val";
+									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where   $product_category_sql $product_brand_sql (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING (MAX(comments_tbl.rating)=$rate_txt_val or MAX(comments_tbl.rating)>=$rate_txt_val)";
 									$max_run_query = mysqli_query($con,$max_rate_sql);
 									$max_run_query_row = mysqli_num_rows($max_run_query);
 	 			
@@ -3031,7 +3058,7 @@ $product_h_price=0;
 										
 										$rate_txt_val="$rate_txt";
 									//filter the prduct in specially rating plus other filter option
-									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where   $product_category_sql $product_brand_sql (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING MAX(comments_tbl.rating)=$rate_txt_val $product_filter_price";
+									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where   $product_category_sql $product_brand_sql (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING (MAX(comments_tbl.rating)=$rate_txt_val or MAX(comments_tbl.rating)>=$rate_txt_val) $product_filter_price";
 									$max_run_query = mysqli_query($con,$max_rate_sql);
 									$max_run_query_row = mysqli_num_rows($max_run_query);
 	 			
@@ -3056,7 +3083,7 @@ $product_h_price=0;
 												
 										$rate_txt_val="$rate_txt";
 									//filter the prduct in specially rating plus other filter option
-									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where   $product_category_sql $product_brand_sql (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING MAX(comments_tbl.rating)=$rate_txt_val $product_filter_price";
+									$max_rate_sql="SELECT product_tbl.product_id,product_tbl.product_total_qty,product_tbl.product_img,product_tbl.product_name,product_tbl.product_desc,product_tbl.product_price,product_tbl.product_brand,product_tbl.product_category,product_tbl.product_id, max(comments_tbl.rating) FROM comments_tbl,product_tbl where   $product_category_sql $product_brand_sql (product_tbl.product_id = comments_tbl.product_id) and product_tbl.active=1 and product_tbl.product_keywords LIKE '%$selected_keywords%' GROUP BY product_tbl.product_id HAVING  (MAX(comments_tbl.rating)=$rate_txt_val or MAX(comments_tbl.rating)>=$rate_txt_val) $product_filter_price";
 									$max_run_query = mysqli_query($con,$max_rate_sql);
 									$max_run_query_row = mysqli_num_rows($max_run_query);
 	 			

@@ -2031,6 +2031,11 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 	  
 	  	$order_id = $_POST["order_id"];
 	  	$cust_order_id = $_POST["cust_order_id"];
+		$cori_nic = $_POST["cori_nic"]; 
+		$cori_name = $_POST["cori_name"]; 
+		$cori_phone = $_POST["cori_phone"]; 
+		
+		
 		$sql = "update customer_ord_prds set order_status='2' WHERE order_id = '$order_id' and customer_ord_id=$cust_order_id" ;
 		$check_query = mysqli_query($con,$sql);
 
@@ -2039,17 +2044,60 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 		//define date and time
 		$today = date("Y-m-d"); // get the date
 		
-		$sql = "insert into delivery_tbl (order_id,prd_send_date) values ($order_id,'$today')" ;
-		$check_query = mysqli_query($con,$sql);
 		
-		$sql = "select  delivery_id from delivery_tbl where order_id=$order_id" ;
-		$check_query = mysqli_query($con,$sql);
-		$row_data = mysqli_fetch_array($check_query);
-		$delivery_id = $row_data["delivery_id"];
+		$sql_orderid_ex = "select  * from delivery_tbl where order_id=$order_id" ;
+		$check_query_orderid_ex = mysqli_query($con,$sql_orderid_ex);		
+ 		$count_orderid_ex = mysqli_num_rows($check_query_orderid_ex);
+		 
+		 if($count_orderid_ex ==0)
+			{
+					$sql = "insert into delivery_tbl (order_id,prd_send_date) values ($order_id,'$today')" ;
+					$check_query = mysqli_query($con,$sql);
+			
+				  
+					$sql = "select  delivery_id from delivery_tbl where order_id=$order_id" ;
+					$check_query = mysqli_query($con,$sql);
+					$row_data = mysqli_fetch_array($check_query);
+
+					
+						if($row_data>0)
+						{
+								$delivery_id = $row_data["delivery_id"];
+							  
+							    $sql_delivery_id_ex = "select  * from tracking_tbl where delivery_id=$delivery_id" ;
+								$check_query_delivery_id_ex = mysqli_query($con,$sql_delivery_id_ex);		
+								$count_delivery_ex = mysqli_num_rows($check_query_delivery_id_ex);
+								 
+								 if($count_delivery_ex ==0)
+									{
+										$sql = "insert into tracking_tbl (delivery_id) values ($delivery_id)" ;
+										$check_query = mysqli_query($con,$sql);
+										
+										
+										$sql_re = "SELECT * FROM receive_person_details_tbl where order_id=$order_id ";
+										$check_query_re_ex = mysqli_query($con,$sql_re);
+										$count_re_ex = mysqli_num_rows($check_query_re_ex);
+									
+										if ($count_re_ex==0)
+										{ 
+											$sql = "insert into receive_person_details_tbl (order_id) values ($order_id)" ;
+											$check_query = mysqli_query($con,$sql);
+										}
+											
+									 
+										
+									}
+						
+						 
+						
+						} 
+			
+			
+			
+			}
+		     
+		
 	 
-		
-		$sql = "insert into tracking_tbl (delivery_id) values ($delivery_id)" ;
-		$check_query = mysqli_query($con,$sql);
 		
   }
  
@@ -2139,15 +2187,31 @@ if(isset($_POST["db_backup"])){
 
 //courier tracking_info update
 if(isset($_POST["courier_tracking_info_update"])){
-	$cour_user_id=$_SESSION['cour_user_id'];
-		$cori_tracking_id = $_POST["cori_tracking_id"]; 
-		$sql = "SELECT * FROM tracking_tbl WHERE tracking_id = '$cori_tracking_id'" ;
+		$cour_user_id=$_SESSION['cour_user_id'];
+		$cori_tracking_id = $_POST["cori_tracking_id"];
+		
+		$cori_nic = $_POST["cori_nic"]; 
+		$cori_name = $_POST["cori_name"]; 
+		$cori_phone = $_POST["cori_phone"]; 
+		 
+			   
+		$sql = "SELECT delivery_id FROM tracking_tbl WHERE tracking_id = $cori_tracking_id" ;
 		$check_query = mysqli_query($con,$sql);
 		$count_rows = mysqli_num_rows($check_query);
-		
-		if($count_rows>0)
-		{
+		$row_data = mysqli_fetch_array($check_query);
 			
+			
+		if( $count_rows>0)
+		{
+				$delivery_id = $row_data["delivery_id"];
+				 
+				
+				$sql = "SELECT * FROM delivery_tbl WHERE delivery_id = $delivery_id" ;
+				$check_query = mysqli_query($con,$sql);
+				$count_rows = mysqli_num_rows($check_query);
+				$row_data = mysqli_fetch_array($check_query);
+				$order_id = $row_data["order_id"];
+				
 			$sql = "SELECT * FROM courier_tbl WHERE id = '$cour_user_id'" ;
 			$check_query = mysqli_query($con,$sql);
 			$row_data = mysqli_fetch_array($check_query);
@@ -2156,16 +2220,32 @@ if(isset($_POST["courier_tracking_info_update"])){
 			$sql = " UPDATE `tracking_tbl` SET `current_district`= '$District' WHERE tracking_id = '$cori_tracking_id'" ;
 			$check_query = mysqli_query($con,$sql);
 
+			$sql1 = "UPDATE  receive_person_details_tbl  SET  received_person_name='$cori_name', nic='$cori_nic' ,phone= '$cori_phone'  where order_id=$order_id" ;
+			$check_query = mysqli_query($con,$sql1);
+ 
+			
 			echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 			data-auto-dismiss>Tracking infomation <strong> successfully</strong> Updated<button type='button' 
 			class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+			
+			
+			
 		}
 		else
-		{
+		{ 
 			 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert' 
 			data-auto-dismiss><strong> Tracking ID is wrong. </strong>Please check the Tracking ID<button type='button' 
 			class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+			
 		}
+
+ 
+		
+		
+	
+		 
+		
+		
 
 }
 
@@ -3173,15 +3253,14 @@ if(isset($_POST["get_customer_report"]))
 			  
 		
 		echo " <tr class='text-center' >	
-					 <td><b>$i </b></td>
-               
-                      <td> <b>$first_name</b></td>
-                      <td> <b>$last_name</b></td>
-                      <td><b>$email</b></td>
-                      <td ><b>$phone</b></td>
-                      <td ><b>$address</b></td>
-					  <td><b>$city </b></td>
-					  <td><b>$postal </b></td>
+					 <td>$i</td>
+                  <td> $first_name</td>
+                      <td>  $last_name</td>
+                      <td> $email</td>
+                      <td > $phone</td>
+                      <td > $address </td>
+					  <td> $city  </td>
+					  <td> $postal </td>
                    </tr>
 				  
 					
@@ -3216,14 +3295,14 @@ $sql ="SELECT * from customer_tbl where (customer_tbl.first_name  like '%".$cust
 			  
 		
 		echo " <tr class='text-center' >	
-					 <td><b>$i </b></td>
-                      <td> <b>$first_name</b></td>
-                      <td> <b>$last_name</b></td>
-                      <td><b>$email</b></td>
-                      <td ><b>$phone</b></td>
-                      <td ><b>$address</b></td>
-					  <td><b>$city </b></td>
-					  <td><b>$postal </b></td>
+					 <td> $i </td>
+						<td> $first_name</td>
+                      <td>  $last_name</td>
+                      <td> $email</td>
+                      <td > $phone</td>
+                      <td > $address </td>
+					  <td> $city  </td>
+					  <td> $postal </td>
                    </tr>
 				  
 					

@@ -1302,11 +1302,17 @@ category_count();
 			 event.preventDefault();
 			 var ordid= $(this).attr('ordid');  
 			 var cust_order_id_txt= $(this).attr('cust_order_id');  
+			  
+			 	 var cori_nic_txt = $('#cori_nic_txt').val();
+				 var cori_name_txt = $('#cori_name_txt').val();
+				 var cori_phone_txt = $('#cori_phone_txt').val();
+	 
+	  
 			 
 						$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
-					data	:	{change_process_to_shipment:1,order_id:ordid,cust_order_id:cust_order_id_txt},
+					data	:	{change_process_to_shipment:1,order_id:ordid,cust_order_id:cust_order_id_txt,cori_nic:cori_nic_txt,cori_name:cori_name_txt,cori_phone:cori_phone_txt},
 					success	:	function(data){
 						toastr.success('Item shipped  to the customer');
 						all_customer_order();
@@ -1480,15 +1486,21 @@ category_count();
 	 $("#courier_tracking_info_update_btn").click(function(){	
 	 event.preventDefault(); //prevent from the submision
 	 var cori_tracking_id_txt = $('#cori_tracking_id_txt').val();
+	 var cori_nic_txt = $('#cori_nic_txt').val();
+	 var cori_name_txt = $('#cori_name_txt').val();
+	 var cori_phone_txt = $('#cori_phone_txt').val();
+ 
+
 			if(cori_tracking_id_txt=="")
 			{
 				 	$('#cori_tracking_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong> Please enter the tracking ID</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"); 
-			}else
+			}
+			 else
 			{
 				$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
-					data	:	{courier_tracking_info_update:1,cori_tracking_id:cori_tracking_id_txt}, 
+					data	:	{courier_tracking_info_update:1,cori_tracking_id:cori_tracking_id_txt,cori_nic:cori_nic_txt,cori_name:cori_name_txt,cori_phone:cori_phone_txt}, 
 					success	:	function(data){
 				 	$('#cori_tracking_alert_msg').html(data); 
 					$('#cori_tracking_id_txt').val("");

@@ -110,22 +110,7 @@
 												
 													<tbody id="all_product_list" class=""  >			
 											
-													<!--					
-														<tr>
-															<td class="col-md-2"><h5 class="media-heading">01.</h5></td>
-																<td class="col-md-6">
-															<div class="media">
-																<div class="media-body">
-																	<h5 class="media-heading">Shoes</h5>
-																</div>
-															</div></td>
-															<td class="col-sm-1 col-md-1" style="text-align: center">
-															  <img class="d-block w-100" height="50px" width="10px" src="admin/upload/man_Shirt.jpg" alt="Third slide">
-															</td>
-															<td class="col-sm-1 col-md-1 text-center"><strong>Rs.400.87</strong></td>
-														</tr>
-
-													-->
+							 
 														
 													
 													</tbody>
