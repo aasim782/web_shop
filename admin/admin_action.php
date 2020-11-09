@@ -1191,7 +1191,7 @@ $recipt="";
 	$order_status = $row1["order_status"];
 		
 		
-$msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'></i></button>";
+$msg= "<button class='btn btn-dark shadow' data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>";
 
 		if($paymen_catg==1)
 		{
@@ -1347,7 +1347,7 @@ $action_btn="";
 	$order_status = $row1["order_status"];
 		
 		
-$msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'></i></button>";
+$msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>";
 
 		if($paymen_catg==1)
 		{
@@ -1526,7 +1526,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
 								$recipt
 								</td>
 								<td>
-								<button   ordid='$order_id '  class='btn btn-dark shadow' ><i class='fas fa-envelope text-light'></i></button>
+								<button   ordid='$order_id '  class='btn btn-dark shadow' data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>
 								</td>
 							</tr>
 						</table>
@@ -1601,7 +1601,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
                  
 					   <td>
 					<button class='btn btn-success shadow' id='order_shipment_btn' cust_order_id='$cust_order_id' ordid='$order_id'>Shipped</button>
-					<button   ordid='$order_id '  class='btn btn-dark shadow' ><i class='fas fa-envelope text-light'></i></button>
+					<button   ordid='$order_id '  class='btn btn-dark shadow'   data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>
                       </td>
                    </tr>
 				  
@@ -1678,7 +1678,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
                  
 					   <td>
 						<button class='btn btn-success shadow' >Confirm goods Received </button>
-						<button   ordid='$order_id '  class='btn btn-dark shadow' ><i class='fas fa-envelope text-light'></i></button>
+						<button   ordid='$order_id '  class='btn btn-dark shadow'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>
  
 						
                       </td>
@@ -1748,7 +1748,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
                  
 					   <td>
 						 
-						 <a href=''  class='btn btn-success remove'><i class='fas fa-envelope'></i></a>
+						 <a href=''  class='btn btn-success '  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' > <i class='fas fa-envelope'></i></a>
 						 <a href=''  cust_order_id='$customer_ord_id' class='btn btn-danger remove'><i class='fa fa-trash-alt'></i></a>
 					 
                       </td>
@@ -1825,7 +1825,7 @@ $msg= "<button class='btn btn-dark shadow'><i class='fas fa-envelope text-light'
                  
 					   <td>
 	 
-					<button   ordid='$order_id'  class='btn btn-info'><i class='fas fa-envelope'></i></button>
+					<button   ordid='$order_id'  class='btn btn-info'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope'></i></button>
 					<button cust_order_id='$customer_ord_id' class='btn btn-danger shadow remove'><i class='fa fa-times text-light'></i></button>
                       </td>
                    </tr>
@@ -3452,6 +3452,135 @@ $get_stock_details_search = $_POST["get_stock_details_search"];
 
 
 
+ 
+
+
+
+
+if(isset($_POST["get_customer_message_to_admin"]))
+{ 
+	
+				
+					date_default_timezone_set('Asia/Kolkata');
+					//define date and time
+					$today = date("Y-m-d"); // get the date
+					$time = date("h:i:sa");
+		 		
+				
+				
+				
+		$sql1="SELECT * FROM comments_tbl where comment_type=4 and active=1 and admin=0 and active=1 and date='$today' and admin_reply_comment_id=0 ";
+		$run_query1 = mysqli_query($con,$sql1);
+		$count=mysqli_num_rows($run_query1);
+
+		$temp_comments_id="";
+		
+		if($count>0)
+		{
+					 while($row = mysqli_fetch_array($run_query1))
+							{
+								$customer_id = $row["customer_id"];
+								$description = $row["description"];
+								$comments_id = $row["comments_id"];
+								$date = $row["date"];
+								$temp_comments_id =$comments_id;
+							 
+								 $sql_cus="SELECT * FROM customer_tbl where customer_id=$customer_id";
+								 $run_query_cus = mysqli_query($con,$sql_cus);
+								 $row_cus = mysqli_fetch_array($run_query_cus);
+								 $email = $row_cus["email"];
+											
+  
+												
+							echo"
+							<tr class='text-center shadow-sm rounded-sm'><td>
+										<div class='row  '>
+											<div class='col-sm'>
+											<p class='card-text text-left'>Date : <b>$date</b> </p> 
+													</div>	
+													<div class='col-sm'>
+															<p class='card-text text-l'><b></b> </p>
+													</div>
+													
+													<div class='col-sm'>
+													<p class='card-text text-right' >Customer email : $email <b> </b> </p>
+													</div>	
+													</div>	
+												<p class='card-text mt-2' style='cursor: pointer;'><span style='width:800px;display: inline-block;'>$description</span><small><b></b></small></p>
+												  
+													 	 <div class='btn-group mt-2  '>
+																<a href='' class='btn btn-warning mr-2 rounded' id='comment_reply_btn' admin_reply_customer_id='$customer_id' customer_email_for_admin_model='$email' comment_id='$comments_id' data-toggle='modal' data-target='#admin_message_model' ><i class='fa fa-check'></i> Reply </a>
+						 
+																<a href='message.php' class='btn btn-danger mr-2  rounded'><i class='fa fa-times'></i> Cancel</a>
+						  
+														 </div>
+														 </td> </tr>
+												";
+															
+		 
+								
+							}
+
+ 
+
+			
+			
+		}
+		
+		
+
+		
+	
+
+
+							
+
+}
+
+
+
+
+ 
+
+if(isset($_POST["send_customer_message"]))
+{ 
+
+$admin_msg_to_customer = $_POST["admin_msg_to_customer"];
+$cus_email = $_POST["cus_email"];
+$admin_reply_comment_id = $_POST["admin_reply_comment_id"];
+ 
+ 
+		date_default_timezone_set('Asia/Kolkata');
+		
+ 		 //define date and time
+		 $today = date("Y-m-d"); // get the date
+		 $time = date("h:i:sa");
+		 
+		  
+ 
+		$sql_customer_id="SELECT customer_id FROM customer_tbl where email='$cus_email'";
+		$run_query_coustomer_id= mysqli_query($con,$sql_customer_id);
+		$row_email = mysqli_fetch_array($run_query_coustomer_id);
+		$customer_id = $row_email["customer_id"];
+	 
+	 
+	 
+	 
+ 
+ $sql="insert  into comments_tbl (customer_id,date,time,comment_type,description,active,admin_reply_comment_id,admin) values($customer_id,'$today','$time',4,'$admin_msg_to_customer',1,1,1)";
+ $run_query = mysqli_query($con,$sql);
+  		
+  
+ 
+ $sql="update comments_tbl set  active=0,admin_reply_comment_id=1 where comment_type=4 and active=1 and admin=0 and  customer_id=$customer_id";
+ $run_query = mysqli_query($con,$sql);
+ 
+
+}
+
+	 
+								 
+								 
 	
 	
 ?>

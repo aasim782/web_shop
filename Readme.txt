@@ -1,23 +1,17 @@
--rating problem solved (when i click 5 star or 4 star)
--price min give max unlimit prb
--after signup model automatically show
-" Ver 0.6.27"
+-message particially complted
+" Ver 0.6.28"
  
 
 Developemnt pending.
 -service tracking info update (reciver details admin)
--message module customer
--message module admin
+  
   
 -cancel or unpaid something module (error also should solve)
 
 -order module full chekup
 -customes order
 
-
-
-
-
+ 
 
 
 "problem doest not solwed"

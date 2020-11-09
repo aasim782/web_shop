@@ -2601,4 +2601,93 @@ function get_sales_report()
 	
 	
 	
+	
+	
+	
+		 setInterval(function(){
+
+	  get_customer_message_to_admin();
+ 
+		 }, 1000);
+		 
+	
+	
+	
+			//get stock
+	  get_customer_message_to_admin();
+	  function get_customer_message_to_admin(){
+			
+			$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_customer_message_to_admin:1}, 
+					success	:	function(data){
+			 
+					 $("#customer_msg_admin").html(data);
+						  
+					}
+					})	
+		
+	  }
+	  
+	  
+	  
+	  
+ 
+ $('body').delegate('#admin_msg_send_btn','click',function() {
+    event.preventDefault(); //prevent from the submision
+var admin_msg_to_customer_txt = $('#admin_msg_to_customer').val();
+var cus_email_txt = $('#cus_email').val();
+var admin_reply_comment_id_txt= $(this).attr('admin_reply_comment_id');  
+var admin_reply_customer_id_txt= $(this).attr('admin_reply_customer_id');  
+
+
+		if(cus_email_txt=="")
+		{
+		 toastr.error('Please enter the customer email !');
+			
+		}
+		else
+		{
+			
+			  	$.ajax({
+			url		:	"admin_action.php",
+			method	:	"POST",
+			data	:	{send_customer_message:1,admin_msg_to_customer:admin_msg_to_customer_txt,cus_email:cus_email_txt,admin_reply_comment_id:admin_reply_comment_id_txt,admin_reply_customer_id:admin_reply_customer_id_txt},
+			success	:	function(data){
+		
+			  get_customer_message_to_admin();
+				$('#admin_message_model').modal('hide'); 
+			}
+	
+			});
+		}
+		
+		
+		
+		
+	
+ })
+
+
+
+$('body').delegate('#comment_reply_btn','click',function() {
+	
+		var comment_id= $(this).attr('comment_id'); 
+		
+	 	var customer_email_txt= $(this).attr('customer_email_for_admin_model');  
+		 $('#cus_email').val(customer_email_txt);
+	  
+		$('#admin_msg_send_btn').attr('admin_reply_comment_id', comment_id);
+		$('#admin_msg_send_btn').attr('admin_reply_customer_id', comment_id);
+		
+		
+		
+
+	 
+	});
+	
+	
+	
+	
 });

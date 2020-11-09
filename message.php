@@ -103,22 +103,7 @@
 												
 													<tbody id="all_product_list" class=""  >			
 											
-													<!--					
-														<tr>
-															<td class="col-md-2"><h5 class="media-heading">01.</h5></td>
-																<td class="col-md-6">
-															<div class="media">
-																<div class="media-body">
-																	<h5 class="media-heading">Shoes</h5>
-																</div>
-															</div></td>
-															<td class="col-sm-1 col-md-1" style="text-align: center">
-															  <img class="d-block w-100" height="50px" width="10px" src="admin/upload/man_Shirt.jpg" alt="Third slide">
-															</td>
-															<td class="col-sm-1 col-md-1 text-center"><strong>Rs.400.87</strong></td>
-														</tr>
-
-													-->
+												 
 														
 													
 													</tbody>
@@ -202,61 +187,43 @@
     	<div class="container ">
 			  <div  id="my_order_lists"></div>
 <div class="card">
-  <h5 class="card-header text-center">Messages <i class="fas fa-plus-square text-success"  data-toggle="modal" data-target="#customer_message_model" style="cursor: pointer;"></i> </h5>
+  <h5 class="card-header text-center">Messages   </h5>
   <div class="card-body">
 
- 			<tr class="text-center shadow-sm rounded-sm">	
-					 <td>
-                 	<div class="bg-light mb-1  p-3">
-							<p class="card-text mt-2  text-right">Dear seller do you have hp laptop <small><b></b></small></p>
-							  
 
- 
-					 </div>
-					 
-					   	<div class="mb-1">
-							<p class="card-text mt-2  ">Yes<small><b></b></small></p>
-							  
 
-								<div class="btn-group mt-2  ">
-										<a href="" class="btn btn-warning mr-2 rounded " data-toggle="modal" data-target="#customer_message_model"><i class="fa fa-check"></i> Reply </a>
- 
-										<a href="message.php" class="btn btn-danger mr-2  rounded"><i class="fa fa-times"></i> Cancel</a>
- 
-								 </div>
-							</div>
-								 
-									 
-								
-								<div class="bg-light text-right mb-1  p-3">
-						  							<p class="card-text mt-2  "> how many year of your warranty?.I am waiting 4r ur reply can you give more info?</p>
-							 
-								 </div>
-							
-								<div class=" text-right mb-1  ">
-
-						  							<p class="card-text bg-light mt-2 p-3 ">And which knind of warranty (service or hardware warranty) <small><b></b></small></p>
-				 		 
-								 </div>
-							<div class="mb-1">
-							<p class="card-text mt-2 ">we are only providing service warranty <small><b></b></small></p>
-							  
-
-								<div class="btn-group mt-2  ">
-										<a href="" class="btn btn-warning mr-2 rounded " data-toggle="modal" data-target="#customer_message_model"><i class="fa fa-check"></i> Reply </a>
- 
-										<a href="message.php" class="btn btn-danger mr-2  rounded"><i class="fa fa-times"></i> Cancel</a>
- 
-								 </div>
-							</div>
-								
-						  
-					  
+		 
 						
-				   </td>
-					 </tr>
+						<div id="customer_msg_list" style="height:400px;overflow-y: scroll;">
+						
+						</div>
+					
+ 
+ 	
 
 				  </div>
+				  
+	  <div class="card-footer text-muted ">
+				<div class="row">
+					 <div class="col-10 p-3">
+					
+					 <textarea class="form-control"  id="customer_msg_type_txt" rows="1" placeholder="Type your message..."></textarea>
+					</div>
+						
+							 <div class="col-2  p-3">
+							 
+						 <button type="button" class="btn btn-danger" id="customer_msg_btn">Send</button>
+					
+					</div>
+		 
+		 
+
+				</div>
+ 
+		
+		
+		
+</div>
     </div>
 
   </div>
@@ -267,31 +234,7 @@
 				  
 				  
 				  
-				  
-				  
-				  <!-- <div class="row">
-						
-							<div class="col-md-1">01.</div>
-							<div class="col-md-2">T Schirt</div>
-							<div class="col-md-2">dasd</div>
-							<div class="col-md-2">Rs.100.00</div>
-							<div class="col-md-1">	
-							<div class="col-md-0">
-							<input type="text"  class="form-control"  id="pricemax" size="1" maxlength="8"  name="max">
-							</div>
-							</div>
-							
-							
-						<div class="col-md-2">1000000</div>
-						<div class="col-md-2">
-										<div class="btn-group">
-										<a href="" class="btn btn-info"><i class="fa fa-check-circle"></i></a>
-										<a href="" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a>
-										</div>
-							</div>
-					</div>
-				  -->
-				  
+				
 				
 				 
 

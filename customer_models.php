@@ -62,63 +62,7 @@
 
 
 
-
-
-
-
- 
-
-
-<div class="modal fade" id="customer_message_model" tabindex="-1" role="dialog"  data-backdrop="static" data-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header  bg-warning">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-envelope"></i>&nbspMessage</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       
-		
-	   <!-- password change Form -->
-	 <form id="customer_message_model_form" >
-	 		<div id="customer_message_msg" ></div>
- 
-	<div class="form-row">
-	 
-	<div class="col-12">
-      <label for="validationCustom04">Please enter your message </label>
-         <textarea class="form-control"  placeholder="Message" rows="3"></textarea>
-		 </div>
-    </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-danger" id='complain_btn'>Send</button>
-		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-	  </form> <!-- / form -->
-    </div>
-  </div>
-</div> <!-- / -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 

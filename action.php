@@ -2436,7 +2436,7 @@ $location = "./prg_img/"."feedback."."/";
 	{ 
 $product_id = $_POST["product_id"];
 
-	$sql= "SELECT comments_tbl.product_id,comments_tbl.date,customer_tbl.first_name,customer_tbl.last_name,comments_tbl.description,comments_tbl.feedback_img_1,comments_tbl.feedback_img_2,comments_tbl.feedback_img_3,comments_tbl.rating FROM comments_tbl,customer_tbl WHERE (customer_tbl.customer_id = comments_tbl.customer_id) and product_id=$product_id  ORDER BY comments_tbl.date DESC";
+	$sql= "SELECT comments_tbl.product_id,comments_tbl.date,customer_tbl.first_name,customer_tbl.last_name,comments_tbl.description,comments_tbl.feedback_img_1,comments_tbl.feedback_img_2,comments_tbl.feedback_img_3,comments_tbl.rating FROM comments_tbl,customer_tbl WHERE comments_tbl.comment_type = 3 and (customer_tbl.customer_id = comments_tbl.customer_id) and product_id=$product_id  ORDER BY comments_tbl.date DESC";
 	$run_query = mysqli_query($con,$sql);
 	$count=mysqli_num_rows($run_query);
 		
@@ -3265,6 +3265,105 @@ if(isset($_POST["get_cat_brd_names_tag"]))
   
   
   
+  
+  
+  
+  
+  
+  if(isset($_POST["send_the_msg_by_customer"]))
+	{	
+
+		$customer_id = $_SESSION['cusid'];
+		$customer_msg = $_POST["customer_msg"];
+		
+		
+				
+					date_default_timezone_set('Asia/Kolkata');
+					//define date and time
+					$today = date("Y-m-d"); // get the date
+					$time = date("h:i:sa");
+		 		
+					
+		$sql="insert  into comments_tbl (customer_id,date,time,comment_type,description,active) values($customer_id,'$today','$time',4,'$customer_msg',1)";
+		$run_query = mysqli_query($con,$sql);
+	
+ 
+ 
+	}
+  
+  
+    
+  if(isset($_POST["get_customer_message"]))
+	{	
+  
+		$customer_id = $_SESSION['cusid'];
+		$sql1="SELECT * FROM comments_tbl where customer_id=$customer_id and  comment_type=4 order by time,date ASC";
+		$run_query1 = mysqli_query($con,$sql1);
+		$count_brd=mysqli_num_rows($run_query1);
+		
+
+		
+	 while($row = mysqli_fetch_array($run_query1))
+		{
+					 
+			$description = $row["description"];
+			$date = $row["date"];
+			$time = $row["time"];
+			$comments_id = $row["comments_id"];
+			$admin = $row["admin"];
+	
+			 if($admin==1)
+			 {	
+				 			echo "
+							
+							
+		<p class='card-text mt-3   text-left'><span style='width:500px;display: inline-block;  border-radius: 20px 20px 20px 20px;' class='bg-light p-3'> <image width='50px' src='prg_img\user\admin.webp' alt='Seller'>Seller<br>$description 
+									
+									 
+																	</span>
+																<br>
+													
+										 
+													 	 <small   class='ml-2' style='font-size:x-small;color:#8f9295;'>$date $time</small>	
+															
+													 
+												 
+																	
+																</p> 
+																";
+				 
+			 }
+			 else
+			 {
+				 
+				 		 
+				echo    "<p class='card-text mt-2  p-3 text-right'><span style='width:500px;display: inline-block;  border-radius: 20px 20px 20px 20px; background-color:rgb(232 252 241);'  class='p-3'>Me <image width='50px' alt='Me' src='prg_img\user\person.png'> <br class='text-left'>$description</span>
+				
+				
+				
+				
+					<br>
+					 <small   class='mr-2' style='font-size:x-small;color:#8f9295;'>$date $time</small>	
+				
+				</p>  ";
+			
+
+		 
+			}
+		 
+			  
+  
+		
+		}
+		
+		
+		
+		
+
+		
+		
+		
+	}
   
  
   

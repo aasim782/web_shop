@@ -81,7 +81,7 @@
 					<div class="row mt-3 ">
 			 
 						<div class=" col-sm-16 col-md-9  text-left p-1   ">
-					 	 <h2><span class="info-box-icon"><i class="fas fa-envelope"></i></span> Customer's Message</h2>
+					 	 <h2><span class="info-box-icon"><i class="fas fa-envelope"></i></span> Customer's Message  <i class="fas fa-plus-square text-warning"  data-toggle="modal" data-target="#admin_message_model" style="cursor: pointer;"></i></h2> 
 						</div>
 							<div class="col-sm-16 col-md-3 text-right mb-3 ">
 							<div class="col-sm-12">
@@ -110,45 +110,8 @@
              
                     </tr>
                     </thead>
-                   <tbody id="get_all_customers_message" >	
-
-
-
-
-			<tr class="text-center shadow-sm rounded-sm">	
-					 <td>
-                   
-				   	  <div class="row mt-2 ">
-						<div class="col-sm">
-						<p class="card-text text-left">Date : <b>30.12.2020</b> </p> 
-								</div>	
-								<div class="col-sm">
-										<p class="card-text text-l"><b></b> </p>
-								</div>
-								
-								<div class="col-sm">
-								<p class="card-text text-right" >Customer email : <b>faizal@gmail.com </b> </p>
-								</div>	
-								</div>	
-							<p class="card-text mt-2" style="cursor: pointer;">how many year of your warranty?.I am waiting 4r ur reply can you give more info? <small><b></b></small></p>
-							  
-								
-
-								<div class="btn-group mt-2  ">
-										<a href="" class="btn btn-warning mr-2 rounded " data-toggle="modal" data-target="#admin_message_model" ><i class="fa fa-check"></i> Reply </a>
- 
-										<a href="message.php" class="btn btn-danger mr-2  rounded"><i class="fa fa-times"></i> Cancel</a>
-  
-								 </div>
-						  
-						  
+                   <tbody id="customer_msg_admin" >	
 						
-				   </td>
-					 </tr>
-
-
-
-				   
                     </tbody>
                   
                   </table>

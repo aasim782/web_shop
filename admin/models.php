@@ -122,17 +122,7 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 <div class="modal fade" id="admin_message_model" tabindex="-1"  data-backdrop="static" data-keyboard="false"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -154,12 +144,12 @@
 	 
 	<div class="col-12">
       <label for="validationCustom04">Enter customer email </label>
-         <input type="rext" class="form-control"  placeholder="Customer Email">
+         <input type="rext" class="form-control"  id="cus_email" placeholder="Customer Email">
 		 </div>
 		 
 		 	<div class="col-12">
       <label for="validationCustom04">Please enter your message </label>
-         <textarea class="form-control"  placeholder="Message" rows="3"></textarea>
+         <textarea class="form-control"   id="admin_msg_to_customer" placeholder="Message" rows="3"></textarea>
 		 </div>
 		 
     </div>
@@ -168,7 +158,7 @@
 </div>
       <div class="modal-footer">
 	  
-	  	<a href='' id='product_delete_id_btn'  class='btn btn-danger product_delete'>Send</a>
+	  	<a href='' id='admin_msg_send_btn'  class='btn btn-danger '>Send</a>
 		 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
        
       </div>

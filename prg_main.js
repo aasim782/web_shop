@@ -2395,7 +2395,7 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		
 		}
 		
-		
+
 		
 		
  $('body').delegate('#category_close','click',function() {
@@ -2647,6 +2647,66 @@ function get_customer_orders_reviews(){
 }
  
 	
+//1-complain , 2- feedback , 3 product feedback , 4 msg
+ $('body').delegate('#customer_msg_btn','click',function() {
+		 event.preventDefault(); //prevent from the submision
+		 var customer_msg_txt = $('#customer_msg_type_txt').val();
+	 
+			 if(customer_msg_txt!="")
+			 {
+						
+	 
+	 
+	 
+						 	$.ajax({
+							url		:	"action.php",
+							method	:	"POST",
+							data	:	{send_the_msg_by_customer:1,customer_msg:customer_msg_txt},
+							success	:	function(data){
+						
+						$('#customer_msg_type_txt').val("");
+						get_customer_message();
+							}
+					
+							});
+			 }
+
+ 
+	 });		 
 		
+		
+		 setInterval(function(){
+
+		get_customer_message();
+ 
+		 }, 1000);
+		 
+		 
+		 
+		 
+		get_customer_message();
+function get_customer_message(){
+
+
+
+	  	$.ajax({
+			url		:	"action.php",
+			method	:	"POST",
+			data	:	{get_customer_message:1},
+			success	:	function(data){
+		
+				$('#customer_msg_list').html(data);
+				
+				//scroll bar bottom
+				var messageBody = document.querySelector('#customer_msg_list');
+				messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+ 
+			
+			}
+	
+			});
+ 
+	
+}
 
 });
