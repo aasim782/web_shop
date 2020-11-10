@@ -1644,6 +1644,8 @@ if(isset($_POST["bank_dep"])){
 		$dep_date = $_POST["dep_date"];
 		$dep_time = $_POST["dep_time"];
 		$branch_name = $_POST["branch_name"];	
+		$dep_amount = $_POST["dep_amount"];	
+		$slip_number = $_POST["slip_number"];	
 	 
 
 $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and (payment_status=0)" ;
@@ -1708,7 +1710,7 @@ else
 										$row = mysqli_fetch_array($check_query);
 											$payment_id = $row["payment_id"];
 	
-								$sql = "INSERT INTO `bank_dep_tbl`(`payment_id`,`dep_date`,`dep_time`,`branch_name`,`upolod_slip_img`) VALUES ($payment_id,'$dep_date','$dep_time','$branch_name','$new_file_name')";
+								$sql = "INSERT INTO `bank_dep_tbl`(`payment_id`,`dep_date`,`dep_time`,`branch_name`,`upolod_slip_img`,`amount`,`slip_no`) VALUES ($payment_id,'$dep_date','$dep_time','$branch_name','$new_file_name',$dep_amount,'$slip_number')";
 									mysqli_query($con,$sql);
 									
 								echo "<div class='alert alert-success alert-dismissible fade show' role='alert' data-auto-dismiss><strong> Your order has been completed succesfully!</strong> Please wait until the seller verifies your payment<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";

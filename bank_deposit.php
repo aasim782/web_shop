@@ -49,19 +49,31 @@
  
 		<div class="col-md-6">
 			  <label for="validationCustom02">Branch Name :</label>
-			  <input type="text" class="form-control" id="branch_nametxt"  name='' placeholder="Branch Name" >
+			  <input type="text" class="form-control" id="branch_nametxt"   placeholder="Branch Name" >
 		
 		</div>
-
+		
+		<div class="col-md-6">
+			  <label for="validationCustom02">Deposit Amount :</label>
+			  <input type="number" class="form-control" id="dep_amount_txt"    placeholder="Diposit Amount" >
+		
+		</div>
 
     </div>
 	
 	
 		<div class="form-row  justify-content-center ">
-	
-		<div class="col-md-7 mt-1 ">
+		<div class="col-md-6">
+			  <label for="validationCustom02">Deposit Slip Number :</label>
+			  <input type="text" class="form-control" id="slip_number_txt"    placeholder="Deposit Slip Number" >
 		
-			<div class="custom-file ">
+		</div>
+
+
+
+		<div class="col-md-6 ">
+		  <label for="validationCustom02">Bank Slip :</label>
+			<div class="custom-file   ">
 				
 		 <form  >
          

@@ -1269,17 +1269,41 @@ complain_item_list();
 
 
 
+
+
+//prevent from key press at date on bank deposit
+$('#de_datetxt').keypress(function(event) {
+ 	event.preventDefault(); //prevent from the submision
+});
+
+
+
+//prevent from key press at time on bank deposit
+$('#de_timetxt').keypress(function(event) {
+ 	event.preventDefault(); //prevent from the submision
+});
+
+
+
+ 
 //bank payment
  $("#but_upload").click(function(){	
 	event.preventDefault(); //prevent from the submision
  
-  
  	var dep_datetxt = $("#de_datetxt").val(); 
 	var dep_timetxt = $("#de_timetxt").val(); 
 	var branch_name_txt = $('#branch_nametxt').val();
+	var dep_amount_txt = $('#dep_amount_txt').val();
+	var slip_number_txt = $('#slip_number_txt').val();
+	
+	
+	
+	
 	var files = $('#file')[0].files[0];
 	
-	if(dep_datetxt == "" || dep_timetxt == "" || branch_name_txt == "" 	|| typeof files == 'undefined')
+ 
+	
+		if(dep_datetxt == "" || dep_timetxt == "" || branch_name_txt == "" 	|| slip_number_txt =="" || dep_amount_txt==""|| typeof files == 'undefined')
 		{
 			$('#bank_dep_alert_msg').html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
 		}
@@ -1293,6 +1317,8 @@ complain_item_list();
 				fd.append('dep_date',dep_datetxt); //arguments
 				fd.append('dep_time', dep_timetxt); //arguments
 				fd.append('branch_name',branch_name_txt); //arguments
+				fd.append('dep_amount',dep_amount_txt); //arguments
+				fd.append('slip_number',slip_number_txt); //arguments
 			 
 			 
 				

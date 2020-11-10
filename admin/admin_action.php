@@ -2131,7 +2131,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
 	
 	 	$order_id = $_POST["order_id"];
 		
-$sql ="SELECT payment_tbl.payment_id,payment_tbl.order_id,bank_dep_tbl.dep_date,bank_dep_tbl.dep_time,bank_dep_tbl.branch_name,bank_dep_tbl.upolod_slip_img,bank_dep_tbl.payment_id FROM payment_tbl,bank_dep_tbl
+$sql ="SELECT payment_tbl.payment_id,payment_tbl.order_id,bank_dep_tbl.dep_date,bank_dep_tbl.amount,bank_dep_tbl.slip_no,bank_dep_tbl.dep_time,bank_dep_tbl.branch_name,bank_dep_tbl.upolod_slip_img,bank_dep_tbl.payment_id FROM payment_tbl,bank_dep_tbl
  where (payment_tbl.payment_id = bank_dep_tbl.payment_id)  && (payment_tbl.order_id=$order_id)" ;
 $check_query = mysqli_query($con,$sql);
 $row = mysqli_fetch_array($check_query);
@@ -2139,31 +2139,33 @@ $row = mysqli_fetch_array($check_query);
 	$dep_date = $row["dep_date"];
 	$dep_time = $row["dep_time"];
 	$branch_name = $row["branch_name"];
+	$branch_name = $row["branch_name"];
+	$amount = $row["amount"];
+	$slip_no = $row["slip_no"];
 	
- 
+	 
 
 	  
 	  	 echo "    
 	  <div class='row'>
 			  
 			  <table class='table table-bordered'>
-					  <thead>
+				 
 						<tr>
-						  <th scope='col' id='Deposited_date'>Deposited Date:  &nbsp $dep_date </th>
-						  <th scope='col'  id='Deposited_time'>Deposited Time:  &nbsp$dep_time</th>
-						  <th scope='col'  id='Deposited_branch'>Branch Name: &nbsp $branch_name </th>
+						  <td scope='col' id='Deposited_date'>Deposit Date:  &nbsp <b>$dep_date</b> </td>
+						  <td scope='col'  id='Deposited_time'>Deposit Time:  &nbsp<b>$dep_time</b></td>
+						  <td scope='col'  id='Deposited_branch'>Branch Name: &nbsp <b>$branch_name</b> </td>
 						</tr>
-					  </thead>
-					  
-			 
-  
+							<tr>
+							<td scope='col' id='Deposited_date'>Deposit Amount:  &nbsp <b>Rs. $amount.00</b> </td>
+							<td class='text-center' scope='col' colspan='2' id='Deposited_date'>Deposit Slip Number:  &nbsp <b>$slip_no </b></td>
+							</tr>
+				  
 			  </table>
-			  
-			  
+			   
 			  </div>
- 
-
-		 <img src='../prg_img/bank_slip/$image_name' width='100%' height='50%'>";
+  
+				<img src='../prg_img/bank_slip/$image_name' width='100%' height='50%'>";
  
   }
  
@@ -3638,7 +3640,7 @@ if(isset($_POST["send_customer_message"]))
 
 $admin_msg_to_customer = $_POST["admin_msg_to_customer"];
 $cus_email = $_POST["cus_email"];
-$admin_reply_comment_id = $_POST["admin_reply_comment_id"];
+@$admin_reply_comment_id = $_POST["admin_reply_comment_id"];
  
  
 		date_default_timezone_set('Asia/Kolkata');
