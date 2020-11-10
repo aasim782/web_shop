@@ -2706,9 +2706,7 @@ function get_customer_orders_reviews(){
 		 
 		get_customer_message();
 function get_customer_message(){
-
-
-
+ 
 	  	$.ajax({
 			url		:	"action.php",
 			method	:	"POST",

@@ -1129,7 +1129,7 @@ $run_query = mysqli_query($con,$brand_query);
  if(isset($_POST["all_customer_order"]) )
  {
 	  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
- ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.email,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3)  && customer_ord_prds.active=1 ORDER BY order_id ASC LIMIT $start,$page_number_limit " ;
  $check_query = mysqli_query($con,$sql);
 
@@ -1144,6 +1144,7 @@ $recipt="";
 				$order_date = $row["order_date"];
 				$product_name = $row["product_name"];
 				$last_name = $row["last_name"];
+				$email = $row["email"];
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
@@ -1191,7 +1192,7 @@ $recipt="";
 	$order_status = $row1["order_status"];
 		
 		
-$msg= "<button class='btn btn-dark shadow' data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>";
+$msg= "<button class='btn btn-dark shadow' data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' id='admin_message_btn' customer_email='$email'><i class='fas fa-envelope text-light'></i></button>";
 
 		if($paymen_catg==1)
 		{
@@ -1443,7 +1444,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
  if(isset($_POST["get_all_panding_orders"]) || isset($_POST["count_total_panding_order"]) ){
  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_qtry,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
- ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.current_price_per_prd,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.current_price_per_prd,customer_ord_prds.customer_note,customer_tbl.email,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=0) ) && customer_ord_prds.active=1 ORDER BY order_id ASC" ;
  $check_query = mysqli_query($con,$sql);
  $count_panding_order = mysqli_num_rows($check_query);
@@ -1465,6 +1466,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
 				$order_date = $row["order_date"];
 				$product_name = $row["product_name"];
 				$last_name = $row["last_name"];
+				$email = $row["email"];
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
@@ -1526,7 +1528,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
 								$recipt
 								</td>
 								<td>
-								<button   ordid='$order_id '  class='btn btn-dark shadow' data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>
+								<button   ordid='$order_id '  class='btn btn-dark shadow' data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' id='admin_message_btn' customer_email='$email'><i class='fas fa-envelope text-light'></i></button>
 								</td>
 							</tr>
 						</table>
@@ -1558,7 +1560,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
  if(isset($_POST["get_all_process_orders"]) || isset($_POST["count_total_process_order"])){
  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
- ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.email,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=1) ) && customer_ord_prds.active=1 order by order_id" ;
  $check_query = mysqli_query($con,$sql);
  $count_process_order = mysqli_num_rows($check_query);
@@ -1584,6 +1586,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
 				$order_date = $row["order_date"];
 				$product_name = $row["product_name"];
 				$last_name = $row["last_name"];
+				$email = $row["email"];
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
@@ -1601,7 +1604,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
                  
 					   <td>
 					<button class='btn btn-warning shadow' id='order_shipment_btn' cust_order_id='$cust_order_id' ordid='$order_id'><i class='fa fa-truck text-dark'></i></button>
-					<button   ordid='$order_id '  class='btn btn-dark shadow'   data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>
+					<button   ordid='$order_id '  class='btn btn-dark shadow'   data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' id='admin_message_btn' customer_email='$email' ><i class='fas fa-envelope text-light'></i></button>
                       </td>
                    </tr>
 				  
@@ -1638,7 +1641,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
  if(isset($_POST["get_all_shipped_orders"]) || isset($_POST["count_total_shipped_order"])){
  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
- ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.email,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=2) ) order by order_id" ;
  $check_query = mysqli_query($con,$sql);
  $count_shipped_order = mysqli_num_rows($check_query);
@@ -1661,6 +1664,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
 				$order_date = $row["order_date"];
 				$product_name = $row["product_name"];
 				$last_name = $row["last_name"];
+				$email = $row["email"];
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
@@ -1678,7 +1682,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
                  
 					   <td>
 						<button class='btn btn-success shadow' >Confirm goods Received </button>
-						<button   ordid='$order_id '  class='btn btn-dark shadow'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>
+						<button   ordid='$order_id '  class='btn btn-dark shadow'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' id='admin_message_btn' customer_email='$email'><i class='fas fa-envelope text-light'></i></button>
  
 						
                       </td>
@@ -1713,7 +1717,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
  if(isset($_POST["get_all_delivered_orders"])){
  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
- ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,customer_tbl.email,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=3) ) order by order_id" ;
  $check_query = mysqli_query($con,$sql);
  $count_deliver_order = mysqli_num_rows($check_query);
@@ -1727,6 +1731,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
 				$order_date = $row["order_date"];
 				$product_name = $row["product_name"];
 				$last_name = $row["last_name"];
+				$email = $row["email"];
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
@@ -1764,8 +1769,8 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
                  
 					   <td>
 						 
-						 <a href=''  class='btn btn-success '  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' > <i class='fas fa-envelope'></i></a>
-						 <a href=''  cust_order_id='$customer_ord_id' class='btn btn-danger remove'><i class='fa fa-trash-alt'></i></a>
+						 <a href=''  class='btn btn-success '  data-toggle='modal' id='admin_message_btn' data-target='#admin_message_model' style='cursor: pointer;' customer_email='$email' > <i class='fas fa-envelope'></i></a>
+					 
 					 
                       </td>
 
@@ -1798,7 +1803,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
  if(isset($_POST["get_all_unpaid_orders"]) || isset($_POST["count_total_unpaid_order"]) ){
  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date,customer_ord_prds.order_qtry,customer_ord_prds.current_price_per_prd, customer_ord_prds.product_id 
- ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.email,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=0)) && customer_ord_prds.active=1 order by order_id" ;
   $check_query = mysqli_query($con,$sql);
   $count_unpaid_order = mysqli_num_rows($check_query);
@@ -1819,6 +1824,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
 				$order_date = $row["order_date"];
 				$product_name = $row["product_name"];
 				$last_name = $row["last_name"];
+				$email = $row["email"];
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
@@ -1841,7 +1847,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
                  
 					   <td>
 	 
-					<button   ordid='$order_id'  class='btn btn-info'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope'></i></button>
+					<button   ordid='$order_id'  class='btn btn-info'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' id='admin_message_btn' customer_email='$email' ><i class='fas fa-envelope'></i></button>
 					<button cust_order_id='$customer_ord_id' class='btn btn-danger shadow remove'><i class='fa fa-times text-light'></i></button>
                       </td>
                    </tr>
@@ -3646,20 +3652,27 @@ $admin_reply_comment_id = $_POST["admin_reply_comment_id"];
 		$sql_customer_id="SELECT customer_id FROM customer_tbl where email='$cus_email'";
 		$run_query_coustomer_id= mysqli_query($con,$sql_customer_id);
 		$row_email = mysqli_fetch_array($run_query_coustomer_id);
+		$count=mysqli_num_rows($run_query_coustomer_id);
 		$customer_id = $row_email["customer_id"];
 	 
 	 
-	 
-	 
+		  if($count>0)
+		  {
+			   $sql="insert  into comments_tbl (customer_id,date,time,comment_type,description,active,admin_reply_comment_id,admin) values($customer_id,'$today','$time',4,'$admin_msg_to_customer',1,1,1)";
+				 $run_query = mysqli_query($con,$sql);
+						
+				  
+				 
+				 $sql="update comments_tbl set  active=0,admin_reply_comment_id=1 where comment_type=4 and active=1 and admin=0 and  customer_id=$customer_id";
+				 $run_query = mysqli_query($con,$sql);
+				 
+		  }
+		  else
+		  {
+			  echo "1";
+		  }
  
- $sql="insert  into comments_tbl (customer_id,date,time,comment_type,description,active,admin_reply_comment_id,admin) values($customer_id,'$today','$time',4,'$admin_msg_to_customer',1,1,1)";
- $run_query = mysqli_query($con,$sql);
-  		
-  
- 
- $sql="update comments_tbl set  active=0,admin_reply_comment_id=1 where comment_type=4 and active=1 and admin=0 and  customer_id=$customer_id";
- $run_query = mysqli_query($con,$sql);
- 
+
 
 }
 

@@ -416,15 +416,7 @@
 		
   <!-- /.control-sidebar -->
  
-
-
-
-
-
- bar_chart_val
-
-
-
+ 
   <!-- Main Footer -->
  
   <?php include "footer.php" ?>

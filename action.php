@@ -5,7 +5,7 @@ include "db_conn/config.php";
 
 //left side category list 
 if(isset($_POST["category"])){
-	
+	@$customer_id = $_SESSION['cusid'] ;	
 	$category_query = "SELECT * FROM category_tbl where active=1";
 	$run_query = mysqli_query($con,$category_query);
 	
@@ -21,12 +21,10 @@ if(isset($_POST["category"])){
 			<a href='#' id='category' class='list-group-item list-group-item-action' cid='$cid'>$cat_name</a>		
 			";
 		}
-		
-		@$customer_id = $_SESSION['cusid'] ;	
-		
+		 
 		if($customer_id=='')
 		{
-			
+			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customer_login_model'  >Customs Order</a>";
 		}
 		else
 		{
@@ -390,20 +388,50 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 			";
 		}
 		
-	//no such a category product
-	if(mysqli_num_rows($run_query)==0){
-		echo "
-		<div class='container text-center'>
-			<div class='alert alert-info '  role='alert' >
-			  <h4 class='alert-heading'>We don't have such kind of a product right now.!</h4>
-			  <p>We are sorry to say that we don't have such a product.!</p>
-			  <p  >You can make a request here for your need </p>
-			  <button class='btn btn-danger mt-2'  data-toggle='modal' data-target='#customes_order' ><i class='fa fa-shopping-cart'></i> CLICK HERE</button>  </p>
-			</div> 
-			</div> 
-			";
+	
+	 	//no such a category product
+				if(mysqli_num_rows($run_query)==0)
+				{
+					
+					
+							if(!isset($_SESSION['cusid']))
+									{
+										
+										  echo "<div class='container text-center'>
+													<div class='alert alert-info '  role='alert' >
+													  <h4 class='alert-heading'>We don't have such kind of a product right now.!</h4>
+													  <p>We are sorry to say that we don't have such a product.!</p>
+													  <p  >You can make a request here for your need </p>
+													  <button class='btn btn-danger mt-2'  data-toggle='modal' data-target='#customer_login_model' ><i class='fa fa-shopping-cart'></i> CLICK HERE</button>  </p>
+													</div> 
+													</div> 
+											";
+										
+									}
+									else
+									{
+										
+										 echo "
+											<div class='container text-center'>
+												<div class='alert alert-info '  role='alert' >
+												  <h4 class='alert-heading'>We don't have such kind of a product right now.!</h4>
+												  <p>We are sorry to say that we don't have such a product.!</p>
+												  <p  >You can make a request here for your need </p>
+												  <button class='btn btn-danger mt-2'  data-toggle='modal' data-target='#customes_order' ><i class='fa fa-shopping-cart'></i> CLICK HERE</button>  </p>
+												</div> 
+												</div> 
+												";
+										
+									}
 		
+		
+				
+				 
+			
+			
 		}
+	
+
 	
 	
 	}
@@ -3194,17 +3222,39 @@ $product_h_price=0;
 		
 	}
 	else
-	{ 
-		echo "
-		<div class='container text-center'>
-			<div class='alert alert-info '  role='alert' >
-			  <h4 class='alert-heading'>We don't have such kind of a product right now.!</h4>
-			  <p>We are sorry to say that we don't have such a product.!</p>
-			  <p  >You can make a request here for your need </p>
-			 <button class='btn btn-danger mt-2'  data-toggle='modal' data-target='#customes_order' ><i class='fa fa-shopping-cart'></i> CLICK HERE</button>  </p>
-			</div> 
-			</div> 
-			";
+	{  							
+								if(!isset($_SESSION['cusid']))
+									{
+										
+										  echo "<div class='container text-center'>
+													<div class='alert alert-info '  role='alert' >
+													  <h4 class='alert-heading'>We don't have such kind of a product right now.!</h4>
+													  <p>We are sorry to say that we don't have such a product.!</p>
+													  <p  >You can make a request here for your need </p>
+													  <button class='btn btn-danger mt-2'  data-toggle='modal' data-target='#customer_login_model' ><i class='fa fa-shopping-cart'></i> CLICK HERE</button>  </p>
+													</div> 
+													</div> 
+											";
+										
+									}
+									else
+									{
+										
+										 echo "
+											<div class='container text-center'>
+												<div class='alert alert-info '  role='alert' >
+												  <h4 class='alert-heading'>We don't have such kind of a product right now.!</h4>
+												  <p>We are sorry to say that we don't have such a product.!</p>
+												  <p  >You can make a request here for your need </p>
+												  <button class='btn btn-danger mt-2'  data-toggle='modal' data-target='#customes_order' ><i class='fa fa-shopping-cart'></i> CLICK HERE</button>  </p>
+												</div> 
+												</div> 
+												";
+										
+									}
+		
+		
+		 
 		
 	 }
 	

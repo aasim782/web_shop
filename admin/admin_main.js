@@ -1500,6 +1500,11 @@ category_count();
 					success	:	function(data){
 				 	$('#cori_tracking_alert_msg').html(data); 
 					$('#cori_tracking_id_txt').val("");
+					$('#cori_name_txt').val("-");
+					$('#cori_phone_txt').val("-");
+					$('#cori_nic_txt').val("-");
+					
+					
 
 					}
 					})
@@ -2700,7 +2705,7 @@ var admin_reply_customer_id_txt= $(this).attr('admin_reply_customer_id');
 			method	:	"POST",
 			data	:	{send_customer_message:1,admin_msg_to_customer:admin_msg_to_customer_txt,cus_email:cus_email_txt,admin_reply_comment_id:admin_reply_comment_id_txt,admin_reply_customer_id:admin_reply_customer_id_txt},
 			success	:	function(data){
-		
+				alert(data);
 			  get_customer_message_to_admin();
 				$('#admin_message_model').modal('hide'); 
 			}
@@ -2712,7 +2717,7 @@ var admin_reply_customer_id_txt= $(this).attr('admin_reply_customer_id');
 		
 		
 	
- })
+ });
 
 
 
@@ -2757,6 +2762,19 @@ $('body').delegate('#comment_reply_btn','click',function() {
 			
 		  
 	  }
+	
+	
+	
+	
+	
+	
+	$('body').delegate('#admin_message_btn','click',function() {
+			var email= $(this).attr('customer_email'); 
+			$('#cus_email').val(email);
+ 
+		
+	});
+	
 	
 	
 });
