@@ -107,10 +107,9 @@
                       <th>Price</th>
                       <th>Qty</th>
                       <th>Status</th>
-                      <th>Action</th>
                     </tr>
                     </thead>
-                     <tbody id="get_all_cancelled_orders">
+                     <tbody id="get_all_canceled_order">
                      
                     </tbody>
                   </table>

@@ -1157,7 +1157,7 @@ $recipt="";
 		if(($payment_status==1 && $order_status==0) || ($payment_status==2 && $order_status==0) || ($payment_status==3 && $order_status==0) )
 		{
 			 $status_btn=   "<span class='badge badge-warning'> Pending</span>";
-			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id' cust_order_id='$customer_ord_id' ><i class='fa fa-check text-light'></i></button> 
+			 $action_btn=	"<button class=' btn-success shadow btn'  id='order_accept_panding_btn' ordid='$order_id' cust_order_id='$customer_ord_id' ><i class='fa fa-check text-light'></i></button> 
 			 <button cust_order_id='$customer_ord_id' class='btn btn-danger shadow remove'><i class='fa fa-times text-light'></i></button>";
 		}
 		
@@ -1165,7 +1165,7 @@ $recipt="";
 		{
 			 $status_btn=   "<span class='badge badge-info'> Processing</span>";
 			 $action_btn=	"<button class='btn btn-warning shadow' id='order_shipment_btn' ordid='$order_id'  cust_order_id='$customer_ord_id'  ><i class='fa fa-truck text-dark'></i></button>
-							 <button cust_order_id='$customer_ord_id' class='btn btn-danger shadow remove'><i class='fa fa-times text-light'></i></button>";
+					 ";
 		
 		}
 		else if($payment_status==0)
@@ -1177,7 +1177,7 @@ $recipt="";
 		if(($payment_status==1 && $order_status==2) || ($payment_status==2 && $order_status==2) || ($payment_status==3 && $order_status==2) )
 		{
 			 $status_btn=   "<span class='badge badge-success' > shipped</span>";
-			 $action_btn=	"<button class='btn btn-success shadow'>Confirm products Received</button>";
+			 $action_btn=	"<button class='shadow btn btn-success '>Confirm products Received</button>";
 		}
  
 	  
@@ -2281,12 +2281,69 @@ if(isset($_POST["courier_tracking_info_update"])){
 
 
 
-//Remove Customer Order
+//cancel Customer Order
 if(isset($_POST["remove_cus_order"])){
     $remove_cust_order_id = $_POST["remove_cust_order_id"]; 
 	$sql = "UPDATE `customer_ord_prds` SET `active`=0 WHERE customer_ord_id = $remove_cust_order_id" ;
 	$check_query = mysqli_query($con,$sql);
 }
+
+
+
+if(isset($_POST["get_all_canceled_orders"]))
+
+{ 
+
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date,customer_ord_prds.order_qtry,customer_ord_prds.current_price_per_prd, customer_ord_prds.product_id 
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id    && customer_ord_prds.active=0 order by order_id" ;
+  $check_query = mysqli_query($con,$sql);
+  $count_unpaid_order = mysqli_num_rows($check_query);
+	
+ 
+ 
+		$i=1;
+		while($row = mysqli_fetch_array($check_query))
+			{
+				$order_id = $row["order_id"];
+				$order_date = $row["order_date"];
+				$product_name = $row["product_name"];
+				$last_name = $row["last_name"];
+				$customer_note=$row["customer_note"];
+				$payment_status=$row["payment_status"];
+				$order_status=$row["order_status"];
+			  	$current_price_per_prd=$row["current_price_per_prd"];
+				$order_qtry=$row["order_qtry"];
+				$customer_ord_id=$row["customer_ord_id"];
+		
+ 		echo " <tr class='text-center' >	
+					 <td><b>$i </b></td>
+                      <td >   $order_id  </td>
+                      <td> $order_date</td>
+                      <td> $last_name</td>
+                      <td>$product_name</td>
+                      <td>Rs.$current_price_per_prd.00</td>
+                      <td>$order_qtry</td>
+                 
+                      <td>
+					<span class='badge badge-danger'> Cancelled</span>
+					  </td>
+                 
+			 
+                   </tr>
+			 
+					
+					";
+					
+				$i++	;
+			}
+ 
+		
+	 
+	
+ 
+}
+
 
 
 

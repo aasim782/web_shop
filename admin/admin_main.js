@@ -978,7 +978,7 @@ category_count();
 	
 	
 	//get all ordered prd to order admin table 
-	all_customer_order()	
+	all_customer_order();	
 		function all_customer_order(){
 
 					$.ajax({
@@ -1017,6 +1017,8 @@ category_count();
 		 
 		 //all_customer_order_footer_num click
 		 $('body').delegate('#all_order_table_footer_num','click',function() {
+			  clearInterval(timer);
+			  
 			var pagenum= $(this).attr('all_order_table_footer_num');  
 			
 					$.ajax({
@@ -1032,18 +1034,12 @@ category_count();
 			 
 		 
 		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
+ 
 		 
 		
 		 //filter the brand by the search box at admin category table
  $("#all_order_filter").keyup(function () {
-	 
+	 clearInterval(timer);
 	 var Serach_val = $("#all_order_filter").val();
  
 			$.ajax({
@@ -1063,7 +1059,7 @@ category_count();
 
 	 
 	 //get all_delivered_orders to admin deliver table 
-	get_all_delivered_orders()	
+	get_all_delivered_orders();	
 		function get_all_delivered_orders(){
 
 					$.ajax({
@@ -1081,7 +1077,7 @@ category_count();
 		 
 		
 			 //get all_panding_orders to admin deliver table 
-	get_all_panding_orders()	
+	get_all_panding_orders();
 		function get_all_panding_orders(){
  
 					$.ajax({
@@ -1101,7 +1097,7 @@ category_count();
 		 
 		
 			//count unpaid orders
-	count_total_panding_order()	
+	count_total_panding_order();
 		function count_total_panding_order(){
 
 					$.ajax({
@@ -1128,7 +1124,7 @@ category_count();
 		
   
   	//get all process order  to admin processing table 
-	get_all_process_orders()	
+	get_all_process_orders();
 		function get_all_process_orders(){
 
 					$.ajax({
@@ -1144,7 +1140,7 @@ category_count();
 		
 			var data_val=0;
 		 //count shpped orders
-		count_total_process_order()	
+		count_total_process_order()	;
 		function count_total_process_order(){
 		
 					$.ajax({
@@ -1166,7 +1162,7 @@ category_count();
 	  
   
   	//get all shipped order  to admin processing table 
-	get_all_shipped_orders()	
+	get_all_shipped_orders()	;
 		function get_all_shipped_orders(){
 
 					$.ajax({
@@ -1181,7 +1177,7 @@ category_count();
 		}
 		
 		//count shpped orders
-		count_total_shipped_order()	
+		count_total_shipped_order()	;
 		function count_total_shipped_order(){
 
 					$.ajax({
@@ -1205,7 +1201,7 @@ category_count();
 		
 		  
   	//get all unpaid order  to admin processing table 
-	get_all_unpaid_orders()	
+	get_all_unpaid_orders()	;
 		function get_all_unpaid_orders(){
 
 					$.ajax({
@@ -1223,7 +1219,7 @@ category_count();
 		
 		
 	//count unpaid orders
-	count_total_unpaid_order()	
+	count_total_unpaid_order();	
 		function count_total_unpaid_order(){
 
 					$.ajax({
@@ -1244,7 +1240,7 @@ category_count();
 		
 		
 		//get all customer 
-		get_all_customers()	
+		get_all_customers();
 		function get_all_customers(){
 
 					$.ajax({
@@ -1403,7 +1399,7 @@ category_count();
 		
 		
 			//get all customer complain
-		get_all_customers_complain()	
+		get_all_customers_complain();	
 		function get_all_customers_complain(){
 
 					$.ajax({
@@ -1530,9 +1526,24 @@ $("body").delegate(".remove","click",function(){
 					}
 					})
 		
-	})
+	});
+
+get_all_canceled_orders();
+function get_all_canceled_orders(){
 
 
+					$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{get_all_canceled_orders:1},
+					success	:	function(data){
+	 
+						$("#get_all_canceled_order").html(data);
+					}
+					})
+					
+
+}
 
 		 
 	
@@ -2602,12 +2613,46 @@ function get_sales_report()
 	
 	
 	
-	
+ 
+ 
+
+
+
 	//refresh customer message
-  setInterval(function(){
+  	var timer = setInterval(function(){
 	get_customer_message_to_admin();
 	count_cutomer_msg_admin_panel();
- 
+	  
+	
+		product_count();
+
+		 banner_count();
+		 brand_count();
+   
+		count_total_unpaid_order()	
+	 
+	 
+		category_count();
+	
+		
+	   
+		total_number_of_sale();
+	   
+		count_total_customers();
+	   
+		all_customer_order();
+		get_all_panding_orders();
+		get_all_process_orders();
+		get_all_shipped_orders();
+		get_all_delivered_orders();	
+		
+		
+		 get_all_customers();
+		 get_all_customers_complain();	
+		 get_all_customers_feedback();	
+		 get_all_canceled_orders();
+		 get_all_unpaid_orders()	;
+		 
 		 }, 1000);
 		 
 	

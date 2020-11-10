@@ -1,18 +1,35 @@
--message particially complted
--order recived date and person name show
--customes order completed
-" Ver 0.6.30.."
+cancel order doest not completed
+cancel or unpaid something module 
+customes order
+all action in interval
+" Ver 0.6.31"
  
 
-Developemnt pending.
--cancel or unpaid something module (error also should solve)
+Developemnt pending
+----------------------
 -order module full chekup
--customes order
 -courer updated after doest not erase txt box
 -after sucess of payment doest not hide the promt 
 -Bank deposit Amount text not included
--all action in interval
 -delivered orders list when customer confirm their order
+
+
+
+
+Addtional matters
+-----------------
+--ready to pickup doest not hide
+--bank deposite date validation
+--msg customer email does not exiting validation
+--recive persion name is essential
+--online invoice
+
+
+
+
+
+
+
 
 "problem doest not solwed"
 -db insert have prb
@@ -27,11 +44,6 @@ delivery table small changes image and recived date filed miss
 commets table product id added
 register button name changed
  
---ready to pickup doest not hide
---bank deposite date validation
---msg customer email does not exiting validation
---recive persion name is essential
---online invoice
 
 
 
