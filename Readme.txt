@@ -1,8 +1,25 @@
 - wrong email enterned validation solved
 - bank deposite date validation
 - order module full chekup
-" Ver 0.6.33"
+- invoice generated
+- print button added 
+
+" Ver 0.6.34"
  
+
+
+
+
+
+
+
+
+
+Confirm goods Received
+
+
+		  <button class='btn btn-outline-secondary' print_order_id='$order_id'  id='print_btn'><i class='fa fa-print text-dark'></i></button>
+
 
 Developemnt pending
 ----------------------
@@ -11,6 +28,8 @@ Developemnt pending
  - cash on delivey have some problem some time
  - number validation text box
 
+
+close pannittu tirumpa connect pannunka team a aaaaaaaaaaaaaaaayyyyyyyyyyyyyyyyyyyy
 
 Addtional matters
 -----------------

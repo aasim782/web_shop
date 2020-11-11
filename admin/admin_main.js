@@ -2774,9 +2774,8 @@ $('body').delegate('#comment_reply_btn','click',function() {
 	
 	
 	
-	
-	
-	$('body').delegate('#admin_message_btn','click',function() {
+//message button press	
+$('body').delegate('#admin_message_btn','click',function() {
 			var email= $(this).attr('customer_email'); 
 			$('#cus_email').val(email);
  
@@ -2785,4 +2784,68 @@ $('body').delegate('#comment_reply_btn','click',function() {
 	
 	
 	
+
+ 
+ 
+	
+ function get_print_data()
+ {
+ 
+		 alert(0);
+			
+			
+
+ }
+ 
+   //print button
+ $('body').delegate('#print_btn','click',function() {
+			var print_order_id= $(this).attr('print_order_id'); 
+			  window.open('invoice.php?invoice='+print_order_id+'');
+ });
+ 
+   
 });
+
+
+
+
+
+
+
+
+
+
+
+
+$( window ).on( "load", function() {
+   
+   	  
+ 
+  
+ 		var url = new URL(document.URL);
+		var search_params = url.searchParams;
+		var invoice_id_txt = search_params.get('invoice');
+	  
+		 	$.ajax({
+			url		:	"admin_action.php",
+			method	:	"POST",
+			data	:	{get_print_data:1,invoice_id:invoice_id_txt},
+			success	:	function(data){
+	 
+			$("#invoice_data").html(data);
+		  	$("#j_script").html("<script type='text/javascript'>  window.addEventListener('load', window.print());</script>");
+			}
+	
+			});
+			
+			
+
+ 
+   
+   
+	   
+});
+
+
+
+
