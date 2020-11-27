@@ -2652,6 +2652,10 @@ function get_customer_orders_reviews(){
 		 event.preventDefault(); //prevent from the submision
 		 var customer_msg_txt = $('#customer_msg_type_txt').val();
 	 
+	 
+	 
+				 
+				 
 			 if(customer_msg_txt!="")
 			 {
 						
@@ -2666,9 +2670,25 @@ function get_customer_orders_reviews(){
 						
 						$('#customer_msg_type_txt').val("");
 						get_customer_message();
+						 
+
+						 $("#customes_alert_msg").html("<div class='alert alert-success alert-dismissible fade show' role='alert'>Successfully send <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button></div>");
+				
+						  
+						 $('#customes_order').modal('hide');
+							
+						 
+
 							}
 					
 							});
+			 }
+			 else
+			 { 	 
+						//home page customes order
+						$("#customes_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert'>Please tell us about what do you need<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button></div>");
+				
+			
 			 }
 
  

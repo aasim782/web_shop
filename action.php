@@ -2411,9 +2411,7 @@ $location = "./prg_img/"."feedback."."/";
 	mysqli_query($con,$sql2);
 		
 	   
-	// update parcel recived date
-	$sql = "update delivery_tbl set prd_received_date='$date' where order_id=$order_id" ;
-	$check_query = mysqli_query($con,$sql);	
+
 	
 	//update customer order status = 3
 	$sql = "update customer_ord_prds set order_status=3  WHERE customer_ord_id=$customer_ord_id " ;

@@ -33,7 +33,7 @@
 		
 	   <!-- Customer Registration Form -->
 	 <form id="customes_order_form" >
-	 		<div id="cus_alert_msg" >
+	 		<div id="customes_alert_msg" >
 			
 			<div class="alert alert-warning alert-dismissible fade show" role="alert">
 			  Place your custom order content, We will try our best to get it for you
@@ -48,7 +48,7 @@
     <div class="form-group col-12">
 	
     <label for="exampleFormControlTextarea1">Tell us about what do you need *</label>
-    <textarea class="form-control" id="Customes_order_txt"  name="Customes_order_msg" rows="3"></textarea>
+    <textarea class="form-control" id="customer_msg_type_txt"   rows="3"></textarea>
 
 	</div>
 	</div>
@@ -56,7 +56,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-danger">Request</button>
+        <button type="button" class="btn btn-danger" id="customer_msg_btn">Request</button>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
 	  </form> <!-- /Customer Reg form -->

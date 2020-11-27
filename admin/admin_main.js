@@ -2603,20 +2603,20 @@ function get_sales_report()
 	
 	
 	
-	
-		 setInterval(function(){
-
-	  get_customer_message_to_admin();
+	//refresh customer message
+  setInterval(function(){
+	get_customer_message_to_admin();
+	count_cutomer_msg_admin_panel();
  
 		 }, 1000);
 		 
 	
 	
 	
-			//get stock
+ //get customer message
 	  get_customer_message_to_admin();
 	  function get_customer_message_to_admin(){
-			
+		 
 			$.ajax({
 					url		:	"admin_action.php",
 					method	:	"POST",
@@ -2642,9 +2642,9 @@ var admin_reply_comment_id_txt= $(this).attr('admin_reply_comment_id');
 var admin_reply_customer_id_txt= $(this).attr('admin_reply_customer_id');  
 
 
-		if(cus_email_txt=="")
+		if(cus_email_txt=="" || admin_msg_to_customer_txt=="")
 		{
-		 toastr.error('Please enter the customer email !');
+		 toastr.error('Please fill all the fields!');
 			
 		}
 		else
@@ -2688,6 +2688,30 @@ $('body').delegate('#comment_reply_btn','click',function() {
 	});
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	count_cutomer_msg_admin_panel();
+	  function count_cutomer_msg_admin_panel(){
+		  
+		$.ajax({
+			url		:	"admin_action.php",
+			method	:	"POST",
+			data	:	{count_cutomer_msg_admin_panel:1},
+			success	:	function(data){
+ 
+					$("#admin_msg_count").html(data);
+			}
+	
+			});
+			
+		  
+	  }
 	
 	
 });

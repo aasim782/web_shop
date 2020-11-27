@@ -1600,7 +1600,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
 					  </td>
                  
 					   <td>
-					<button class='btn btn-success shadow' id='order_shipment_btn' cust_order_id='$cust_order_id' ordid='$order_id'>Shipped</button>
+					<button class='btn btn-warning shadow' id='order_shipment_btn' cust_order_id='$cust_order_id' ordid='$order_id'><i class='fa fa-truck text-dark'></i></button>
 					<button   ordid='$order_id '  class='btn btn-dark shadow'   data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>
                       </td>
                    </tr>
@@ -1718,6 +1718,7 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
  $check_query = mysqli_query($con,$sql);
  $count_deliver_order = mysqli_num_rows($check_query);
  
+    
    
 		$i=1;
 		while($row = mysqli_fetch_array($check_query))
@@ -1730,7 +1731,22 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
 				$customer_ord_id =$row["customer_ord_id"];
-			  
+	
+	
+				$sql_rec_per_details ="SELECT * from receive_person_details_tbl where order_id=$order_id" ;
+				$check_query_rec_details = mysqli_query($con,$sql_rec_per_details);
+				$row_re_details = mysqli_fetch_array($check_query_rec_details);
+				$received_person_name =$row_re_details["received_person_name"];
+		  
+		  
+		  
+				$sql_rec_date ="SELECT * from delivery_tbl where order_id=$order_id" ;
+				$check_query_rec_date = mysqli_query($con,$sql_rec_date);
+				$row_re_date = mysqli_fetch_array($check_query_rec_date);
+				$prd_received_date =$row_re_date["prd_received_date"];
+				
+				 
+	
 		
 		echo " <tr class='text-center' >	
 					 <td><b>$i </b></td>
@@ -1740,10 +1756,10 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
                       <td> $product_name</td>
                  
                       <td>
-					   10/12/2020
+					   $prd_received_date
 					  </td>
 					<td>
-					   MAM.AASIM
+					   $received_person_name
 					  </td>
                  
 					   <td>
@@ -2187,6 +2203,14 @@ if(isset($_POST["db_backup"])){
 
 //courier tracking_info update
 if(isset($_POST["courier_tracking_info_update"])){
+	
+	
+	
+		date_default_timezone_set('Asia/Kolkata');
+			//define date and time
+			$date = date('Y-m-d');
+			 
+			
 		$cour_user_id=$_SESSION['cour_user_id'];
 		$cori_tracking_id = $_POST["cori_tracking_id"];
 		
@@ -2222,7 +2246,11 @@ if(isset($_POST["courier_tracking_info_update"])){
 
 			$sql1 = "UPDATE  receive_person_details_tbl  SET  received_person_name='$cori_name', nic='$cori_nic' ,phone= '$cori_phone'  where order_id=$order_id" ;
 			$check_query = mysqli_query($con,$sql1);
- 
+			
+			
+			// update parcel recived date
+			$sql = "update delivery_tbl set prd_received_date='$date' where order_id=$order_id" ;
+			$check_query = mysqli_query($con,$sql);	
 			
 			echo "<div class='alert alert-success alert-dismissible fade show' role='alert' 
 			data-auto-dismiss>Tracking infomation <strong> successfully</strong> Updated<button type='button' 
@@ -3392,7 +3420,7 @@ if(isset($_POST["get_stock_details_for_report"]))
 
 
 
-
+//get the stock details filter
 if(isset($_POST["get_stock_details_filter_for_report"]))
 { 
 
@@ -3456,11 +3484,10 @@ $get_stock_details_search = $_POST["get_stock_details_search"];
 
 
 
-
+// get the customer message
 if(isset($_POST["get_customer_message_to_admin"]))
 { 
-	
-				
+ 
 					date_default_timezone_set('Asia/Kolkata');
 					//define date and time
 					$today = date("Y-m-d"); // get the date
@@ -3473,7 +3500,9 @@ if(isset($_POST["get_customer_message_to_admin"]))
 		$run_query1 = mysqli_query($con,$sql1);
 		$count=mysqli_num_rows($run_query1);
 
-		$temp_comments_id="";
+ 
+		
+		 
 		
 		if($count>0)
 		{
@@ -3483,8 +3512,7 @@ if(isset($_POST["get_customer_message_to_admin"]))
 								$description = $row["description"];
 								$comments_id = $row["comments_id"];
 								$date = $row["date"];
-								$temp_comments_id =$comments_id;
-							 
+							  
 								 $sql_cus="SELECT * FROM customer_tbl where customer_id=$customer_id";
 								 $run_query_cus = mysqli_query($con,$sql_cus);
 								 $row_cus = mysqli_fetch_array($run_query_cus);
@@ -3541,7 +3569,7 @@ if(isset($_POST["get_customer_message_to_admin"]))
 
 
  
-
+//send the message to customer
 if(isset($_POST["send_customer_message"]))
 { 
 
@@ -3553,7 +3581,7 @@ $admin_reply_comment_id = $_POST["admin_reply_comment_id"];
 		date_default_timezone_set('Asia/Kolkata');
 		
  		 //define date and time
-		 $today = date("Y-m-d"); // get the date
+		 $today = date("Y-m-d"); 
 		 $time = date("h:i:sa");
 		 
 		  
@@ -3578,9 +3606,27 @@ $admin_reply_comment_id = $_POST["admin_reply_comment_id"];
 
 }
 
-	 
-								 
-								 
+
+
+
+
+if(isset($_POST["count_cutomer_msg_admin_panel"]))
+{
 	
+		date_default_timezone_set('Asia/Kolkata');
+					//define date and time
+					$today = date("Y-m-d"); // get the date
+					$time = date("h:i:sa");
+		 		
+				
+		$sql1="SELECT * FROM comments_tbl where comment_type=4 and active=1 and admin=0 and active=1 and date='$today' and admin_reply_comment_id=0 ";
+		$run_query1 = mysqli_query($con,$sql1);
+		$count=mysqli_num_rows($run_query1);
+		echo "$count";
+
+}
+
+
+ 
 	
 ?>
