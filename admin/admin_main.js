@@ -361,7 +361,9 @@ product_count();
 					$('#get_category').val(array[2]).change();
 					$('#get_brand').val(array[3]).change();
 					$('#get_weight').val(array[7]).change();
-
+					
+					
+					toastr.warning('You can edit now');
 				  }	
 				 
 				  
@@ -371,9 +373,12 @@ product_count();
 	  
   })
   
+  
+  
   //update button
   $("body").delegate("#form_prd_update_btn", "click", function () 
   { 
+ 
    
     //get the value from form using post method
     var Product_id_txt = $("#Product_id_txt").val();
@@ -1557,10 +1562,18 @@ function get_all_canceled_orders(){
 var url = new URL(document.URL);
 var search_params = url.searchParams;
 var login_success = search_params.get('success');
-	
+
+//admin first time login show
 if(login_success==1){
 	out_of_stock();
 }
+
+
+
+//used for out of stock btn in notification
+$("body").delegate("#out_of_stock_btn","click",function(){
+ out_of_stock();
+});
 
 
 //get out of stock
@@ -1578,6 +1591,25 @@ function out_of_stock(){
 	
 	
 }
+
+
+count_out_of_stock_product();
+function count_out_of_stock_product(){
+	
+	$.ajax({
+      url: "admin_action.php",
+      method: "POST",
+      data: { count_out_of_stock_product: 1 },
+      success: function (data) {
+	   $('#count_total_outofstock_noti').html(data); 
+      },
+    });
+	
+	
+	
+}
+	
+	
 
 
 //close success reset on URL

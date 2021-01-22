@@ -39,11 +39,10 @@
   
    
   
-  
 <!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-info" >
+<nav class="navbar navbar-expand-lg navbar-dark  " style='background-color:#3d3d3d'>
  <a class="navbar-brand" href="#">
-    <img src="https://learncodeweb.com/wp-content/uploads/2019/12/fb-login.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    <img src="prg_img/logo/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
    Dress Line
   </a>
 

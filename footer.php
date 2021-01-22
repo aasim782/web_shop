@@ -64,7 +64,11 @@
 <h4><strong>Our Channels</strong></h4>
 <hr>
 <ul class="list-unstyled">
-<li><a target="_blank" href="https://www.facebook.com/dressline.lk"><i class="icon-facebook" rel="nofollow"></i> Facebook</a></li> <li><a target="_blank" href="https://www.instagram.com/dressline.lk"><i class="fa fa-instagram" rel="nofollow"></i> Instagram</a></li> <li><a target="_blank" href="https://twitter.com/dresslinelk"><i class="fa fa-twitter" rel="nofollow"></i> Twitter</a></li> <li><a target="_blank" href="https://plus.google.com/100244094780110781434"><i class="fa fa-google-plus" rel="nofollow"></i> Google+</a></li> <li><a href="mailto:support@dressline.lk"><i class="fa fa-envelope"></i> support@dressline.lk</a></li>
+<li><a target="_blank" href="https://www.facebook.com/dressline.lk"> <i class="fab fa-facebook-f"></i></i> Facebook</a></li> 
+<li><a target="_blank" href="https://www.instagram.com/dressline.lk"><i class="fab fa-instagram-square"></i> Instagram</a></li>
+ <li><a target="_blank" href="https://twitter.com/dresslinelk"><i class="fab fa-twitter-square"></i></i> Twitter</a></li>
+ <li><a target="_blank" href="https://plus.google.com/100244094780110781434"> <i class="fab fa-google-plus-square"></i></i> Google+</a></li>
+ <li><a href="mailto:support@dressline.lk"><i class="fa fa-envelope"></i> support@dressline.lk</a></li>
 
 </ul>
 </div>
@@ -122,7 +126,7 @@
             WidgetInitializer.widgetInitialize(
                 "desktop",
                 {"wrapperId":"wh-widget-send-button-wrapper","host":"widget.getbutton.io","proto":"https:","clientHostname":"www.selflearn.edu.lk","showHelloPopup":0,"parentWrapperId":"wh-widget-send-button","isMobile":0,"widgetType":"desktop"},
-                {"position":"right","button_color":"#E74342","order":"facebook,email","facebook":"1523507964536098","whatsapp":"+94 713718707   ","viber":"+94713718707","snapchat":null,"line":null,"telegram":"+94713718707","vkontakte":null,"email":"support@selflearn.edu.lk","sms":"+94713718707","call":"+94 713718707   ","company_logo_url":null,"greeting_message":null,"call_to_action":"Message us","ga":false,"branding":true,"mobile":true,"desktop":true,"shift_vertical":0,"shift_horizontal":0,"domain":null,"key":null});
+                {"position":"right","button_color":"#E74342","order":"facebook,email","facebook":"100729131894787","whatsapp":"+94 713718707   ","viber":"+94713718707","snapchat":null,"line":null,"telegram":"+94713718707","vkontakte":null,"email":"support@selflearn.edu.lk","sms":"+94713718707","call":"+94 713718707   ","company_logo_url":null,"greeting_message":null,"call_to_action":"Message us","ga":false,"branding":true,"mobile":true,"desktop":true,"shift_vertical":0,"shift_horizontal":0,"domain":null,"key":null});
             if (window.parent) {
                 window.parent.postMessage(JSON.stringify({'name' : 'wh-widget-loaded'}), '*');
             }

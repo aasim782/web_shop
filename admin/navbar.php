@@ -42,7 +42,7 @@ include "models.php";
      
           <div class="dropdown-divider"></div>
           <a href="pending_order.php" class="dropdown-item">
-            <i class="fas fa-sync-alt mr-2"></i>Pending orders
+            <i class="fas fa-sync-alt mr-2"></i> Pending orders
             <span class="float-right text-muted text-sm" id="count_total_panding_order_noti"></span>
           </a>
           <div class="dropdown-divider"></div>
@@ -52,16 +52,22 @@ include "models.php";
           </a>
           <div class="dropdown-divider"></div>
           <a href="un_paid_order.php" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i>Unpaid Orders
+            <i class="fas fa-file mr-2"></i> Unpaid Orders
             <span class="float-right text-muted text-sm" id="count_total_unpaid_order_noti"></span>
           </a>
           <div class="dropdown-divider"></div>
 		    <a href="shipped_order.php" class="dropdown-item">
-            <i class="fa fa-truck mr-2"></i>Shipped Orders
+            <i class="fa fa-truck mr-2"></i> Shipped Orders
             <span class="float-right text-muted text-sm" id="count_total_shipped_order_noti"></span>
           </a>
+		     <div class="dropdown-divider"></div>
+		    <a   id="out_of_stock_btn" class="dropdown-item">
+			<i class="fa fa-shopping-basket" ></i>&nbsp  Out of Stocks
+			<span class="float-right text-muted text-sm" id="count_total_outofstock_noti"></span>
+			
+          </a>
 		   <div class="dropdown-divider"></div>
-          <a href="all_orders.php" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="all_orders.php" class="dropdown-item dropdown-footer"> See All Notifications</a>
         </div>
       </li>
 	  

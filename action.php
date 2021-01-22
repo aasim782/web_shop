@@ -108,7 +108,7 @@ if(isset($_POST["product"])){
 	}
 	
 	
-	$product_query = "SELECT * FROM product_tbl where active=1 LIMIT $start,$page_number_limit ";
+	$product_query = "SELECT * FROM product_tbl where active=1 LIMIT $start,$page_number_limit  ";
 	$run_query = mysqli_query($con,$product_query);
 
 
@@ -437,10 +437,9 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 	}
 	
 	 
-	 
-	 
-	
+
 		
+ //Customer Registration
 if(isset($_POST["cus_reg"])){
 		$fname = $_POST["fname"];
 		$lname= $_POST["lname"];
@@ -453,7 +452,7 @@ if(isset($_POST["cus_reg"])){
 
 
 
-		//existing email address in our database
+	 //existing email address in our database
 	$sql = "SELECT customer_id FROM customer_tbl WHERE email = '$email' LIMIT 1" ;
 	$check_query = mysqli_query($con,$sql);
 	$count_email = mysqli_num_rows($check_query);
@@ -2840,7 +2839,7 @@ if(isset($_POST["category_in_filter"])){
 		
 		if($customer_id=='')
 		{
-			
+			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customer_login_model'>Customs Order</a>";
 		}
 		else
 		{
@@ -2851,7 +2850,7 @@ if(isset($_POST["category_in_filter"])){
 }
 
 
-
+  
 
 
 

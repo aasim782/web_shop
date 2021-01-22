@@ -1535,6 +1535,7 @@ $('body').delegate('#pohne_code_send_btn','click',function() {
 	event.preventDefault(); //prevent from the submision
 	var pohne_txt = $("#pohne_txt").val();
  
+ 
 	if( pohne_txt == ""){
 		
 	 $("#otp_alert_msg").html("<div class='alert alert-danger alert-dismissible fade show' role='alert' data-auto-dismiss><strong>Dear Customer!</strong> Please fill all the fields<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");		 
@@ -1555,8 +1556,8 @@ $('body').delegate('#pohne_code_send_btn','click',function() {
 		{
  
  	
-	var userId=12524;
-	var ApiKey="giZ3NGSE0P2E9Cr0agz9"
+	var userId=12614;
+	var ApiKey="CGpyGjzHoplZHrprF7Pe"
 	var digits = '0123456789'; 
     let OTP = ''; 
     for (let i = 0; i < 6; i++ ) 
@@ -1957,8 +1958,8 @@ $('body').delegate('#customer_prd_fedb_conform_btn','click',function() {
 		{
  
 	
-																				var userId=12526;
-																				var ApiKey="myqAHZdfT8X3tsxsrutg"
+																				var userId=12614;
+																				var ApiKey="CGpyGjzHoplZHrprF7Pe"
 																				var digits = '0123456789'; 
 																				let OTP = ''; 
 																				

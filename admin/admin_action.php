@@ -2418,6 +2418,22 @@ $start=0;
  
 }
 
+
+//count the out of Stock 
+if(isset($_POST["count_out_of_stock_product"])){
+	
+ $start=0;
+ $product_query = "SELECT  product_tbl.product_id,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
+					 from product_tbl,category_tbl,brand_tbl
+					 where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1) and (product_tbl.product_total_qty<=5)  ORDER BY product_tbl.product_total_qty";
+ $run_query = mysqli_query($con,$product_query);
+ echo mysqli_num_rows($run_query);
+	
+ }	
+ 
+ 
+
+
 //adding the banner to admin  table
 if(isset($_POST["add_banner"])){
  $banner_title = $_POST["banner_title"]; 
@@ -3997,7 +4013,7 @@ echo
 <td >&nbsp;</td>
 <td align='right'><strong>COURIER CHARGE</strong></td>
 <td align='center' style='  background-color: #dff0d8 !important;
-    -webkit-print-color-adjust: exact;'>&nbsp; $Courier</td>
+    -webkit-print-color-adjust: exact;'>&nbsp; Rs.$Courier.00</td>
  
 </tr>
 <tr >
@@ -4005,8 +4021,8 @@ echo
 <td >&nbsp;</td>
 <td >&nbsp;</td>
 <td align='right' ><strong>TOTAL</strong></td>
-<td align='center'  style='  background-color: #dff0d8 !important;
-    -webkit-print-color-adjust: exact;'>&nbsp&nbsp&nbsp<b>$final_amount_wiht_cor</b></td>
+<td align='center'  style='  background-color: #9ccc9c !important;
+    -webkit-print-color-adjust: exact;'>&nbsp&nbsp&nbsp<b>Rs.$final_amount_wiht_cor.00</b></td>
  
 </tr>";
     

@@ -55,12 +55,12 @@
 
 
 <tr >
-<td  colspan='2'>100/B, Hospital Road, Oluvil - 20</td>
+<td  colspan='2'>100/B, HOSPITAL ROAD, OLUVIL -20</td>
 <td >&nbsp;</td>
  
 </tr>
 <tr >
-<td  colspan='2'>Oluvil</td>
+<td  colspan='2'>OLUVIL</td>
 <td >&nbsp;</td>
  
 </tr>
