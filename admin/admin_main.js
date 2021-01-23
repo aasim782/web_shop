@@ -438,7 +438,7 @@ product_count();
 									date(); 
 									product_add_form();
 									$('#product_reg_form')[0].reset();
-									
+									$("#product_filter").val("") ;
 								 } 
 					
 					}

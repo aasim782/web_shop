@@ -1285,7 +1285,7 @@ if(isset($_POST["get_all_order_filter"]))
  $search_val = $_POST["Search_all_orde_filter_table"];
   
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
- ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,customer_tbl.email,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3)   && (customer_ord_prds.active=1) && ((customer_ord_prds.order_id  like '%".$search_val."%') OR (customer_ord_prds.order_date like '%".$search_val."%') OR  (customer_tbl.last_name like '%".$search_val."%') OR  (product_tbl.product_name like '%".$search_val."%') OR  (product_tbl.product_name like '%".$search_val."%')) " ;
  
  $check_query = mysqli_query($con,$sql);
@@ -1307,6 +1307,7 @@ if(isset($_POST["get_all_order_filter"]))
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
 				$customer_ord_id=$row["customer_ord_id"];
+				$cus_email=$row["email"];
 				 
 	  
 	 //$order_status=0 -> Pending ,$order_status=1 ->process ,$order_status=2 -> Shipped, $order_status=3 ->compelted
@@ -1348,7 +1349,7 @@ if(isset($_POST["get_all_order_filter"]))
 	$order_status = $row1["order_status"];
 		
 		
-		$msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>";
+		$msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' id='admin_message_btn' customer_email='$cus_email' ><i class='fas fa-envelope text-light'></i></button>";
 
 		if($paymen_catg==1)
 		{
