@@ -876,7 +876,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 						//validate discount is avaiable or not
 						if($offer_start_date<=$today and $today <=$offer_end_date)
 						{
-							$discount = ($discount_rate*0.01)*$total;
+							$discount = round(($discount_rate/100)*$total);
 						}
 						else
 						{
@@ -939,7 +939,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 										$Courier=$Courier+$courier_price; 
 								}
 								 
-							 	$final_total= round(($total+$Courier)-$discount);
+							 	$final_total= round($total+$Courier)-$discount;
 								
 									if(isset($_POST["get_added_products_into_card"]))
 								{
@@ -1043,20 +1043,20 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					<div class='col-sm-2 pt-1 text-right'style='background:orange;'> Sub Total : </div>
 					<div class='col-sm-2 pt-1   text-left' style='background:orange;'><b>Rs.$total.00</b></div>
 				  </div>
-
+	<div class='row  ml-5'>
+					<div class='col-sm-3'> </div>
+					<div class='col-sm-4'> </div>
+					<div class='col-sm-2 text-right pt-1'style='background:orange;'>(-) Discount :  </div>
+					<div class='col-sm-2 pt-1   text-left' style='background:orange;'><b>(Rs.$discount.00)</b></div>
+				  </div>
 				 	<div class='row  ml-5'>
 					<div class='col-sm-3'> </div>
 					<div class='col-sm-4'> </div>
-					<div class='col-sm-2 pt-1 text-right'style='background:orange;'> Courier chrage :  </div>
+					<div class='col-sm-2 pt-1 text-right'style='background:orange;'>(+) Courier chrage :  </div>
 					<div class='col-sm-2 pt-1  text-left' style='background:orange;'><b>Rs.$Courier.00</b></div>
 				  </div>
 	
-				<div class='row  ml-5'>
-					<div class='col-sm-3'> </div>
-					<div class='col-sm-4'> </div>
-					<div class='col-sm-2 text-right pt-1'style='background:orange;'> Discount :  </div>
-					<div class='col-sm-2 pt-1   text-left' style='background:orange;'><b>(Rs.$discount.00)</b></div>
-				  </div>
+			
 				<div class='row ml-5'>
 					<div class='col-sm-3'> </div>
 					<div class='col-sm-4'> </div>
