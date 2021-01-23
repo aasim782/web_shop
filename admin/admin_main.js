@@ -433,6 +433,7 @@ product_count();
 									toastr.success('Successfully updated');//prd update 
 								 
 									product_tbl_get_product();
+									Prduct_table_footer_num();
 									get_product_id();
 									date(); 
 									product_add_form();
@@ -494,7 +495,20 @@ product_count();
 			method: "POST",
 			data: { get_admin_product_filter: 1,Search_product_filter_table:Serach_val },
 			success: function (data) {
-			$("#get_all_product").html(data);
+				
+				if(Serach_val=="")
+				{
+					product_tbl_get_product();
+					Prduct_table_footer_num();
+				}
+				else
+				{
+					$("#get_all_product").html(data);
+					$("#get_footer_num_product").html("");
+					
+				}
+				
+		
 			},
 			 });
 		 
@@ -625,6 +639,7 @@ category_count();
 			  $('#category_filter').val(""); // filter search text box in category table
 			    $("#category_add_footer").html("<button type='submit' class='btn btn-danger'  id='category_add_btn_admin'>Add</button>");
 			     category_tbl_get_category();
+				 Category_table_footer_num();
 				  
       },
     });
@@ -673,8 +688,21 @@ category_count();
 			method: "POST",
 			data: { get_admin_category_filter: 1,Search_category_filter_table:Serach_val },
 			success: function (data) {
-			$("#get_all_category").html(data);
-			},
+		
+			
+						if(Serach_val=="")
+						{	
+							category_tbl_get_category()
+							Category_table_footer_num();
+						}
+						else
+						{
+								$('#get_footer_num_category').html("");
+								 $("#get_all_category").html(data);
+						}
+						
+			
+			}
 			 });
 		 
 
@@ -817,7 +845,7 @@ category_count();
 				   $('#brand_filter').val("");
 			    $("#Brand_add_footer").html("<button type='submit' class='btn btn-danger'  id='brand_add_btn_admin'>Add</button>");
 			     brand_tbl_get_brand();
-				  
+				  Brand_table_footer_num();
       },
     });
   
@@ -854,7 +882,19 @@ category_count();
 			method: "POST",
 			data: { get_admin_brand_filter: 1,Search_brand_filter_table:Serach_val },
 			success: function (data) {
-		    $("#get_all_brand").html(data);
+				
+						if(Serach_val=="")
+						{
+							
+							 brand_tbl_get_brand();
+							  Brand_table_footer_num();
+						}
+						else
+						{
+							 $("#get_all_brand").html(data);
+							 $('#get_footer_num_brand').html("");
+						}
+						
 			},
 			 });
 		 
@@ -1326,6 +1366,33 @@ category_count();
 					
 					
 			});
+			
+			
+			
+			
+			
+				
+			// confirm good recived by the admin
+			$('body').delegate('#admin_confirm_good_recv','click',function() {
+		 	  event.preventDefault();
+				var customer_ord_id= $(this).attr('customer_ord_id');  
+    
+			  	$.ajax({
+					url		:	"admin_action.php",
+					method	:	"POST",
+					data	:	{admin_confirm_good_recv:1,customer_ord_id:customer_ord_id},
+					success	:	function(data){
+					
+					
+						
+					}
+					})
+					
+					
+			})
+			 
+			
+			
 		
 		//bank deposit slip view btn code
 			$('body').delegate('#bankslip_image_btn','click',function() {
@@ -2820,16 +2887,6 @@ $('body').delegate('#admin_message_btn','click',function() {
 
  
  
-	
- function get_print_data()
- {
- 
-		 alert(0);
-			
-			
-
- }
- 
    //print button
  $('body').delegate('#print_btn','click',function() {
 			var print_order_id= $(this).attr('print_order_id'); 
@@ -2837,6 +2894,32 @@ $('body').delegate('#admin_message_btn','click',function() {
  });
  
    
+
+
+
+
+
+
+   //print button
+ $('body').delegate('#logout_cor','click',function() {
+ 
+	 
+	 
+	 
+	 	$.ajax({
+			url		:	"admin_action.php",
+			method	:	"POST",
+			data	:	{reset_the_cour_session:1},
+			success	:	function(data){
+				window.location.href="/project37/admin/cori_login.php";
+			}
+	
+			});
+			
+			
+ })
+ 
+ 
 });
 
 
@@ -2850,6 +2933,17 @@ $('body').delegate('#admin_message_btn','click',function() {
 
 
 
+
+
+
+
+
+
+
+
+
+//it shud be out of the jqry
+//this is for form load
 $( window ).on( "load", function() {
    
    	  
@@ -2871,14 +2965,7 @@ $( window ).on( "load", function() {
 	
 			});
 			
-			
-
- 
-   
-   
 	   
 });
-
-
-
+ 
 

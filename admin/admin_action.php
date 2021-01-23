@@ -1178,7 +1178,7 @@ $recipt="";
 		if(($payment_status==1 && $order_status==2) || ($payment_status==2 && $order_status==2) || ($payment_status==3 && $order_status==2) )
 		{
 			 $status_btn=   "<span class='badge badge-success' > shipped</span>";
-			 $action_btn=	"<button class='shadow btn btn-success '>Confirm Goods Received</button>
+			 $action_btn=	"<button class='shadow btn btn-success' id='admin_confirm_good_recv' customer_ord_id='$customer_ord_id' >Confirm Goods Received</button>
 			  <button class='btn btn-outline-secondary' print_order_id='$order_id'  id='print_btn'><i class='fa fa-print text-dark'></i></button>
 			 ";
 			 
@@ -1333,7 +1333,7 @@ if(isset($_POST["get_all_order_filter"]))
 		if(($payment_status==1 && $order_status==2) || ($payment_status==2 && $order_status==2) || ($payment_status==3 && $order_status==2) )
 		{
 			 $status_btn=   "<span class='badge badge-success' > shipped</span>";
-			 $action_btn=	"<button class='btn btn-success shadow' disabled>Confirm goods Received </button>
+			 $action_btn=	"<button class='btn btn-success shadow'  id='admin_confirm_good_recv' customer_ord_id='$customer_ord_id' >Confirm Goods Received </button>
 			  <button class='btn btn-outline-secondary' print_order_id='$order_id'  id='print_btn'><i class='fa fa-print text-dark'></i></button>";
 		}
 		
@@ -1642,8 +1642,7 @@ if(isset($_POST["get_all_order_filter"]))
  //get all shipped order  to admin shipped table  order status ->2
  if(isset($_POST["get_all_shipped_orders"]) || isset($_POST["count_total_shipped_order"])){
  
- $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
- ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.email,customer_tbl.last_name,product_tbl.product_name
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.order_date, customer_ord_prds.product_id ,customer_ord_prds.customer_ord_id,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.email,customer_tbl.last_name,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=2) ) order by order_id" ;
  $check_query = mysqli_query($con,$sql);
  $count_shipped_order = mysqli_num_rows($check_query);
@@ -1670,6 +1669,8 @@ if(isset($_POST["get_all_order_filter"]))
 				$customer_note=$row["customer_note"];
 				$payment_status=$row["payment_status"];
 				$order_status=$row["order_status"];
+				$customer_ord_id=$row["customer_ord_id"];
+				 
 			  
 		
 		echo " <tr class='text-center' >	
@@ -1683,7 +1684,7 @@ if(isset($_POST["get_all_order_filter"]))
 					  </td>
                  
 					   <td>
-						<button class='btn btn-success shadow' >Confirm goods Received </button>
+						<button class='btn btn-success shadow'   id='admin_confirm_good_recv' customer_ord_id='$customer_ord_id' >Confirm Goods Received </button>
 						<button   ordid='$order_id '  class='btn btn-dark shadow'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' id='admin_message_btn' customer_email='$email'><i class='fas fa-envelope text-light'></i></button>
 						<button class='btn btn-outline-secondary' print_order_id='$order_id'  id='print_btn'><i class='fa fa-print text-dark'></i></button>
 
@@ -4027,10 +4028,24 @@ echo
 		
 if(isset($_POST["reset_the_cour_session"]))
 {
- 
-unset($_SESSION['cour_user_id']); //reset the cori_id session
-  }
+	unset($_SESSION['cour_user_id']); //reset the cori_id session
+}
 
+	
+	
+if(isset($_POST["admin_confirm_good_recv"]))
+{
+	
+	$customer_ord_id = $_POST["customer_ord_id"];
+	$sql = "update customer_ord_prds set order_status=3  WHERE customer_ord_id=$customer_ord_id " ;
+ 	$check_query = mysqli_query($con,$sql);	
+ 
+}
+	
+	
+
+		
+	
 	
 	
 ?>
