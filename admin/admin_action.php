@@ -1721,8 +1721,7 @@ if(isset($_POST["get_all_order_filter"]))
  //get all deliver order  to admin deliver table  order status ->3
  if(isset($_POST["get_all_delivered_orders"])){
  
- $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
- ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,customer_tbl.email,product_tbl.product_name
+ $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,customer_tbl.email,product_tbl.product_name
  FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id   && ((customer_ord_prds.payment_status=1 || customer_ord_prds.payment_status=2 || customer_ord_prds.payment_status=3 ) && (customer_ord_prds.order_status=3) ) order by order_id" ;
  $check_query = mysqli_query($con,$sql);
  $count_deliver_order = mysqli_num_rows($check_query);
@@ -1775,7 +1774,7 @@ if(isset($_POST["get_all_order_filter"]))
 					   <td>
 						 
 						 <a href=''  class='btn btn-success '  data-toggle='modal' id='admin_message_btn' data-target='#admin_message_model' style='cursor: pointer;' customer_email='$email' > <i class='fas fa-envelope'></i></a>
-					  <button class='btn btn-outline-secondary' print_order_id='$order_id'  id='print_btn'><i class='fa fa-print text-dark'></i></button>
+					  <button class='btn btn-outline-secondary' print_order_id='$order_id'  id='print_btn_delive'><i class='fa fa-print text-dark'></i></button>
 
 					 
                       </td>
@@ -3872,11 +3871,8 @@ $sql1="SELECT discount_rate FROM order_tbl where order_id=$order_id";
 				 
 				 $final_amount_before_cor=$total-$discount;
 				 
-				
 				 
-				  
-				 
-				 
+				   
 							if($product_weight =="< 1Kg")
 								{
 									$courier_price=300;
@@ -3928,20 +3924,7 @@ $sql1="SELECT discount_rate FROM order_tbl where order_id=$order_id";
 				 
 				  $final_amount_wiht_cor= $final_amount_before_cor+$Courier;
 				 
-				 
-				 
-				
-				 
-				 
-				 
-				 
-				 
-				 
-				 
-				 
-				 
-				 
-				 
+				  
 					echo"
 
 
@@ -4045,6 +4028,296 @@ if(isset($_POST["admin_confirm_good_recv"]))
 	
 	
 
+
+
+
+
+
+
+
+
+
+
+
+if(isset($_POST["get_print_data_for_delive_order"]))
+{
+	
+date_default_timezone_set('Asia/Kolkata');
+//define date and time
+$today = date("Y-m-d"); // get the date
+					
+					
+$invoice_id = $_POST["invoice_id"];
+$order_id=$invoice_id;
+
+
+$sql_customer_details="SELECT * FROM customer_tbl,customer_ord_prds where customer_tbl.customer_id =customer_ord_prds.customer_id and  order_id=$order_id";
+		$run_query_customer_details = mysqli_query($con,$sql_customer_details);
+		$row_customer_details = mysqli_fetch_array($run_query_customer_details);
+		$last_name = $row_customer_details["last_name"];
+		$first_name = $row_customer_details["first_name"];
+		$phone = $row_customer_details["phone"];
+		$address = $row_customer_details["address"];
+		$city = $row_customer_details["city"];
+		$postal = $row_customer_details["postal"];
+		
+		
+		
+		
+echo "
+ 
+ 
+<tr >
+<td colspan='5' ><hr></td>
+</tr>
+<tr>
+<td  colspan='2'><strong>BILL TO</strong></td>
+<td>&nbsp;</td>
+<td align='right' ><strong>INVOICE&nbsp; NO : </strong> </td>
+ 
+
+<td  >
+ &nbsp $invoice_id
+</td>
+ 
+</tr>
+
+
+<tr  >
+<td  colspan='2' ><strong>  $first_name  $last_name</strong></td>
+<td >&nbsp;</td>
+<td align='right' ><strong>INVOICE DATE : </strong></td>
+ 
+
+<td   > &nbsp $today</td>
+ 
+</tr>
+<tr >
+<td  colspan='2' style='width:200px; height: 18px;'>$address</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+ 
+ 
+</tr>
+<tr >
+<td colspan='2' >$city</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+ 
+ 
+</tr>
+<tr >
+<td  colspan='2'>$postal</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+ 
+ 
+</tr>
+<tr >
+<td  colspan='2'>$phone</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+ 
+</tr>
+<tr >
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+ 
+</tr>
+<tr  style='font-size:20;background-color: #dff0d8 !important;
+    -webkit-print-color-adjust: exact;'>
+<td style='width: 10px; height: 18px;' ><strong>NO</strong></td>
+<td ><strong>ITEM</strong></td>
+<td align='center' style='width: 154px; height: 18px; margin-left:50px'><strong>QTY</strong></td>
+<td style='width: 154px; height: 18px;'><strong>UNIT PRICE</strong></td>
+<td style='width: 154px; height: 18px;'><strong>TOTAL PRICE</strong></td>
+ 
+</tr>
+";
+
+
+
+
+
+$sql ="SELECT customer_ord_prds.current_price_per_prd,customer_ord_prds.order_qtry,customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
+ ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.email,customer_tbl.last_name,product_tbl.product_name,product_tbl.product_weight
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id   && customer_ord_prds.product_id=product_tbl.product_id && (customer_ord_prds.order_status=3)  && customer_ord_prds.active=1 && customer_ord_prds.order_id=$order_id" ;
+ $check_query = mysqli_query($con,$sql);
+
+  $total=0;
+		 $i=$start+1;
+
+ 
+		
+
+$sql1="SELECT discount_rate FROM order_tbl where order_id=$order_id";
+		$run_query1 = mysqli_query($con,$sql1);
+		$row_rate = mysqli_fetch_array($run_query1);
+		$discount_rate = $row_rate["discount_rate"];
+  
+		while($row = mysqli_fetch_array($check_query))
+			{
+				
+				$order_id = $row["order_id"];
+				$order_date = $row["order_date"];
+				$product_name = $row["product_name"];
+ 
+				$current_price_per_prd=$row["current_price_per_prd"];
+				$order_status=$row["order_status"];
+				$customer_ord_id=$row["customer_ord_id"];
+				$order_qtry=$row["order_qtry"];
+				$product_weight=$row["product_weight"];
+ 
+				 
+				 $qty_mul_price= ($current_price_per_prd*$order_qtry);
+				 $total=$total+$qty_mul_price;
+				 $discount=(($discount_rate/100)*$total);
+				 
+				 $final_amount_before_cor=$total-$discount;
+				 
+				 
+				   
+							if($product_weight =="< 1Kg")
+								{
+									$courier_price=300;
+									$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight =="2Kg - 3Kg")
+								{
+										$courier_price=500;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight == "4Kg  - 5Kg ")
+								{
+										$courier_price=700;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight == "6Kg - 10Kg")
+								{
+										$courier_price=900;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight == "11Kg - 20Kg" )
+								{
+										$courier_price=1200;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight == "21Kg - 30Kg" )
+								{
+										$courier_price=1500;
+										$Courier=$Courier+$courier_price; 
+									
+								}else if($product_weight ==" 31Kg - 50Kg ")
+								{
+										$courier_price=2500;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight == "51Kg < 100Kg" )
+								{
+										$courier_price=3500;
+										$Courier=$Courier+$courier_price; 
+								}
+								else if($product_weight ==" 101Kg < Up" )
+								{
+										$courier_price=5000;
+										$Courier=$Courier+$courier_price; 
+								}
+								
+				 
+				 
+				 
+				  $final_amount_wiht_cor= $final_amount_before_cor+$Courier;
+				 
+				  
+					echo"
+
+
+					<tr>
+					<td >$i</td>
+					<td >$product_name</td>
+					<td align='center'>$order_qtry</td>
+					<td >Rs.$current_price_per_prd.00</td>
+					<td >Rs.$qty_mul_price.00</td>
+					 
+					</tr>
+					 "; 
+					 $i++;
+
+
+			}
+
+  
+echo 
+"
+<tr >
+<td>&nbsp;  </td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+ 
+</tr>
+<tr >
+<td  >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td   >&nbsp;</td>
+ 
+</tr>
+<tr  >
+<td  >&nbsp;</td>
+<td  >&nbsp;</td>
+<td  >&nbsp;</td>
+<td  >&nbsp;</td>
+<td  >&nbsp;</td>
+ 
+</tr>
+<tr >
+<td ><strong>NOTE:</strong></td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td align='right'><strong>SUB TOTAL</strong></td>
+<td align='center' style='  background-color: #dff0d8 !important;
+    -webkit-print-color-adjust: exact;'>&nbsp;<b>Rs.$total.00</b></td>
+ 
+</tr>
+<tr >
+<td colspan='2'>No return acceptable</td>
+<td >&nbsp;</td>
+ 
+<td align='right'><strong>DISCOUNT</strong></td>
+<td align='center' style='  background-color: #dff0d8 !important;
+    -webkit-print-color-adjust: exact;' >&nbsp; (Rs.$discount.00)</td>
+ 
+</tr>
+<tr >
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td align='right'><strong>COURIER CHARGE</strong></td>
+<td align='center' style='  background-color: #dff0d8 !important;
+    -webkit-print-color-adjust: exact;'>&nbsp; Rs.$Courier.00</td>
+ 
+</tr>
+<tr >
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td align='right' ><strong>TOTAL</strong></td>
+<td align='center'  style='  background-color: #9ccc9c !important;
+    -webkit-print-color-adjust: exact;'>&nbsp&nbsp&nbsp<b>Rs.$final_amount_wiht_cor.00</b></td>
+ 
+</tr>";
+    
+}
 		
 	
 	

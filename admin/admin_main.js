@@ -2894,18 +2894,19 @@ $('body').delegate('#admin_message_btn','click',function() {
  });
  
    
-
-
-
-
-
-
-   //print button
- $('body').delegate('#logout_cor','click',function() {
+   
+   
+ //print button for deliverd product
+ $('body').delegate('#print_btn_delive','click',function() {
+			var print_order_id= $(this).attr('print_order_id'); 
+			  window.open('invoice.php?dinvoice='+print_order_id+'');
+ });
  
-	 
-	 
-	 
+  
+
+ //logout for courier service
+ $('body').delegate('#logout_cor','click',function() {
+ 	 
 	 	$.ajax({
 			url		:	"admin_action.php",
 			method	:	"POST",
@@ -2920,24 +2921,17 @@ $('body').delegate('#admin_message_btn','click',function() {
  })
  
  
+ 
+ 
+ 
+ 
+ 
 });
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 
@@ -2945,15 +2939,14 @@ $('body').delegate('#admin_message_btn','click',function() {
 //it shud be out of the jqry
 //this is for form load
 $( window ).on( "load", function() {
-   
-   	  
- 
-  
+    
  		var url = new URL(document.URL);
 		var search_params = url.searchParams;
-		var invoice_id_txt = search_params.get('invoice');
-	  
-		 	$.ajax({
+	
+		if( search_params.has('invoice') == true)
+		{
+			var invoice_id_txt = search_params.get('invoice');
+			$.ajax({
 			url		:	"admin_action.php",
 			method	:	"POST",
 			data	:	{get_print_data:1,invoice_id:invoice_id_txt},
@@ -2964,6 +2957,30 @@ $( window ).on( "load", function() {
 			}
 	
 			});
+		}
+		else
+		{
+		 var dinvoice = search_params.get('dinvoice');
+		 	$.ajax({
+			url		:	"admin_action.php",
+			method	:	"POST",
+			data	:	{get_print_data_for_delive_order:1,invoice_id:dinvoice},
+			success	:	function(data){
+	 
+			$("#invoice_data").html(data);
+		  	$("#j_script").html("<script type='text/javascript'>  window.addEventListener('load', window.print());</script>");
+			}
+	
+			});
+			
+			
+			
+		}
+		 	
+			
+			 
+		 
+		
 			
 	   
 });
