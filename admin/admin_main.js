@@ -28,6 +28,7 @@ $(document).ready(function () {
       data: { get_date: 1 },
       success: function (data) {
         $("#prd_add_date_txt").val(data);
+		 
       },
     });
   }

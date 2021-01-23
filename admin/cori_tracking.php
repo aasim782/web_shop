@@ -31,7 +31,7 @@ session_start();
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css?i=15">
 	<script src="../js/all.js?i=15" data-auto-replace-svg="nest"></script>
-	<script src="admin_main.js?i=16" ></script>
+	<script src="admin_main.js?i=20" ></script>
 	
 	
 	 <!-- All icons -->
@@ -46,15 +46,21 @@ session_start();
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
  <a class="navbar-brand" href="#">
-    <img src="https://learncodeweb.com/wp-content/uploads/2019/12/fb-login.png" width="30" height="30" class="d-inline-block align-top" alt="">
-   Dress Line
+   <img src="..\prg_img\logo\logo.png" alt="AdminLTE Logo"   width="30" height="30" class="d-inline-block align-top" alt=""> Dress Line
   </a>
   
   
-   <ul class="navbar-nav justify-content-center ">
+   <ul class="navbar-nav justify-content-center">
      <li class="nav-item active">
-        <a class="nav-link" href="logout.php"><i class="fas fa-home"></i> Logout </a>
+  	  
+	  <button type="button" id="logout_cor" class="btn btn-secondary   mr-2" >
+		<i class="fas fa-home"></i>Logout
+		</button>
+		
+	 
       </li>
+	  
+	  
     
     </ul>
 	

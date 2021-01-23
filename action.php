@@ -24,11 +24,11 @@ if(isset($_POST["category"])){
 		 
 		if($customer_id=='')
 		{
-			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customer_login_model'  >Customs Order</a>";
+			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customer_login_model'  >Customs Order &nbsp <i class='fas fa-box-open'></i></a>";
 		}
 		else
 		{
-			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customes_order'  >Customs Order</a>";
+			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customes_order'  >Customs Order  &nbsp <i class='fas fa-box-open'></i> </a>";
 		}
 			
 	}
@@ -124,7 +124,7 @@ if(isset($_POST["product"])){
 			$product_img = $row["product_img"];
 			$product_total_qty = $row["product_total_qty"];
 			echo "
-			     <div class='col-4 mb-3' >
+			     <div class='col-lg-4 col-sm-12 col-md-6 mb-3'>
             <div class='card shadow-sm'> 
 			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b style='cursor: pointer;' id='particular_product_search_btn' session_val='$customer_id'   pid='$product_id'>$product_name</b>
 			
@@ -179,7 +179,7 @@ if(isset($_POST["product"])){
 
         <label   class='p-1'>QTY :</label>
         <div class='col-sm-4'>
-            <input type='number' class='form-control ' min='1' size='2' step='1' oninput='validity.valid||(value = '' );' session_val='$customer_id'  pid='$product_id' value='1'  id='qty-$product_id' >
+            <input type='number' class='form-control text-center ' min='1' size='2' step='1' oninput='validity.valid||(value = '' );' session_val='$customer_id'  pid='$product_id' value='1'  id='qty-$product_id' >
 		</div>
 		</div>
 	<button class='btn btn-danger btn-sm' style='padding-bottom:10px;padding-top:10px' session_val='$customer_id'  pid='$product_id'  id='particular_product_btn'  ><i class='fa fa-shopping-cart'></i> Add to cart </button>        
@@ -315,7 +315,8 @@ if(isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"])
 			$product_img = $row["product_img"];
 			$product_total_qty = $row["product_total_qty"];
 			echo "
-			<div class=' col-4 mb-3' >
+		 
+			 <div class='col-lg-4 col-sm-12 col-md-6 mb-3'>
             <div class='  card shadow-sm'> 
 			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b style='cursor: pointer;' id='particular_product_search_btn' session_val='$customer_id'  pid='$product_id'>$product_name</b>
 			
@@ -883,7 +884,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 						}
 			 
 						
-						$final_total= round(($total+$Courier)-$discount);
+				
 						
 						while($row = mysqli_fetch_array($check_query1))
 							{
@@ -938,7 +939,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 										$Courier=$Courier+$courier_price; 
 								}
 								 
-								
+							 	$final_total= round(($total+$Courier)-$discount);
 								
 									if(isset($_POST["get_added_products_into_card"]))
 								{
@@ -1088,7 +1089,7 @@ $sql = "SELECT * FROM customer_ord_prds WHERE customer_id = '$customer_id' and p
 					<br>
 					<div class='row ml-3'><b><i class='fas fa-info'></i>&nbspNote : </b><span> &nbsp&nbspYou can upload a slip for an order</span>
 					</div>
-						<div class='text-center m-2'><button class='btn btn-warning ' type='button'  data-toggle='modal' data-target='#bankdepModel'  >Upload</button></div>
+						<div class='text-center m-2'><button class='btn btn-warning ' type='button'  data-toggle='modal' data-target='#bankdepModel'>Upload</button></div>
 					  </div>
 					</div>
 					
@@ -1810,6 +1811,7 @@ $product_desc = $row["product_desc"];
 	
 	
 	echo"
+	 
 	 <div id='show_msg'></div>
 	<div class='card'>
   <div class='card-body shadow-sm   '>
@@ -1905,15 +1907,17 @@ $product_desc = $row["product_desc"];
 	 ";
 	 
 	 if($product_total_qty>0){
-		  echo "<p class='text-success'>In Stock</p>";
+		  echo "<p class='text-success'><i class='fas fa-cubes'></i> In Stock</p>";
 	 }
 	 else
 	 {
-		 echo "<p class='text-danger'>Out of Stock</p>";
+		 echo "<p class='text-danger'><i class='fas fa-exclamation-triangle'></i> Out of Stock</p>";
 	 }
 
 	   
-   	 echo " </div>
+   	 echo " 
+  
+	 </div>
  
   </div>
 					
@@ -1922,19 +1926,15 @@ $product_desc = $row["product_desc"];
 
     </div>		
 					
-				  
-			
-				  
-				   
+			 
 				 
 		<div class='col-4'>
 
 		</div>
-				   <p><b>Delivery within 24 hours</b></p> 
+				   <p><b><i class='fas fa-truck'></i> Delivery within 24 hours</b></p> 
 				   
-		 <button class='btn btn-danger btn-sm mt-2 mb-2' style='padding-bottom:10px;padding-top:10px' pid='$product_id' id='particular_product_btn'><i class='' data-fa-i2svg=''><svg class='svg-inline--fa fa-shopping-cart fa-w-18' aria-hidden='true' focusable='false' data-prefix='fa' data-icon='shopping-cart' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512' data-fa-i2svg=''><path fill='currentColor' d='M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z'></path></svg></i> Add to cart </button>        
-			 
-	 
+		 <button data-toggle='tooltip' data-placement='right' title='If you have any special requirments, Please leave a note in the checkout page' class='btn btn-danger btn-sm mt-2 mb-2' style='padding-bottom:10px;padding-top:10px' pid='$product_id' id='particular_product_btn'> <i class='fas fa-shopping-cart'></i>  Add to cart </button>        
+	
  
 				</div>
 	
@@ -2839,11 +2839,11 @@ if(isset($_POST["category_in_filter"])){
 		
 		if($customer_id=='')
 		{
-			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customer_login_model'>Customs Order</a>";
+			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customer_login_model'>Customs Order &nbsp <i class='fas fa-box-open'></i> </a>";
 		}
 		else
 		{
-			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customes_order'  >Customs Order</a>";
+			echo " <a href='#' class='list-group-item list-group-item-action' data-toggle='modal' data-target='#customes_order'  >Customs Order &nbsp <i class='fas fa-box-open'></i></a>";
 		}
 			
 	}
@@ -3156,7 +3156,7 @@ $product_h_price=0;
 			
 			 
 			echo "
-			<div class=' col-4 mb-3' >
+			<div class='col-lg-4 col-sm-12  col-md-6 mb-3'>
             <div class='  card shadow-sm'> 
 			<div class='card-header' style='font-size:15px;background-color:#f5f5f5'> <b style='cursor: pointer;' id='particular_product_search_btn' session_val='$customer_id'  pid='$product_id'>$product_name</b>
 			

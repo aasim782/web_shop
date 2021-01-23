@@ -4,8 +4,20 @@
 - invoice generated
 - print button added 
 
-" Ver 0.6.34"
+" Ver final_1"
  
+
+
+// tototal price prolme was solved
+// order suddetly not active product also show in orders prb was solved
+// customes order icon added 
+// corier service logout problem soveld
+// succesfull page nav bar doest not update properly os i updated
+// If you have any special requirments, Please leave a note in the checkout page msg added to add to card
+// In admin Produtc page product filter option have problem .when i search somting it will show all products
+// In admin brand page brand  filter option have problem .when i search somting it will show all brand 
+// In admin categorypage category filter option have problem .when i search somting it will show all category
+// product list, brand list, category list footer problem solved
 
 
 

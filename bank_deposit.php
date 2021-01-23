@@ -40,7 +40,7 @@
 			
 			<div class="col-md-6">
 			  <label for="validationCustom01">Deposit Time</label>
-			  <input type="time" class="form-control" id="de_timetxt" name="de_timetxt" placeholder="">
+			  <input type="time" class="form-control" id="de_timetxt" name="de_timetxt"  placeholder="">
 			</div>		
 			</div>
 	

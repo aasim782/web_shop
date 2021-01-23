@@ -8,6 +8,14 @@ $(document).ready(function(){
 	product();
 	filter_category_list();
 	particular_prd_view();
+
+// get the today date
+today = (new Date()).toISOString().split('T')[0];
+
+//today date applied to bankdeposit
+$("#de_datetxt").val(today);
+ 
+
 	
 	//category list request 
 	function category(){

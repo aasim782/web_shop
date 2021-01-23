@@ -25,7 +25,7 @@ include "models.php";
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link"  href="customer_message.php">
-          <i class="far fa-comments"></i>
+        <i class="far fa-envelope"></i>
           <span class="badge badge-danger navbar-badge" id="admin_msg_count"></span>
         </a>
     
@@ -62,7 +62,7 @@ include "models.php";
           </a>
 		     <div class="dropdown-divider"></div>
 		    <a   id="out_of_stock_btn" class="dropdown-item">
-			<i class="fa fa-shopping-basket" ></i>&nbsp  Out of Stocks
+			<i class="fa fa-shopping-basket" ></i>&nbsp  Out of Stocks/ Lower
 			<span class="float-right text-muted text-sm" id="count_total_outofstock_noti"></span>
 			
           </a>

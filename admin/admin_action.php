@@ -527,11 +527,10 @@ if(isset($_POST["Prduct_table_footer_num"])){
 	{
 		
 		$search_val = $_POST["Search_product_filter_table"];
-	 
-	  
-	 	$prd_filter_sql = "SELECT  product_tbl.product_id,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
+		
+		$prd_filter_sql = "SELECT  product_tbl.product_id,product_tbl.product_name,product_tbl.product_price,product_tbl.product_desc,product_tbl.product_total_qty,product_tbl.product_img,category_tbl.category_name,brand_tbl.brand_name
 					 from product_tbl,category_tbl,brand_tbl
-					where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1) and (product_tbl.product_name like '%".$search_val."%' OR brand_tbl.brand_name like '%".$search_val."%'  OR category_tbl.category_name like '%".$search_val."%' OR product_tbl.product_total_qty like '%".$search_val."%' OR product_tbl.product_price like '%".$search_val."%')  ";
+					where (product_tbl.product_category = category_tbl.category_id) and (product_tbl.product_brand = brand_tbl.brand_id) and (product_tbl.active=1) and (product_tbl.product_name like '%".$search_val."%' OR brand_tbl.brand_name like '%".$search_val."%'  OR category_tbl.category_name like '%".$search_val."%' OR product_tbl.product_total_qty like '%".$search_val."%' OR product_tbl.product_price like '%".$search_val."%') LIMIT 10 ";
 					$prd_filter_qry = mysqli_query($con,$prd_filter_sql);
 					$get_filter_output = mysqli_num_rows($prd_filter_qry);
 
@@ -809,7 +808,7 @@ if(isset($_POST["add_category_admin"]))
 		$search_val = $_POST["Search_category_filter_table"];
 		
 			 	 //check product is exist or not and it has active
-		$sql1 = "SELECT * FROM category_tbl WHERE active=1 and category_name like '%".$search_val."%'" ;
+		$sql1 = "SELECT * FROM category_tbl WHERE active=1 and category_name like '%".$search_val."%' limit 5" ;
 		$check_query1 = mysqli_query($con,$sql1);
 		$get_filter_output = mysqli_num_rows($check_query1);
  
@@ -1014,7 +1013,7 @@ $run_query = mysqli_query($con,$brand_query);
 	else if(isset($_POST["get_admin_brand_filter"]))
 	{
 		$search_val = $_POST["Search_brand_filter_table"];
-		$brand_query = "SELECT * FROM brand_tbl where active = 1 and brand_name like '%".$search_val."%'";
+		$brand_query = "SELECT * FROM brand_tbl where active = 1 and brand_name like '%".$search_val."%' limit 5";
 		$run_query = mysqli_query($con,$brand_query);
 		
 		$i=1;		 
@@ -1284,19 +1283,20 @@ if(isset($_POST["get_all_order_filter"]))
 	{
 		
  $search_val = $_POST["Search_all_orde_filter_table"];
- 
- 
+  
  $sql ="SELECT customer_ord_prds.order_id,customer_ord_prds.customer_ord_id,customer_ord_prds.order_date, customer_ord_prds.product_id 
  ,customer_ord_prds.order_status,customer_ord_prds.payment_status,customer_ord_prds.customer_id,customer_ord_prds.customer_note,customer_tbl.last_name,product_tbl.product_name
- FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3) and  ((customer_ord_prds.order_id  like '%".$search_val."%') OR (customer_ord_prds.order_date like '%".$search_val."%') OR  (customer_tbl.last_name like '%".$search_val."%') OR  (product_tbl.product_name like '%".$search_val."%') OR  (product_tbl.product_name like '%".$search_val."%')) " ;
+ FROM product_tbl,customer_ord_prds,customer_tbl where customer_ord_prds.customer_id = customer_tbl.customer_id && customer_ord_prds.product_id=product_tbl.product_id &&  not(customer_ord_prds.order_status=3)   && (customer_ord_prds.active=1) && ((customer_ord_prds.order_id  like '%".$search_val."%') OR (customer_ord_prds.order_date like '%".$search_val."%') OR  (customer_tbl.last_name like '%".$search_val."%') OR  (product_tbl.product_name like '%".$search_val."%') OR  (product_tbl.product_name like '%".$search_val."%')) " ;
+ 
  $check_query = mysqli_query($con,$sql);
-	$total_rows=mysqli_num_rows($check_query);
+ $total_rows=mysqli_num_rows($check_query);
 	
 	
 	if($total_rows>0){
 		$status_btn="";
-$action_btn="";
+		$action_btn="";
 		$i=1;
+		
 		while($row = mysqli_fetch_array($check_query))
 			{
 				$order_id = $row["order_id"];
@@ -1312,7 +1312,7 @@ $action_btn="";
 	 //$order_status=0 -> Pending ,$order_status=1 ->process ,$order_status=2 -> Shipped, $order_status=3 ->compelted
 	 //$payment_status=1 ->online  ,  $payment_status=2 ->bank , $payment_status=3 -> cash on delivery
 
-				if(($payment_status==1 && $order_status==0) || ($payment_status==2 && $order_status==0) || ($payment_status==3 && $order_status==0) )
+ 	if(($payment_status==1 && $order_status==0) || ($payment_status==2 && $order_status==0) || ($payment_status==3 && $order_status==0) )
 		{
 			 $status_btn=   "<span class='badge badge-warning'> Pending</span>";
 			 $action_btn=	"<button class='btn btn-success shadow'  id='order_accept_panding_btn' ordid='$order_id' cust_order_id='$customer_ord_id' ><i class='fa fa-check text-light'></i></button> 
@@ -1338,12 +1338,7 @@ $action_btn="";
 		}
 		
 		
-		
-		
-		
-		
- 
- 	
+		 
  	//recipt button show on all order table in admin	 
 	$sql_payment_category ="SELECT  payment_tbl.paymen_catg,payment_tbl.order_id,customer_ord_prds.order_status FROM payment_tbl,customer_ord_prds
 	where (payment_tbl.order_id = customer_ord_prds.order_id) && (payment_tbl.order_id=$order_id) " ;
@@ -1353,7 +1348,7 @@ $action_btn="";
 	$order_status = $row1["order_status"];
 		
 		
-$msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>";
+		$msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#admin_message_model' style='cursor: pointer;' ><i class='fas fa-envelope text-light'></i></button>";
 
 		if($paymen_catg==1)
 		{
@@ -1388,13 +1383,13 @@ $msg= "<button class='btn btn-dark shadow'  data-toggle='modal' data-target='#ad
 		 
 		echo " <tr class='text-center' >	
 					 <td><b>$i</b></td>
-                      <td >   $order_id  </td>
-                      <td> $order_date</td>
-                      <td> $last_name</td>
+                      <td>$order_id  </td>
+                      <td>$order_date</td>
+                      <td>$last_name</td>
                       <td>$product_name</td>
                       <td>$paymen_catg_img</td>
                       <td >
-					   $status_btn    
+							$status_btn    
 					  </td>
                  
 					   <td>
@@ -4029,6 +4024,13 @@ echo
 }
 	
 	
+		
+if(isset($_POST["reset_the_cour_session"]))
+{
+ 
+unset($_SESSION['cour_user_id']); //reset the cori_id session
+  }
+
 	
 	
 ?>

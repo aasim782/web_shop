@@ -19,7 +19,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+ 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="js/jquery.js?i=93"></script>
     <script src="js/popper.min.js?i=93"></script>
@@ -29,6 +29,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css?i=93">
+ 
 	<script src="js/all.js?i=93" data-auto-replace-svg="nest"></script>
 	<script src="prg_main.js?i=93" ></script>
 	
@@ -216,7 +217,7 @@
       </div>
 	  
       <!-- /.col-lg-3 -->
-	
+ 
 	  
       <div class="col-lg-9"  style="border-radius: 50px 50px;">
 				 
@@ -338,7 +339,7 @@
   
   <?php include "footer.php" ?>
   
-  
+
    
   
 
